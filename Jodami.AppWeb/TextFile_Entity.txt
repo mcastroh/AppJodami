@@ -1,0 +1,11 @@
+﻿
+Capa: Entity
+------------
+1. Instalar paquetes (Nuget)
+	Microsoft.EntityFrameworkCore.SqlServer
+	Microsoft.EntityFrameworkCore.Tools
+
+2. Consola del Administrador de paquetes:
+	Scaffold-DbContext "Server=DESKTOP-F6KG9MM\SQLEXPRESS;DataBase=DbJodami;Integrated Security=true;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer
+	
+ 

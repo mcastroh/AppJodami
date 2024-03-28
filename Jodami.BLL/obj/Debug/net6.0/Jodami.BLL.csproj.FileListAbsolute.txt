@@ -1,0 +1,17 @@
+E:\AppJodami\Jodami.BLL\bin\Debug\net6.0\Jodami.BLL.deps.json
+E:\AppJodami\Jodami.BLL\bin\Debug\net6.0\Jodami.BLL.dll
+E:\AppJodami\Jodami.BLL\bin\Debug\net6.0\Jodami.BLL.pdb
+E:\AppJodami\Jodami.BLL\bin\Debug\net6.0\Jodami.DAL.dll
+E:\AppJodami\Jodami.BLL\bin\Debug\net6.0\Jodami.Entity.dll
+E:\AppJodami\Jodami.BLL\bin\Debug\net6.0\Jodami.DAL.pdb
+E:\AppJodami\Jodami.BLL\bin\Debug\net6.0\Jodami.Entity.pdb
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.csproj.AssemblyReference.cache
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.GeneratedMSBuildEditorConfig.editorconfig
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.AssemblyInfoInputs.cache
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.AssemblyInfo.cs
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.csproj.CoreCompileInputs.cache
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.csproj.CopyComplete
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.dll
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\refint\Jodami.BLL.dll
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\Jodami.BLL.pdb
+E:\AppJodami\Jodami.BLL\obj\Debug\net6.0\ref\Jodami.BLL.dll

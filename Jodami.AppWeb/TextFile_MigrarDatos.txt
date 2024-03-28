@@ -1,0 +1,22 @@
+﻿
+Migrar Datos dcmtos textos, csv, xlsx, ... al sql server, mediante BULK INSERT 
+------------------------------------------------------------------------------- 
+
+truncate table temCodigos
+go
+BULK INSERT temCodigos from 'D:\codeRoll\1.Course\cpDescarga.txt'
+with (
+	fieldTerminator = '|',
+	rowterminator = '\n',
+	firstRow = 3,
+	codepage = '1252'
+)
+
+go 
+with temCodigos
+as
+	(Select distinct c_Estado, d_Estado from [dbo].[temCodigos])
+	Select * from temCodigos order by c_Estado
+
+go
+

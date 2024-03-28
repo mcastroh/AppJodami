@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Jodami.DAL/1.0.0": {
+        "dependencies": {
+          "Jodami.Entity": "1.0.0"
+        },
+        "runtime": {
+          "Jodami.DAL.dll": {}
+        }
+      },
+      "Jodami.Entity/1.0.0": {
+        "runtime": {
+          "Jodami.Entity.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Jodami.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Jodami.Entity/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

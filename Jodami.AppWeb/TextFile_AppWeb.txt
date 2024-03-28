@@ -1,0 +1,52 @@
+﻿---------------------------------------------------------------------------------------------------------
+Curso: Almacén / Inventarios
+	https://www.youtube.com/watch?v=VaB6DhU2jCE&list=PL22Zgblf97cnJqLQm4KFs1KEWGAPWSooW
+---------------------------------------------------------------------------------------------------------
+CSS: Materialize - Un marco de trabajo para interfaces web moderno, responsivo y basado en Material Design
+	https://www.um.es/docencia/barzana/materializecss/
+---------------------------------------------------------------------------------------------------------
+gitHub
+	
+	gitHub Desktop (ver escritorio)		=> Para subir los cambios a GitHub 
+	
+	login a gitHub (ver los cambios)	=> github.com
+											email: m_castrohinostroza@hotmail.com
+											clave: ?cualPuedeSer?tana0218@?No?LoSe
+
+	Repositorio en gitHub				=> mcastroh/JODAMI
+				
+
+---------------------------------------------------------------------------------------------------------
+Entity Framework Core: DataBase First:
+	
+	1. Scalfolding			 
+		En la Consola del Administrador de paquetes 
+		ejecutar => Scaffold-DbContext "Server=DESKTOP-F6KG9MM\SQLEXPRESS;DataBase=DbJodami;Integrated Security=true;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer
+	
+	2. EF Core Power Tolls
+		Herramienta visual para Reverse Inginier: Tablas y SP a solicitud
+		2.1 Instalar herramienta: Pestaña Extensiones > Administrador de Extensiones
+			Buscar: EF Core Power Tolls y luego instalarlo.
+		2.2 Como usarlo:
+			- Anti clic en Jodami.AppWeb > EF Core Power Tolls > Ingenieria Inversa
+			- Name Sql: DESKTOP-F6KG9MM\SQLEXPRESS
+			- DataBase: Jodami
+			* Tablas a subir al App como entidades de negocio
+---------------------------------------------------------------------------------------------------------	
+ 
+
+POR REVISAR
+-----------
+link del curso: https://www.youtube.com/watch?v=WKJ9P-RSfrg&list=PLx2nia7-PgoDbCAY2nGXAcIl_zkQKA2Ap&index=3
+ 
+
+https://www.youtube.com/watch?v=E1lpR8IqaEQ&list=PLx2nia7-PgoDbCAY2nGXAcIl_zkQKA2Ap&index=4
+
+
+
+--------------------
+Cuenta creada: gmail
+--------------------
+	marcoantoniocastrohinostroza@gmail.com
+	cocoroco31
+

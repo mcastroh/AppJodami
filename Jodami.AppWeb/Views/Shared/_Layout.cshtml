@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JODAMI</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/lib/materialize/css/materialize.min.css" rel="stylesheet" />
+     
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Jodami.AppWeb.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+
+        @*  light-green lighten-5    <ul id="slide-out" class="sidenav sidenav-fixed blue-grey lighten-4">        *@
+
+        <ul id="slide-out" class="sidenav sidenav-fixed blue-grey lighten-4">
+            <li>
+                <div class="user-view blue-grey lighten-3">
+                    <div class="background"> 
+                        <img class="responsive-img" src="~/images/fondo.jpg" />                        
+                    </div>                                     
+                    <a href="#user"><img class="circle" src="~/images/usuario.png"></a>  
+                    <a href="#name"><span class="black-text name">Marco Castro</span></a>
+                    <a href="#email"><span class="black-text email">m_castrohinostroza@hotmail.com</span></a>
+                </div>
+            </li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><a class="collapse-item" href="@Url.Action("Index", "Moneda")">Monedas</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="hide-on-large-only material-icons">menu</i></a>
+    </header>
+    
+    <main">    
+        @RenderBody()        
+    </main>
+
+        <footer class="page-footer blue-grey lighten-4">
+            <div class="footer-copyright">
+                <div class="container black-text">
+                    © 2024 Copyright Text
+                    <a class="black-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+            </div> 
+        </footer>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/materialize/js/materialize.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script> 
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                M.AutoInit();
+            });             
+        </script> 
+
+        @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
