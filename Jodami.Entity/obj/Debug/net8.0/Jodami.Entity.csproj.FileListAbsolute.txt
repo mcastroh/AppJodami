@@ -12,3 +12,4 @@ E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\refint\Jodami.Entity.dll
 E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.pdb
 E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.genruntimeconfig.cache
 E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\ref\Jodami.Entity.dll
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.sourcelink.json

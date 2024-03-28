@@ -107,11 +107,11 @@ public partial class Articulo
 
     public virtual TipoValorizacion IdTipoValorizacionNavigation { get; set; }
 
-    public virtual UnidadMedidum IdUnidadCompraNavigation { get; set; }
+    public virtual UnidadMedida IdUnidadCompraNavigation { get; set; }
 
-    public virtual UnidadMedidum IdUnidadInventarioNavigation { get; set; }
+    public virtual UnidadMedida IdUnidadInventarioNavigation { get; set; }
 
-    public virtual UnidadMedidum IdUnidadVentaNavigation { get; set; }
+    public virtual UnidadMedida IdUnidadVentaNavigation { get; set; }
 
     public virtual ICollection<SocioPrecioArticulo> SocioPrecioArticulos { get; set; } = new List<SocioPrecioArticulo>();
 

@@ -13,3 +13,4 @@ E:\AppJodami\Jodami.DAL\obj\Debug\net8.0\Jodami.DAL.dll
 E:\AppJodami\Jodami.DAL\obj\Debug\net8.0\refint\Jodami.DAL.dll
 E:\AppJodami\Jodami.DAL\obj\Debug\net8.0\Jodami.DAL.pdb
 E:\AppJodami\Jodami.DAL\obj\Debug\net8.0\ref\Jodami.DAL.dll
+E:\AppJodami\Jodami.DAL\obj\Debug\net8.0\Jodami.DAL.sourcelink.json

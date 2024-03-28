@@ -17,3 +17,4 @@ E:\AppJodami\Jodami.IOC\obj\Debug\net8.0\Jodami.IOC.dll
 E:\AppJodami\Jodami.IOC\obj\Debug\net8.0\refint\Jodami.IOC.dll
 E:\AppJodami\Jodami.IOC\obj\Debug\net8.0\Jodami.IOC.pdb
 E:\AppJodami\Jodami.IOC\obj\Debug\net8.0\ref\Jodami.IOC.dll
+E:\AppJodami\Jodami.IOC\obj\Debug\net8.0\Jodami.IOC.sourcelink.json

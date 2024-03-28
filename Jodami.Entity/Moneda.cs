@@ -1,11 +1,15 @@
-﻿namespace Jodami.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Jodami.Entity;
 
 public partial class Moneda
 {
     /// <summary>
     /// Moneda ID
     /// </summary>     
-    /// [Key]
+    /// 
+    
+    [Key]
     public int IdMoneda { get; set; }
 
     /// <summary>
@@ -40,7 +44,11 @@ public partial class Moneda
     /// </summary>
     public DateTime FechaRegistro { get; set; }
 
-    public virtual ICollection<SocioCuentaBanco> SocioCuentaBancos { get; set; } = new List<SocioCuentaBanco>();
+    //public virtual ICollection<SocioCuentaBanco> SocioCuentaBancos { get; set; } = new List<SocioCuentaBanco>();
 
-    public virtual ICollection<SocioPrecioArticulo> SocioPrecioArticulos { get; set; } = new List<SocioPrecioArticulo>();
+    //public virtual ICollection<SocioPrecioArticulo> SocioPrecioArticulos { get; set; } = new List<SocioPrecioArticulo>();
+
+
+
+
 }

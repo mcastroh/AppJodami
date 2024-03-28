@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Jodami.Entity;
 
@@ -8,6 +9,7 @@ public partial class SocioPrecioArticulo
     /// <summary>
     /// Precio Artículo ID
     /// </summary>
+    [Key]
     public int IdPrecioArticulo { get; set; }
 
     /// <summary>
