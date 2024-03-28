@@ -8,15 +8,23 @@ namespace Jodami.AppWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        #region Constructor 
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
+        #endregion
+
+        #region HttpGet => Index  
+
         public IActionResult Index()
         {
             return View();
         }
+
+        #endregion
 
         public IActionResult Privacy()
         {
