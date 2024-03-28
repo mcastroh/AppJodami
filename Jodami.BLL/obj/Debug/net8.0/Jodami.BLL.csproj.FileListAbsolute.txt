@@ -10,9 +10,9 @@ E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.GeneratedMSBuildEditorConfig
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.AssemblyInfoInputs.cache
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.AssemblyInfo.cs
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.csproj.CoreCompileInputs.cache
+E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.sourcelink.json
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.csproj.Up2Date
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.dll
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\refint\Jodami.BLL.dll
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.pdb
 E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\ref\Jodami.BLL.dll
-E:\AppJodami\Jodami.BLL\obj\Debug\net8.0\Jodami.BLL.sourcelink.json
