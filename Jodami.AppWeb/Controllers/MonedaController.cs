@@ -17,12 +17,15 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion 
 
+        #region HttpGet => Index  
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {            
             return View((await _contexto.Moneda.AsNoTracking().ToListAsync()).OrderBy(x => x.Simbolo).ToList());
         }
-
+        
+        #endregion
 
     }
 }
