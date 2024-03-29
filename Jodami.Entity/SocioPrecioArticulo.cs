@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class SocioPrecioArticulo
     /// <summary>
     /// Precio Artículo ID
     /// </summary>
+    [Key]
     public int IdPrecioArticulo { get; set; }
 
     /// <summary>
@@ -30,6 +34,7 @@ public partial class SocioPrecioArticulo
     /// <summary>
     /// Precio Unitario
     /// </summary>
+    [Column(TypeName = "decimal(19, 6)")]
     public decimal PrecioUnitario { get; set; }
 
     /// <summary>
@@ -40,16 +45,25 @@ public partial class SocioPrecioArticulo
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdArticulo")]
+    [InverseProperty("SocioPrecioArticulo")]
     public virtual Articulo IdArticuloNavigation { get; set; }
 
+    [ForeignKey("IdMoneda")]
+    [InverseProperty("SocioPrecioArticulo")]
     public virtual Moneda IdMonedaNavigation { get; set; }
 
+    [ForeignKey("IdSocio")]
+    [InverseProperty("SocioPrecioArticulo")]
     public virtual Socio IdSocioNavigation { get; set; }
 }

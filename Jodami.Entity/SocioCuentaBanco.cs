@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class SocioCuentaBanco
     /// <summary>
     /// Cuenta Bancaria ID
     /// </summary>
+    [Key]
     public int IdCuenta { get; set; }
 
     /// <summary>
@@ -35,11 +39,15 @@ public partial class SocioCuentaBanco
     /// <summary>
     /// Código Cuenta
     /// </summary>
+    [Required]
+    [StringLength(50)]
     public string CodigoCuenta { get; set; }
 
     /// <summary>
     /// Código Cuenta Interbancaria
     /// </summary>
+    [Required]
+    [StringLength(50)]
     public string CodigoCuentaInterbancaria { get; set; }
 
     /// <summary>
@@ -50,18 +58,29 @@ public partial class SocioCuentaBanco
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdEntidadFinanciera")]
+    [InverseProperty("SocioCuentaBanco")]
     public virtual EntidadFinanciera IdEntidadFinancieraNavigation { get; set; }
 
+    [ForeignKey("IdMoneda")]
+    [InverseProperty("SocioCuentaBanco")]
     public virtual Moneda IdMonedaNavigation { get; set; }
 
+    [ForeignKey("IdSocio")]
+    [InverseProperty("SocioCuentaBanco")]
     public virtual Socio IdSocioNavigation { get; set; }
 
+    [ForeignKey("IdTipoCuentaBancaria")]
+    [InverseProperty("SocioCuentaBanco")]
     public virtual TipoCuentaBancaria IdTipoCuentaBancariaNavigation { get; set; }
 }

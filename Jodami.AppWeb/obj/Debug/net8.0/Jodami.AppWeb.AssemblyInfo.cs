@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jodami.AppWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9a765c86a0092bb6234d999aca22c31fd019756")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2e04da09e247069a0f3849ea2b28e1ed2db00a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jodami.AppWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jodami.AppWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class TicketPesajes
     /// <summary>
     /// Ticket Pesaje ID
     /// </summary>
+    [Key]
     public int IdTicketPesaje { get; set; }
 
     /// <summary>
@@ -30,6 +34,7 @@ public partial class TicketPesajes
     /// <summary>
     /// Peso Balanza
     /// </summary>
+    [Column(TypeName = "decimal(21, 3)")]
     public decimal PesoBalanza { get; set; }
 
     /// <summary>
@@ -45,14 +50,21 @@ public partial class TicketPesajes
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdArticulo")]
+    [InverseProperty("TicketPesajes")]
     public virtual Articulo IdArticuloNavigation { get; set; }
 
+    [ForeignKey("IdTicket")]
+    [InverseProperty("TicketPesajes")]
     public virtual Ticket IdTicketNavigation { get; set; }
 }

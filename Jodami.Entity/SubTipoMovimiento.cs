@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,11 +13,14 @@ public partial class SubTipoMovimiento
     /// <summary>
     /// Sub Tipo Movto ID
     /// </summary>
+    [Key]
     public int IdSubTipoMovimiento { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string Descripcion { get; set; }
 
     /// <summary>
@@ -30,12 +36,17 @@ public partial class SubTipoMovimiento
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdTipoMovimiento")]
+    [InverseProperty("SubTipoMovimiento")]
     public virtual TipoMovimiento IdTipoMovimientoNavigation { get; set; }
 }

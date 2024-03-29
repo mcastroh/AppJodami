@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,21 +13,28 @@ public partial class TipoDocumentoIdentidad
     /// <summary>
     /// Tipo Dcmto ID
     /// </summary>
+    [Key]
     public int IdTipoDcmtoIdentidad { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string Descripcion { get; set; }
 
     /// <summary>
     /// Símbolo
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string Simbolo { get; set; }
 
     /// <summary>
     /// Código SUNAT
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string IdCodigoSunat { get; set; }
 
     /// <summary>
@@ -40,14 +50,19 @@ public partial class TipoDocumentoIdentidad
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [InverseProperty("IdTipoDcmtoNavigation")]
     public virtual ICollection<Choferes> Choferes { get; set; } = new List<Choferes>();
 
+    [InverseProperty("IdTipoDcmtoIdentidadNavigation")]
     public virtual ICollection<Socio> Socio { get; set; } = new List<Socio>();
 }

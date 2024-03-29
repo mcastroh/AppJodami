@@ -2,40 +2,57 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
 public partial class Empresa
 {
     /// <summary>
-    /// Empresa ID
+    /// Empresa Id
     /// </summary>
+    [Key]
     public int IdEmpresa { get; set; }
 
     /// <summary>
-    /// RUC
+    /// Número RUC
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string NumeroRUC { get; set; }
 
     /// <summary>
     /// Razón Social
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string RazonSocial { get; set; }
 
     /// <summary>
     /// Nombre Comercial
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string NombreComercial { get; set; }
 
     /// <summary>
-    /// Pagina Web
+    /// Página Web
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string PaginaWeb { get; set; }
 
     /// <summary>
     /// Dirección ID
     /// </summary>
     public int? IdDireccion { get; set; }
+
+    /// <summary>
+    /// Logo
+    /// </summary>
+    public int? IdImagen { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -45,19 +62,24 @@ public partial class Empresa
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
-    /// <summary>
-    /// Logo
-    /// </summary>
-    public byte[] Logo { get; set; }
-
+    [InverseProperty("IdEmpresaNavigation")]
     public virtual ICollection<EmpresaLocal> EmpresaLocal { get; set; } = new List<EmpresaLocal>();
 
+    [ForeignKey("IdDireccion")]
+    [InverseProperty("Empresa")]
     public virtual Direccion_ IdDireccionNavigation { get; set; }
+
+    [ForeignKey("IdImagen")]
+    [InverseProperty("Empresa")]
+    public virtual Imagenes IdImagenNavigation { get; set; }
 }

@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class Ticket
     /// <summary>
     /// Ticket ID
     /// </summary>
+    [Key]
     public int IdTicket { get; set; }
 
     /// <summary>
@@ -20,6 +24,7 @@ public partial class Ticket
     /// <summary>
     /// Fecha Pesaje
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaPesaje { get; set; }
 
     /// <summary>
@@ -55,11 +60,15 @@ public partial class Ticket
     /// <summary>
     /// Serie Guía Remisión
     /// </summary>
+    [Required]
+    [StringLength(10)]
     public string GuiaRemisionSerie { get; set; }
 
     /// <summary>
     /// Nro Guía Remisión
     /// </summary>
+    [Required]
+    [StringLength(10)]
     public string GuiaRemisionNumero { get; set; }
 
     /// <summary>
@@ -70,20 +79,23 @@ public partial class Ticket
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
-    public virtual Almacen IdAlmacenDestinoNavigation { get; set; }
-
-    public virtual Almacen IdAlmacenOrigenNavigation { get; set; }
-
+    [ForeignKey("IdTipoMovimiento")]
+    [InverseProperty("Ticket")]
     public virtual TipoMovimiento IdTipoMovimientoNavigation { get; set; }
 
+    [InverseProperty("IdTicketNavigation")]
     public virtual ICollection<TicketLog> TicketLog { get; set; } = new List<TicketLog>();
 
+    [InverseProperty("IdTicketNavigation")]
     public virtual ICollection<TicketPesajes> TicketPesajes { get; set; } = new List<TicketPesajes>();
 }

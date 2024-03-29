@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,36 +13,47 @@ public partial class SunatTipoDetraccion
     /// <summary>
     /// Tipo Detracción ID
     /// </summary>
+    [Key]
     public int IdTipoDetraccion { get; set; }
 
     /// <summary>
     /// Código
     /// </summary>
+    [Required]
+    [StringLength(10)]
     public string Codigo { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string Descripcion { get; set; }
 
     /// <summary>
     /// Porcentaje
     /// </summary>
+    [Column(TypeName = "decimal(13, 2)")]
     public decimal Porcentaje { get; set; }
 
     /// <summary>
     /// Condición
     /// </summary>
+    [Required]
+    [StringLength(5)]
     public string Condicion { get; set; }
 
     /// <summary>
     /// Valor
     /// </summary>
+    [Column(TypeName = "decimal(13, 2)")]
     public decimal Valor { get; set; }
 
     /// <summary>
     /// Unidad UIT - S/.
     /// </summary>
+    [Required]
+    [StringLength(10)]
     public string Unidad { get; set; }
 
     /// <summary>
@@ -50,12 +64,16 @@ public partial class SunatTipoDetraccion
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [InverseProperty("IdTipoDetraccionNavigation")]
     public virtual ICollection<Articulo> Articulo { get; set; } = new List<Articulo>();
 }

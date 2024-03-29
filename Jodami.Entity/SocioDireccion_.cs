@@ -2,14 +2,19 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
+[Table("SocioDireccion ")]
 public partial class SocioDireccion_
 {
     /// <summary>
     /// Dirección ID
     /// </summary>
+    [Key]
     public int IdDireccion { get; set; }
 
     /// <summary>
@@ -30,14 +35,21 @@ public partial class SocioDireccion_
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdDireccion")]
+    [InverseProperty("SocioDireccion_")]
     public virtual Direccion_ IdDireccionNavigation { get; set; }
 
+    [ForeignKey("SocioId")]
+    [InverseProperty("SocioDireccion_")]
     public virtual Socio Socio { get; set; }
 }

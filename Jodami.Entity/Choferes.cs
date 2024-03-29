@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class Choferes
     /// <summary>
     /// Chofer ID
     /// </summary>
+    [Key]
     public int IdChofer { get; set; }
 
     /// <summary>
@@ -20,16 +24,22 @@ public partial class Choferes
     /// <summary>
     /// Nro Dcmto Identidad
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string NumeroDcmto { get; set; }
 
     /// <summary>
     /// Nombres
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string Nombre { get; set; }
 
     /// <summary>
     /// Licencia
     /// </summary>
+    [Required]
+    [StringLength(40)]
     public string Licencia { get; set; }
 
     /// <summary>
@@ -40,12 +50,17 @@ public partial class Choferes
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdTipoDcmto")]
+    [InverseProperty("Choferes")]
     public virtual TipoDocumentoIdentidad IdTipoDcmtoNavigation { get; set; }
 }

@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,21 +13,25 @@ public partial class Usuario
     /// <summary>
     /// Usuario ID
     /// </summary>
+    [Key]
     public int IdUsuario { get; set; }
 
     /// <summary>
     /// Nombre
     /// </summary>
+    [StringLength(60)]
     public string Nombre { get; set; }
 
     /// <summary>
     /// Correo
     /// </summary>
+    [StringLength(100)]
     public string Correo { get; set; }
 
     /// <summary>
     /// Celular
     /// </summary>
+    [StringLength(50)]
     public string Telefono { get; set; }
 
     /// <summary>
@@ -35,16 +42,19 @@ public partial class Usuario
     /// <summary>
     /// Url Foto
     /// </summary>
+    [StringLength(500)]
     public string UrlFoto { get; set; }
 
     /// <summary>
     /// Nombre Foto
     /// </summary>
+    [StringLength(100)]
     public string NombreFoto { get; set; }
 
     /// <summary>
     /// Clave
     /// </summary>
+    [StringLength(100)]
     public string Clave { get; set; }
 
     /// <summary>
@@ -55,12 +65,16 @@ public partial class Usuario
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime? FechaRegistro { get; set; }
 
+    [ForeignKey("IdRol")]
+    [InverseProperty("Usuario")]
     public virtual Rol IdRolNavigation { get; set; }
 }

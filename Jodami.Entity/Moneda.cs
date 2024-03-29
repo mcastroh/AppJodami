@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,21 +13,28 @@ public partial class Moneda
     /// <summary>
     /// Moneda ID
     /// </summary>
+    [Key]
     public int IdMoneda { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string Descripcion { get; set; }
 
     /// <summary>
     /// Símbolo
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string Simbolo { get; set; }
 
     /// <summary>
     /// Código SUNAT
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string IdSunat { get; set; }
 
     public int Orden { get; set; }
@@ -37,14 +47,19 @@ public partial class Moneda
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [InverseProperty("IdMonedaNavigation")]
     public virtual ICollection<SocioCuentaBanco> SocioCuentaBanco { get; set; } = new List<SocioCuentaBanco>();
 
+    [InverseProperty("IdMonedaNavigation")]
     public virtual ICollection<SocioPrecioArticulo> SocioPrecioArticulo { get; set; } = new List<SocioPrecioArticulo>();
 }

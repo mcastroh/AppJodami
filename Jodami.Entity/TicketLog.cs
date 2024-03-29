@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class TicketLog
     /// <summary>
     /// Ticket Log ID
     /// </summary>
+    [Key]
     public int IdTicketLog { get; set; }
 
     /// <summary>
@@ -20,27 +24,38 @@ public partial class TicketLog
     /// <summary>
     /// Motivo del Log
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string MotivoCrud { get; set; }
 
     /// <summary>
     /// Decía
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string DatoDecia { get; set; }
 
     /// <summary>
     /// Dice
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string DatoDice { get; set; }
 
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdTicket")]
+    [InverseProperty("TicketLog")]
     public virtual Ticket IdTicketNavigation { get; set; }
 }

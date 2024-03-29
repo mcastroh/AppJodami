@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,16 +13,19 @@ public partial class EntidadFinanciera
     /// <summary>
     /// Entidad Financiera ID
     /// </summary>
+    [Key]
     public int IdEntidadFinanciera { get; set; }
 
     /// <summary>
     /// Código
     /// </summary>
+    [StringLength(10)]
     public string Codigo { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [StringLength(100)]
     public string Descripcion { get; set; }
 
     /// <summary>
@@ -30,12 +36,16 @@ public partial class EntidadFinanciera
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [InverseProperty("IdEntidadFinancieraNavigation")]
     public virtual ICollection<SocioCuentaBanco> SocioCuentaBanco { get; set; } = new List<SocioCuentaBanco>();
 }

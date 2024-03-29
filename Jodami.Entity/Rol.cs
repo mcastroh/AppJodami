@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,11 +13,13 @@ public partial class Rol
     /// <summary>
     /// Rol ID
     /// </summary>
+    [Key]
     public int IdRol { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [StringLength(40)]
     public string Descripcion { get; set; }
 
     /// <summary>
@@ -25,14 +30,18 @@ public partial class Rol
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime? FechaRegistro { get; set; }
 
+    [InverseProperty("IdRolNavigation")]
     public virtual ICollection<RolMenu> RolMenu { get; set; } = new List<RolMenu>();
 
+    [InverseProperty("IdRolNavigation")]
     public virtual ICollection<Usuario> Usuario { get; set; } = new List<Usuario>();
 }

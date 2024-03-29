@@ -2,14 +2,18 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
 public partial class ArticuloImagen
 {
     /// <summary>
-    /// Artículo Imagen ID
+    /// ID
     /// </summary>
+    [Key]
     public int IdArticuloImagen { get; set; }
 
     /// <summary>
@@ -18,9 +22,9 @@ public partial class ArticuloImagen
     public int IdArticulo { get; set; }
 
     /// <summary>
-    /// Imagen
+    /// Imagen ID
     /// </summary>
-    public byte[] Imagen { get; set; }
+    public int? IdImagen { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -30,12 +34,21 @@ public partial class ArticuloImagen
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdArticulo")]
+    [InverseProperty("ArticuloImagen")]
     public virtual Articulo IdArticuloNavigation { get; set; }
+
+    [ForeignKey("IdImagen")]
+    [InverseProperty("ArticuloImagen")]
+    public virtual Imagenes IdImagenNavigation { get; set; }
 }

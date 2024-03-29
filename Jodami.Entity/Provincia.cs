@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,16 +13,22 @@ public partial class Provincia
     /// <summary>
     /// Provincia ID
     /// </summary>
+    [Key]
     public int IdProvincia { get; set; }
 
     /// <summary>
     /// Código
     /// </summary>
+    [Required]
+    [StringLength(4)]
     public string CodigoProvincia { get; set; }
 
     /// <summary>
     /// Provincia
     /// </summary>
+    [Required]
+    [Column("Provincia")]
+    [StringLength(100)]
     public string Provincia1 { get; set; }
 
     /// <summary>
@@ -35,14 +44,20 @@ public partial class Provincia
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [InverseProperty("IdProvinciaNavigation")]
     public virtual ICollection<Distrito> Distrito { get; set; } = new List<Distrito>();
 
+    [ForeignKey("IdDepartamento")]
+    [InverseProperty("Provincia")]
     public virtual Departamento IdDepartamentoNavigation { get; set; }
 }

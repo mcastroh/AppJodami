@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,16 +13,21 @@ public partial class Almacen
     /// <summary>
     /// Almacén ID
     /// </summary>
+    [Key]
     public int IdAlmacen { get; set; }
 
     /// <summary>
     /// Código
     /// </summary>
+    [Required]
+    [StringLength(20)]
     public string Codigo { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string Descripcion { get; set; }
 
     /// <summary>
@@ -45,11 +53,13 @@ public partial class Almacen
     /// <summary>
     /// Area Metros Cuadrados
     /// </summary>
+    [Column(TypeName = "decimal(19, 6)")]
     public decimal Superficie { get; set; }
 
     /// <summary>
     /// Capacidad Kg
     /// </summary>
+    [Column(TypeName = "decimal(19, 6)")]
     public decimal Capacidad { get; set; }
 
     /// <summary>
@@ -60,22 +70,25 @@ public partial class Almacen
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdDireccion")]
+    [InverseProperty("Almacen")]
     public virtual Direccion_ IdDireccionNavigation { get; set; }
 
-    public virtual EmpresaLocal IdLocalNavigation { get; set; }
-
+    [ForeignKey("IdResponsable")]
+    [InverseProperty("Almacen")]
     public virtual Socio IdResponsableNavigation { get; set; }
 
+    [ForeignKey("IdTipoAlmacen")]
+    [InverseProperty("Almacen")]
     public virtual TipoAlmacen IdTipoAlmacenNavigation { get; set; }
-
-    public virtual ICollection<Ticket> TicketIdAlmacenDestinoNavigation { get; set; } = new List<Ticket>();
-
-    public virtual ICollection<Ticket> TicketIdAlmacenOrigenNavigation { get; set; } = new List<Ticket>();
 }

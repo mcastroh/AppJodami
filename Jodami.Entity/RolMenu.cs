@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class RolMenu
     /// <summary>
     /// Rol Menú ID
     /// </summary>
+    [Key]
     public int IdRolMenu { get; set; }
 
     /// <summary>
@@ -30,14 +34,20 @@ public partial class RolMenu
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime? FechaRegistro { get; set; }
 
+    [ForeignKey("IdMenu")]
+    [InverseProperty("RolMenu")]
     public virtual Menu IdMenuNavigation { get; set; }
 
+    [ForeignKey("IdRol")]
+    [InverseProperty("RolMenu")]
     public virtual Rol IdRolNavigation { get; set; }
 }

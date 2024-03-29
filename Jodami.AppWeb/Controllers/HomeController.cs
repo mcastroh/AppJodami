@@ -26,6 +26,15 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion
 
+        public IActionResult Perfil()
+        {
+            return View();
+        }
+
+
+
+
+
         public IActionResult Privacy()
         {
             return View();
@@ -36,5 +45,8 @@ namespace Jodami.AppWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+       
+
     }
 }

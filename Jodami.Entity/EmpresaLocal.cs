@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,11 +13,14 @@ public partial class EmpresaLocal
     /// <summary>
     /// LocalID
     /// </summary>
+    [Key]
     public int IdLocal { get; set; }
 
     /// <summary>
     /// Razón Social
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string RazonSocial { get; set; }
 
     /// <summary>
@@ -35,16 +41,21 @@ public partial class EmpresaLocal
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
-    public virtual ICollection<Almacen> Almacen { get; set; } = new List<Almacen>();
-
+    [ForeignKey("IdDireccion")]
+    [InverseProperty("EmpresaLocal")]
     public virtual Direccion_ IdDireccionNavigation { get; set; }
 
+    [ForeignKey("IdEmpresa")]
+    [InverseProperty("EmpresaLocal")]
     public virtual Empresa IdEmpresaNavigation { get; set; }
 }

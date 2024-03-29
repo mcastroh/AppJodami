@@ -8,32 +8,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
-public partial class TipoFormaPago
+public partial class Imagenes
 {
     /// <summary>
-    /// Tipo Forma Pago ID
+    /// Imagen ID
     /// </summary>
     [Key]
-    public int IdTipoFormaPago { get; set; }
+    public int IdImagen { get; set; }
 
     /// <summary>
-    /// Código
-    /// </summary>
-    [Required]
-    [StringLength(20)]
-    public string Codigo { get; set; }
-
-    /// <summary>
-    /// Descripción
+    /// Nombre
     /// </summary>
     [Required]
     [StringLength(100)]
-    public string Descripcion { get; set; }
+    public string Nombre { get; set; }
 
     /// <summary>
-    /// Días de Pago
+    /// Ruta
     /// </summary>
-    public int DiasDePago { get; set; }
+    [Required]
+    [StringLength(100)]
+    public string Ruta { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -53,6 +48,15 @@ public partial class TipoFormaPago
     [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
-    [InverseProperty("IdTipoFormaPagoNavigation")]
-    public virtual ICollection<SocioFormaPago> SocioFormaPago { get; set; } = new List<SocioFormaPago>();
+    /// <summary>
+    /// Imagen
+    /// </summary>
+    [Required]
+    public byte[] Imagen { get; set; }
+
+    [InverseProperty("IdImagenNavigation")]
+    public virtual ICollection<ArticuloImagen> ArticuloImagen { get; set; } = new List<ArticuloImagen>();
+
+    [InverseProperty("IdImagenNavigation")]
+    public virtual ICollection<Empresa> Empresa { get; set; } = new List<Empresa>();
 }

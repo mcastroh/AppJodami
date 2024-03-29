@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,6 +13,7 @@ public partial class SocioFormaPago
     /// <summary>
     /// Forma Pago ID
     /// </summary>
+    [Key]
     public int IdFormaPago { get; set; }
 
     /// <summary>
@@ -30,14 +34,21 @@ public partial class SocioFormaPago
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdSocio")]
+    [InverseProperty("SocioFormaPago")]
     public virtual Socio IdSocioNavigation { get; set; }
 
+    [ForeignKey("IdTipoFormaPago")]
+    [InverseProperty("SocioFormaPago")]
     public virtual TipoFormaPago IdTipoFormaPagoNavigation { get; set; }
 }

@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,41 +13,55 @@ public partial class Vehiculos
     /// <summary>
     /// Vehículo ID
     /// </summary>
+    [Key]
     public int IdVehiculo { get; set; }
 
     /// <summary>
     /// Nombre
     /// </summary>
+    [Required]
+    [StringLength(40)]
     public string Nombre { get; set; }
 
     /// <summary>
     /// Marca
     /// </summary>
+    [Required]
+    [StringLength(40)]
     public string Marca { get; set; }
 
     /// <summary>
     /// Modelo
     /// </summary>
+    [Required]
+    [StringLength(40)]
     public string Modelo { get; set; }
 
     /// <summary>
     /// Color
     /// </summary>
+    [Required]
+    [StringLength(40)]
     public string Color { get; set; }
 
     /// <summary>
     /// Placa
     /// </summary>
+    [Required]
+    [StringLength(40)]
     public string Placa { get; set; }
 
     /// <summary>
     /// Certificado Inscripción
     /// </summary>
+    [Required]
+    [StringLength(40)]
     public string Certificado { get; set; }
 
     /// <summary>
     /// Peso en Kg
     /// </summary>
+    [Column(TypeName = "decimal(13, 2)")]
     public decimal PesoKg { get; set; }
 
     /// <summary>
@@ -65,12 +82,17 @@ public partial class Vehiculos
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [ForeignKey("IdFlete")]
+    [InverseProperty("Vehiculos")]
     public virtual TipoFlete IdFleteNavigation { get; set; }
 }

@@ -2,6 +2,9 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
@@ -10,16 +13,21 @@ public partial class Articulo
     /// <summary>
     /// Artículo ID
     /// </summary>
+    [Key]
     public int IdArticulo { get; set; }
 
     /// <summary>
     /// Código Artículo
     /// </summary>
+    [Required]
+    [StringLength(10)]
     public string CodigoArticulo { get; set; }
 
     /// <summary>
     /// Descripción
     /// </summary>
+    [Required]
+    [StringLength(100)]
     public string Descripcion { get; set; }
 
     /// <summary>
@@ -65,21 +73,25 @@ public partial class Articulo
     /// <summary>
     /// Stock Mínimo
     /// </summary>
+    [Column(TypeName = "decimal(19, 6)")]
     public decimal StockMinimo { get; set; }
 
     /// <summary>
     /// Stock Máximo
     /// </summary>
+    [Column(TypeName = "decimal(19, 6)")]
     public decimal StockMaximo { get; set; }
 
     /// <summary>
     /// Stock de Seguridad
     /// </summary>
+    [Column(TypeName = "decimal(19, 6)")]
     public decimal StockSeguridad { get; set; }
 
     /// <summary>
     /// Observaciones
     /// </summary>
+    [StringLength(1000)]
     public string Observaciones { get; set; }
 
     /// <summary>
@@ -90,32 +102,54 @@ public partial class Articulo
     /// <summary>
     /// Auditoría Usuario
     /// </summary>
+    [Required]
+    [StringLength(60)]
     public string UsuarioName { get; set; }
 
     /// <summary>
     /// Auditoría Fecha
     /// </summary>
+    [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [InverseProperty("IdArticuloNavigation")]
     public virtual ICollection<ArticuloImagen> ArticuloImagen { get; set; } = new List<ArticuloImagen>();
 
+    [ForeignKey("IdSubGrupoArticulo")]
+    [InverseProperty("Articulo")]
     public virtual SubGrupoArticulo IdSubGrupoArticuloNavigation { get; set; }
 
+    [ForeignKey("IdTipoArticulo")]
+    [InverseProperty("Articulo")]
     public virtual TipoArticulo IdTipoArticuloNavigation { get; set; }
 
+    [ForeignKey("IdTipoDetraccion")]
+    [InverseProperty("Articulo")]
     public virtual SunatTipoDetraccion IdTipoDetraccionNavigation { get; set; }
 
+    [ForeignKey("IdTipoExistencia")]
+    [InverseProperty("Articulo")]
     public virtual SunatTipoExistencia IdTipoExistenciaNavigation { get; set; }
 
+    [ForeignKey("IdTipoValorizacion")]
+    [InverseProperty("Articulo")]
     public virtual TipoValorizacion IdTipoValorizacionNavigation { get; set; }
 
+    [ForeignKey("IdUnidadCompra")]
+    [InverseProperty("ArticuloIdUnidadCompraNavigation")]
     public virtual UnidadMedida IdUnidadCompraNavigation { get; set; }
 
+    [ForeignKey("IdUnidadInventario")]
+    [InverseProperty("ArticuloIdUnidadInventarioNavigation")]
     public virtual UnidadMedida IdUnidadInventarioNavigation { get; set; }
 
+    [ForeignKey("IdUnidadVenta")]
+    [InverseProperty("ArticuloIdUnidadVentaNavigation")]
     public virtual UnidadMedida IdUnidadVentaNavigation { get; set; }
 
+    [InverseProperty("IdArticuloNavigation")]
     public virtual ICollection<SocioPrecioArticulo> SocioPrecioArticulo { get; set; } = new List<SocioPrecioArticulo>();
 
+    [InverseProperty("IdArticuloNavigation")]
     public virtual ICollection<TicketPesajes> TicketPesajes { get; set; } = new List<TicketPesajes>();
 }
