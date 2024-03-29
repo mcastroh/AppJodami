@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Jodami.Entity.TipoVia>
+
+@{
+    ViewData["Title"] = "Tipo Vía";
+}
+
+<div class="container">
+    <h4>Unidades de Medida</h4>
+    <div class="card">
+        <div class="row">
+            <div class="col s2 offset-s10">
+                <div class="valign-wrapper">
+                    Agregar <i onclick="Attach('Tipo Vía','');" class="small material-icons">add_circle</i>
+                </div>
+            </div>
+        </div>
+        <table class="striped highlight responsive-table">
+            <thead>
+                <tr>                   
+                    <th>Descripción</th>
+                    <th>Orden</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tblBody">
+                @foreach (var item in Model)
+                {
+                    <tr id="row_@item.IdTipoVia">                        
+                        <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Orden)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EsActivo)</td>
+                        <td>
+                            @*
+                        <i class="material-icons" onclick="Attach('Ocasión',@item.IdUnidad);">edit</i> |
+                        <i class="material-icons" onclick="Delete('Ocasión','@item.Ocasion',@item.IdUnidad);">delete_forever</i>
+                        *@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
