@@ -5,84 +5,152 @@
       "PackagePath": "staticwebassets\\Jodami.AppWeb.bundle.scp.css"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\sb-admin-2.css",
+      "PackagePath": "staticwebassets\\css\\sb-admin-2.css"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\sb-admin-2.min.css",
+      "PackagePath": "staticwebassets\\css\\sb-admin-2.min.css"
     },
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\images\\fondo.jpg",
-      "PackagePath": "staticwebassets\\images\\fondo.jpg"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\img\\undraw_posting_photo.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_posting_photo.svg"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\images\\logoJodami.jpg",
-      "PackagePath": "staticwebassets\\images\\logoJodami.jpg"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\img\\undraw_profile.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile.svg"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\images\\usuario.png",
-      "PackagePath": "staticwebassets\\images\\usuario.png"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\img\\undraw_profile_1.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile_1.svg"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\img\\undraw_profile_2.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile_2.svg"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\img\\undraw_profile_3.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_profile_3.svg"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\img\\undraw_rocket.svg",
+      "PackagePath": "staticwebassets\\img\\undraw_rocket.svg"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\sb-admin-2.js",
+      "PackagePath": "staticwebassets\\js\\sb-admin-2.js"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\sb-admin-2.min.js",
+      "PackagePath": "staticwebassets\\js\\sb-admin-2.min.js"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\chart-bar-demo.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\chart-bar-demo.js"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\chart-pie-demo.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\chart-pie-demo.js"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\datatables-demo.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\datatables-demo.js"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_buttons.scss",
+      "PackagePath": "staticwebassets\\scss\\_buttons.scss"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery\\LICENSE.txt",
-      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_cards.scss",
+      "PackagePath": "staticwebassets\\scss\\_cards.scss"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery\\dist\\jquery.js",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_charts.scss",
+      "PackagePath": "staticwebassets\\scss\\_charts.scss"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_dropdowns.scss",
+      "PackagePath": "staticwebassets\\scss\\_dropdowns.scss"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_error.scss",
+      "PackagePath": "staticwebassets\\scss\\_error.scss"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\materialize\\css\\materialize.min.css",
-      "PackagePath": "staticwebassets\\lib\\materialize\\css\\materialize.min.css"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_footer.scss",
+      "PackagePath": "staticwebassets\\scss\\_footer.scss"
     },
     {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\lib\\materialize\\js\\materialize.min.js",
-      "PackagePath": "staticwebassets\\lib\\materialize\\js\\materialize.min.js"
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_global.scss",
+      "PackagePath": "staticwebassets\\scss\\_global.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_login.scss",
+      "PackagePath": "staticwebassets\\scss\\_login.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_mixins.scss",
+      "PackagePath": "staticwebassets\\scss\\_mixins.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_navs.scss",
+      "PackagePath": "staticwebassets\\scss\\_navs.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_utilities.scss",
+      "PackagePath": "staticwebassets\\scss\\_utilities.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\_variables.scss",
+      "PackagePath": "staticwebassets\\scss\\_variables.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\navs\\_global.scss",
+      "PackagePath": "staticwebassets\\scss\\navs\\_global.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\navs\\_sidebar.scss",
+      "PackagePath": "staticwebassets\\scss\\navs\\_sidebar.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\navs\\_topbar.scss",
+      "PackagePath": "staticwebassets\\scss\\navs\\_topbar.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\sb-admin-2.scss",
+      "PackagePath": "staticwebassets\\scss\\sb-admin-2.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\utilities\\_animation.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_animation.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\utilities\\_background.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_background.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\utilities\\_border.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_border.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\utilities\\_display.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_display.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\utilities\\_progress.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_progress.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\utilities\\_rotate.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_rotate.scss"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\scss\\utilities\\_text.scss",
+      "PackagePath": "staticwebassets\\scss\\utilities\\_text.scss"
     },
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\vendor\\bootstrap\\js\\bootstrap.bundle.js",
@@ -751,10 +819,6 @@
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\vendor\\fontawesome-free\\metadata\\sponsors.yml",
       "PackagePath": "staticwebassets\\vendor\\fontawesome-free\\metadata\\sponsors.yml"
-    },
-    {
-      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\vendor\\fontawesome-free\\package-lock.json",
-      "PackagePath": "staticwebassets\\vendor\\fontawesome-free\\package-lock.json"
     },
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\vendor\\fontawesome-free\\package.json",
