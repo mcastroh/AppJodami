@@ -1,21 +1,17 @@
-﻿@using Jodami.Entity;
-@model IEnumerable<Moneda>
+﻿@model IEnumerable<Jodami.Entity.Moneda>
 
 @{
     ViewData["Title"] = "Moneda";
-    // Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@* 
 @section Estilos{
     <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
-} *@
-
+}
 
 <!-- DataTales Example -->
-<div class="container">
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-second-primary">
         <h6 class="m-0 font-weight-bold text-white">Lista de Productos</h6>
@@ -29,31 +25,29 @@
         <hr />
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-bordered responsive-table striped" id="tbdata" cellspacing="0" style="width:100%">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
                     <thead>
                         <tr>
-                            <th hidden="hidden">Id</th>                          
+                            <th hidden="hidden">Id</th>
+                            <th>Código</th>
                             <th>Descripción</th>
                             <th>Símbolo</th>
-                            <th>SUNAT</th>
-                            <th>Activo</th>
+                            <th>Pais</th>                             
                             <th>Acciones</th>                            
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td hidden="hidden">@Html.DisplayFor(m => item.IdMoneda)</td>
+                            <tr>                             
                                 <td>@Html.DisplayFor(m => item.Descripcion)</td>
                                 <td>@Html.DisplayFor(m => item.Simbolo)</td>
-                                <td>@Html.DisplayFor(m => item.IdSunat)</td>                            
-                                <td>@Html.DisplayFor(m => item.EsActivo)</td>
-
+                                <td>@Html.DisplayFor(m => item.IdSunat)</td>
+                                <td>@Html.DisplayFor(m => item.Orden)</td>
                                 <td>
-                                    <a class="btn btn-warning" href="@Url.Action("Editar", "Moneda", new { id = @item.IdMoneda})"><i class="bi bi-pencil-fill"></i>   Editar</a>
-                                    <a class="btn btn-secondary" href="@Url.Action("Detalle", "Moneda", new { id = @item.IdMoneda })"><i class="bi bi-info-circle-fill"></i>   Detalle</a>
-                                    <a class="btn btn-danger" href="@Url.Action("Borrar", "Moneda", new { id = @item.IdMoneda})"><i class="bi bi-eraser-fill"></i>   Borrar</a>
+                                    <a class="btn btn-warning" href="@Url.Action("Editar", "Moneda", new { id = @item.IdMoneda})"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                    <a class="btn btn-secondary" href="@Url.Action("Detalle", "Moneda", new { id = @item.IdMoneda })"><i class="bi bi-info-circle-fill"></i> Detalle</a>
+                                    <a class="btn btn-danger" href="@Url.Action("Borrar", "Moneda", new { id = @item.IdMoneda})"><i class="bi bi-eraser-fill"></i> Borrar</a>
                                 </td>
                                 <td>
                                     <button class="btn btn-primary btn-sm">
@@ -70,7 +64,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!--  Modal-->
@@ -151,8 +144,6 @@
     </div>
 </div>
 
-
-@* 
 @section Scripts {
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -168,4 +159,4 @@
     <script src="~/js/vistas/datatables-demo.js"></script>
 }
 
- *@
+ 

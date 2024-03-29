@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "NQE1Ww3Hrwn3iNyodCD1ciQqcPaxgdqeu7btGwNbA2QyeWCOmgium5eEO+kBPD3KasXVb5fcxDJAviZ8rRJg3w==",
+  "dgSpecHash": "dJPMYai0coTPLro/8I1UQPXZjlEXWVDAY89YpUuBR0q0iVA4oIJsUM1jUTYCLxIPwdP3zOsr/g0vxHrJYpXTiw==",
   "success": true,
   "projectFilePath": "E:\\AppJodami\\Jodami.AppWeb\\Jodami.AppWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
