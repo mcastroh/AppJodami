@@ -11,7 +11,7 @@
    "ProjectRootNamespace": "Jodami.AppWeb",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 2,
-   "SelectedToBeGenerated": 1,
+   "SelectedToBeGenerated": 0,
    "T4TemplatePath": null,
    "Tables": [
       {
@@ -60,6 +60,10 @@
       },
       {
          "Name": "[dbo].[GrupoArticulo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Imagenes]",
          "ObjectType": 0
       },
       {
@@ -210,7 +214,7 @@
    "UseDateOnlyTimeOnly": true,
    "UseDbContextSplitting": false,
    "UseDecimalDataAnnotationForSprocResult": true,
-   "UseFluentApiOnly": true,
+   "UseFluentApiOnly": false,
    "UseHandleBars": false,
    "UseHierarchyId": false,
    "UseInflector": false,

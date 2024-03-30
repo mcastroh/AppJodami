@@ -1,4 +1,6 @@
-﻿using Jodami.DAL.DBContext;
+﻿using Jodami.BLL.Implementacion;
+using Jodami.BLL.Interfaces;
+using Jodami.DAL.DBContext;
 using Jodami.DAL.Implementacion;
 using Jodami.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +33,11 @@ namespace Jodami.IOC
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+
             //services.AddScoped<IVentaRepository, VentaRepository>();
+
+            services.AddScoped<IMonedaService, MonedaService>();
+          
 
             return services;
         }

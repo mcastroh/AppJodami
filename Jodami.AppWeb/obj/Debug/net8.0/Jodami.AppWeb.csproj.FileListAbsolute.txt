@@ -8,6 +8,7 @@ E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\Jodami.AppWeb.deps.json
 E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\Jodami.AppWeb.runtimeconfig.json
 E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\Jodami.AppWeb.dll
 E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\Jodami.AppWeb.pdb
+E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\AutoMapper.dll
 E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\Azure.Core.dll
 E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\Azure.Identity.dll
 E:\AppJodami\Jodami.AppWeb\bin\Debug\net8.0\Humanizer.dll

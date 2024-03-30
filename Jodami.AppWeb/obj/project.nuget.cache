@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dJPMYai0coTPLro/8I1UQPXZjlEXWVDAY89YpUuBR0q0iVA4oIJsUM1jUTYCLxIPwdP3zOsr/g0vxHrJYpXTiw==",
+  "dgSpecHash": "COkuD/k484P2PXCbvlDxiBZDBwXndsCybOJkHR8SuP+6faNGTI6awlv5cKVrQKIbKSAtJTjyP/o+HWCpkJ4xKA==",
   "success": true,
   "projectFilePath": "E:\\AppJodami\\Jodami.AppWeb\\Jodami.AppWeb.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
