@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jodami.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f24e1e34993b4789c2d7583a39f557bd7e0bf5f1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+115f67d36faab92a0d68f31330009040ad84b324")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jodami.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jodami.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

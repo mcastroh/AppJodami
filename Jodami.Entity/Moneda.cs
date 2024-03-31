@@ -36,9 +36,7 @@ public partial class Moneda
     [Required]
     [StringLength(20)]
     public string IdSunat { get; set; }
-
-    public int Orden { get; set; }
-
+     
     /// <summary>
     /// ¿Es Activo?
     /// </summary>

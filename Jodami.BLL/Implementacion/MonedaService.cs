@@ -83,8 +83,7 @@ namespace Jodami.BLL.Implementacion
                 dato.Descripcion = entidad.Descripcion;
                 dato.Simbolo = entidad.Simbolo;
                 dato.IdSunat = entidad.IdSunat;
-                dato.EsActivo = entidad.EsActivo;
-                dato.Orden = entidad.Orden;
+                dato.EsActivo = entidad.EsActivo;               
                 dato.UsuarioName = "Admin";
                 dato.FechaRegistro = DateTime.Now;  
 

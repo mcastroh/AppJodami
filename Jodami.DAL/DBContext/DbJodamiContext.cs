@@ -443,10 +443,7 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
-                .HasComment("Auditoría Fecha");
-            entity.Property(e => e.Orden)
-                .HasDefaultValue(90)
-                .HasComment("Orden Presentación");
+                .HasComment("Auditoría Fecha");            
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
         });
 
