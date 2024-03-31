@@ -3,15 +3,11 @@
   "WorkspaceRootPath": "E:\\AppJodami\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\views\\moneda\\_editpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\views\\moneda\\_editpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\views\\moneda\\listarpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\views\\moneda\\listarpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\views\\moneda\\_addpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\views\\moneda\\_addpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\controllers\\monedacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|E:\\AppJodami\\jodami.appweb\\controllers\\monedacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\controllers\\monedacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -75,38 +71,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "_EditPartialView.cshtml",
-              "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\Views\\Moneda\\_EditPartialView.cshtml",
-              "RelativeDocumentMoniker": "Jodami.AppWeb\\Views\\Moneda\\_EditPartialView.cshtml",
-              "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\Views\\Moneda\\_EditPartialView.cshtml",
-              "RelativeToolTip": "Jodami.AppWeb\\Views\\Moneda\\_EditPartialView.cshtml",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACwAAAAGAAAA",
+              "Title": "ListarPDF.cshtml",
+              "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\Views\\Moneda\\ListarPDF.cshtml",
+              "RelativeDocumentMoniker": "Jodami.AppWeb\\Views\\Moneda\\ListarPDF.cshtml",
+              "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\Views\\Moneda\\ListarPDF.cshtml",
+              "RelativeToolTip": "Jodami.AppWeb\\Views\\Moneda\\ListarPDF.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAACUAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-31T12:58:19.521Z",
+              "WhenOpened": "2024-03-31T15:07:55.331Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_AddPartialView.cshtml",
-              "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\Views\\Moneda\\_AddPartialView.cshtml",
-              "RelativeDocumentMoniker": "Jodami.AppWeb\\Views\\Moneda\\_AddPartialView.cshtml",
-              "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\Views\\Moneda\\_AddPartialView.cshtml",
-              "RelativeToolTip": "Jodami.AppWeb\\Views\\Moneda\\_AddPartialView.cshtml",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAACEAAABUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-31T12:55:19.549Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "MonedaController.cs",
               "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\Controllers\\MonedaController.cs",
               "RelativeDocumentMoniker": "Jodami.AppWeb\\Controllers\\MonedaController.cs",
               "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\Controllers\\MonedaController.cs",
               "RelativeToolTip": "Jodami.AppWeb\\Controllers\\MonedaController.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAASwCsAAAAMAAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAAFcAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-31T11:25:11.188Z",
               "EditorCaption": ""

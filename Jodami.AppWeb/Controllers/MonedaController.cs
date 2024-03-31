@@ -1,22 +1,9 @@
 ﻿using AutoMapper;
-using AutoMapper.Internal;
-using Azure;
 using Jodami.AppWeb.Models.ViewModels;
-using Jodami.AppWeb.Utilidades.Response;
 using Jodami.BLL.Interfaces;
-using Jodami.DAL.DBContext;
 using Jodami.Entity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using NuGet.Protocol;
-using NuGet.Protocol.Plugins;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text.Json.Serialization;
-using System.Xml;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Rotativa.AspNetCore;
 
 namespace Jodami.AppWeb.Controllers
 {
@@ -39,8 +26,7 @@ namespace Jodami.AppWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var query = _mapper.Map<List<VMMoneda>>(await _service.GetAll());
-            //var query = await Obtener();     
+            var query = _mapper.Map<List<VMMoneda>>(await _service.GetAll());               
             return View(query);
         }
 
@@ -93,34 +79,21 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion
 
+        #region Método  => Listar PDF   
 
-
-
-        #region Task => Obtener Datos
-
-        public async Task<GenericResponse<VMMoneda>> Obtener()
+        public async Task<IActionResult> ListarPDF()
         {
-            var gResponse = new GenericResponse<VMMoneda>();
+            var query = _mapper.Map<List<VMMoneda>>(await _service.GetAll());
 
-            try
+            return new ViewAsPdf("ListarPDF", query)
             {
-                List<VMMoneda> query = _mapper.Map<List<VMMoneda>>(await _service.GetAll());
-                gResponse.Estado = true;
-                gResponse.ListaObjeto = query;               
-            }
-            catch (Exception ex)
-            {
-                gResponse.Estado = false;
-                gResponse.Mensaje = ex.Message; 
-            }
-
-            return gResponse;
+                FileName = $"Almacenes {DateTime.Now}.pdf",
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4
+            }; 
         }
 
         #endregion
-
-
-         
 
     }
 }
