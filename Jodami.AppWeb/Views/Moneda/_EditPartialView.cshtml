@@ -1,0 +1,48 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMMoneda
+    
+ <div class="modal fade" id="EditMoneda-@Model.IdMoneda" aria-labelledby="AddMonedaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h2 class="modal-title">Editar Moneda</h2>              
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div> 
+            <div class="modal-body">                  
+                <form asp-action="Editar" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="IdMoneda" />
+                        <label asp-for="Descripcion" class="control-label"></label>
+                        <input asp-for="Descripcion" class="form-control" />
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Simbolo" class="control-label"></label>
+                        <input asp-for="Simbolo" class="form-control" />
+                        <span asp-validation-for="Simbolo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IdSunat" class="control-label"></label>
+                        <input asp-for="IdSunat" class="form-control" />
+                        <span asp-validation-for="IdSunat" class="text-danger"></span>
+                    </div> 
+                    <div class="form-group">
+                        <label for="cboEstado">Estado Activo (en Check)</label>   
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.EsActivo">
+                        </div>
+                    </div>
+                    <br /> 
+                    <div class="modal-footer">                      
+                        <button type="submit" class="btn btn-primary"> Guardar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>                       
+            </div>
+        </div>
+    </div>   
+</div>
+
+           

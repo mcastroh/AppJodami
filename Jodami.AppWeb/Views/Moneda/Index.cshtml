@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Monedas";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
 }
 
 @section Estilos{
@@ -10,27 +10,41 @@
     <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
 }
-
+ 
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-second-primary">
-        <h6 class="m-0 font-weight-bold text-white">Listado de Monedas</h6>
+        <h6 class="m-0 font-weight-bold text-white">Lista de Monedas</h6>
     </div>
+
     <div class="card-body">
         <div class="row">
             <div class="col-sm-3">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Nueva Moneda&nbsp;&nbsp;</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddMoneda"><i class="fas fa-plus-circle"></i> Nueva Moneda</button>
+                @await Html.PartialAsync("_AddPartialView")
+                @* <hr /> *@
             </div>
         </div>
-        <hr />
+    </div>
+
+    <div class="card-body">
+
+        @* <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddMoneda"><i class="fas fa-plus-circle"></i> Nueva Moneda</button>
+            </div>
+        </div> *@
+      
+     @*    <hr /> *@
         <div class="row">
             <div class="col-sm-12">
                 <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
                     <thead>
-                        <tr>     
+                        <tr>
                             <th>Descripción</th>
                             <th>Símbolo</th>
-                            <th>SUNAT</th>    
-                            <th>Acciones</th>                            
+                            <th>Código SUNAT</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,11 +53,24 @@
                             <tr>
                                 <td>@Html.DisplayFor(m => item.Descripcion)</td>
                                 <td>@Html.DisplayFor(m => item.Simbolo)</td>
-                                <td>@Html.DisplayFor(m => item.IdSunat)</td>                              
+                                <td>@Html.DisplayFor(m => item.IdSunat)</td>
+                                <td>@Html.DisplayFor(m => item.EsActivo)</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Editar", "Moneda", new { id = @item.IdMoneda})"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;</a>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditMoneda-" + item.IdMoneda)" data-url="@Url.Action($"Edit/{item.IdMoneda}")">
+                                        <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EditPartialView", item)
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarMoneda-" + item.IdMoneda)" data-url="@Url.Action($"Eliminar/{item.IdMoneda}")">
+                                        <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EliminarPartialView", item)
+
+@* 
+                                    @await Html.PartialAsync("_EditPartialView", item)
                                     <a class="btn btn-danger btn-sm" href="@Url.Action("Borrar", "Moneda", new { id = @item.IdMoneda})"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Borrar&nbsp;&nbsp;</a>
-                                </td> 
+                                 *@
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -53,70 +80,7 @@
     </div>
 </div>
 
-<!--  Modal-->
-<div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6>Detalle Moneda</h6>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <input type="hidden" value="0" id="txtId">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="form-row">
-                                <div class="form-group col-sm-10">
-                                    <label for="txtDescripcion">Descripcion</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtDescripcion" name="Descripcion">
-                                </div>
-                            </div> 
 
-                            <div class="form-row">                                 
-                                <div class="form-group col-sm-6">
-                                    <label for="txtSimbolo">Símbolo</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtSimbolo" name="Simbolo">
-                                </div>                              
-                            </div>
-
-                            <div class="form-row">                               
-                                <div class="form-group col-sm-6">
-                                    <label for="txtSunat">Código según SUNAT</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtSunat" name="Sunat">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtOrden">Orden de presentación</label>
-                                    <input type="text" class="form-control form-control-sm input-validar" id="txtOrden" name="Orden">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="cboEstado">Estado</label>
-                                    <select class="form-control form-control-sm" id="cboEstado">
-                                        <option value="1">Activo</option>
-                                        <option value="0">No Activo</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Guardar&nbsp;&nbsp;</button>
-                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Cancelar&nbsp;&nbsp;</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @section Scripts {
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -130,7 +94,5 @@
     <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
 
     <!-- SOLO ES DE EJEMPLO - IGNORAR -->
-    <script src="~/js/vistas/datatables-demo.js"></script>
+   @*  <script src="~/js/vistas/datatables-demo.js"></script> *@
 }
-
- 

@@ -46,6 +46,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uZWRhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/AppJodami/Jodami.AppWeb/Views/Moneda/_AddPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uZWRhXF9BZGRQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/Moneda/_EditPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uZWRhXF9FZGl0UGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/Moneda/_EliminarPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uZWRhXF9FbGltaW5hclBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/AppJodami/Jodami.AppWeb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

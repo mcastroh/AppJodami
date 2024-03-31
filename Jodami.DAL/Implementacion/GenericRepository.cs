@@ -14,18 +14,24 @@ namespace Jodami.DAL.Implementacion
             _dBContext = DbJodamiContext;
         }
 
-        //public async Task<T> Obtener(Expression<Func<T, bool>> filtro)
-        //{
-        //    try
-        //    {
-        //        T entidad = await _dBContext.Set<T>().FirstOrDefaultAsync(filtro);
-        //        return entidad;
-        //    }
-        //    catch
-        //    {
-        //        throw;
-        //    }
-        //}
+        public async Task<T> ConsultarById(Expression<Func<T, bool>> filtro)
+        {
+            try
+            {
+                T entidad = await _dBContext.Set<T>().FirstOrDefaultAsync(filtro);
+                return entidad;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<IQueryable<T>> ConsultarAll(Expression<Func<T, bool>> filtro)
+        {
+            IQueryable<T> queryEntidad = filtro == null ? _dBContext.Set<T>() : _dBContext.Set<T>().Where(filtro);
+            return queryEntidad;
+        }
 
         public async Task<T> Crear(T entidad)
         {
@@ -68,12 +74,7 @@ namespace Jodami.DAL.Implementacion
                 throw;
             }
         }
-
-        public async Task<IQueryable<T>> Consultar(Expression<Func<T, bool>> filtro)
-        {
-            IQueryable<T> queryEntidad = filtro == null ? _dBContext.Set<T>() : _dBContext.Set<T>().Where(filtro);
-            return queryEntidad;
-        }
+         
         
     }
 }

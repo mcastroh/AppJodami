@@ -15,7 +15,23 @@ namespace Jodami.BLL.Implementacion
             _repository = genericRepository;
         }
 
-        #endregion 
+        #endregion
+ 
+        #region Entidad => GetById
+
+        public async Task<Moneda> GetById(int id)
+        {
+            try
+            {
+                return await _repository.ConsultarById(x => x.IdMoneda == id);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        #endregion
 
         #region Entidad => GetAll
 
@@ -23,7 +39,7 @@ namespace Jodami.BLL.Implementacion
         {
             try
             {
-                return (await _repository.Consultar()).ToList();
+                return (await _repository.ConsultarAll()).ToList();
             }
             catch
             {
@@ -62,11 +78,13 @@ namespace Jodami.BLL.Implementacion
         {
             try
             {
-                var dato = (await _repository.Consultar(x=> x.IdMoneda == entidad.IdMoneda)).FirstOrDefault();
+                var dato = await _repository.ConsultarById(x=> x.IdMoneda == entidad.IdMoneda);
                 
                 dato.Descripcion = entidad.Descripcion;
                 dato.Simbolo = entidad.Simbolo;
                 dato.IdSunat = entidad.IdSunat;
+                dato.EsActivo = entidad.EsActivo;
+                dato.Orden = entidad.Orden;
                 dato.UsuarioName = "Admin";
                 dato.FechaRegistro = DateTime.Now;  
 
@@ -91,7 +109,7 @@ namespace Jodami.BLL.Implementacion
         {
             try
             {
-                var dato = (await _repository.Consultar(x => x.IdMoneda == id)).FirstOrDefault();
+                var dato = await _repository.ConsultarById(x => x.IdMoneda == id);
 
                 if (dato == null)
                     throw new TaskCanceledException("Moneda no existe.");                                
