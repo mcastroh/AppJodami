@@ -29,6 +29,8 @@
 
   <ItemGroup>
     <None Include="efpt.config.json.user" />
+    <None Include="Views\Shared\Components\FormBasico\Default.cshtml" />
+    <None Include="Views\Shared\Components\Logo\Default.cshtml" />
     <None Include="wwwroot\img\undraw_posting_photo.svg" />
     <None Include="wwwroot\img\undraw_profile.svg" />
     <None Include="wwwroot\img\undraw_profile_1.svg" />

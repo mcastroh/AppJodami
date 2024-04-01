@@ -17,15 +17,15 @@
 <body>
     <style>
         P {
-            background-image: url(http://www.htmlhelp.com/bg.png)
+            background-image: url(http://www.htmlhelp.com/bg.png) 
         }
     </style>
 
     <div class="contenedor">
         <table style="width:100%">
             <tr>
-                <td>
-                    <img src="PollitaVariasBB.jpg" style="width:90px; height:90px;" />
+                <td>          
+                    <img src="~/iconos/logoJodami.jpg" style="width:90px; height:60px;" />                    
                 </td>
                 <td style="text-align:right">
                     <table style="margin-right:0;margin-left:auto">
@@ -40,11 +40,11 @@
 
         <table class="tbproductos table table-sm table-bordered table-striped" id="tabla" width="100%" cellspacing="0">      
             <thead class="table-dark">
-                <tr style="text-align: center">
-                    <th class="tbth" style="width:150px">Descripción</th>
-                    <th class="tbth" style="width:30px">Símbolo</th>
-                    <th class="tbth" style="width:30px">Código SUNAT</th>
-                    <th class="tbth" style="width:30px">Estado</th>
+                <tr style="text-align: left">
+                    <th class="tbth" style="width:150px">Descripción</th>                   
+                    <th align="center" style="width:30px" scope="col">Símbolo</th>
+                    <th align="center" style="width:30px" scope="col">Código SUNAT</th>
+                    <th align="center" style="width:30px" scope="col">Estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,9 +53,9 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(m => item.Descripcion)</td>
-                            <td>@Html.DisplayFor(m => item.Simbolo)</td>
-                            <td>@Html.DisplayFor(m => item.IdSunat)</td>
-                            <td>@Html.DisplayFor(m => item.EsActivo)</td>
+                            <td align="center">@Html.DisplayFor(m => item.Simbolo)</td>
+                            <td align ="center">@Html.DisplayFor(m => item.IdSunat)</td>
+                            <td align="center">@Html.DisplayFor(m => item.EsActivo)</td>
                         </tr>
                     }
                 }

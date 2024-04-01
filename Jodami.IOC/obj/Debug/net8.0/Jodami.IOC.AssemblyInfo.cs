@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jodami.IOC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbdd1131a8cb29a17f5dc846f804e95a0fb9ad8b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8a6b9d5d3e9525474491f5ae8b567c97c082ff5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jodami.IOC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jodami.IOC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
