@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Implementacion\Class1.cs" />
+    <Compile Remove="Implementacion\EmpresaService.cs" />
+    <Compile Remove="Implementacion\MonedaService.cs" />
+    <Compile Remove="Interfaces\Class1.cs" />
+    <Compile Remove="Interfaces\IEmpresaService.cs" />
+    <Compile Remove="Interfaces\IMonedaService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Jodami.DAL\Jodami.DAL.csproj" />
     <ProjectReference Include="..\Jodami.Entity\Jodami.Entity.csproj" />
   </ItemGroup>

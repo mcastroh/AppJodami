@@ -8,7 +8,7 @@ namespace Jodami.DAL.Interfaces
 
         Task<IQueryable<T>> ConsultarAll(Expression<Func<T, bool>> filtro = null);
 
-        Task<T> Crear(T entidad);
+        Task<bool> Crear(T entidad);
 
         Task<bool> Editar(T entidad);
 

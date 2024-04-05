@@ -32,11 +32,10 @@ namespace Jodami.IOC
             });
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
-
-            //services.AddScoped<IVentaRepository, VentaRepository>();
-
-            services.AddScoped<IMonedaService, MonedaService>();
+           
+            services.AddTransient(typeof(IGenericService<>), typeof(GenericService<>));              
+         
+            //services.AddScoped<IMonedaService, MonedaService>();
           
 
             return services;

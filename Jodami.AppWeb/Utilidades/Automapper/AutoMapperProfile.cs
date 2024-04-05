@@ -9,6 +9,9 @@ namespace Jodami.AppWeb.Utilidades.Automapper
         public AutoMapperProfile()
         {
             CreateMap<Moneda, VMMoneda>().ReverseMap();
+            CreateMap<UnidadMedida, VMUnidadMedida>().ReverseMap();
+
+
         }        
     }
 }

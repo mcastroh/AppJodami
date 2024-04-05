@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jodami.DAL", "Jodami.DAL\Jo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jodami.IOC", "Jodami.IOC\Jodami.IOC.csproj", "{A9E27289-E558-45D1-83E7-31B25B5862BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jodami.AppWeb", "Jodami.AppWeb\Jodami.AppWeb.csproj", "{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jodami.AppWeb", "Jodami.AppWeb\Jodami.AppWeb.csproj", "{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

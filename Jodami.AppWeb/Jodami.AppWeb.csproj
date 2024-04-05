@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\xMonedaController.cs" />
+    <Compile Remove="Controllers\xTipoViaController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Moneda\ListarPDF - Copia.cshtml" />
     <Content Remove="Views\Shared\_Layout - Copia.cshtml" />
     <Content Remove="wwwroot\js\validaciones\campos-obligatorios.js" />
@@ -31,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Views\TipoVia\" />
   </ItemGroup>
 
   <ItemGroup>

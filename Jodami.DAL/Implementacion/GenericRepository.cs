@@ -33,13 +33,13 @@ namespace Jodami.DAL.Implementacion
             return queryEntidad;
         }
 
-        public async Task<T> Crear(T entidad)
+        public async Task<bool> Crear(T entidad)
         {
             try
             {
                 _dBContext.Set<T>().Add(entidad);
                 await _dBContext.SaveChangesAsync();
-                return entidad;
+                return true;
             }
             catch
             {
