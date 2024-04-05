@@ -85,11 +85,18 @@ namespace Jodami.AppWeb.Controllers
         {
             var query = _mapper.Map<List<VMMoneda>>(await _service.GetAll());
 
+            string titulo = "Listado de Monedas";
+            string protocolo = Request.IsHttps ? "Https" : "Http";
+            string headerAction = Url.Action("Header", "Home", new { titulo }, protocolo);
+            string footerAction = Url.Action("Footer", "Home", new { }, protocolo);
+
             return new ViewAsPdf("ListarPDF", query)
             {
-                FileName = $"Almacenes {DateTime.Now}.pdf",
+                FileName = $"Monedas {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-                PageSize = Rotativa.AspNetCore.Options.Size.A4
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,               
+                PageMargins = { Left = 15, Bottom = 10, Right = 15, Top = 30 },
+                CustomSwitches = $"--header-html {headerAction} --header-spacing 2 --footer-html {footerAction} --footer-spacing 2"
             }; 
         }
 

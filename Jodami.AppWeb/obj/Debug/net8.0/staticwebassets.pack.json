@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Jodami.AppWeb.bundle.scp.css"
     },
     {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\Rotativa\\Windows\\wkhtmltoimage.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\Windows\\wkhtmltoimage.exe"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\Rotativa\\Windows\\wkhtmltopdf.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\Windows\\wkhtmltopdf.exe"
+    },
+    {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\sb-admin-2.css",
       "PackagePath": "staticwebassets\\css\\sb-admin-2.css"
     },

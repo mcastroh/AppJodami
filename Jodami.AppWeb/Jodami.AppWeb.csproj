@@ -14,7 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Moneda\ListarPDF - Copia.cshtml" />
+    <Content Remove="Views\Shared\_Layout - Copia.cshtml" />
     <Content Remove="wwwroot\js\validaciones\campos-obligatorios.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Shared\_Layout - Copia.cshtml.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +49,8 @@
     <None Include="wwwroot\js\vistas\chart-bar-demo.js" />
     <None Include="wwwroot\js\vistas\chart-pie-demo.js" />
     <None Include="wwwroot\js\vistas\datatables-demo.js" />
+    <None Include="wwwroot\Rotativa\Windows\wkhtmltoimage.exe" />
+    <None Include="wwwroot\Rotativa\Windows\wkhtmltopdf.exe" />
     <None Include="wwwroot\scss\navs\_global.scss" />
     <None Include="wwwroot\scss\navs\_sidebar.scss" />
     <None Include="wwwroot\scss\navs\_topbar.scss" />
