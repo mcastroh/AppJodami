@@ -11,14 +11,19 @@ namespace Jodami.AppWeb.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGenericService<Moneda> _service;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly Usuario _sessionUsuario;
 
         #region Constructor 
 
-        public MonedaController(IMapper mapper, IGenericService<Moneda> service)
+        public MonedaController(IMapper mapper, IGenericService<Moneda> service, IHttpContextAccessor httpContextAccessor)
         {
             _mapper = mapper;
             _service = service;
+            _httpContextAccessor = httpContextAccessor;
+            _sessionUsuario = System.Text.Json.JsonSerializer.Deserialize<Usuario>(_httpContextAccessor.HttpContext.Session.GetString("sessionUsuario"));
         }
+
         #endregion 
 
         #region HttpGet => Index  
@@ -43,7 +48,7 @@ namespace Jodami.AppWeb.Controllers
                 Simbolo = simbolo,
                 IdSunat = idSunat,
                 EsActivo = true,
-                UsuarioName = "Admin",
+                UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
             };
 
@@ -65,7 +70,7 @@ namespace Jodami.AppWeb.Controllers
             modelo.Simbolo = vmModelo.Simbolo;
             modelo.IdSunat = vmModelo.IdSunat;
             modelo.EsActivo = vmModelo.EsActivo;
-            modelo.UsuarioName = "Admin";
+            modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
 
             bool flgRetorno = await _service.Update(modelo);

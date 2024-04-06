@@ -12,10 +12,12 @@ namespace Jodami.AppWeb.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGenericService<UnidadMedida> _service;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly Usuario _sessionUsuario;
 
         #region Constructor 
 
-        public UnidadMedidaController(IMapper mapper, IGenericService<UnidadMedida> service)
+        public UnidadMedidaController(IMapper mapper, IGenericService<UnidadMedida> service, IHttpContextAccessor httpContextAccessor)
         {
             _mapper = mapper;
             _service = service;
@@ -44,7 +46,7 @@ namespace Jodami.AppWeb.Controllers
                 Simbolo = simbolo,
                 IdSunat = idSunat,
                 EsActivo = true,
-                UsuarioName = "Admin",
+                UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
             };
 
@@ -66,7 +68,7 @@ namespace Jodami.AppWeb.Controllers
             modelo.Simbolo = vmModelo.Simbolo;
             modelo.IdSunat = vmModelo.IdSunat;
             modelo.EsActivo = vmModelo.EsActivo;
-            modelo.UsuarioName = "Admin";
+            modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
 
             bool flgRetorno = await _service.Update(modelo);

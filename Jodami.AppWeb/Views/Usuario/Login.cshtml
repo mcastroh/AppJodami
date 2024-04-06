@@ -1,0 +1,111 @@
+﻿@model Jodami.Entity.Usuario
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/css/loginIIss" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container">
+        <br />
+       @*  @(await Component.InvokeAsync("Logo")) *@
+        <br />
+        <div class="col-sm-6 col-sm-offset-2">
+            <form asp-action="Login" method="POST" class="bg-info" style="padding:20px">
+                <input type="hidden" asp-for="IdUsuario" />
+                <input type="hidden" asp-for="Nombre" />
+                <input type="hidden" asp-for="IdRol" /> 
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 style="text-align: center;">Inicio de Sesión</h2>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputUsuario" class="col-sm-2 control-label">&nbsp&nbsp&nbsp</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary glyphicon glyphicon-user" type="button" disabled></button>
+                            </span>
+
+                            @* <input type="text" class="form-control" id="Codigo" asp-for="UsuarioCodigo" value="" placeholder="usuario" onkeyup="mayusculas(this);" autocomplete="off" />*@
+
+                            <input type="text" class="form-control" id="Correo" asp-for="Correo" value="admin@hotmail.com" placeholder="Ingrese su correo" autocomplete="off" />
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputClave" class="col-sm-2 control-label">&nbsp&nbsp&nbsp</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary glyphicon glyphicon-eye-close" type="button" disabled></button>
+                            </span>
+
+                            @*  <input type="Password" class="form-control" id="Clave" asp-for="UsuarioPassword" value="" placeholder="contraseña" onkeyup="mayusculas(this);" autocomplete="off" />*@
+
+
+                            <input type="Password" class="form-control" id="Clave" asp-for="Clave" value="1234" placeholder="Ingrese su contraseña" autocomplete="off" />
+
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                @if (ViewData["Mensaje"] != null)
+                {
+                    <br />
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="alert alert-danger" role="alert">
+                                @ViewData["Mensaje"]
+                            </div>
+                        </div>
+                    </div>
+                }
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-9">
+                        <label class="col-md-1 control-label"></label>
+                        <div class="col-md-7">
+                            <button id="btnConsultar" type="submit" class="btn btn-success btn-lg active">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Iniciar Sesion &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </form>
+        </div>
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+</html>
+
+<script>
+
+    function mayusculas(e) {
+        e.value = e.value.toUpperCase();
+    }
+
+
+</script>

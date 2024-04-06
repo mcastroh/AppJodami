@@ -11,10 +11,12 @@ namespace Jodami.AppWeb.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGenericService<TipoVia> _service;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly Usuario _sessionUsuario;
 
         #region Constructor 
 
-        public TipoViaController(IMapper mapper, IGenericService<TipoVia> service)
+        public TipoViaController(IMapper mapper, IGenericService<TipoVia> service, IHttpContextAccessor httpContextAccessor)
         {
             _mapper = mapper;
             _service = service;
@@ -42,7 +44,7 @@ namespace Jodami.AppWeb.Controllers
                 CodigoTipoVia = codigo,
                 Descripcion = descripcion,               
                 EsActivo = true,
-                UsuarioName = "Admin",
+                UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
             };
 
@@ -63,7 +65,7 @@ namespace Jodami.AppWeb.Controllers
             modelo.CodigoTipoVia = vmModelo.CodigoTipoVia;
             modelo.Descripcion = vmModelo.Descripcion;           
             modelo.EsActivo = vmModelo.EsActivo;
-            modelo.UsuarioName = "Admin";
+            modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
 
             bool flgRetorno = await _service.Update(modelo);

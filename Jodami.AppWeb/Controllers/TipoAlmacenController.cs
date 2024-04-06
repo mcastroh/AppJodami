@@ -11,13 +11,17 @@ namespace Jodami.AppWeb.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGenericService<TipoAlmacen> _service;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly Usuario _sessionUsuario;
 
         #region Constructor 
 
-        public TipoAlmacenController(IMapper mapper, IGenericService<TipoAlmacen> service)
+        public TipoAlmacenController(IMapper mapper, IGenericService<TipoAlmacen> service, IHttpContextAccessor httpContextAccessor)
         {
             _mapper = mapper;
             _service = service;
+            _httpContextAccessor = httpContextAccessor;
+            _sessionUsuario = System.Text.Json.JsonSerializer.Deserialize<Usuario>(_httpContextAccessor.HttpContext.Session.GetString("sessionUsuario"));
         }
         #endregion 
 
@@ -42,7 +46,7 @@ namespace Jodami.AppWeb.Controllers
                 Descripcion = descripcion,
                 Codigo = codigo,
                 EsActivo = true,
-                UsuarioName = "Admin",
+                UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
             };
 
@@ -63,7 +67,7 @@ namespace Jodami.AppWeb.Controllers
             modelo.Descripcion = vmModelo.Descripcion;
             modelo.Codigo = vmModelo.Codigo;
             modelo.EsActivo = vmModelo.EsActivo;
-            modelo.UsuarioName = "Admin";
+            modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
 
             bool flgRetorno = await _service.Update(modelo);
