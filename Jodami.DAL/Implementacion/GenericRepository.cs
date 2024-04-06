@@ -7,74 +7,78 @@ namespace Jodami.DAL.Implementacion
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DbJodamiContext _dBContext;
+        private readonly DbJodamiContext _dbContext;
+        private bool disposed = false;
 
         public GenericRepository(DbJodamiContext DbJodamiContext)
         {
-            _dBContext = DbJodamiContext;
+            _dbContext = DbJodamiContext;
         }
 
-        public async Task<T> ConsultarById(Expression<Func<T, bool>> filtro)
+        protected DbSet<T> _dbSet
         {
-            try
+            get
             {
-                T entidad = await _dBContext.Set<T>().FirstOrDefaultAsync(filtro);
-                return entidad;
-            }
-            catch
-            {
-                throw;
+                return _dbContext.Set<T>();
             }
         }
 
-        public async Task<IQueryable<T>> ConsultarAll(Expression<Func<T, bool>> filtro)
+        public async Task<T> GetById(Expression<Func<T, bool>> filtro)
         {
-            IQueryable<T> queryEntidad = filtro == null ? _dBContext.Set<T>() : _dBContext.Set<T>().Where(filtro);
-            return queryEntidad;
+            return await _dbSet.FirstOrDefaultAsync(filtro);  
         }
 
-        public async Task<bool> Crear(T entidad)
+        public async Task<IEnumerable<T>> GetAll()
         {
-            try
-            {
-                _dBContext.Set<T>().Add(entidad);
-                await _dBContext.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                throw;
-            }
+            return await _dbSet.ToListAsync();
         }
 
-        public async Task<bool> Editar(T entidad)
+        public async Task<IEnumerable<T>> GetByFilter(Expression<Func<T, bool>> filtro = null)
         {
-            try
-            {
-                _dBContext.Set<T>().Update(entidad);
-                await _dBContext.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                throw;
-            }
+            return _dbSet.AsNoTracking().Where(filtro);
         }
 
-        public async Task<bool> Eliminar(T entidad)
+        public async Task<T> Insert(T entity)
         {
-            try
-            {
-                _dBContext.Set<T>().Remove(entidad);
-                await _dBContext.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                throw;
-            }
+            _dbSet.Add(entity);
+            await Save();
+            return entity;
         }
-         
-        
+
+        public async Task<bool> Update(T entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await Save();
+            return true;
+        }
+
+        public async Task<bool> Delete(Expression<Func<T, bool>> filtro)
+        {
+            T entity = await _dbSet.FirstOrDefaultAsync(filtro);
+            _dbSet.Remove(entity);
+            await Save();
+            return true;             
+        }
+
+        public async Task Save()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+              
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed && disposing)
+            {
+                _dbContext.Dispose();
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
     }
 }

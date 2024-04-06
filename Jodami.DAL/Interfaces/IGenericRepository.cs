@@ -2,17 +2,19 @@
 
 namespace Jodami.DAL.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T>: IDisposable where T : class
     {
-        Task<T> ConsultarById(Expression<Func<T, bool>> filtro);
+        Task<T> GetById(Expression<Func<T, bool>> filtro);
 
-        Task<IQueryable<T>> ConsultarAll(Expression<Func<T, bool>> filtro = null);
+        Task<IEnumerable<T>> GetAll();
 
-        Task<bool> Crear(T entidad);
+        Task<IEnumerable<T>> GetByFilter(Expression<Func<T, bool>> filtro = null);
 
-        Task<bool> Editar(T entidad);
+        Task<T> Insert(T entity);
 
-        Task<bool> Eliminar(T entidad); 
+        Task<bool> Update(T entity);
+
+        Task<bool> Delete(Expression<Func<T, bool>> filtro); 
 
     }
 }

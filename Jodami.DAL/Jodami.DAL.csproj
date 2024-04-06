@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Implementacion\GenericRepository - Copia.cs" />
+    <Compile Remove="Interfaces\IGenericRepository - Copia.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Jodami.Entity\Jodami.Entity.csproj" />
   </ItemGroup>
 

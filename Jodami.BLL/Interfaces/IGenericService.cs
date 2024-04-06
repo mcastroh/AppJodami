@@ -6,13 +6,16 @@ namespace Jodami.BLL.Interfaces
     {
         Task<T> GetById(Expression<Func<T, bool>> filtro);
 
-        Task<List<T>> GetAll();
+        Task<IEnumerable<T>> GetAll();
 
-        Task<bool> Crear(T entidad);
+        Task<IEnumerable<T>> GetByFilter(Expression<Func<T, bool>> filtro = null);
 
-        Task<bool> Editar(T entidad);
+        Task<T> Insert(T entity);
 
-        Task<bool> Eliminar(T entidad);
+        Task<bool> Update(T entity);
+
+        Task<bool> Delete(Expression<Func<T, bool>> filtro);
 
     }
 }
+ 

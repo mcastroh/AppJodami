@@ -47,7 +47,7 @@ namespace Jodami.AppWeb.Controllers
                 FechaRegistro = DateTime.Now
             };
 
-            bool flgRetorno = await _service.Crear(modelo);
+            var entity = await _service.Insert(modelo);
             return RedirectToAction("Index");
         }
 
@@ -68,7 +68,7 @@ namespace Jodami.AppWeb.Controllers
             modelo.UsuarioName = "Admin";
             modelo.FechaRegistro = DateTime.Now;
 
-            bool flgRetorno = await _service.Editar(modelo);
+            bool flgRetorno = await _service.Update(modelo);
             return RedirectToAction("Index");
         }
 
@@ -80,8 +80,8 @@ namespace Jodami.AppWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Eliminar(VMMoneda vmModelo)
         {
-            var modelo = await _service.GetById(x => x.IdMoneda == vmModelo.IdMoneda); 
-            bool flgRetorno = await _service.Eliminar(modelo);
+            //var modelo = await _service.GetById(x => x.IdMoneda == vmModelo.IdMoneda); 
+            bool flgRetorno = await _service.Delete(x => x.IdMoneda == vmModelo.IdMoneda);
             return RedirectToAction("Index");
         }
 
