@@ -19,7 +19,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-2">
-                <button class="btn btn-success" data-toggle="modal" data-target="#AddMoneda"><i class="fas fa-plus-circle"></i> Nueva Moneda</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nueva Moneda</button>
                 @await Html.PartialAsync("_AddPartialView")              
             </div>
             <div class="col-sm-2">                
@@ -50,12 +50,12 @@
                                 <td>@Html.DisplayFor(m => item.IdSunat)</td>
                                 <td>@Html.DisplayFor(m => item.EsActivo)</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditMoneda-" + item.IdMoneda)" data-url="@Url.Action($"Edit/{item.IdMoneda}")">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdMoneda)" data-url="@Url.Action($"Edit/{item.IdMoneda}")">
                                         <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
                                     </button>
                                     @await Html.PartialAsync("_EditPartialView", item)
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarMoneda-" + item.IdMoneda)" data-url="@Url.Action($"Eliminar/{item.IdMoneda}")">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdMoneda)" data-url="@Url.Action($"Eliminar/{item.IdMoneda}")">
                                         <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
                                     </button>
                                     @await Html.PartialAsync("_EliminarPartialView", item)

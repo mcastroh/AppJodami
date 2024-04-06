@@ -29,12 +29,7 @@ public partial class TipoVia
     [Required]
     [StringLength(100)]
     public string Descripcion { get; set; }
-
-    /// <summary>
-    /// Orden Presentación
-    /// </summary>
-    public int Orden { get; set; }
-
+     
     /// <summary>
     /// ¿Es Activo?
     /// </summary>

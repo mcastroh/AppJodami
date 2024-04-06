@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jodami.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bffb953b6bf4096e29360d380a2e79f399b9308")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3656592758136bd340791f5a2657aebe8f8cfb1f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jodami.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jodami.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

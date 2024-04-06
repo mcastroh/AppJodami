@@ -10,8 +10,10 @@ namespace Jodami.AppWeb.Utilidades.Automapper
         {
             CreateMap<Moneda, VMMoneda>().ReverseMap();
             CreateMap<UnidadMedida, VMUnidadMedida>().ReverseMap();
-
-
+            
+            CreateMap<TipoAlmacen, VMTipoAlmacen>().ReverseMap();
+            CreateMap<TipoVia, VMTipoVia>().ReverseMap();
+            CreateMap<TipoZona, VMTipoZona>().ReverseMap();
         }        
     }
 }
