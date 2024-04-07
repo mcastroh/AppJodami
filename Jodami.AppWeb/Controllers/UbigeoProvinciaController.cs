@@ -42,6 +42,8 @@ namespace Jodami.AppWeb.Controllers
                 item.UbiDptoName = dpto.Departamento1;
             }
 
+            ViewBag.Departamento = dpto;           
+
             return View(provincias);
         }
 

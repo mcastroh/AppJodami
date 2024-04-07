@@ -4,23 +4,19 @@
 @{
     ViewData["Title"] = "Provincias";
     Layout = "~/Views/Shared/_Layout.cshtml";
-   
-    VMUbigeoProvincia vmProv = new VMUbigeoProvincia()
-    {
+
+    var dpto = (VMUbigeoDepartamento)ViewBag.Departamento;
+    var dptoText = $"Departamento: {dpto.CodigoDepartamento} - {dpto.Departamento1}";
+    
+    var vmProv = new VMUbigeoProvincia()
+            {
                 IdProvincia = 0,
                 CodigoProvincia = string.Empty,
                 Provincia1 = string.Empty,
-                UbiDptoKey = @Model.FirstOrDefault().UbiDptoKey,
-                UbiDptoCodigo = @Model.FirstOrDefault().UbiDptoCodigo,
-                UbiDptoName = @Model.FirstOrDefault().UbiDptoName
-    };
-    
-    var dptoText = string.Empty;
-
-    if (@Model.Count() != 0)
-    { 
-        dptoText = $"Departamento: { Model.FirstOrDefault().UbiDptoCodigo } - { Model.FirstOrDefault().UbiDptoName }";
-    }
+                UbiDptoKey = dpto.IdDepartamento,
+                UbiDptoCodigo = dpto.CodigoDepartamento,
+                UbiDptoName = dpto.Departamento1
+            };
 }
 
 @section Estilos {
@@ -36,18 +32,18 @@
 
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nueva Provincia</button>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
                 @await Html.PartialAsync("_AddPartialView", @vmProv)
-            </div>
-            <div class="col-sm-2">
-                <a class="btn btn-success" href="@Url.Action("ListarPDF", "UbigeoProvincia", new { id = vmProv.UbiDptoKey })"><i class="bi bi-file-earmark-pdf"></i> Listado en PDF</a>
-            </div>
+@*             </div>
+            <div class="col-sm-2"> *@
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "UbigeoProvincia", new { id = vmProv.UbiDptoKey })"><i class="bi bi-file-earmark-pdf"></i> Listado</a>
+@*             </div>
 
-            <div class="col-sm-2">
+            <div class="col-sm-2"> *@
                 <a class="btn btn-success" href="@Url.Action("Index", "UbigeoDepartamento" )"><i class="bi bi-justify"></i>Volver</a>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <input class="form-control form-control-lg" value="@dptoText" disabled readonly />
             </div>
         </div>

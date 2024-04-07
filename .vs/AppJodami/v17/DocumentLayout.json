@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\AppJodami\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\controllers\\ubigeodistritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\controllers\\ubigeodistritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -63,19 +58,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:13:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UbigeoDistritoController.cs",
-              "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\Controllers\\UbigeoDistritoController.cs",
-              "RelativeDocumentMoniker": "Jodami.AppWeb\\Controllers\\UbigeoDistritoController.cs",
-              "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\Controllers\\UbigeoDistritoController.cs",
-              "RelativeToolTip": "Jodami.AppWeb\\Controllers\\UbigeoDistritoController.cs",
-              "ViewState": "AQIAAHwAAAAAAAAAAAAAAH4AAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T20:20:54.736Z",
-              "EditorCaption": ""
             }
           ]
         },
