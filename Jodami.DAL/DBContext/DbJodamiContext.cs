@@ -900,7 +900,9 @@ public partial class DbJodamiContext : DbContext
 
             entity.Property(e => e.IdFlete).HasComment("Tipo Flete ID");
             entity.Property(e => e.Codigo).HasComment("Código");
-            entity.Property(e => e.Descripcion).HasComment("Descripción");
+            entity.Property(e => e.Descripcion)
+                .HasDefaultValue("")
+                .HasComment("Descripción");
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")

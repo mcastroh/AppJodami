@@ -1,0 +1,103 @@
+﻿@model Jodami.AppWeb.Models.Dto.DtoVehiculos
+
+@{
+    ViewData["Title"] = "Vehículos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Estilos {
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista de Vehículos</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="@("#AddEntidad")" data-url="@Url.Action($"Edit/{Model}")">
+                    <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Nuevo Vehículo&nbsp;&nbsp;
+                </button>
+                @await Html.PartialAsync("_AddPartialView") 
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "Vehiculos")"><i class="bi bi-printer"></i> Listado en PDF</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="division-Datatables" class="table table-striped table-bordered" style="table-layout:fixed;">
+                    <thead>
+                        <tr style="text-align: center">
+                            <th style="width:12%">Placa</th>
+                            <th style="width:12%">Certificado</th>
+                            <th style="width:10%">Nombre</th>
+                            <th style="width:15%">Marca</th>
+                            <th style="width:15%">Modelo</th>
+                            <th style="width:10%">Color</th>
+                            <th style="width:8%">Jodami</th>
+                            <th style="width:18%">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listaVehiculos.OrderBy(x => x.Nombre).ToList())
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.Placa)</td>
+                                <td>@Html.DisplayFor(m => item.Certificado)</td>
+                                <td>@Html.DisplayFor(m => item.Nombre)</td>
+                                <td>@Html.DisplayFor(m => item.Marca)</td>
+                                <td>@Html.DisplayFor(m => item.Modelo)</td>
+                                <td>@Html.DisplayFor(m => item.Color)</td>    
+                                @{
+                                    if (item.EsDeEmpresa)
+                                    {
+                                        <td style="text-align: center">SI</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="text-align: center">NO</td>
+                                    }
+                                }
+
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdVehiculo)" data-url="@Url.Action($"Edit/{item}")">
+                                        <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EditPartialView", item)
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdVehiculo)" data-url="@Url.Action($"Eliminar/{item}")">
+                                        <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EliminarPartialView", item)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <script src="~/js/vistas/datatables-demo.js"></script>
+
+}

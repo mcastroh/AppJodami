@@ -1,0 +1,116 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMVehiculos 
+
+<div class="modal fade" id="EliminarEntidad-@Model.IdVehiculo" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h2 class="modal-title">Eliminar Vehículo</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div> 
+            <div class="modal-body">                  
+                <form asp-action="Eliminar" method="post">                    
+                    <div class="form-group">
+                        <input type="hidden" asp-for="@Model.IdVehiculo" />
+
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label">Placa</label>
+                                <input asp-for="@Model.Placa" class="form-control" readonly="readonly" />                                
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label">Certificado</label>
+                                <input asp-for="@Model.Certificado" class="form-control" readonly="readonly" />                              
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-5 form-group">
+                                <label asp-for="@Model.Marca" class="control-label"></label>
+                                <input asp-for="@Model.Marca" class="form-control" readonly="readonly" />                               
+                            </div>
+                            <div class="col-sm-5 form-group">
+                                <label asp-for="@Model.Modelo" class="control-label"></label>
+                                <input asp-for="@Model.Modelo" class="form-control" readonly="readonly" />                               
+                            </div>
+                            <div class="col-sm-2 form-group">
+                                <label asp-for="@Model.Color" class="control-label">Color</label>
+                                <input asp-for="@Model.Color" class="form-control" readonly="readonly" />                               
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-10 form-group">
+                                <div class="form-group">
+                                    <label asp-for="@Model.Nombre" class="control-label"></label>
+                                    <input asp-for="@Model.Nombre" class="form-control" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="col-sm-2 form-group">
+                                <div class="form-group">
+                                    <label class="control-label">Flete</label>
+                                    @{
+                                        if (@Model.IdFlete.HasValue)
+                                        {
+                                            var queryFlete = Model.TiposDeFlete.FirstOrDefault(x => x.IdFlete == Model.IdFlete.Value);
+                                            <input asp-for="@queryFlete.Codigo" class="form-control" readonly="readonly" style="text-align: center" />
+                                        }
+                                        else
+                                        {
+                                            <input for="flete" value="" class="form-control" readonly="readonly"  />
+                                        }
+                                    }                                     
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="row">
+                            <div class="col-sm-3 form-group">
+                                <div class="form-group">
+                                    <label asp-for="@Model.PesoKg" class="control-label" style="text-align: center">Peso en Kg</label>
+                                    <input asp-for="@Model.PesoKg" class="form-control" readonly="readonly" style="text-align: center" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 form-group">
+                                <label for="cboEstado" style="text-align: center">Pertenece a JODAMI</label>
+                                @{
+                                    if (@Model.EsDeEmpresa)
+                                    {
+                                        <input class="form-control" value="SI" readonly="readonly" style="text-align: center" />
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" value="NO" readonly="readonly" style="text-align: center" />
+                                    }
+                                }
+                            </div>
+
+                            <div class="col-sm-3 form-group">
+                                <label for="cboEstado" style="text-align: center">Estado</label>
+                                @{
+                                    if (@Model.EsActivo)
+                                    {
+                                        <input class="form-control" value="Activo" readonly="readonly" style="text-align: center" />
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" value="Inactivo" readonly="readonly" style="text-align: center" />
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    <br /> 
+                    <div class="modal-footer">                      
+                        <button type="submit" class="btn btn-primary"> Eliminar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>                       
+            </div>
+        </div>
+    </div>   
+</div>
+
+           

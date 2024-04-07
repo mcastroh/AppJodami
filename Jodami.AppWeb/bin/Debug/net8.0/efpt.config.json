@@ -11,35 +11,15 @@
    "ProjectRootNamespace": "Jodami.AppWeb",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 2,
-   "SelectedToBeGenerated": 2,
+   "SelectedToBeGenerated": 0,
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[SSHD05]",
+         "Name": "[dbo].[TipoFlete]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[SSHD06]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SSHD07]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SSHD08]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SSHD09]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SSHD10]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SSHD11]",
+         "Name": "[dbo].[Vehiculos]",
          "ObjectType": 0
       }
    ],

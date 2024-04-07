@@ -14,6 +14,10 @@ namespace Jodami.AppWeb.Utilidades.Automapper
             CreateMap<TipoAlmacen, VMTipoAlmacen>().ReverseMap();
             CreateMap<TipoVia, VMTipoVia>().ReverseMap();
             CreateMap<TipoZona, VMTipoZona>().ReverseMap();
+
+            CreateMap<TipoFlete, VMTipoFlete>().ReverseMap();
+            CreateMap<Vehiculos, VMVehiculos>().ReverseMap();
+            
         }        
     }
 }
