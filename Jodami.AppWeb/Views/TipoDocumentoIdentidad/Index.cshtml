@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Jodami.AppWeb.Models.ViewModels.VMTipoDocumentoIdentidad>
+
+@{
+    ViewData["Title"] = "Tipos Documento Identidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Estilos {
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista Tipo Documento de Identidad</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo Tipo</button>
+                @await Html.PartialAsync("_AddPartialView")
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "TipoDocumentoIdentidad")"><i class="bi bi-file-earmark-pdf"></i> Listado en PDF</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr style="text-align: center">
+                            <th>Código</th>
+                            <th>SUNAT</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderBy(x => x.Descripcion).ToList())
+                        {
+                            <tr>
+                                <td style="text-align: center">@Html.DisplayFor(m => item.Simbolo)</td>
+                                <td style="text-align: center">@Html.DisplayFor(m => item.IdCodigoSunat)</td>
+                                <td>@Html.DisplayFor(m => item.Descripcion)</td>
+                                <td style="text-align: center">@Html.DisplayFor(m => item.EsActivo)</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdTipoDcmtoIdentidad)" data-url="@Url.Action($"Edit/{item.IdTipoDcmtoIdentidad}")">
+                                        <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EditPartialView", item)
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdTipoDcmtoIdentidad)" data-url="@Url.Action($"Eliminar/{item.IdTipoDcmtoIdentidad}")">
+                                        <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EliminarPartialView", item)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <script src="~/js/vistas/datatables-demo.js"></script>
+
+}

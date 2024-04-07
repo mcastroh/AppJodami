@@ -1,0 +1,29 @@
+﻿<div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="AddEntidadLabel">Adicionar Tipo de Artículo</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>          
+            <div class="modal-body">
+                <div class="modal-body">                                        
+                    <form asp-action="Adicionar" method="post" class="needs-validation" novalidate>                       
+                        <div class="form-group">
+                            <label for="descripcion" class="control-label">Descripción</label>
+                            <input id="descripcion" name="descripcion" class="form-control" autocomplete="off" required maxlength="60" />
+                            <div class="invalid-feedback">Descripción obligatorio</div>
+                        </div>
+                        <br />
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Guardar</button>
+                            <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                        </div>
+                    </form>
+                    <script src="~/js/validaciones/campos-obligatorios.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

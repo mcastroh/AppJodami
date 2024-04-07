@@ -64,14 +64,38 @@
                         <a class="collapse-item" href="@Url.Action("Index", "TipoAlmacen")">Tipos de Almacenes</a>
                         <a class="collapse-item" href="@Url.Action("Index", "TipoVia")">Tipos de Vías</a>
                         <a class="collapse-item" href="@Url.Action("Index", "TipoZona")">Tipos de Zonas</a>
-
                         <a class="collapse-item" href="@Url.Action("Index", "TipoFlete")">Tipos de Fletes</a>
+
+                        
+                        
+
+                       
 
                         <a class="collapse-item" href="@Url.Action("Index", "Vehiculos")">Vehículos</a>
 
                     </div>
                 </div>
             </li>
+
+            <!-- Nav Item - Socios Comerciales Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSociosComerciales">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Socios Comerciales</span>
+                </a>
+                <div id="collapseSociosComerciales" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoDocumentoIdentidad")">Tipos Docmto Identidad</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoCalificacion")">Tipos de Calificación</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoCuentaBancaria")">Tipos Cuentas Bancarias</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoDireccion")">Tipos de Direcciones</a>
+
+
+                         
+                    </div>
+                </div>
+            </li>
+
 
             <!-- Nav Item - Inventario Collapse Menu -->
             <li class="nav-item">
@@ -81,6 +105,8 @@
                 </a>
                 <div id="collapseInventario" class="collapse" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "TipoArticulo")">Tipos de Artículos</a>
+
                         <a class="collapse-item" href="@Url.Action("Index", "Categoria")">Categorias</a>
                         <a class="collapse-item" href="@Url.Action("Index", "Producto")">Productos</a>
                     </div>

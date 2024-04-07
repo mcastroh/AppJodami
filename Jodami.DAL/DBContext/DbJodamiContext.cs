@@ -873,8 +873,7 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
-                .HasComment("Auditoría Fecha");
-            entity.Property(e => e.Orden).HasComment("Orden Presentación");
+                .HasComment("Auditoría Fecha");           
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
         });
 
@@ -888,8 +887,7 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Auditoría Fecha");
-            entity.Property(e => e.IdCodigoSunat).HasComment("Código SUNAT");
-            entity.Property(e => e.Orden).HasComment("Orden Presentación");
+            entity.Property(e => e.IdCodigoSunat).HasComment("Código SUNAT");           
             entity.Property(e => e.Simbolo).HasComment("Símbolo");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
         });

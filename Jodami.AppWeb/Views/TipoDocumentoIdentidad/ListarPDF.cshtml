@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Jodami.AppWeb.Models.ViewModels.VMTipoDocumentoIdentidad>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html> 
+
+<head>       
+    <partial name="_ReporteEncabezado" />
+    <style>
+        body {
+            font-family: Arial, Arial, Helvetica, sans-serif;
+        } 
+    </style>
+</head> 
+
+<body>   
+    <div class="contenedor"> 
+        <table class="tbproductos table table-sm table-bordered table-striped" id="tabla" width="100%" cellspacing="0">      
+            <thead class="table-dark">
+                <tr style="text-align: left">
+                    <th align="center" style="width:30px" scope="col">Código</th>
+                    <th align="center" style="width:30px" scope="col">SUNAT</th>
+                    <th class="tbth" style="width:150px">Descripción</th>    
+                    <th align="center" style="width:30px" scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td align="center">@Html.DisplayFor(m => item.Simbolo)</td>
+                            <td align="center">@Html.DisplayFor(m => item.IdCodigoSunat)</td>
+                            <td align="left">@Html.DisplayFor(m => item.Descripcion)</td>
+                            <td align="center">@Html.DisplayFor(m => item.EsActivo)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div> 
+</body>
+</html> 
