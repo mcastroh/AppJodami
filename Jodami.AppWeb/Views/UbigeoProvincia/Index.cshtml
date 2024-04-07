@@ -1,0 +1,115 @@
+﻿@using Jodami.AppWeb.Models.ViewModels
+@model IEnumerable<VMUbigeoProvincia>
+
+@{
+    ViewData["Title"] = "Provincias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+    VMUbigeoProvincia vmProv = new VMUbigeoProvincia()
+    {
+                IdProvincia = 0,
+                CodigoProvincia = string.Empty,
+                Provincia1 = string.Empty,
+                UbiDptoKey = @Model.FirstOrDefault().UbiDptoKey,
+                UbiDptoCodigo = @Model.FirstOrDefault().UbiDptoCodigo,
+                UbiDptoName = @Model.FirstOrDefault().UbiDptoName
+    };
+    
+    var dptoText = string.Empty;
+
+    if (@Model.Count() != 0)
+    { 
+        dptoText = $"Departamento: { Model.FirstOrDefault().UbiDptoCodigo } - { Model.FirstOrDefault().UbiDptoName }";
+    }
+}
+
+@section Estilos {
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista de Provincias por Departamento</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nueva Provincia</button>
+                @await Html.PartialAsync("_AddPartialView", @vmProv)
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "UbigeoProvincia", new { id = vmProv.UbiDptoKey })"><i class="bi bi-file-earmark-pdf"></i> Listado en PDF</a>
+            </div>
+
+            <div class="col-sm-2">
+                <a class="btn btn-success" href="@Url.Action("Index", "UbigeoDepartamento" )"><i class="bi bi-justify"></i>Volver</a>
+            </div>
+            <div class="col-sm-6">
+                <input class="form-control form-control-lg" value="@dptoText" disabled readonly />
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>                          
+                            <th style="text-align: center">Código</th>
+                            <th>Provincias</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+ 
+
+                        @foreach (var item in Model)
+                        {
+                            var codProv = item.CodigoProvincia.Substring(2, 2);
+
+                            <tr>
+                                <td style="text-align: center">@Html.DisplayFor(m => @codProv)</td>
+                                <td style="text-align: left">@Html.DisplayFor(m => @item.Provincia1)</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdProvincia)" data-url="@Url.Action($"Edit/{item.IdProvincia}")">
+                                        <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EditPartialView", item)
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdProvincia)" data-url="@Url.Action($"Eliminar/{item.IdProvincia}")">
+                                        <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EliminarPartialView", item)
+
+                                    <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "UbigeoDistrito", new { idDepartamento = item.UbiDptoKey, idProvincia = item.IdProvincia })"><i class="bi bi-justify"></i>Distritos</a>
+
+                                   
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <script src="~/js/vistas/datatables-demo.js"></script>
+
+}

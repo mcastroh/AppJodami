@@ -16,8 +16,8 @@ namespace Jodami.AppWeb.Utilidades.Automapper
 
             CreateMap<TipoFlete, VMTipoFlete>().ReverseMap();
             CreateMap<Vehiculos, VMVehiculos>().ReverseMap();
-             
 
+             
 
             // Socios Comerciales
             CreateMap<TipoCalificacion, VMTipoCalificacion>().ReverseMap();
@@ -29,6 +29,14 @@ namespace Jodami.AppWeb.Utilidades.Automapper
             CreateMap<TipoArticulo, VMTipoArticulo>().ReverseMap();
             CreateMap<UnidadMedida, VMUnidadMedida>().ReverseMap();
             CreateMap<TipoAlmacen, VMTipoAlmacen>().ReverseMap();
+
+
+            // Ubigeos
+            CreateMap<Departamento, VMUbigeoDepartamento>().ReverseMap();
+            CreateMap<Provincia, VMUbigeoProvincia>().ReverseMap();
+            CreateMap<Distrito, VMUbigeoDistrito>().ReverseMap();
+
+
 
         }        
     }

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Jodami.AppWeb.Models.ViewModels.VMUbigeoProvincia>
+
+@{
+    Layout = null;
+    var dptoLabel = $"Departamento: { @Model.FirstOrDefault().UbiDptoName} ";
+}
+
+<!DOCTYPE html>
+
+<html> 
+
+<head>       
+    <partial name="_ReporteEncabezado" />
+    <style>
+        body {
+            font-family: Arial, Arial, Helvetica, sans-serif;
+        } 
+    </style>
+</head> 
+
+<body>
+    <div class="contenedor">
+        <table class="tbproductos table table-sm table-bordered table-striped" id="tabla" width="100%" cellspacing="0">
+            <thead class="table-dark"> 
+
+                <tr style="text-align: left">
+                    <th align="center" style="width:30px" scope="col">Código</th>
+                    <th class="tbth" style="width:150px">Provincia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+                <tr></tr>
+
+                <tr>
+                    <th colspan="2" align="left"><h2>@dptoLabel</h2></th>
+                </tr>
+                <tr></tr>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td align="center">@Html.DisplayFor(m => item.CodigoProvincia)</td>
+                            <td align="left">@Html.DisplayFor(m => item.Provincia1)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 

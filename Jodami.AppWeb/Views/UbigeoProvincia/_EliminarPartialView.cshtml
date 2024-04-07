@@ -1,0 +1,42 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMUbigeoProvincia
+
+<div class="modal fade" id="EliminarEntidad-@Model.IdProvincia" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h2 class="modal-title">Eliminar Provincia</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div> 
+            <div class="modal-body">                  
+                <form asp-action="Eliminar" method="post">
+                    <input type="hidden" asp-for="@Model.UbiDptoKey" />
+                    <input type="hidden" asp-for="@Model.UbiDptoCodigo" />
+                    <input type="hidden" asp-for="@Model.UbiDptoName" />
+                    <input type="hidden" asp-for="@Model.IdProvincia" />
+
+                    @{
+                        string keyProv = Model.CodigoProvincia.Substring(2, 2);
+                    }
+
+                    <div class="form-group">
+                        <label class="control-label">Código</label>
+                        <input asp-for="@keyProv" class="form-control" readonly="readonly" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Provincia</label>
+                        <input asp-for="Provincia1" class="form-control" readonly="readonly" />
+                    </div>
+                    <br /> 
+                    <div class="modal-footer">                      
+                        <button type="submit" class="btn btn-primary"> Eliminar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>                       
+            </div>
+        </div>
+    </div>   
+</div>
+
+           

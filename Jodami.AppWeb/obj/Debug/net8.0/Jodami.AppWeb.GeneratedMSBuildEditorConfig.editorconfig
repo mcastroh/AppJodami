@@ -270,6 +270,66 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb1pvbmFcX0VsaW1pbmFyUGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDepartamento/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGVwYXJ0YW1lbnRvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDepartamento/ListarPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGVwYXJ0YW1lbnRvXExpc3RhclBERi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDepartamento/_AddPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGVwYXJ0YW1lbnRvXF9BZGRQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDepartamento/_EditPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGVwYXJ0YW1lbnRvXF9FZGl0UGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDepartamento/_EliminarPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGVwYXJ0YW1lbnRvXF9FbGltaW5hclBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDistrito/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGlzdHJpdG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDistrito/ListarPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGlzdHJpdG9cTGlzdGFyUERGLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDistrito/_AddPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGlzdHJpdG9cX0FkZFBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDistrito/_EditPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGlzdHJpdG9cX0VkaXRQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoDistrito/_EliminarPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvRGlzdHJpdG9cX0VsaW1pbmFyUGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoProvincia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvUHJvdmluY2lhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoProvincia/ListarPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvUHJvdmluY2lhXExpc3RhclBERi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoProvincia/_AddPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvUHJvdmluY2lhXF9BZGRQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoProvincia/_EditPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvUHJvdmluY2lhXF9FZGl0UGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/UbigeoProvincia/_EliminarPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWJpZ2VvUHJvdmluY2lhXF9FbGltaW5hclBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/AppJodami/Jodami.AppWeb/Views/UnidadMedida/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pZGFkTWVkaWRhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
