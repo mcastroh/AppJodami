@@ -90,6 +90,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/AppJodami/Jodami.AppWeb/Views/SocioComercialGrupos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Db21lcmNpYWxHcnVwb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/SocioComercialGrupos/ListarPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Db21lcmNpYWxHcnVwb3NcTGlzdGFyUERGLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/SocioComercialGrupos/_AddPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Db21lcmNpYWxHcnVwb3NcX0FkZFBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/SocioComercialGrupos/_EditPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Db21lcmNpYWxHcnVwb3NcX0VkaXRQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/SocioComercialGrupos/_EliminarPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Db21lcmNpYWxHcnVwb3NcX0VsaW1pbmFyUGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/AppJodami/Jodami.AppWeb/Views/TipoAlmacen/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0FsbWFjZW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

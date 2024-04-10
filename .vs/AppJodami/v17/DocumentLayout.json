@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\AppJodami\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\controllers\\sociocomercialgruposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\controllers\\sociocomercialgruposcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,6 +63,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:13:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SocioComercialGruposController.cs",
+              "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\Controllers\\SocioComercialGruposController.cs",
+              "RelativeDocumentMoniker": "Jodami.AppWeb\\Controllers\\SocioComercialGruposController.cs",
+              "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\Controllers\\SocioComercialGruposController.cs",
+              "RelativeToolTip": "Jodami.AppWeb\\Controllers\\SocioComercialGruposController.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAQwFwAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T00:10:16.536Z",
+              "EditorCaption": ""
             }
           ]
         },

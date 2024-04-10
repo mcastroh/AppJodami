@@ -7,7 +7,8 @@
         public string Simbolo { get; set; }
         public string IdCodigoSunat { get; set; }
         public bool EsActivo { get; set; }
-         
+
+        public string SimboloAndDescripcion { get; set; }
     }
 }
  

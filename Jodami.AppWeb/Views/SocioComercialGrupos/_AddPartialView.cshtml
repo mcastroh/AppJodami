@@ -1,0 +1,60 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMSocios
+ 
+<div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="AddEntidadLabel">Adicionar Grupo Económico</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>          
+            <div class="modal-body">
+                <div class="modal-body">   
+                    <form asp-action="Adicionar" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" asp-for="@Model.IdTipoSocio" />                        
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label class="control-label">Tipo documento de identidad</label>
+                                <select id="IdFlete" class="form-control" asp-for="@Model.IdTipoDcmtoIdentidad" asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                                <div class="invalid-feedback">Tipo documento de identidad obligatorio</div>
+                            </div>                             
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="@Model.NumeroDcmtoIdentidad" class="control-label">Número documento de identidad</label>
+                                <input asp-for="@Model.NumeroDcmtoIdentidad" class="form-control" autocomplete="off" required maxlength="20" />
+                                <div class="invalid-feedback">Número documento de identidad obligatorio</div>
+                            </div>
+                        </div>   
+                        <div class="form-group">
+                            <label asp-for="@Model.RazonSocial" class="control-label">Nombre del grupo</label>
+                            <input asp-for="@Model.RazonSocial" class="form-control" autocomplete="off" required maxlength="100" />
+                            <div class="invalid-feedback">Nombre del grupo obligatorio</div>
+                        </div>                        
+                         <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="@Model.Telefono" class="control-label">Teléfono</label>
+                                <input asp-for="@Model.Telefono" class="form-control" autocomplete="off" maxlength="20" />
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="@Model.Celular" class="control-label">Celular</label>
+                                <input asp-for="@Model.Celular" class="form-control" autocomplete="off" maxlength="20" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.PaginaWeb" class="control-label">Página Web</label>
+                            <input asp-for="@Model.PaginaWeb" class="form-control" autocomplete="off" maxlength="100" />                           
+                        </div>
+                        <br />
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Guardar</button>
+                            <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                        </div>
+                    </form>
+                    <script src="~/js/validaciones/campos-obligatorios.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

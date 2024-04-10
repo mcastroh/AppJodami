@@ -1,0 +1,102 @@
+﻿@using Jodami.AppWeb.Models.ViewModels
+@using Jodami.AppWeb.Utilidades.Infraestructura
+@using Jodami.Entity
+@model IEnumerable<VMSocios>
+
+@{
+    ViewData["Title"] = "Grupos Económicos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var tipoSocio = (TipoSocio)ViewBag.TipoSocio;
+    var socio = new Jodami.AppWeb.Models.ViewModels.VMSocios();
+
+    socio.TiposDcmtoIdentidad = (List<VMTipoDocumentoIdentidad>)ViewBag.TipoDocumentoIdentidad;
+    socio.IdTipoSocio = tipoSocio.IdTipoSocio;
+    socio.IdTipoDcmtoIdentidad = socio.TiposDcmtoIdentidad.Where(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_OTR).FirstOrDefault().IdTipoDcmtoIdentidad;
+     
+}
+
+@section Estilos {
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista Grupos Económicos</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-2">
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                @await Html.PartialAsync("_AddPartialView", socio)
+ 
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioComercialGrupos")"><i class="bi bi-printer"></i> Listado</a>
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre del grupo</th>
+                            <th>Celular</th>
+                            <th>Página web</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderBy(x => x.RazonSocial).ToList())
+                        {
+                            item.TiposDcmtoIdentidad = (List<VMTipoDocumentoIdentidad>)ViewBag.TipoDocumentoIdentidad;
+
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.RazonSocial)</td>
+                                <td>@Html.DisplayFor(m => item.Celular)</td>
+                                <td>@Html.DisplayFor(m => item.PaginaWeb)</td>                                
+                                <td>@Html.DisplayFor(m => item.EsActivo)</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">
+                                        <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EditPartialView", item)
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdSocio)" data-url="@Url.Action($"Eliminar/{item.IdSocio}")">
+                                        <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EliminarPartialView", item)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <script src="~/js/vistas/datatables-demo.js"></script>
+
+}
