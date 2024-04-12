@@ -16,12 +16,66 @@
   <ItemGroup>
     <Compile Remove="Controllers\xMonedaController.cs" />
     <Compile Remove="Controllers\xTipoViaController.cs" />
+    <Compile Remove="Data\Almacen.cs" />
+    <Compile Remove="Data\Articulo.cs" />
+    <Compile Remove="Data\ArticuloImagen.cs" />
+    <Compile Remove="Data\Calificacion.cs" />
+    <Compile Remove="Data\Choferes.cs" />
+    <Compile Remove="Data\Departamento.cs" />
+    <Compile Remove="Data\Direccion_.cs" />
+    <Compile Remove="Data\Distrito.cs" />
+    <Compile Remove="Data\Empresa.cs" />
+    <Compile Remove="Data\EmpresaLocal.cs" />
+    <Compile Remove="Data\EntidadFinanciera.cs" />
+    <Compile Remove="Data\GrupoArticulo.cs" />
+    <Compile Remove="Data\Imagenes.cs" />
+    <Compile Remove="Data\Menu.cs" />
+    <Compile Remove="Data\Moneda.cs" />
+    <Compile Remove="Data\Proceso.cs" />
+    <Compile Remove="Data\Provincia.cs" />
+    <Compile Remove="Data\Rol.cs" />
+    <Compile Remove="Data\RolMenu.cs" />
+    <Compile Remove="Data\Socio.cs" />
+    <Compile Remove="Data\SocioCuentaBanco.cs" />
+    <Compile Remove="Data\SocioDireccion_.cs" />
+    <Compile Remove="Data\SocioFormaPago.cs" />
+    <Compile Remove="Data\SocioPrecioArticulo.cs" />
+    <Compile Remove="Data\SubGrupoArticulo.cs" />
+    <Compile Remove="Data\SubTipoMovimiento.cs" />
+    <Compile Remove="Data\SunatTipoDetraccion.cs" />
+    <Compile Remove="Data\SunatTipoExistencia.cs" />
+    <Compile Remove="Data\Ticket.cs" />
+    <Compile Remove="Data\TicketLog.cs" />
+    <Compile Remove="Data\TicketPesajes.cs" />
+    <Compile Remove="Data\TipoAlmacen.cs" />
+    <Compile Remove="Data\TipoArticulo.cs" />
+    <Compile Remove="Data\TipoCalificacion.cs" />
+    <Compile Remove="Data\TipoCuentaBancaria.cs" />
+    <Compile Remove="Data\TipoDireccion.cs" />
+    <Compile Remove="Data\TipoDocumentoIdentidad.cs" />
+    <Compile Remove="Data\TipoFlete.cs" />
+    <Compile Remove="Data\TipoFormaPago.cs" />
+    <Compile Remove="Data\TipoMotivoBaja.cs" />
+    <Compile Remove="Data\TipoMovimiento.cs" />
+    <Compile Remove="Data\TipoSocio.cs" />
+    <Compile Remove="Data\TipoValorizacion.cs" />
+    <Compile Remove="Data\TipoVia.cs" />
+    <Compile Remove="Data\TipoZona.cs" />
+    <Compile Remove="Data\UnidadMedida.cs" />
+    <Compile Remove="Data\Usuario.cs" />
+    <Compile Remove="Data\Vehiculos.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Views\Moneda\ListarPDF - Copia.cshtml" />
     <Content Remove="Views\Shared\_Layout - Copia.cshtml" />
     <Content Remove="wwwroot\js\validaciones\campos-obligatorios.js" />
+    <Content Remove="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js" />
+    <Content Remove="wwwroot\js\validaciones\tipo-documento-identidad.js" />
+    <Content Remove="wwwroot\js\validaciones\validar-caracteres-especiales.js" />
+    <Content Remove="wwwroot\js\validaciones\validar-email.js" />
+    <Content Remove="wwwroot\js\validaciones\validar-letras.js" />
+    <Content Remove="wwwroot\js\validaciones\validar-numeros.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +104,12 @@
     <None Include="wwwroot\img\undraw_rocket.svg" />
     <None Include="wwwroot\js\sb-admin-2.js" />
     <None Include="wwwroot\js\sb-admin-2.min.js" />
+    <None Include="wwwroot\js\validaciones\validar-caracteres-especiales.js" />
+    <None Include="wwwroot\js\validaciones\validar-email.js" />
+    <None Include="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js" />
+    <None Include="wwwroot\js\validaciones\validar-letras.js" />
+    <None Include="wwwroot\js\validaciones\validar-numeros.js" />
+    <None Include="wwwroot\js\validaciones\tipo-documento-identidad.js" />
     <None Include="wwwroot\js\validaciones\campos-obligatorios.js" />
     <None Include="wwwroot\js\vistas\chart-bar-demo.js" />
     <None Include="wwwroot\js\vistas\chart-pie-demo.js" />

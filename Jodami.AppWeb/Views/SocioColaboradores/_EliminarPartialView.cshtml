@@ -1,0 +1,100 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosColaboradores
+
+<div class="modal fade" id="EliminarEntidad-@Model.IdSocio" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h2 class="modal-title">Eliminar Colaborador</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div> 
+            <div class="modal-body">                  
+                <form asp-action="Eliminar" method="post"> 
+                    <input type="hidden" asp-for="@Model.IdSocio" />
+
+                    @*------------------------------------ *@
+                    @* Tipo documento, Nro dcmto identidad *@
+                    @*------------------------------------ *@
+                    <div class="row">
+                        <div class="col-sm-5 form-group">
+                            <label class="control-label">Tipo documento</label>
+                            <select id="cbxTipoDcmtoIdentidad" class="form-control" asp-for="IdTipoDcmtoIdentidad" asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion") )" disabled readonly="readonly"> 
+                            </select>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="NumeroDcmtoIdentidad" class="control-label">Nro dcmto identidad</label>
+                            <input asp-for="NumeroDcmtoIdentidad" class="form-control text-uppercase"  disabled readonly="readonly" />                         
+                        </div>
+                        <div class="col-sm-2 form-group">
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label asp-for="EsActivo" class="control-label">Estado</label>
+                            @{
+                                if (@Model.EsActivo)
+                                {
+                                    <input class="form-control" value="Activo" readonly="readonly" />
+                                }
+                                else
+                                {
+                                    <input class="form-control" value="Inactivo" readonly="readonly" />
+                                }
+                            }
+                        </div>
+                    </div>
+                    <hr />
+
+                    @*----------------------------------- *@
+                    @* Apellido paterno, materno, nombres *@
+                    @*----------------------------------- *@
+                    <div class="row">
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="ApellidoPaterno" class="control-label">Apellido paterno</label>
+                            <input asp-for="ApellidoPaterno" class="form-control"  disabled readonly="readonly" />                          
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="ApellidoMaterno" class="control-label">Apellido materno</label>
+                            <input asp-for="ApellidoMaterno" class="form-control"  disabled readonly="readonly" />                           
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="PrimerNombre" class="control-label">Primer nombre</label>
+                            <input asp-for="PrimerNombre" class="form-control" disabled readonly="readonly" />                            
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="SegundoNombre" class="control-label">Segundo nombre</label>
+                            <input asp-for="SegundoNombre" class="form-control" disabled readonly="readonly" />
+                        </div>
+                    </div>
+                    <hr />
+
+                    @*------------------------- *@
+                    @* Celular, Teléfono, Email *@
+                    @*------------------------- *@
+                    <div class="row">
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="Celular" class="control-label">Celular</label>
+                            <input asp-for="Celular" class="form-control" disabled readonly="readonly" />
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="Telefono" class="control-label">Teléfono</label>
+                            <input asp-for="Telefono" class="form-control" disabled readonly="readonly" />
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label asp-for="Email" class="control-label">Email</label>
+                            <input id="email" asp-for="Email" class="form-control" disabled readonly="readonly" />
+                        </div>
+                    </div>      
+                    <br />
+
+                    @*-------------- *@
+                    @* Pie de página *@
+                    @*-------------- *@
+                    <div class="modal-footer">                      
+                        <button type="submit" class="btn btn-primary"> Eliminar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>                       
+            </div>
+        </div>
+    </div>   
+</div>  

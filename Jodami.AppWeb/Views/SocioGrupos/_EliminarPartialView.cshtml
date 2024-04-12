@@ -1,4 +1,4 @@
-﻿@model Jodami.AppWeb.Models.ViewModels.VMSocios
+﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosGrupos
 
 <div class="modal fade" id="EliminarEntidad-@Model.IdSocio" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -15,38 +15,19 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label class="control-label">Tipo documento de identidad</label>
-                            <select id="IdFlete" class="form-control" asp-for="@Model.IdTipoDcmtoIdentidad" asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "Simbolo") ) ">
+                            <select disabled readonly="readonly" class="form-control" asp-for="@Model.IdTipoDcmtoIdentidad" asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "Simbolo") ) ">
                                 <option value="">Seleccionar</option>
-                            </select>
-                            <div class="invalid-feedback">Tipo documento de identidad obligatorio</div>
+                            </select>                            
                         </div>
                         <div class="col-sm-6 form-group">
-                            <label asp-for="@Model.NumeroDcmtoIdentidad" class="control-label">Número dcmto identidad</label>
-                            <input asp-for="@Model.NumeroDcmtoIdentidad" class="form-control" readonly="readonly" />
-                            <div class="invalid-feedback">Número documento de identidad obligatorio</div>
+                            <label asp-for="@Model.NumeroDcmtoIdentidad" class="control-label">Número documento de identidad</label>
+                            <input asp-for="@Model.NumeroDcmtoIdentidad" class="form-control" disabled readonly="readonly" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label asp-for="@Model.RazonSocial" class="control-label">Nombre del grupo</label>
-                        <input asp-for="@Model.RazonSocial" class="form-control" readonly="readonly" />
-                        <div class="invalid-feedback">Nombre del grupo obligatorio</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label asp-for="@Model.Telefono" class="control-label">Teléfono</label>
-                            <input asp-for="@Model.Telefono" class="form-control" readonly="readonly" />
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label asp-for="@Model.Celular" class="control-label">Celular</label>
-                            <input asp-for="@Model.Celular" class="form-control" readonly="readonly" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="@Model.PaginaWeb" class="control-label">Página Web</label>
-                        <input asp-for="@Model.PaginaWeb" class="form-control" readonly="readonly" />
-                    </div>
-                                               
+                        <label asp-for="@Model.RazonSocial" class="control-label">Grupo económico</label>
+                        <input asp-for="@Model.RazonSocial" class="form-control" disabled readonly="readonly" />
+                    </div>                                                
                     <div class="form-group">
                         <label asp-for="EsActivo" class="control-label">Estado</label>
                         @{

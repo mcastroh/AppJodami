@@ -1,4 +1,4 @@
-﻿@model Jodami.AppWeb.Models.ViewModels.VMSocios
+﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosGrupos
  
 <div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -32,20 +32,6 @@
                             <input asp-for="@Model.RazonSocial" class="form-control" autocomplete="off" required maxlength="100" />
                             <div class="invalid-feedback">Nombre del grupo obligatorio</div>
                         </div>                        
-                         <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <label asp-for="@Model.Telefono" class="control-label">Teléfono</label>
-                                <input asp-for="@Model.Telefono" class="form-control" autocomplete="off" maxlength="20" />
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label asp-for="@Model.Celular" class="control-label">Celular</label>
-                                <input asp-for="@Model.Celular" class="form-control" autocomplete="off" maxlength="20" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="@Model.PaginaWeb" class="control-label">Página Web</label>
-                            <input asp-for="@Model.PaginaWeb" class="form-control" autocomplete="off" maxlength="100" />                           
-                        </div>
                         <br />
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary"> Guardar</button>

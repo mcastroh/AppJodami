@@ -1,0 +1,39 @@
+﻿
+
+1. Lanzar varias funciones de JavaScript al cargar un documento
+
+	http://www.codexexempla.org/articulos/2007/lanzar_funciones.php
+
+	function funcion_primera(){ alert("Se ha lanzado la PRIMERA función");}
+    
+    function funcion_segunda(){ alert("Se ha lanzado la SEGUNDA función");}
+    function funcion_tercera(){ alert("Se ha lanzado la TERCERA función");}
+    
+    function lanzadera(){
+        funcion_primera();
+        funcion_segunda();
+        funcion_tercera();
+    }
+    
+    window.onload = lanzadera;
+
+
+2. Propiedad de visualización de estilo
+
+    https://www.w3schools.com/jsref/prop_style_display.asp
+
+    La propiedad de visualización establece o devuelve el tipo de visualización del elemento.
+
+    Los elementos en HTML son en su mayoría elementos "en línea" o "en bloque": 
+    - un elemento en línea tiene contenido flotante en su lado izquierdo y derecho. 
+    - Un elemento de bloque ocupa toda la línea y no se puede mostrar nada en su lado izquierdo o derecho.
+
+    La propiedad de visualización también permite al autor mostrar u ocultar un elemento. 
+    Es similar a la propiedad de visibilidad . 
+    Sin embargo, si configura display:none, oculta todo el elemento, lo que 
+    visibility:hidden significa que el contenido del elemento será invisible, 
+    pero el elemento permanecerá en su posición y tamaño originales.
+
+
+3. 
+

@@ -18,12 +18,11 @@
 
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-2">
-                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo Tipo de Flete</button>
-                @await Html.PartialAsync("_AddPartialView")
-            </div>
-            <div class="col-sm-2">
-                <a class="btn btn-success" href="@Url.Action("ListarPDF", "TipoFlete")"><i class="bi bi-printer"></i> Listado en PDF</a>
+            <div class="col-sm-6">
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                @await Html.PartialAsync("_AddPartialView")        
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "TipoFlete")"><i class="bi bi-printer"></i> Listado</a>
+                <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>
             </div>
         </div>
     </div>

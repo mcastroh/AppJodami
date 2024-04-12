@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
+
 public partial class Socio
 {
     /// <summary>
@@ -165,8 +166,17 @@ public partial class Socio
     [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    /// <summary>
+    /// Colaborador Asgnado ID
+    /// </summary>
+    public int? IdColaboradorAsignado { get; set; }
+
     [InverseProperty("IdResponsableNavigation")]
     public virtual ICollection<Almacen> Almacen { get; set; } = new List<Almacen>();
+
+    [ForeignKey("IdColaboradorAsignado")]
+    [InverseProperty("InverseIdColaboradorAsignadoNavigation")]
+    public virtual Socio IdColaboradorAsignadoNavigation { get; set; }
 
     [ForeignKey("IdGrupoSocioNegocio")]
     [InverseProperty("InverseIdGrupoSocioNegocioNavigation")]
@@ -188,6 +198,9 @@ public partial class Socio
     [InverseProperty("Socio")]
     public virtual TipoSocio IdTipoSocioNavigation { get; set; }
 
+    [InverseProperty("IdColaboradorAsignadoNavigation")]
+    public virtual ICollection<Socio> InverseIdColaboradorAsignadoNavigation { get; set; } = new List<Socio>();
+
     [InverseProperty("IdGrupoSocioNegocioNavigation")]
     public virtual ICollection<Socio> InverseIdGrupoSocioNegocioNavigation { get; set; } = new List<Socio>();
 
@@ -203,3 +216,4 @@ public partial class Socio
     [InverseProperty("IdSocioNavigation")]
     public virtual ICollection<SocioPrecioArticulo> SocioPrecioArticulo { get; set; } = new List<SocioPrecioArticulo>();
 }
+

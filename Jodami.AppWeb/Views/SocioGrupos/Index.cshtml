@@ -1,19 +1,28 @@
 ﻿@using Jodami.AppWeb.Models.ViewModels
 @using Jodami.AppWeb.Utilidades.Infraestructura
 @using Jodami.Entity
-@model IEnumerable<VMSocios>
+@model IEnumerable<VMSociosGrupos>
 
 @{
     ViewData["Title"] = "Grupos Económicos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var tipoSocio = (TipoSocio)ViewBag.TipoSocio;
-    var socio = new Jodami.AppWeb.Models.ViewModels.VMSocios();
+    var tiposDcmtosIdentidad = (List<VMTipoDocumentoIdentidad>)ViewBag.TipoDocumentoIdentidad;
+    var dcmtoDefault = (VMTipoDocumentoIdentidad)ViewBag.DcmtoDefault;
 
-    socio.TiposDcmtoIdentidad = (List<VMTipoDocumentoIdentidad>)ViewBag.TipoDocumentoIdentidad;
-    socio.IdTipoSocio = tipoSocio.IdTipoSocio;
-    socio.IdTipoDcmtoIdentidad = socio.TiposDcmtoIdentidad.Where(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_OTR).FirstOrDefault().IdTipoDcmtoIdentidad;
-     
+    var entity = new VMSociosGrupos()
+    {  
+                IdSocio = 0,
+                IdTipoSocio = tipoSocio.IdTipoSocio,
+                IdTipoDcmtoIdentidad = dcmtoDefault.IdTipoDcmtoIdentidad,
+                NumeroDcmtoIdentidad = string.Empty,
+                RazonSocial = string.Empty,
+                CodigoTipoDcmto = dcmtoDefault.Simbolo,
+                NameTipoDcmto = dcmtoDefault.Descripcion,
+                TiposDcmtoIdentidad = tiposDcmtosIdentidad
+    };
+
 }
 
 @section Estilos {
@@ -29,15 +38,10 @@
 
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-6">
                 <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                @await Html.PartialAsync("_AddPartialView", socio)
- 
-            </div>
-            <div class="col-sm-2">
-                <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioComercialGrupos")"><i class="bi bi-printer"></i> Listado</a>
-            </div>
-            <div class="col-sm-2">
+                @await Html.PartialAsync("_AddPartialView", entity)
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioGrupos")"><i class="bi bi-printer"></i> Listado</a>
                 <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>
             </div>
         </div>
@@ -48,23 +52,22 @@
             <div class="col-sm-12">
                 <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
                     <thead>
-                        <tr>
-                            <th>Nombre del grupo</th>
-                            <th>Celular</th>
-                            <th>Página web</th>
+                        <tr>       
+                            <th>Grupo económico</th>
+                            <th>Tipo documento</th>
+                            <th>Nro documento</th>                            
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.OrderBy(x => x.RazonSocial).ToList())
-                        {
-                            item.TiposDcmtoIdentidad = (List<VMTipoDocumentoIdentidad>)ViewBag.TipoDocumentoIdentidad;
-
+                        {                           
                             <tr>
                                 <td>@Html.DisplayFor(m => item.RazonSocial)</td>
-                                <td>@Html.DisplayFor(m => item.Celular)</td>
-                                <td>@Html.DisplayFor(m => item.PaginaWeb)</td>                                
+                                <td>@Html.DisplayFor(m => item.CodigoTipoDcmto)</td>
+                                <td>@Html.DisplayFor(m => item.NumeroDcmtoIdentidad)</td>
+                               
                                 <td>@Html.DisplayFor(m => item.EsActivo)</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">
@@ -83,8 +86,8 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
+    </div> 
+</div> 
 
 @section Scripts {
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -98,5 +101,4 @@
     <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
 
     <script src="~/js/vistas/datatables-demo.js"></script>
-
 }

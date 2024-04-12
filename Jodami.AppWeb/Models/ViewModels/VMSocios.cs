@@ -28,6 +28,7 @@
         public DateTime? FechaBaja { get; set; }
         public bool EsActivo { get; set; }
 
+        public string SimboloTipoDocumentoIdentidad { get; set; }
         public List<VMTipoDocumentoIdentidad> TiposDcmtoIdentidad { get; set; }
         
     }

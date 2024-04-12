@@ -16,6 +16,7 @@
         // 
         // Tipos de Documento de Identidad
         public const string TIPO_DCMTO_IDENTIDAD_OTR = "OTR";
-
+        public const string TIPO_DCMTO_IDENTIDAD_RUC = "RUC";
+        public const string TIPO_DCMTO_IDENTIDAD_DNI = "DNI";
     }
 }

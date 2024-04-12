@@ -25,8 +25,13 @@ namespace Jodami.AppWeb.Utilidades.Automapper
             CreateMap<TipoDireccion, VMTipoDireccion>().ReverseMap();
             CreateMap<TipoDocumentoIdentidad, VMTipoDocumentoIdentidad>().ReverseMap();
 
-            CreateMap<Socio, VMSocios>().ReverseMap();
+            //CreateMap<Socio, VMSocios>().ReverseMap();
+
+            CreateMap<Socio, VMSociosGrupos>().ReverseMap();
+            CreateMap<Socio, VMSociosProveedores>().ReverseMap();
+            CreateMap<Socio, VMSociosColaboradores>().ReverseMap();
             
+
 
             // Artículos
             CreateMap<TipoArticulo, VMTipoArticulo>().ReverseMap();
