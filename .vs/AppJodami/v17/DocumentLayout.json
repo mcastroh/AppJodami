@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\AppJodami\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\views\\socioproveedores\\_addpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\views\\socioproveedores\\_addpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|e:\\appjodami\\jodami.appweb\\wwwroot\\js\\validaciones\\mostrar-ruc-or-noruc.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F9380FE0-1EBD-4F62-9BA4-1BF217005A68}|Jodami.AppWeb\\Jodami.AppWeb.csproj|solutionrelative:jodami.appweb\\wwwroot\\js\\validaciones\\mostrar-ruc-or-noruc.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -67,32 +58,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:13:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "mostrar-ruc-or-noruc.js",
-              "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\validaciones\\mostrar-ruc-or-noruc.js",
-              "RelativeDocumentMoniker": "Jodami.AppWeb\\wwwroot\\js\\validaciones\\mostrar-ruc-or-noruc.js",
-              "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\validaciones\\mostrar-ruc-or-noruc.js",
-              "RelativeToolTip": "Jodami.AppWeb\\wwwroot\\js\\validaciones\\mostrar-ruc-or-noruc.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-12T13:19:55.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_AddPartialView.cshtml",
-              "DocumentMoniker": "E:\\AppJodami\\Jodami.AppWeb\\Views\\SocioProveedores\\_AddPartialView.cshtml",
-              "RelativeDocumentMoniker": "Jodami.AppWeb\\Views\\SocioProveedores\\_AddPartialView.cshtml",
-              "ToolTip": "E:\\AppJodami\\Jodami.AppWeb\\Views\\SocioProveedores\\_AddPartialView.cshtml",
-              "RelativeToolTip": "Jodami.AppWeb\\Views\\SocioProveedores\\_AddPartialView.cshtml",
-              "ViewState": "AQIAAHYAAAAAAAAAAAAAAJ8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-12T11:22:19.893Z",
-              "EditorCaption": ""
             }
           ]
         },

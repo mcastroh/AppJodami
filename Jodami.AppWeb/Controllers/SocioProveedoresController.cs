@@ -6,7 +6,6 @@ using Jodami.BLL.Interfaces;
 using Jodami.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Rotativa.AspNetCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Jodami.AppWeb.Controllers
 {
@@ -57,7 +56,7 @@ namespace Jodami.AppWeb.Controllers
         #region Adicionar => HttpPost
 
         [HttpPost]
-        public async Task<IActionResult> Adicionar(VMSocios modelo)
+        public async Task<IActionResult> Adicionar(VMSociosProveedores modelo)
         {
             var socio = new Socio()
             {
@@ -83,7 +82,7 @@ namespace Jodami.AppWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(VMSocios modelo)
+        public async Task<IActionResult> Editar(VMSociosProveedores modelo)
         {
             var socio = await _srvSocio.GetById(x => x.IdSocio == modelo.IdSocio);
 
@@ -93,7 +92,19 @@ namespace Jodami.AppWeb.Controllers
             socio.RazonSocial = modelo.RazonSocial;
             socio.Telefono = modelo.Telefono;
             socio.Celular = modelo.Celular;
+            socio.Email = modelo.Email;
             socio.PaginaWeb = modelo.PaginaWeb;
+
+            socio.IsAfectoRetencion = modelo.IsAfectoRetencion;
+            socio.IsAfectoPercepcion = modelo.IsAfectoPercepcion;
+            socio.IsBuenContribuyente = modelo.IsBuenContribuyente;
+            socio.IdTipoCalificacion = modelo.IdTipoCalificacion;
+            socio.ZonaPostal = modelo.ZonaPostal;
+            socio.FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null;
+
+            socio.IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null;
+            socio.IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null;
+
             socio.EsActivo = modelo.EsActivo;
             socio.UsuarioName = _sessionUsuario.Nombre;
             socio.FechaRegistro = DateTime.Now;
@@ -108,7 +119,7 @@ namespace Jodami.AppWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Eliminar(VMSocios modelo)
+        public async Task<IActionResult> Eliminar(VMSociosProveedores modelo)
         {
             bool flgRetorno = await _srvSocio.Delete(x => x.IdSocio == modelo.IdSocio);
             return RedirectToAction("Index");
@@ -122,14 +133,14 @@ namespace Jodami.AppWeb.Controllers
         {
             var query = await ETL_SociosComerciales();
 
-            string titulo = "Grupos Económicos";
+            string titulo = "Proveedores";
             string protocolo = Request.IsHttps ? "Https" : "Http";
             string headerAction = Url.Action("Header", "Home", new { titulo }, protocolo);
             string footerAction = Url.Action("Footer", "Home", new { }, protocolo);
 
             return new ViewAsPdf("ListarPDF", query)
             {
-                FileName = $"Grupos Economicos {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
+                FileName = $"Proveedores {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 PageMargins = { Left = 15, Bottom = 10, Right = 15, Top = 30 },
@@ -161,6 +172,11 @@ namespace Jodami.AppWeb.Controllers
                 item.CodigoAndDescripcion = item.Codigo + " - " + item.Descripcion;
             }
 
+            foreach (var item in entityColaboradores)
+            {
+                item.ApellidosAndNombres = item.ApellidoPaterno + " " + item.ApellidoMaterno + " " + item.PrimerNombre + " " + item.SegundoNombre;
+            }
+
             foreach ( var item in entityProveedores) 
             { 
                 item.CodigoTipoDcmto = tipoDocumentoIdentidad.FirstOrDefault(x=> x.IdTipoDcmtoIdentidad == item.IdTipoDcmtoIdentidad).Simbolo;
@@ -179,7 +195,6 @@ namespace Jodami.AppWeb.Controllers
             ViewBag.GrupoEconomico = entityGruposEconomicos.ToList();
             ViewBag.Colaboradores = entityColaboradores.ToList();
             ViewBag.Calificacion = entityTipoCalificacion.ToList();
-
 
             return entityProveedores;
         }

@@ -7,7 +7,7 @@
         public string PrimerNombre { get; set; }
         public string SegundoNombre { get; set; }
         public int? IdGrupoSocioNegocio { get; set; }
-        public int? IdColaboradorSocioNegocio { get; set; }
+        public int? IdColaboradorAsignado { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
         public string PaginaWeb { get; set; }

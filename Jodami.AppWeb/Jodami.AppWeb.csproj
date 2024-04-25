@@ -74,6 +74,7 @@
     <Content Remove="wwwroot\js\validaciones\tipo-documento-identidad.js" />
     <Content Remove="wwwroot\js\validaciones\validar-caracteres-especiales.js" />
     <Content Remove="wwwroot\js\validaciones\validar-email.js" />
+    <Content Remove="wwwroot\js\validaciones\validar-formulario-proveedor.js" />
     <Content Remove="wwwroot\js\validaciones\validar-letras.js" />
     <Content Remove="wwwroot\js\validaciones\validar-numeros.js" />
   </ItemGroup>
@@ -104,8 +105,8 @@
     <None Include="wwwroot\img\undraw_rocket.svg" />
     <None Include="wwwroot\js\sb-admin-2.js" />
     <None Include="wwwroot\js\sb-admin-2.min.js" />
+    <None Include="wwwroot\js\validaciones\validar-formulario-proveedor.js" />
     <None Include="wwwroot\js\validaciones\validar-caracteres-especiales.js" />
-    <None Include="wwwroot\js\validaciones\validar-email.js" />
     <None Include="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js" />
     <None Include="wwwroot\js\validaciones\validar-letras.js" />
     <None Include="wwwroot\js\validaciones\validar-numeros.js" />

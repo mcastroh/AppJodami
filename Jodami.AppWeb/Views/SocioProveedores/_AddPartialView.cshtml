@@ -1,5 +1,5 @@
 ﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosProveedores
- 
+  
 <div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -11,13 +11,44 @@
             </div>          
             <div class="modal-body">
                 <div class="modal-body">   
-                    <form asp-action="Adicionar" method="post" class="needs-validation" novalidate>
+                    <form id="formulario" asp-action="Adicionar" method="post" class="needs-validation" novalidate>
                         <input type="hidden" asp-for="@Model.IdTipoSocio" />
                          
+
+                        <style>
+
+
+                            .form-control.ok input {
+                                border: 0.1px solid;
+                                border-color: #08ffc8;
+                            }
+
+                            .form-control.falla input {
+                                border: 0.1px solid;
+                                border-color: #fe5f55;
+                            }
+
+                            
+
+                            .form-control p {
+                                visibility: hidden;
+                                position: absolute;
+                                font-size: small;
+                                font-weight: 500;
+                                text-align: right;
+                            }
+
+                            .form-control.falla p {
+                                visibility: visible;
+                                color: #e74c3c;
+                            }
+
+                        </style>
                         @*-------------------------------------------------- *@
                         @* Tipo documento, Nro dcmto identidad, Razón social *@
                         @*-------------------------------------------------- *@
                         <div class="row">
+
                             <div class="col-sm-3 form-group">
                                 <label class="control-label">Tipo documento</label>
                                 <select id="cbxTipoDcmtoIdentidad" 
@@ -28,14 +59,24 @@
                                 </select>
                                 <div class="invalid-feedback">Tipo documento de identidad obligatorio</div>
                             </div>    
+                            
                             <div class="col-sm-2 form-group">
                                 <label asp-for="NumeroDcmtoIdentidad" class="control-label">Nro dcmto identidad</label>
+                                 @* 
                                 <input asp-for="NumeroDcmtoIdentidad" class="form-control text-uppercase" autocomplete="off" required maxlength="20" onKeyUp="this.value=this.value.toUpperCase();" />
+                                *@
+                                
+                                <input id="numeroDcmtoIdentidad" asp-for="NumeroDcmtoIdentidad"
+                                       class="form-control text-uppercase" 
+                                        autocomplete="off" 
+                                        required maxlength="20"
+                                       onKeyUp="this.value=this.value.toUpperCase();" />
+                                       @*  onkeypress="return validateDNI(this)"   *@ 
                                 <div class="invalid-feedback">Número documento de identidad obligatorio</div>
                             </div> 
                             <div id="tipoDcmtoRUC" class="col-sm-7 form-group">
                                 <label asp-for="RazonSocial" class="control-label">Razón social</label>
-                                <input asp-for="RazonSocial" class="form-control" autocomplete="off" maxlength="100" />
+                                <input id="razonSocial" asp-for="RazonSocial" class="form-control" autocomplete="off" maxlength="100" />
                             </div>
                         </div>
                        
@@ -45,19 +86,19 @@
                         <div id="tipoDcmtoNoRUC" class="row">
                             <div class="col-sm-3 form-group">
                                 <label asp-for="ApellidoPaterno" class="control-label">Apellido paterno</label>
-                                <input asp-for="ApellidoPaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                                <input id="apellidoPaterno" asp-for="ApellidoPaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                             </div>
                             <div  class="col-sm-3 form-group">
                                 <label asp-for="ApellidoMaterno" class="control-label">Apellido materno</label>
-                                <input asp-for="ApellidoMaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                                <input id="apellidoMaterno" asp-for="ApellidoMaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                             </div>
                             <div  class="col-sm-3 form-group">
                                 <label asp-for="PrimerNombre" class="control-label">Primer nombre</label>
-                                <input asp-for="PrimerNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                                <input id="primerNombre" asp-for="PrimerNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label asp-for="SegundoNombre" class="control-label">Segundo nombre</label>
-                                <input asp-for="SegundoNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                                <input id="segundoNombre" asp-for="SegundoNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                             </div>                           
                         </div> 
 
@@ -80,7 +121,11 @@
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label asp-for="Email" class="control-label">Email</label>
-                                <input id="email" asp-for="Email" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateEmail(event)" />
+                               @*  <input id="email" asp-for="Email" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateEmail(event)" />
+ *@
+                                <input id="email" asp-for="Email" class="form-control" autocomplete="off" maxlength="100" />
+                                <p></p>
+
                             </div>
                             <div class="col-sm-2 form-group">
                                 <label asp-for="ZonaPostal" class="control-label">Zona Postal</label>
@@ -94,8 +139,8 @@
                         @*---------------------------------------------------- *@
                         <div class="row">
                             <div class="col-sm-5 form-group">
-                                <label asp-for="IdColaboradorSocioNegocio" class="control-label">Colaborador</label>
-                                <select id="IdColaboradorSocioNegocio" class="form-control" asp-for="IdColaboradorSocioNegocio" asp-items="@(new SelectList(@Model.nav_Colaboradores, "IdSocio", "ApellidosAndNombres") ) ">
+                                <label asp-for="IdColaboradorAsignado" class="control-label">Colaborador</label>
+                                <select id="IdColaboradorAsignado" class="form-control" asp-for="IdColaboradorAsignado" asp-items="@(new SelectList(@Model.nav_Colaboradores, "IdSocio", "ApellidosAndNombres") ) ">
                                     <option value="">Seleccionar</option>
                                 </select>
                             </div>
@@ -113,7 +158,7 @@
                         </div>
                         <hr />
 
-                        @*---------------- ---------------------------------------------------------- *@
+                        @*--------------------------------------------------------------------------- *@
                         @* Tipo calificación, Afecto retención, Afecto percepción, Buen contribuyente *@
                         @*--------------------------------------------------------------------------- *@
                         <div class="row">
@@ -152,11 +197,66 @@
                         </div>
                     </form>
 
-                    <script src="~/js/validaciones/campos-obligatorios.js"></script>        
-                    <script src="~/js/validaciones/validar-letras.js"></script>
+                    <script src="~/js/validaciones/campos-obligatorios.js"></script>    
                     <script src="~/js/validaciones/validar-numeros.js"></script>
                     <script src="~/js/validaciones/validar-email.js"></script>                          
                     <script src="~/js/validaciones/mostrar-ruc-or-noruc.js"></script>
+                    <script src="~/js/validaciones/validar-letras.js"></script>
+                    <script src="~/js/validaciones/validar-formulario-proveedor.js"></script>
+                    
+
+                    <script>
+
+                        // function validateDni(){ 
+                        //         var regex = new RegExp("^[0-9]+$");
+                        //         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                        //         if (!regex.test(key)) {
+                        //             event.preventDefault();
+                        //             return false;
+                        //         } 
+                        // } 
+
+
+                        // Comprueba si es un DNI correcto (entre 5 y 8 letras seguidas de la letra que corresponda)
+                        // Acepta NIEs (Extranjeros con X, Y o Z al principio)
+                        // function validateDNI(dni) {
+
+                        //     console.log('validateDNI => ' + dni);
+                        //     console.log(dni.value);
+
+                        //     var numero, let, letra;
+                        //     var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
+
+                        //     // dni = dni.toUpperCase();
+
+
+
+                        //     if (expresion_regular_dni.test(dni) === true) {
+                        //         numero = dni.substr(0, dni.length - 1);
+                        //         numero = numero.replace('X', 0);
+                        //         numero = numero.replace('Y', 1);
+                        //         numero = numero.replace('Z', 2);
+                        //         let = dni.substr(dni.length - 1, 1);
+                        //         numero = numero % 23;
+                        //         letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+                        //         letra = letra.substring(numero, numero + 1);
+                        //         if (letra != let) {
+                        //             //alert('Dni erroneo, la letra del NIF no se corresponde');
+                        //             return false;
+                        //         } else {
+                        //             //alert('Dni correcto');
+                        //             return true;
+                        //         }
+                        //     } else {
+                        //         //alert('Dni erroneo, formato no válido');
+                        //         return false;
+                        //     }
+                        // }
+
+
+
+
+                    </script>
 
                 </div>
             </div>

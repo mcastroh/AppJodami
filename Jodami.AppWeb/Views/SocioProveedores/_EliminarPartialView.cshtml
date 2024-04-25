@@ -1,10 +1,10 @@
-﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosGrupos
+﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosProveedores
 
 <div class="modal fade" id="EliminarEntidad-@Model.IdSocio" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">   
             <div class="modal-header">
-                <h2 class="modal-title">Eliminar Grupo Económico</h2>
+                <h2 class="modal-title">Eliminar Proveedor</h2>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">x</span>
                 </button>
@@ -12,35 +12,188 @@
             <div class="modal-body">                  
                 <form asp-action="Eliminar" method="post"> 
                     <input type="hidden" asp-for="@Model.IdSocio" />
+
+                    @*-------------------------------------------------- *@
+                    @* Tipo documento, Nro dcmto identidad, Razón social *@
+                    @*-------------------------------------------------- *@
                     <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label">Tipo documento de identidad</label>
-                            <select disabled readonly="readonly" class="form-control" asp-for="@Model.IdTipoDcmtoIdentidad" asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "Simbolo") ) ">
-                                <option value="">Seleccionar</option>
+                        <div class="col-sm-3 form-group">
+                            <label class="control-label">Tipo documento</label>
+                            <select id="cbxTipoDcmtoIdentidad"
+                                    class="form-control"
+                                    asp-for="IdTipoDcmtoIdentidad"
+                                    asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion"))"
+                                    disabled readonly="readonly">
                             </select>                            
                         </div>
-                        <div class="col-sm-6 form-group">
-                            <label asp-for="@Model.NumeroDcmtoIdentidad" class="control-label">Número documento de identidad</label>
-                            <input asp-for="@Model.NumeroDcmtoIdentidad" class="form-control" disabled readonly="readonly" />
+                        <div class="col-sm-2 form-group">
+                            <label asp-for="NumeroDcmtoIdentidad" class="control-label">Nro dcmto identidad</label>
+                            <input asp-for="NumeroDcmtoIdentidad" class="form-control text-uppercase" disabled readonly="readonly" />
+                        </div>
+                        @{
+                            if (Model.CodigoTipoDcmto == "RUC")
+                            {
+                                <div id="tipoDcmtoRUC" class="col-sm-7 form-group">
+                                    <label asp-for="RazonSocial" class="control-label">Razón social</label>
+                                    <input asp-for="RazonSocial" class="form-control" disabled readonly="readonly" />
+                                </div>
+                            }                            
+                         }
+                    </div>
+
+                    @*------------------- *@
+                    @* Apellido y Nombres *@
+                    @*------------------- *@
+                    @{
+                        if (Model.CodigoTipoDcmto != "RUC")
+                        {
+                            <div id="tipoDcmtoNoRUC" class="row">
+                                <div class="col-sm-3 form-group">
+                                    <label asp-for="ApellidoPaterno" class="control-label">Apellido paterno</label>
+                                    <input asp-for="ApellidoPaterno" class="form-control" disabled readonly="readonly" />
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <label asp-for="ApellidoMaterno" class="control-label">Apellido materno</label>
+                                    <input asp-for="ApellidoMaterno" class="form-control" disabled readonly="readonly" />
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <label asp-for="PrimerNombre" class="control-label">Primer nombre</label>
+                                    <input asp-for="PrimerNombre" class="form-control" disabled readonly="readonly" />
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <label asp-for="SegundoNombre" class="control-label">Segundo nombre</label>
+                                    <input asp-for="SegundoNombre" class="form-control" disabled readonly="readonly" />
+                                </div>
+                            </div>
+                        }
+                     }  
+
+                    @*-------------------------------------------------- *@
+                    @* Teléfono, Celular, Pagina Web, Email, Zona Postal *@
+                    @*-------------------------------------------------- *@
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-2 form-group">
+                            <label asp-for="Celular" class="control-label">Celular</label>
+                            <input asp-for="Celular" class="form-control" disabled readonly="readonly" />
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label asp-for="Telefono" class="control-label">Teléfono</label>
+                            <input asp-for="Telefono" class="form-control" disabled readonly="readonly" />
+                        </div>                        
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="PaginaWeb" class="control-label">Pagina Web</label>
+                            <input asp-for="PaginaWeb" class="form-control" disabled readonly="readonly" />
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="Email" class="control-label">Email</label>
+                            <input id="email" asp-for="Email" class="form-control" disabled readonly="readonly" />
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label asp-for="ZonaPostal" class="control-label">Zona Postal</label>
+                            <input asp-for="ZonaPostal" class="form-control text-uppercase" disabled readonly="readonly" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.RazonSocial" class="control-label">Grupo económico</label>
-                        <input asp-for="@Model.RazonSocial" class="form-control" disabled readonly="readonly" />
-                    </div>                                                
-                    <div class="form-group">
-                        <label asp-for="EsActivo" class="control-label">Estado</label>
-                        @{
-                            if (@Model.EsActivo)
-                            {
-                                <input class="form-control" value="Activo" readonly="readonly" />                                
-                            }
-                            else
-                            {
-                                <input class="form-control" value="Inactivo" readonly="readonly" />
-                            }
-                        }                     
+                    <hr />
+
+                    @*---------------------------------------------------- *@
+                    @* Colaborador, Grupo económico, Inicio de operaciones *@
+                    @*---------------------------------------------------- *@
+                    <div class="row">
+                        <div class="col-sm-5 form-group">
+                            <label asp-for="IdColaboradorAsignado" class="control-label">Colaborador</label>
+                            <select id="IdColaboradorAsignado" class="form-control" asp-for="IdColaboradorAsignado" asp-items="@(new SelectList(@Model.nav_Colaboradores, "IdSocio", "ApellidosAndNombres") ) " disabled readonly="readonly">
+                              </select>
+                        </div>
+                        <div class="col-sm-5 form-group">
+                            <label asp-for="IdGrupoSocioNegocio" class="control-label">Grupo económico</label>
+                            <select id="IdGrupoSocioNegocio" class="form-control" asp-for="IdGrupoSocioNegocio" asp-items="@(new SelectList(@Model.nav_GrupoEconomico, "IdSocio", "RazonSocial") )" disabled readonly="readonly">
+                            </select>
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label asp-for="FechaInicioOperaciones" class="control-label" disabled readonly="readonly">Inicio Operaciones</label>
+                            <input asp-for="FechaInicioOperaciones" class="form-control " disabled readonly="readonly" />
+                        </div>
                     </div>
+                    <hr />
+
+                    @*--------------------------------------------------------------------------- *@
+                    @* Tipo calificación, Afecto retención, Afecto percepción, Buen contribuyente *@
+                    @*--------------------------------------------------------------------------- *@
+                    <div class="row">
+                        
+                        <div class="col-sm-3 form-group">
+                            <label asp-for="IdTipoCalificacion" class="control-label">Tipo calificación</label>
+                            <select id="IdTipoCalificacion" class="form-control" asp-for="IdTipoCalificacion" asp-items="@(new SelectList(@Model.nav_Calificacion, "IdTipoCalificacion", "CodigoAndDescripcion") )" disabled readonly="readonly">
+                            </select>
+                        </div>
+
+                        <div class="col-sm-2 form-group" style="text-align: center">
+                            <div class="form-group">
+                                <label class="control-label">Afecto retención</label>
+                                @{
+                                    if (@Model.IsAfectoRetencion)
+                                    {
+                                        <input class="form-control" value="SI" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" value="NO" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2 form-group" style="text-align: center">
+                            <div class="form-group">
+                                <label class="control-label">Afecto percepción</label>
+                                @{
+                                    if (@Model.IsAfectoPercepcion)
+                                    {
+                                        <input class="form-control" value="SI" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" value="NO" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3 form-group" style="text-align: center">
+                            <div class="form-group">
+                                <label class="control-label">Buen contribuyente</label>
+                                @{
+                                    if (@Model.IsBuenContribuyente)
+                                    {
+                                        <input class="form-control" value="SI" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" value="NO" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                }
+                            </div>
+                        </div> 
+                        
+                        <div class="col-sm-2 form-group" style="text-align: center">
+                            <div class="form-group">
+                                <label class="control-label">Estado</label>
+                                @{
+                                    if (@Model.EsActivo)
+                                    {
+                                        <input class="form-control" value="Activo" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                    else
+                                    {
+                                        <input class="form-control" value="Inactivo" disabled readonly="readonly" style="text-align: center" />
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div> 
+
                     <br /> 
                     <div class="modal-footer">                      
                         <button type="submit" class="btn btn-primary"> Eliminar</button>

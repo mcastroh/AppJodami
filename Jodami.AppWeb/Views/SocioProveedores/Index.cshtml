@@ -15,7 +15,6 @@
     var colaboradores = (List<VMSociosColaboradores>)ViewBag.Colaboradores;
     var calificacion = (List<VMTipoCalificacion>)ViewBag.Calificacion;
 
-
     var entity = new VMSociosProveedores()
     {  
                 IdSocio = 0,
@@ -36,22 +35,7 @@
                 Email = string.Empty,  
                 nav_GrupoEconomico = grupoEconomico,
                 nav_Colaboradores = colaboradores,
-                nav_Calificacion = calificacion
-
-        // public int? IdGrupoSocioNegocio { get; set; }
- 
-
-        // public bool IsAfectoRetencion { get; set; }
-        // public bool IsAfectoPercepcion { get; set; }
-        // public bool IsBuenContribuyente { get; set; }
-
-        // public int? IdTipoCalificacion { get; set; }
-
-        // public string ZonaPostal { get; set; }
-
-        // public DateTime? FechaInicioOperaciones { get; set; }
-        // public int? IdTipoMotivoBaja { get; set; }
-        // public DateTime? FechaBaja { get; set; }
+                nav_Calificacion = calificacion 
     };
 
 }
@@ -72,7 +56,7 @@
             <div class="col-sm-6">
                 <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
                 @await Html.PartialAsync("_AddPartialView", entity)
-               @*  <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioProveedores")"><i class="bi bi-printer"></i> Listado</a> *@
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioProveedores")"><i class="bi bi-printer"></i> Listado</a>
                 <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>
             </div>
         </div>
@@ -85,9 +69,8 @@
                     <thead>
                         <tr>       
                             <th>Proveedor</th>
-                            @* <th align="center">T.D</th>
-                            <th align="center">Nro.dcmto</th> *@
-                            <th align="center">Celular</th>
+                            <th align="center">T.D</th>
+                            <th align="center">Nro.dcmto</th>                          
                             <th align="center">Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -97,9 +80,8 @@
                         {                           
                             <tr>
                                 <td>@Html.DisplayFor(m => item.NombreRazonSocial)</td>
-                               @*  <td align="center">@Html.DisplayFor(m => item.CodigoTipoDcmto)</td>
-                                <td align="center">@Html.DisplayFor(m => item.NumeroDcmtoIdentidad)</td> *@
-                                <td align="center">@Html.DisplayFor(m => item.Celular)</td>
+                                <td align="center">@Html.DisplayFor(m => item.CodigoTipoDcmto)</td>
+                                <td align="center">@Html.DisplayFor(m => item.NumeroDcmtoIdentidad)</td>                              
                                 <td align="center">@Html.DisplayFor(m => item.EsActivo)</td> 
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">

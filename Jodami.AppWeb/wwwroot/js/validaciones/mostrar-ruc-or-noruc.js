@@ -33,4 +33,4 @@ function showRazonSocial() {
     elem.style.display = 'inline';
 }
 
-window.onload = hideApellidosAndNombre;
+/*window.onload = hideApellidosAndNombre;*/
