@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
-
 public partial class Socio
 {
     /// <summary>
@@ -216,4 +215,3 @@ public partial class Socio
     [InverseProperty("IdSocioNavigation")]
     public virtual ICollection<SocioPrecioArticulo> SocioPrecioArticulo { get; set; } = new List<SocioPrecioArticulo>();
 }
-

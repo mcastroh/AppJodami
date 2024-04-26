@@ -80,6 +80,9 @@ public partial class Almacen
     [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    [InverseProperty("AlmacenDefault")]
+    public virtual ICollection<Articulo> Articulo { get; set; } = new List<Articulo>();
+
     [ForeignKey("IdDireccion")]
     [InverseProperty("Almacen")]
     public virtual Direccion_ IdDireccionNavigation { get; set; }

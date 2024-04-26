@@ -18,7 +18,7 @@ public partial class Vehiculos
 
     /// <summary>
     /// Nombre
-    /// </summary>   
+    /// </summary>
     [StringLength(40)]
     public string Nombre { get; set; }
 

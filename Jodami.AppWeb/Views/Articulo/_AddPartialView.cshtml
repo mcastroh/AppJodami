@@ -1,0 +1,193 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMArticulos
+
+<div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="AddEntidadLabel">Adicionar Artículo</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                     
+                    <form asp-action="Adicionar" method="post" class="needs-validation" novalidate>
+
+                        <input type="hidden" asp-for="@Model.IdArticulo" />
+
+                        @* --------------------------------------------------------------------------------- *@
+                        @* { Tipo de artículo, Grupo de artículo, SubGrupo de artículo, Código de Artículo } *@
+                        @* --------------------------------------------------------------------------------- *@ 
+                        <div class="row">
+                            <div class="col-sm-3">                                   
+                                <label for="cboTipoArticulo" class="form-label">Tipo de Artículo</label>
+                                <select id="cboTipoArticulo" asp-for="@Model.IdTipoArticulo" class="form-control form-select-sm" disabled="true" asp-items="@(new SelectList(@Model.List_TipoArticulo, "IdTipoArticulo", "Descripcion") ) "></select>
+                              </div>
+
+                            <div class="col-sm-3">
+                                <label for="cboGrupoArticulo" class="form-label">Grupo de Artículo</label>
+                                <select onchange="grupoSeleccionado()" id="cboGrupoArticulo" asp-for="@Model.IdGrupoArticuloKey" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_GrupoArticulo, "IdGrupoArticulo", "Descripcion") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                                <div class="invalid-feedback">Debe seleccionar grupo de artículo</div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="cboSubGrupoArticulo" class="form-label">Sub Grupo de Artículo</label>
+                                <select onchange="obtenerCodigoArticulos()" id="cboSubGrupoArticulo" asp-for="@Model.IdSubGrupoArticulo" class="form-control form-select-sm" required></select>
+                                <div class="invalid-feedback">Debe seleccionar sub grupo de artículo</div>
+                            </div>
+
+                            <div class="col-sm-1">
+                                <span></span>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="row">
+                                    <label class="control-label">Código de Artículo</label>
+                                </div>
+                                <div class="row">
+                                    <input id="CodigoArticulo" asp-for="@Model.CodigoArticulo" value="" class="form-control"  readonly="readonly" style="text-align: center" />
+                                </div>
+                            </div>
+                        </div>
+
+                        @* ---------------------------------------------------- *@
+                        @* Descripción del Artículo/Código Barras *@
+                        @* ---------------------------------------------------- *@
+                        <hr />
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                                <label class="control-label">Descripción del Artículo</label>
+                                <input id="NameArticulo" asp-for="@Model.Descripcion" class="form-control" placeholder="Descripción del artículo" required />
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Ingresar descripción del artículo</div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label for="cboUnidadInventario" class="form-label">Unidad Compra</label>
+                                <select id="cboUnidadInventario" asp-for="@Model.IdUnidadCompra" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_UnidadMedidaInventario, "IdUnidad", "Descripcion") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                                <div class="invalid-feedback">Debe seleccionar unidad de compra</div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label for="cboUnidadInventario" class="form-label">Unidad Inventario</label>
+                                <select id="cboUnidadInventario" asp-for="@Model.IdUnidadInventario" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_UnidadMedidaInventario, "IdUnidad", "Descripcion") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                                <div class="invalid-feedback">Debe seleccionar unidad de inventario</div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label for="cboUnidadInventario" class="form-label">Unidad Venta</label>
+                                <select id="cboUnidadInventario" asp-for="@Model.IdUnidadVenta" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_UnidadMedidaInventario, "IdUnidad", "Descripcion") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                                <div class="invalid-feedback">Debe seleccionar unidad de venta</div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        @*-------------- *@
+                        @* Pie de página *@
+                        @*-------------- *@
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Guardar</button>
+                            <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                        </div>         
+
+                    </form> 
+    
+                    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
+
+                    <script>
+
+                        (function () {
+                            'use strict'
+
+                            // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+                            var forms = document.querySelectorAll('.needs-validation')
+
+                            // Bucle sobre ellos y evitar el envío
+                            Array.prototype.slice.call(forms)
+                                .forEach(function (form) {
+                                    form.addEventListener('submit', function (event) {
+                                        if (!form.checkValidity()) {
+                                            event.preventDefault()
+                                            event.stopPropagation()
+                                        }
+
+                                        form.classList.add('was-validated')
+                                    }, false)
+                                })
+                        })()
+
+
+                        function grupoSeleccionado() {
+                            $('#CodigoArticulo').val("");
+                            let _grupos = document.getElementById('cboGrupoArticulo'); 
+                            let _grupoValor = _grupos.options[_grupos.selectedIndex].value;                            
+
+                            $.ajax({
+                                url: "@Url.Action("GetSubGruposByGrupoId", "Articulo")",
+                                type: "GET",
+                                dataType: "json",
+                                data: {
+                                    grupoId: _grupoValor
+                                },
+                                success: function (response) { 
+                                    $("#cboSubGrupoArticulo").empty();
+
+                                    $("#cboSubGrupoArticulo").append(
+                                        $("<option>").attr({ "value": "" }).text("Seleccionar")
+                                    )
+
+                                    $.each(response, function (index, elemento) { 
+                                        $("#cboSubGrupoArticulo").append(
+                                            $("<option>").attr({ "value": elemento.idSubGrupoArticulo}).text(elemento.descripcion)
+                                        )
+                                    })
+                                }
+                            })
+                        }
+
+                        function obtenerCodigoArticulos() {
+                            var _subgrupoValor = $("#cboSubGrupoArticulo option:selected").val() 
+
+                            $.ajax({
+                                url: "@Url.Action("GetSiguienteCodigoArticulo", "Articulo")",
+                                type: "GET",
+                                dataType: "json",
+                                data: {
+                                    subGrupoId: _subgrupoValor
+                                },
+                                success: function (data) {
+                                    $('#CodigoArticulo').val(data);
+                                }
+                            })
+                        }
+
+
+                    </script>   
+                    
+
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+ 

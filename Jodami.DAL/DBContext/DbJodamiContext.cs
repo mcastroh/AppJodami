@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.DAL.DBContext;
 
-
 public partial class DbJodamiContext : DbContext
 {
     public DbJodamiContext(DbContextOptions<DbJodamiContext> options)
@@ -81,6 +80,8 @@ public partial class DbJodamiContext : DbContext
 
     public virtual DbSet<TipoCuentaBancaria> TipoCuentaBancaria { get; set; }
 
+    public virtual DbSet<TipoCuentaMayor> TipoCuentaMayor { get; set; }
+
     public virtual DbSet<TipoDireccion> TipoDireccion { get; set; }
 
     public virtual DbSet<TipoDocumentoIdentidad> TipoDocumentoIdentidad { get; set; }
@@ -142,31 +143,48 @@ public partial class DbJodamiContext : DbContext
             entity.HasKey(e => e.IdArticulo).HasName("PK__Articulo__F8FF5D5290FA4397");
 
             entity.Property(e => e.IdArticulo).HasComment("Artículo ID");
+            entity.Property(e => e.AlmacenDefaultId).HasComment("Almacén Default ID");
             entity.Property(e => e.CodigoArticulo).HasComment("Código Artículo");
+            entity.Property(e => e.CodigoOSCE)
+                .HasDefaultValue("")
+                .HasComment("Código Sunat OSCE");
             entity.Property(e => e.Descripcion).HasComment("Descripción");
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.EsArticuloCompras).HasComment("¿Artículo para Compra?");
+            entity.Property(e => e.EsArticuloInventarios).HasComment("¿Artículo para Inventario?");
+            entity.Property(e => e.EsArticuloVentas).HasComment("¿Artículo para Venta?");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Auditoría Fecha");
             entity.Property(e => e.IdSubGrupoArticulo).HasComment("Sub Grupo Artículo ID");
             entity.Property(e => e.IdTipoArticulo).HasComment("Tipo Artículo ID");
+            entity.Property(e => e.IdTipoCuentaMayor).HasComment("Tipo Cuenta Mayor ID");
             entity.Property(e => e.IdTipoDetraccion).HasComment("Tipo Detracción Sunat ID");
             entity.Property(e => e.IdTipoExistencia).HasComment("Tipo Existencia Sunat ID");
             entity.Property(e => e.IdTipoValorizacion).HasComment("Tipo Valorización ID");
             entity.Property(e => e.IdUnidadCompra).HasComment("Unidad Compra ID");
             entity.Property(e => e.IdUnidadInventario).HasComment("Unidad Inventario ID");
             entity.Property(e => e.IdUnidadVenta).HasComment("Unidad Venta ID");
+            entity.Property(e => e.IsAfectoDetracciones).HasComment("¿Afecto a Detracciones?");
+            entity.Property(e => e.IsAplicarImpuestos).HasComment("¿Aplicar Impuestos?");
+            entity.Property(e => e.NumeroParteFabricante)
+                .HasDefaultValue("")
+                .HasComment("Nro de Parte del Fabricante");
             entity.Property(e => e.Observaciones).HasComment("Observaciones");
             entity.Property(e => e.StockMaximo).HasComment("Stock Máximo");
             entity.Property(e => e.StockMinimo).HasComment("Stock Mínimo");
             entity.Property(e => e.StockSeguridad).HasComment("Stock de Seguridad");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
+            entity.HasOne(d => d.AlmacenDefault).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_Almacen");
+
             entity.HasOne(d => d.IdSubGrupoArticuloNavigation).WithMany(p => p.Articulo)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Articulo_SubGrupoArticulo");
 
             entity.HasOne(d => d.IdTipoArticuloNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_TipoArticulo");
+
+            entity.HasOne(d => d.IdTipoCuentaMayorNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_TipoCuentaMayor");
 
             entity.HasOne(d => d.IdTipoDetraccionNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_SunatTipoDetraccion");
 
@@ -870,6 +888,20 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
         });
 
+        modelBuilder.Entity<TipoCuentaMayor>(entity =>
+        {
+            entity.HasKey(e => e.IdTipoCuentaMayor).HasName("PK__TipoCuen__EF8BE833412E3996");
+
+            entity.Property(e => e.IdTipoCuentaMayor).HasComment("Tipo Cuenta Mayor ID");
+            entity.Property(e => e.Codigo).HasComment("Código");
+            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasComment("Auditoría Fecha");
+            entity.Property(e => e.Name).HasComment("Descripción");
+            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
+        });
+
         modelBuilder.Entity<TipoDireccion>(entity =>
         {
             entity.HasKey(e => e.IdTipoDireccion).HasName("PK__TipoDire__1279FA0E5124EE96");
@@ -1098,8 +1130,6 @@ public partial class DbJodamiContext : DbContext
 
 
 
-
-
 //public partial class DbJodamiContext : DbContext
 //{
 //    public DbJodamiContext(DbContextOptions<DbJodamiContext> options)
@@ -1177,6 +1207,8 @@ public partial class DbJodamiContext : DbContext
 
 //    public virtual DbSet<TipoCuentaBancaria> TipoCuentaBancaria { get; set; }
 
+//    public virtual DbSet<TipoCuentaMayor> TipoCuentaMayor { get; set; }
+
 //    public virtual DbSet<TipoDireccion> TipoDireccion { get; set; }
 
 //    public virtual DbSet<TipoDocumentoIdentidad> TipoDocumentoIdentidad { get; set; }
@@ -1223,14 +1255,6 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.IdTipoAlmacen).HasComment("Tipo ID");
 //            entity.Property(e => e.Superficie).HasComment("Area Metros Cuadrados");
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
-
-//            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.Almacen).HasConstraintName("FK_Almacen_Direccion ");
-
-//            entity.HasOne(d => d.IdResponsableNavigation).WithMany(p => p.Almacen).HasConstraintName("FK_Almacen_Socio");
-
-//            entity.HasOne(d => d.IdTipoAlmacenNavigation).WithMany(p => p.Almacen)
-//                .OnDelete(DeleteBehavior.ClientSetNull)
-//                .HasConstraintName("FK_Almacen_TipoAlmacen");
 //        });
 
 //        modelBuilder.Entity<Articulo>(entity =>
@@ -1238,44 +1262,43 @@ public partial class DbJodamiContext : DbContext
 //            entity.HasKey(e => e.IdArticulo).HasName("PK__Articulo__F8FF5D5290FA4397");
 
 //            entity.Property(e => e.IdArticulo).HasComment("Artículo ID");
+//            entity.Property(e => e.AlmacenDefaultId).HasComment("Almacén Default ID");
 //            entity.Property(e => e.CodigoArticulo).HasComment("Código Artículo");
+//            entity.Property(e => e.CodigoOSCE)
+//                .HasDefaultValue("")
+//                .HasComment("Código Sunat OSCE");
 //            entity.Property(e => e.Descripcion).HasComment("Descripción");
 //            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+//            entity.Property(e => e.EsArticuloCompras).HasComment("¿Artículo para Compra?");
+//            entity.Property(e => e.EsArticuloInventarios).HasComment("¿Artículo para Inventario?");
+//            entity.Property(e => e.EsArticuloVentas).HasComment("¿Artículo para Venta?");
 //            entity.Property(e => e.FechaRegistro)
 //                .HasDefaultValueSql("(getdate())")
 //                .HasComment("Auditoría Fecha");
 //            entity.Property(e => e.IdSubGrupoArticulo).HasComment("Sub Grupo Artículo ID");
 //            entity.Property(e => e.IdTipoArticulo).HasComment("Tipo Artículo ID");
+//            entity.Property(e => e.IdTipoCuentaMayor).HasComment("Tipo Cuenta Mayor ID");
 //            entity.Property(e => e.IdTipoDetraccion).HasComment("Tipo Detracción Sunat ID");
 //            entity.Property(e => e.IdTipoExistencia).HasComment("Tipo Existencia Sunat ID");
 //            entity.Property(e => e.IdTipoValorizacion).HasComment("Tipo Valorización ID");
 //            entity.Property(e => e.IdUnidadCompra).HasComment("Unidad Compra ID");
 //            entity.Property(e => e.IdUnidadInventario).HasComment("Unidad Inventario ID");
 //            entity.Property(e => e.IdUnidadVenta).HasComment("Unidad Venta ID");
+//            entity.Property(e => e.IsAfectoDetracciones).HasComment("¿Afecto a Detracciones?");
+//            entity.Property(e => e.IsAplicarImpuestos).HasComment("¿Aplicar Impuestos?");
+//            entity.Property(e => e.NumeroParteFabricante)
+//                .HasDefaultValue("")
+//                .HasComment("Nro de Parte del Fabricante");
 //            entity.Property(e => e.Observaciones).HasComment("Observaciones");
 //            entity.Property(e => e.StockMaximo).HasComment("Stock Máximo");
 //            entity.Property(e => e.StockMinimo).HasComment("Stock Mínimo");
 //            entity.Property(e => e.StockSeguridad).HasComment("Stock de Seguridad");
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
-//            entity.HasOne(d => d.IdSubGrupoArticuloNavigation).WithMany(p => p.Articulo)
-//                .OnDelete(DeleteBehavior.ClientSetNull)
-//                .HasConstraintName("FK_Articulo_SubGrupoArticulo");
+//            entity.HasOne(d => d.AlmacenDefault).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_Almacen");
 
-//            entity.HasOne(d => d.IdTipoArticuloNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_TipoArticulo");
-
-//            entity.HasOne(d => d.IdTipoDetraccionNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_SunatTipoDetraccion");
-
-//            entity.HasOne(d => d.IdTipoExistenciaNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_SunatTipoExistencia");
-
-//            entity.HasOne(d => d.IdTipoValorizacionNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_TipoValorizacion");
-
-//            entity.HasOne(d => d.IdUnidadCompraNavigation).WithMany(p => p.ArticuloIdUnidadCompraNavigation).HasConstraintName("FK_Articulo_UnidadMedida1");
-
-//            entity.HasOne(d => d.IdUnidadInventarioNavigation).WithMany(p => p.ArticuloIdUnidadInventarioNavigation).HasConstraintName("FK_Articulo_UnidadMedida");
-
-//            entity.HasOne(d => d.IdUnidadVentaNavigation).WithMany(p => p.ArticuloIdUnidadVentaNavigation).HasConstraintName("FK_Articulo_UnidadMedida2");
-//        });
+//            entity.HasOne(d => d.IdTipoCuentaMayorNavigation).WithMany(p => p.Articulo).HasConstraintName("FK_Articulo_TipoCuentaMayor");
+//        });          
 
 //        modelBuilder.Entity<ArticuloImagen>(entity =>
 //        {
@@ -1539,7 +1562,10 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
 //            entity.Property(e => e.FechaRegistro)
 //                .HasDefaultValueSql("(getdate())")
-//                .HasComment("Auditoría Fecha");            
+//                .HasComment("Auditoría Fecha");
+//            entity.Property(e => e.Orden)
+//                .HasDefaultValue(90)
+//                .HasComment("Orden Presentación");
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 //        });
 
@@ -1593,7 +1619,6 @@ public partial class DbJodamiContext : DbContext
 //            entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.RolMenu).HasConstraintName("FK__RolMenu__IdRol__46E78A0C");
 //        });
 
-
 //        modelBuilder.Entity<Socio>(entity =>
 //        {
 //            entity.HasKey(e => e.IdSocio).HasName("PK__Socio__863F0ECFAF0E438C");
@@ -1632,12 +1657,19 @@ public partial class DbJodamiContext : DbContext
 //            entity.HasOne(d => d.IdColaboradorAsignadoNavigation).WithMany(p => p.InverseIdColaboradorAsignadoNavigation).HasConstraintName("FK_Socio_Socio1");
 
 //            entity.HasOne(d => d.IdGrupoSocioNegocioNavigation).WithMany(p => p.InverseIdGrupoSocioNegocioNavigation).HasConstraintName("FK_Socio_Socio");
+
+//            entity.HasOne(d => d.IdTipoCalificacionNavigation).WithMany(p => p.Socio).HasConstraintName("FK_Socio_TipoCalificacion");
+
+//            entity.HasOne(d => d.IdTipoDcmtoIdentidadNavigation).WithMany(p => p.Socio)
+//                .OnDelete(DeleteBehavior.ClientSetNull)
+//                .HasConstraintName("FK_Socio_TipoDocumentoIdentidad");
+
+//            entity.HasOne(d => d.IdTipoMotivoBajaNavigation).WithMany(p => p.Socio).HasConstraintName("FK_Socio_TipoMotivoBaja");
+
+//            entity.HasOne(d => d.IdTipoSocioNavigation).WithMany(p => p.Socio)
+//                .OnDelete(DeleteBehavior.ClientSetNull)
+//                .HasConstraintName("FK_Socio_TipoSocio");
 //        });
-
-
-
-
-
 
 //        modelBuilder.Entity<SocioCuentaBanco>(entity =>
 //        {
@@ -1957,6 +1989,21 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 //        });
 
+//        modelBuilder.Entity<TipoCuentaMayor>(entity =>
+//        {
+//            entity.HasKey(e => e.IdTipoCuentaMayor).HasName("PK__TipoCuen__EF8BE833412E3996");
+
+//            entity.Property(e => e.IdTipoCuentaMayor).HasComment("Tipo Cuenta Mayor ID");
+//            entity.Property(e => e.Codigo).HasComment("Código");
+//            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+//            entity.Property(e => e.FechaRegistro)
+//                .HasDefaultValueSql("(getdate())")
+//                .HasComment("Auditoría Fecha");
+//            entity.Property(e => e.Name).HasComment("Descripción");
+//            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
+//        });
+
+
 //        modelBuilder.Entity<TipoDireccion>(entity =>
 //        {
 //            entity.HasKey(e => e.IdTipoDireccion).HasName("PK__TipoDire__1279FA0E5124EE96");
@@ -1966,7 +2013,7 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
 //            entity.Property(e => e.FechaRegistro)
 //                .HasDefaultValueSql("(getdate())")
-//                .HasComment("Auditoría Fecha");           
+//                .HasComment("Auditoría Fecha");
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 //        });
 
@@ -1980,7 +2027,7 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.FechaRegistro)
 //                .HasDefaultValueSql("(getdate())")
 //                .HasComment("Auditoría Fecha");
-//            entity.Property(e => e.IdCodigoSunat).HasComment("Código SUNAT");           
+//            entity.Property(e => e.IdCodigoSunat).HasComment("Código SUNAT");
 //            entity.Property(e => e.Simbolo).HasComment("Símbolo");
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 //        });
@@ -2087,7 +2134,7 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
 //            entity.Property(e => e.FechaRegistro)
 //                .HasDefaultValueSql("(getdate())")
-//                .HasComment("Auditoría Fecha");           
+//                .HasComment("Auditoría Fecha");
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 //        });
 
@@ -2101,7 +2148,7 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
 //            entity.Property(e => e.FechaRegistro)
 //                .HasDefaultValueSql("(getdate())")
-//                .HasComment("Auditoría Fecha");           
+//                .HasComment("Auditoría Fecha");
 //            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 //        });
 
@@ -2136,7 +2183,7 @@ public partial class DbJodamiContext : DbContext
 //            entity.Property(e => e.NombreFoto).HasComment("Nombre Foto");
 //            entity.Property(e => e.Telefono).HasComment("Celular");
 //            entity.Property(e => e.UrlFoto).HasComment("Url Foto");
-//            entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
+//            entity.Property(e => e.UsuarioName).HasDefaultValue("");
 
 //            entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuario).HasConstraintName("FK__Usuario__IdRol__4BAC3F29");
 //        });
@@ -2176,8 +2223,22 @@ public partial class DbJodamiContext : DbContext
 //            entity.HasOne(d => d.IdFleteNavigation).WithMany(p => p.Vehiculos).HasConstraintName("FK_Vehiculos_TipoFlete");
 //        });
 
+
+
+
+
+
+
+
+
+
+
+
 //        OnModelCreatingPartial(modelBuilder);
 //    }
 
 //    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 //}
+
+
+

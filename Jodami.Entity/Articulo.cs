@@ -112,6 +112,59 @@ public partial class Articulo
     [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
+    /// <summary>
+    /// ¿Artículo para Inventario?
+    /// </summary>
+    public bool EsArticuloInventarios { get; set; }
+
+    /// <summary>
+    /// ¿Artículo para Compra?
+    /// </summary>
+    public bool EsArticuloCompras { get; set; }
+
+    /// <summary>
+    /// ¿Artículo para Venta?
+    /// </summary>
+    public bool EsArticuloVentas { get; set; }
+
+    /// <summary>
+    /// Almacén Default ID
+    /// </summary>
+    public int? AlmacenDefaultId { get; set; }
+
+    /// <summary>
+    /// Tipo Cuenta Mayor ID
+    /// </summary>
+    public int? IdTipoCuentaMayor { get; set; }
+
+    /// <summary>
+    /// ¿Aplicar Impuestos?
+    /// </summary>
+    public bool IsAplicarImpuestos { get; set; }
+
+    /// <summary>
+    /// ¿Afecto a Detracciones?
+    /// </summary>
+    public bool IsAfectoDetracciones { get; set; }
+
+    /// <summary>
+    /// Código Sunat OSCE
+    /// </summary>
+    [Required]
+    [StringLength(25)]
+    public string CodigoOSCE { get; set; }
+
+    /// <summary>
+    /// Nro de Parte del Fabricante
+    /// </summary>
+    [Required]
+    [StringLength(60)]
+    public string NumeroParteFabricante { get; set; }
+
+    [ForeignKey("AlmacenDefaultId")]
+    [InverseProperty("Articulo")]
+    public virtual Almacen AlmacenDefault { get; set; }
+
     [InverseProperty("IdArticuloNavigation")]
     public virtual ICollection<ArticuloImagen> ArticuloImagen { get; set; } = new List<ArticuloImagen>();
 
@@ -122,6 +175,10 @@ public partial class Articulo
     [ForeignKey("IdTipoArticulo")]
     [InverseProperty("Articulo")]
     public virtual TipoArticulo IdTipoArticuloNavigation { get; set; }
+
+    [ForeignKey("IdTipoCuentaMayor")]
+    [InverseProperty("Articulo")]
+    public virtual TipoCuentaMayor IdTipoCuentaMayorNavigation { get; set; }
 
     [ForeignKey("IdTipoDetraccion")]
     [InverseProperty("Articulo")]

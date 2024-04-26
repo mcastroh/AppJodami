@@ -155,6 +155,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[TipoCuentaMayor]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[TipoDireccion]",
          "ObjectType": 0
       },

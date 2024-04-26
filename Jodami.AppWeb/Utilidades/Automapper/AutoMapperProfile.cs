@@ -38,6 +38,10 @@ namespace Jodami.AppWeb.Utilidades.Automapper
             CreateMap<UnidadMedida, VMUnidadMedida>().ReverseMap();
             CreateMap<TipoAlmacen, VMTipoAlmacen>().ReverseMap();
 
+            CreateMap<GrupoArticulo, VMGrupoArticulo>().ReverseMap();
+            CreateMap<SubGrupoArticulo, VMSubGrupoArticulo>().ReverseMap();
+            CreateMap<Articulo, VMArticulos>().ReverseMap();
+
 
             // Ubigeos
             CreateMap<Departamento, VMUbigeoDepartamento>().ReverseMap();
