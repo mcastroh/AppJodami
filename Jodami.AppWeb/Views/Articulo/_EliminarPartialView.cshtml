@@ -1,51 +1,159 @@
-﻿@model Jodami.AppWeb.Models.ViewModels.VMMoneda
+﻿@model Jodami.AppWeb.Models.ViewModels.VMArticulos
 
-<div class="modal fade" id="EliminarEntidad-@Model.IdMoneda" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">   
+<div class="modal fade" id="EliminarEntidad-@Model.IdArticulo" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">Eliminar Moneda</h2>              
+                <h2 class="modal-title">Eliminar Artículo</h2>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">x</span>
                 </button>
-            </div> 
-            <div class="modal-body">                  
-                <form asp-action="Eliminar" method="post">                    
-                    <div class="form-group">
-                        <input type="hidden" asp-for="IdMoneda" />
-                        <label asp-for="Descripcion" class="control-label"></label>
-                        <input asp-for="Descripcion" class="form-control" readonly="readonly" />
+            </div>
+            <div class="modal-body">
+                <form asp-action="Eliminar" method="post">
+                    @* ----------------------------------------------------------------------------- *@
+                    @* Tipo de artículo, Grupo de artículo, SubGrupo de artículo, Código de Artículo *@
+                    @* ----------------------------------------------------------------------------- *@
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <input type="hidden" asp-for="IdArticulo" />
+                            <label for="cboTipoArticulo" class="form-label">Tipo de Artículo</label>
+                            <select id="cboTipoArticulo" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_TipoArticulo, "IdTipoArticulo", "Descripcion") ) "></select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="form-label">Grupo de Artículo</label>
+                            <select asp-for="@Model.IdGrupoArticuloKey" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_GrupoArticulo, "IdGrupoArticulo", "Descripcion") ) "></select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="form-label">Sub Grupo de Artículo</label>                           
+                            <select asp-for="@Model.IdSubGrupoArticulo" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_SubGrupoArticulo, "IdSubGrupoArticulo", "Descripcion") ) "></select>
+                        </div>
+                        <div class="col-sm-2"> 
+                            <label class="control-label">Código de Artículo</label>
+                            <input asp-for="@Model.CodigoArticulo" class="form-control" style="text-align: center" disabled />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Simbolo" class="control-label"></label>
-                        <input asp-for="Simbolo" class="form-control" readonly="readonly" />
+
+                    @* -------------------------------------------------------------------- *@
+                    @* Descripción del Artículo, Tipo Existencia SUNAT, Almacén por default *@
+                    @* -------------------------------------------------------------------- *@
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label">Descripción del Artículo</label>
+                            <input disabled id="NameArticulo" asp-for="@Model.Descripcion" class="form-control" placeholder="Descripción del artículo" required autocomplete="off" />
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="cboTipoExistenciaSunat" class="form-label">Tipo Existencia SUNAT</label>
+                            <select disabled id="cboTipoExistenciaSunat" asp-for="@Model.IdTipoExistencia" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_SunatTipoExistencia, "IdTipoExistencia", "Descripcion"))"></select>
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="cboAlmacenDefault" class="form-label">Almacén por default</label>
+                            <select disabled id="cboAlmacenDefault" asp-for="@Model.AlmacenDefaultId" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_Almacen, "IdAlmacen", "Descripcion") ) "></select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="IdSunat" class="control-label"></label>
-                        <input asp-for="IdSunat" class="form-control" readonly="readonly" />
-                    </div> 
-                    <div class="form-group">
-                        <label asp-for="EsActivo" class="control-label"></label>
-                        @{
-                            if (@Model.EsActivo)
-                            {
-                                <input class="form-control" value="Activo" readonly="readonly" />                                
-                            }
-                            else
-                            {
-                                <input class="form-control" value="Inactivo" readonly="readonly" />
-                            }
-                        }                     
+
+                    @* ------------------------------------------ *@
+                    @* Artículo para Compras, Ventas, Inventarios *@
+                    @* ------------------------------------------ *@
+                    <hr />
+                    <div class="row">
+                        <div class="form-check col-sm-4">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.EsArticuloCompras" disabled>
+                            <label>Artículo para Compras</label>
+                        </div>
+                        <div class="form-check col-sm-4">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.EsArticuloVentas" disabled>
+                            <label>Artículo para Ventas</label>
+                        </div>
+                        <div class="form-check col-sm-4">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.EsArticuloInventarios" disabled>
+                            <label>Artículo para Inventarios</label>
+                        </div>
                     </div>
-                    <br /> 
-                    <div class="modal-footer">                      
-                        <button type="submit" class="btn btn-primary"> Eliminar</button>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select asp-for="@Model.IdUnidadCompra" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_UnidadMedida, "IdUnidad", "Descripcion") ) "></select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select asp-for="@Model.IdUnidadVenta" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_UnidadMedida, "IdUnidad", "Descripcion") ) "></select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select asp-for="@Model.IdUnidadInventario" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_UnidadMedida, "IdUnidad", "Descripcion") ) "></select>
+                        </div>
+                    </div>
+
+                    @* ---------------------------------------------------------- *@
+                    @* Aplicar Impuestos, Detracción Sunat *@
+                    @* ---------------------------------------------------------- *@
+                    <hr />
+                    <div class="row">
+                        <div class="form-check col-sm-2">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.IsAplicarImpuestos" disabled>
+                            <label>Aplicar Impuestos</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="form-label">Tipo Detracción SUNAT</label>
+                            <select asp-for="@Model.IdTipoDetraccion" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_SunatTipoDetraccion, "IdTipoDetraccion", "Descripcion"))"></select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="form-label">Valorizar Inventarios</label>
+                            <select asp-for="@Model.IdTipoValorizacion" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_TipoValorizacion, "IdTipoValorizacion", "Descripcion"))"></select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="form-label">Contabilizar por</label>
+                            <select asp-for="@Model.IdTipoCuentaMayor" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_TipoCuentaMayor, "IdTipoCuentaMayor", "Name"))"></select>
+                        </div>
+                    </div>
+
+                    @* --------------------------------------------------------- *@
+                    @* Número Parte Fabricante, Stocks Minimo, Maximo, Seguridad *@
+                    @* --------------------------------------------------------- *@
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Número Parte del Fabricante</label>
+                            <input asp-for="@Model.NumeroParteFabricante" class="form-control" disabled />
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Stock Mínimo</label>
+                            <input asp-for="@Model.StockMinimo" class="form-control" style="text-align: right" disabled />
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Stock Máximo</label>
+                            <input asp-for="@Model.StockMaximo" class="form-control" style="text-align: right" disabled />
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Stock Seguridad</label>
+                            <input asp-for="@Model.StockSeguridad" class="form-control" style="text-align: right" disabled />
+                        </div>
+                    </div>
+
+                    @* -------------- *@
+                    @* Observaciones  *@
+                    @* -------------- *@
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Observaciones</label>
+                            <textarea class="form-control" rows="3" asp-for="@Model.Observaciones" disabled></textarea>
+                        </div>
+
+                    </div>
+
+                    @*-------------- *@
+                    @* Pie de página *@
+                    @*-------------- *@
+                    <div class="modal-footer">
+                        <button id="btnSubmit" type="submit" class="btn btn-primary"> Eliminar</button>
                         <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
                     </div>
-                </form>                       
+                </form>
             </div>
         </div>
-    </div>   
-</div>
-
-           
+    </div>
+</div> 

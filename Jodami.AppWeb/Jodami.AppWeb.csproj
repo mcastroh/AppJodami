@@ -69,8 +69,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Articulo\_EliminarPartialView - Copia.cshtml" />
     <Content Remove="Views\Moneda\ListarPDF - Copia.cshtml" />
     <Content Remove="Views\Shared\_Layout - Copia.cshtml" />
+    <Content Remove="wwwroot\js\contact.js" />
+    <Content Remove="wwwroot\js\sb-admin-2 - Copia.min.js" />
     <Content Remove="wwwroot\js\validaciones\campos-obligatorios.js" />
     <Content Remove="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js" />
     <Content Remove="wwwroot\js\validaciones\tipo-documento-identidad.js" />
@@ -101,6 +104,8 @@
     <None Include="wwwroot\img\undraw_profile_2.svg" />
     <None Include="wwwroot\img\undraw_profile_3.svg" />
     <None Include="wwwroot\img\undraw_rocket.svg" />
+    <None Include="wwwroot\js\contact.js" />
+    <None Include="wwwroot\js\contact.min.js" />
     <None Include="wwwroot\js\sb-admin-2.js" />
     <None Include="wwwroot\js\sb-admin-2.min.js" />
     <None Include="wwwroot\js\validaciones\validar-formulario-proveedor.js" />

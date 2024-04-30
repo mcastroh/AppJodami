@@ -11,38 +11,29 @@
             </div>
             <div class="modal-body">
                 <div class="modal-body">
-                     
+                   
                     <form asp-action="Adicionar" method="post" class="needs-validation" novalidate>
 
-                        <input type="hidden" asp-for="@Model.IdArticulo" />
-
-                        @* --------------------------------------------------------------------------------- *@
-                        @* { Tipo de artículo, Grupo de artículo, SubGrupo de artículo, Código de Artículo } *@
-                        @* --------------------------------------------------------------------------------- *@ 
+                        @* ----------------------------------------------------------------------------- *@
+                        @* Tipo de artículo, Grupo de artículo, SubGrupo de artículo, Código de Artículo *@
+                        @* ----------------------------------------------------------------------------- *@ 
                         <div class="row">
-                            <div class="col-sm-3">                                   
+                            <div class="col-sm-2">                                   
                                 <label for="cboTipoArticulo" class="form-label">Tipo de Artículo</label>
-                                <select id="cboTipoArticulo" asp-for="@Model.IdTipoArticulo" class="form-control form-select-sm" disabled="true" asp-items="@(new SelectList(@Model.List_TipoArticulo, "IdTipoArticulo", "Descripcion") ) "></select>
-                              </div>
-
-                            <div class="col-sm-3">
+                                <select id="cboTipoArticulo" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.List_TipoArticulo, "IdTipoArticulo", "Descripcion") ) "></select>
+                             </div>
+                            <div class="col-sm-4">
                                 <label for="cboGrupoArticulo" class="form-label">Grupo de Artículo</label>
                                 <select onchange="grupoSeleccionado()" id="cboGrupoArticulo" asp-for="@Model.IdGrupoArticuloKey" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_GrupoArticulo, "IdGrupoArticulo", "Descripcion") ) ">
                                     <option value="">Seleccionar</option>
                                 </select>
                                 <div class="invalid-feedback">Debe seleccionar grupo de artículo</div>
                             </div>
-
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <label for="cboSubGrupoArticulo" class="form-label">Sub Grupo de Artículo</label>
                                 <select onchange="obtenerCodigoArticulos()" id="cboSubGrupoArticulo" asp-for="@Model.IdSubGrupoArticulo" class="form-control form-select-sm" required></select>
                                 <div class="invalid-feedback">Debe seleccionar sub grupo de artículo</div>
-                            </div>
-
-                            <div class="col-sm-1">
-                                <span></span>
-                            </div>
-
+                            </div>                          
                             <div class="col-sm-2">
                                 <div class="row">
                                     <label class="control-label">Código de Artículo</label>
@@ -53,63 +44,149 @@
                             </div>
                         </div>
 
-                        @* ---------------------------------------------------- *@
-                        @* Descripción del Artículo/Código Barras *@
-                        @* ---------------------------------------------------- *@
+                        @* -------------------------------------------------------------------- *@
+                        @* Descripción del Artículo, Tipo Existencia SUNAT, Almacén por default *@
+                        @* -------------------------------------------------------------------- *@
                         <hr />
-                        <div class="row">
-                            
-                            <div class="col-md-6">
+                        <div class="row">                            
+                            <div class="col-sm-6">
                                 <label class="control-label">Descripción del Artículo</label>
-                                <input id="NameArticulo" asp-for="@Model.Descripcion" class="form-control" placeholder="Descripción del artículo" required />
+                                <input id="NameArticulo" asp-for="@Model.Descripcion" class="form-control" placeholder="Descripción del artículo" required autocomplete="off" />
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback">Ingresar descripción del artículo</div>
                             </div>
 
-                            <div class="col-sm-2">
-                                <label for="cboUnidadInventario" class="form-label">Unidad Compra</label>
-                                <select id="cboUnidadInventario" asp-for="@Model.IdUnidadCompra" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_UnidadMedidaInventario, "IdUnidad", "Descripcion") ) ">
+                            <div class="col-sm-3">
+                                <label for="cboTipoExistenciaSunat" class="form-label">Tipo Existencia SUNAT</label>
+                                <select id="cboTipoExistenciaSunat" asp-for="@Model.IdTipoExistencia" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_SunatTipoExistencia, "IdTipoExistencia", "Descripcion"))">
                                     <option value="">Seleccionar</option>
                                 </select>
-                                <div class="invalid-feedback">Debe seleccionar unidad de compra</div>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Debe seleccionar tipo existencia SUNAT</div>
                             </div>
 
-                            <div class="col-sm-2">
-                                <label for="cboUnidadInventario" class="form-label">Unidad Inventario</label>
-                                <select id="cboUnidadInventario" asp-for="@Model.IdUnidadInventario" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_UnidadMedidaInventario, "IdUnidad", "Descripcion") ) ">
-                                    <option value="">Seleccionar</option>
+                            <div class="col-sm-3">
+                                <label for="cboAlmacenDefault" class="form-label">Almacén por default</label>
+                                <select id="cboAlmacenDefault" asp-for="@Model.AlmacenDefaultId" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_Almacen, "IdAlmacen", "Descripcion") ) ">
+                                    <option value="">Seleccionar almacén default</option>
                                 </select>
-                                <div class="invalid-feedback">Debe seleccionar unidad de inventario</div>
                             </div>
+                        </div> 
 
-                            <div class="col-sm-2">
-                                <label for="cboUnidadInventario" class="form-label">Unidad Venta</label>
-                                <select id="cboUnidadInventario" asp-for="@Model.IdUnidadVenta" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.List_UnidadMedidaInventario, "IdUnidad", "Descripcion") ) ">
-                                    <option value="">Seleccionar</option>
+                        @* ------------------------------------------ *@
+                        @* Artículo para Compras, Ventas, Inventarios *@
+                        @* ------------------------------------------ *@
+                        <hr />
+                        <div class="row">
+                            <div class="form-check col-sm-4">                           
+                                <input class="form-check-input" type="checkbox" value="" id="CheckUnidadCompra" asp-for="@Model.EsArticuloCompras">
+                                <label>Artículo para Compras</label>
+                            </div>
+                            <div class="form-check col-sm-4">                               
+                                <input class="form-check-input" type="checkbox" value="" id="CheckUnidadVenta" asp-for="@Model.EsArticuloVentas">
+                                <label>Artículo para Ventas</label>
+                            </div>
+                            <div class="form-check col-sm-4">                               
+                                <input class="form-check-input" type="checkbox" value="" id="CheckUnidadInventario" asp-for="@Model.EsArticuloInventarios">
+                                <label>Artículo para Inventarios</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <select id="cboUnidadCompra" asp-for="@Model.IdUnidadCompra" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_UnidadMedida, "IdUnidad", "Descripcion") ) ">
+                                    <option value="">Seleccionar unidad de compra</option>
+                                </select>    
+                                <p id="unidadCompraMensaje"></p>                               
+                            </div>
+                            <div class="col-sm-4">
+                                <select id="cboUnidadVenta" asp-for="@Model.IdUnidadVenta" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_UnidadMedida, "IdUnidad", "Descripcion") ) ">
+                                    <option value="">Seleccionar unidad de venta</option>
                                 </select>
-                                <div class="invalid-feedback">Debe seleccionar unidad de venta</div>
+                                <p id="unidadVentaMensaje"></p>
                             </div>
-
+                            <div class="col-sm-4">
+                                <select id="cboUnidadInventario" asp-for="@Model.IdUnidadInventario" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_UnidadMedida, "IdUnidad", "Descripcion") ) ">
+                                    <option value="">Seleccionar unidad de inventario</option>
+                                </select>
+                                <p id="unidadInventarioMensaje"></p>
+                            </div>
                         </div>
 
+                        @* ---------------------------------------------------------- *@
+                        @* Aplicar Impuestos, Detracción Sunat *@
+                        @* ---------------------------------------------------------- *@
+                        <hr />
+                        <div class="row">
+                            <div class="form-check col-sm-2">
+                                <input class="form-check-input" type="checkbox" id="CheckAplicarImpuestos" asp-for="@Model.IsAplicarImpuestos">
+                                <label>Aplicar Impuestos</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="cboTipoDetraccion" class="form-label">Tipo Detracción SUNAT</label>
+                                <select id="cboTipoDetraccion" asp-for="@Model.IdTipoDetraccion" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_SunatTipoDetraccion, "IdTipoDetraccion", "Descripcion"))">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="cboTipoValorizacion" class="form-label">Valorizar Inventarios</label>
+                                <select id="cboTipoValorizacion" asp-for="@Model.IdTipoValorizacion" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_TipoValorizacion, "IdTipoValorizacion", "Descripcion"))">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="cboTipoCuentaMayor" class="form-label">Contabilizar por</label>
+                                <select id="cboTipoCuentaMayor" asp-for="@Model.IdTipoCuentaMayor" class="form-control form-select-sm" asp-items="@(new SelectList(@Model.List_TipoCuentaMayor, "IdTipoCuentaMayor", "Name"))">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </div>
+                            
+                        </div> 
 
+                        @* --------------------------------------------------------- *@
+                        @* Número Parte Fabricante, Stocks Minimo, Maximo, Seguridad *@
+                        @* --------------------------------------------------------- *@
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label">Número Parte del Fabricante</label>
+                                <input asp-for="@Model.NumeroParteFabricante" class="form-control" placeholder="Ingrese número parte del fabricante" />
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label">Stock Mínimo</label>
+                                <input asp-for="@Model.StockMinimo" class="form-control" style="text-align: right" placeholder="Ingrese stock mínimo" />
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label">Stock Máximo</label>
+                                <input asp-for="@Model.StockMaximo" class="form-control" style="text-align: right" placeholder="Ingrese stock máximo" />
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label">Stock Seguridad</label>
+                                <input asp-for="@Model.StockSeguridad" class="form-control" style="text-align: right" placeholder="Ingrese stock seguridad" />
+                            </div>
+                        </div>
+                           
+                        @* -------------- *@
+                        @* Observaciones  *@
+                        @* -------------- *@
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="control-label">Observaciones</label>
+                                <textarea class="form-control" rows="3" asp-for="@Model.Observaciones"></textarea>
+                            </div>
 
-
-
-
-
-
+                        </div> 
 
                         @*-------------- *@
                         @* Pie de página *@
                         @*-------------- *@
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"> Guardar</button>
+                            <button id="btnSubmit" type="submit" class="btn btn-primary" onclick="validarFormulario()"> Guardar</button>
                             <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
-                        </div>         
-
-                    </form> 
-    
+                        </div>
+                         
+                    </form>
+                   
                     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
 
                     <script>
@@ -131,9 +208,8 @@
 
                                         form.classList.add('was-validated')
                                     }, false)
-                                })
+                                }) 
                         })()
-
 
                         function grupoSeleccionado() {
                             $('#CodigoArticulo').val("");
@@ -164,26 +240,71 @@
                         }
 
                         function obtenerCodigoArticulos() {
-                            var _subgrupoValor = $("#cboSubGrupoArticulo option:selected").val() 
+                            var _subgrupoValor = $("#cboSubGrupoArticulo option:selected").val()
 
-                            $.ajax({
-                                url: "@Url.Action("GetSiguienteCodigoArticulo", "Articulo")",
-                                type: "GET",
-                                dataType: "json",
-                                data: {
-                                    subGrupoId: _subgrupoValor
-                                },
-                                success: function (data) {
-                                    $('#CodigoArticulo').val(data);
-                                }
-                            })
+                            if (_subgrupoValor == "") {
+                                $('#CodigoArticulo').val("");
+                                // document.getElementById("cboSubGrupoArticulo").innerHTML = 'Debe seleccionar sub grupo de artículo';
+                                // document.getElementById("cboSubGrupoArticulo").style.color = 'red';
+                                // document.getElementById('cboSubGrupoArticulo').style.fontSize = 12 + "px";
+                            }
+                            else {
+                                $.ajax({
+                                    url: "@Url.Action("GetSiguienteCodigoArticulo", "Articulo")",
+                                    type: "GET",
+                                    dataType: "json",
+                                    data: {
+                                        subGrupoId: _subgrupoValor
+                                    },
+                                    success: function (data) {
+                                        $('#CodigoArticulo').val(data);
+                                    }
+                                })                           
+                            }
                         }
 
+                        function validarFormulario() {
 
-                    </script>   
-                    
+                            //
+                            // Limpia parrafos de mensajes
+                            document.getElementById("unidadCompraMensaje").innerHTML = '';
+                            document.getElementById("unidadVentaMensaje").innerHTML = '';
+                            document.getElementById("unidadInventarioMensaje").innerHTML = ''; 
 
-                  
+                            // 
+                            // Tipo de Unidades marcadas
+                            let _checkUnidadCompra = document.getElementById('CheckUnidadCompra').checked;
+                            let _checkUnidadVenta = document.getElementById('CheckUnidadVenta').checked;
+                            let _checkUnidadInventario = document.getElementById('CheckUnidadInventario').checked;
+
+                            //
+                            // Valor de Unidades seleccinadas
+                            var _unidadCompraValor = $("#cboUnidadCompra option:selected").val()
+                            var _unidadVentaValor = $("#cboUnidadVenta option:selected").val()
+                            var _unidadInventarioValor = $("#cboUnidadInventario option:selected").val()
+                                                      
+                           //
+                           // Validaciones  
+                            if (_checkUnidadCompra && _unidadCompraValor == "") { 
+                                document.getElementById("unidadCompraMensaje").innerHTML = 'Debe seleccionar unidad de venta';
+                                document.getElementById("unidadCompraMensaje").style.color = 'red';
+                                document.getElementById('unidadCompraMensaje').style.fontSize = 12 + "px";
+                            }
+
+                            if (_checkUnidadVenta && _unidadVentaValor == "") {
+                                document.getElementById("unidadVentaMensaje").innerHTML = 'Debe seleccionar unidad de compra';
+                                document.getElementById("unidadVentaMensaje").style.color = 'red';
+                                document.getElementById('unidadVentaMensaje').style.fontSize = 12 + "px";
+                            }
+
+                            if (_checkUnidadInventario && _unidadInventarioValor == "") {
+                                document.getElementById("unidadInventarioMensaje").innerHTML = 'Debe seleccionar unidad de inventario';
+                                document.getElementById("unidadInventarioMensaje").style.color = 'red';
+                                document.getElementById('unidadInventarioMensaje').style.fontSize = 12 + "px";
+                            } 
+                        }
+
+                    </script>                     
 
                 </div>
             </div>

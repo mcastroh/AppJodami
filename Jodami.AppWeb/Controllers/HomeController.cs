@@ -1,19 +1,26 @@
+using AutoMapper;
 using Jodami.AppWeb.Models;
+using Jodami.AppWeb.Models.ViewModels;
+using Jodami.BLL.Interfaces;
+using Jodami.Entity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Reflection.PortableExecutable;
 
 namespace Jodami.AppWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IGenericService<Articulo> _srvArticulo;
+        private readonly IMapper _mapper;
 
         #region Constructor 
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IGenericService<Articulo> srvArticulo, IMapper mapper)
         {
             _logger = logger;
+            _srvArticulo = srvArticulo;
+            _mapper = mapper;
         }
 
         #endregion
@@ -31,11 +38,7 @@ namespace Jodami.AppWeb.Controllers
         {
             return View();
         }
-
-
-
-
-
+         
         public IActionResult Privacy()
         {
             return View();
@@ -67,8 +70,18 @@ namespace Jodami.AppWeb.Controllers
             return View("_Footer");
         }
 
-        #endregion  
+        #endregion
 
+        async public Task<ViewResult> ArticuloIndex()
+        {
+            return View();
+        }
+
+        async public Task<PartialViewResult> Articulo()
+        {
+            var articulos = _mapper.Map<List<VMArticulos>>(await _srvArticulo.GetAll());
+            return PartialView(articulos);
+        }
 
     }
 }

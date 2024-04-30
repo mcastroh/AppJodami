@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\Rotativa\\Windows\\wkhtmltopdf.exe"
     },
     {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\contact.css",
+      "PackagePath": "staticwebassets\\css\\contact.css"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\contact.min.css",
+      "PackagePath": "staticwebassets\\css\\contact.min.css"
+    },
+    {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\sb-admin-2.css",
       "PackagePath": "staticwebassets\\css\\sb-admin-2.css"
     },
@@ -59,6 +67,10 @@
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\img\\undraw_rocket.svg",
       "PackagePath": "staticwebassets\\img\\undraw_rocket.svg"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\contact.min.js",
+      "PackagePath": "staticwebassets\\js\\contact.min.js"
     },
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\sb-admin-2.js",

@@ -30,16 +30,20 @@ namespace Jodami.AppWeb.Utilidades.Automapper
             CreateMap<Socio, VMSociosGrupos>().ReverseMap();
             CreateMap<Socio, VMSociosProveedores>().ReverseMap();
             CreateMap<Socio, VMSociosColaboradores>().ReverseMap();
-            
+
 
 
             // Artículos
+            CreateMap<Almacen, VMAlmacen>().ReverseMap();
             CreateMap<TipoArticulo, VMTipoArticulo>().ReverseMap();
             CreateMap<UnidadMedida, VMUnidadMedida>().ReverseMap();
             CreateMap<TipoAlmacen, VMTipoAlmacen>().ReverseMap();
-
+            CreateMap<SunatTipoDetraccion, VMSunatTipoDetraccion>().ReverseMap();
+            CreateMap<SunatTipoExistencia, VMSunatTipoExistencia>().ReverseMap();
             CreateMap<GrupoArticulo, VMGrupoArticulo>().ReverseMap();
             CreateMap<SubGrupoArticulo, VMSubGrupoArticulo>().ReverseMap();
+            CreateMap<TipoCuentaMayor, VMTipoCuentaMayor>().ReverseMap();
+            CreateMap<TipoValorizacion, VMTipoValorizacion>().ReverseMap();
             CreateMap<Articulo, VMArticulos>().ReverseMap();
 
 
