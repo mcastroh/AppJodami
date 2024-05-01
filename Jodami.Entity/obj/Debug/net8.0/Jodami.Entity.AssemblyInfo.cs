@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jodami.Entity")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e6044e9f3a996da4239b30845fdb4c610ab7a2b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84de8e153967ea747c9b5678ceb315cd97a88fbb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jodami.Entity")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jodami.Entity")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

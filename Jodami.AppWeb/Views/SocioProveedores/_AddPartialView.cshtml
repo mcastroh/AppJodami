@@ -14,10 +14,7 @@
                     <form id="formulario" asp-action="Adicionar" method="post" class="needs-validation" novalidate>
                         <input type="hidden" asp-for="@Model.IdTipoSocio" />
                          
-
                         <style>
-
-
                             .form-control.ok input {
                                 border: 0.1px solid;
                                 border-color: #08ffc8;
@@ -27,8 +24,6 @@
                                 border: 0.1px solid;
                                 border-color: #fe5f55;
                             }
-
-                            
 
                             .form-control p {
                                 visibility: hidden;
@@ -56,6 +51,7 @@
                                     asp-for="IdTipoDcmtoIdentidad" 
                                     asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion"))" 
                                     onchange="tipoDcmtoIdentidadSelect(this)">
+                                    <option value="">Seleccionar</option>
                                 </select>
                                 <div class="invalid-feedback">Tipo documento de identidad obligatorio</div>
                             </div>    
@@ -108,13 +104,13 @@
                         <hr />
                         <div class="row">
                             <div class="col-sm-2 form-group">
-                                <label asp-for="Telefono" class="control-label">Teléfono</label>
-                                <input asp-for="Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
-                            </div>
-                            <div class="col-sm-2 form-group">
                                 <label asp-for="Celular" class="control-label">Celular</label>
                                 <input asp-for="Celular" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
                             </div>
+                            <div class="col-sm-2 form-group">
+                                <label asp-for="Telefono" class="control-label">Teléfono</label>
+                                <input asp-for="Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
+                            </div>                           
                             <div class="col-sm-3 form-group">
                                 <label asp-for="PaginaWeb" class="control-label">Pagina Web</label>
                                 <input asp-for="PaginaWeb" class="form-control" autocomplete="off" maxlength="100" />
@@ -197,69 +193,100 @@
                         </div>
                     </form>
 
-                    <script src="~/js/validaciones/campos-obligatorios.js"></script>    
+                  @*   <script src="~/js/validaciones/campos-obligatorios.js"></script>    
                     <script src="~/js/validaciones/validar-numeros.js"></script>
                     <script src="~/js/validaciones/validar-email.js"></script>                          
                     <script src="~/js/validaciones/mostrar-ruc-or-noruc.js"></script>
                     <script src="~/js/validaciones/validar-letras.js"></script>
-                    <script src="~/js/validaciones/validar-formulario-proveedor.js"></script>
-                    
+                    <script src="~/js/validaciones/validar-formulario-proveedor.js"></script> *@
 
-                    <script>
+                    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-                        // function validateDni(){ 
-                        //         var regex = new RegExp("^[0-9]+$");
-                        //         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-                        //         if (!regex.test(key)) {
-                        //             event.preventDefault();
-                        //             return false;
-                        //         } 
-                        // } 
+                   
 
 
-                        // Comprueba si es un DNI correcto (entre 5 y 8 letras seguidas de la letra que corresponda)
-                        // Acepta NIEs (Extranjeros con X, Y o Z al principio)
-                        // function validateDNI(dni) {
-
-                        //     console.log('validateDNI => ' + dni);
-                        //     console.log(dni.value);
-
-                        //     var numero, let, letra;
-                        //     var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
-
-                        //     // dni = dni.toUpperCase();
-
-
-
-                        //     if (expresion_regular_dni.test(dni) === true) {
-                        //         numero = dni.substr(0, dni.length - 1);
-                        //         numero = numero.replace('X', 0);
-                        //         numero = numero.replace('Y', 1);
-                        //         numero = numero.replace('Z', 2);
-                        //         let = dni.substr(dni.length - 1, 1);
-                        //         numero = numero % 23;
-                        //         letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
-                        //         letra = letra.substring(numero, numero + 1);
-                        //         if (letra != let) {
-                        //             //alert('Dni erroneo, la letra del NIF no se corresponde');
-                        //             return false;
-                        //         } else {
-                        //             //alert('Dni correcto');
-                        //             return true;
-                        //         }
-                        //     } else {
-                        //         //alert('Dni erroneo, formato no válido');
-                        //         return false;
-                        //     }
-                        // }
-
-
-
-
-                    </script>
+ 
 
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+
+@section Scripts {
+
+
+    <script>
+
+        (function () {
+            'use strict'
+
+            // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Bucle sobre ellos y evitar el envío
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+
+        function tipoDcmtoIdentidadSelect() {
+
+            console.log('function => tipoDcmtoIdentidadSelect');
+
+
+            let tipoDcmto = document.getElementById('cbxTipoDcmtoIdentidad');
+            var value = tipoDcmto.value;
+            var text = tipoDcmto.options[tipoDcmto.selectedIndex].text.substring(0, 3);
+
+            //  let _grupos = document.getElementById('cboGrupoArticulo');
+            // let _grupoValor = _grupos.options[_grupos.selectedIndex].value;
+
+
+            console.log('value => ' + value);
+            console.log('text => ' + text);
+
+            if (text == 'RUC') {
+                hideApellidosAndNombre();
+                showRazonSocial();
+            } else {
+                hideRazonSocial();
+                showApellidosAndNombre();
+            }
+        }
+
+        function hideApellidosAndNombre() {
+            var elem = document.getElementById('tipoDcmtoNoRUC');
+            elem.style.display = 'none';
+        }
+
+        function showApellidosAndNombre() {
+            var elem = document.getElementById('tipoDcmtoNoRUC');
+            elem.style.display = 'inline-flex';
+        }
+
+        function hideRazonSocial() {
+            var elem = document.getElementById('tipoDcmtoRUC');
+            elem.style.display = 'none';
+        }
+
+        function showRazonSocial() {
+            var elem = document.getElementById('tipoDcmtoRUC');
+            elem.style.display = 'inline';
+        }
+
+    </script> 
+
+}
+
+

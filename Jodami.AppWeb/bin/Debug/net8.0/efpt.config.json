@@ -31,6 +31,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Cargo]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Choferes]",
          "ObjectType": 0
       },
@@ -92,6 +96,10 @@
       },
       {
          "Name": "[dbo].[Socio]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SocioContacto]",
          "ObjectType": 0
       },
       {
