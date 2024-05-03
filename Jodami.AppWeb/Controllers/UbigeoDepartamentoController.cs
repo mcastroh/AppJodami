@@ -44,8 +44,7 @@ namespace Jodami.AppWeb.Controllers
             var modelo = new Departamento()
             {
                 CodigoDepartamento = codigo,
-                Departamento1 = descripcion,               
-                EsActivo = true,
+                DepartamentoName = descripcion,       
                 UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
             };
@@ -63,10 +62,8 @@ namespace Jodami.AppWeb.Controllers
         public async Task<IActionResult> Editar(VMUbigeoDepartamento vmModelo)
         {
             var modelo = await _service.GetById(x => x.IdDepartamento == vmModelo.IdDepartamento);
-
             modelo.CodigoDepartamento = vmModelo.CodigoDepartamento;
-            modelo.Departamento1 = vmModelo.Departamento1;          
-            modelo.EsActivo = true;
+            modelo.DepartamentoName = vmModelo.DepartamentoName;  
             modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
 

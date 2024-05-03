@@ -43,7 +43,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Direccion ]",
+         "Name": "[dbo].[Direccion]",
          "ObjectType": 0
       },
       {
@@ -107,7 +107,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[SocioDireccion ]",
+         "Name": "[dbo].[SocioDireccion]",
          "ObjectType": 0
       },
       {

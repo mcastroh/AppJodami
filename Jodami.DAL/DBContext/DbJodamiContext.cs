@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.DAL.DBContext;
 
+
 public partial class DbJodamiContext : DbContext
 {
     public DbJodamiContext(DbContextOptions<DbJodamiContext> options)
@@ -24,7 +25,7 @@ public partial class DbJodamiContext : DbContext
 
     public virtual DbSet<Departamento> Departamento { get; set; }
 
-    public virtual DbSet<Direccion_> Direccion_ { get; set; }
+    public virtual DbSet<Direccion> Direccion { get; set; }
 
     public virtual DbSet<Distrito> Distrito { get; set; }
 
@@ -56,7 +57,7 @@ public partial class DbJodamiContext : DbContext
 
     public virtual DbSet<SocioCuentaBanco> SocioCuentaBanco { get; set; }
 
-    public virtual DbSet<SocioDireccion_> SocioDireccion_ { get; set; }
+    public virtual DbSet<SocioDireccion> SocioDireccion { get; set; }
 
     public virtual DbSet<SocioFormaPago> SocioFormaPago { get; set; }
 
@@ -133,7 +134,7 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.Superficie).HasComment("Area Metros Cuadrados");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
-            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.Almacen).HasConstraintName("FK_Almacen_Direccion ");
+            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.Almacen).HasConstraintName("FK_Almacen_Direccion");
 
             entity.HasOne(d => d.IdResponsableNavigation).WithMany(p => p.Almacen).HasConstraintName("FK_Almacen_Socio");
 
@@ -276,21 +277,20 @@ public partial class DbJodamiContext : DbContext
 
         modelBuilder.Entity<Departamento>(entity =>
         {
-            entity.HasKey(e => e.IdDepartamento).HasName("PK__Departam__787A433DBEF3F418");
+            entity.HasKey(e => e.IdDepartamento).HasName("PK__Departam__787A433D3B29FA0C");
 
             entity.Property(e => e.IdDepartamento).HasComment("Departamento ID");
             entity.Property(e => e.CodigoDepartamento).HasComment("Código");
-            entity.Property(e => e.Departamento1).HasComment("Departamento");
-            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.DepartamentoName).HasComment("Nombre");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Auditoría Fecha");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
         });
 
-        modelBuilder.Entity<Direccion_>(entity =>
+        modelBuilder.Entity<Direccion>(entity =>
         {
-            entity.HasKey(e => e.IdDireccion).HasName("PK__Direccio__1F8E0C76DE9E0559");
+            entity.HasKey(e => e.IdDireccion).HasName("PK__Direccio__1F8E0C76DE5EDF42");
 
             entity.Property(e => e.IdDireccion).HasComment("Dirección ID");
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
@@ -298,40 +298,34 @@ public partial class DbJodamiContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Auditoría Fecha");
             entity.Property(e => e.IdDistrito).HasComment("Distrito ID");
-            entity.Property(e => e.IdSocio).HasComment("Socio ID");
             entity.Property(e => e.IdTipoDireccion).HasComment("Tipo Direccón ID");
             entity.Property(e => e.IdTipoVia).HasComment("Tipo Via ID");
             entity.Property(e => e.IdTipoZona).HasComment("Tipo Zona ID");
+            entity.Property(e => e.NameDireccion).HasComment("Dirección Consulta");
+            entity.Property(e => e.NameUbigeo).HasComment("Ubigeo Consulta");
             entity.Property(e => e.NombreVia).HasComment("Nombre Tipo Via");
             entity.Property(e => e.NombreZona).HasComment("Nombre Tipo Zona");
             entity.Property(e => e.NumeroVia).HasComment("Número Tipo Via");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
-            entity.HasOne(d => d.IdDistritoNavigation).WithMany(p => p.Direccion_)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Direccion _Distrito");
+            entity.HasOne(d => d.IdDistritoNavigation).WithMany(p => p.Direccion).HasConstraintName("FK_Direccion _Distrito");
 
-            entity.HasOne(d => d.IdTipoDireccionNavigation).WithMany(p => p.Direccion_)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Direccion _TipoDireccion");
+            entity.HasOne(d => d.IdTipoDireccionNavigation).WithMany(p => p.Direccion).HasConstraintName("FK_Direccion _TipoDireccion");
 
-            entity.HasOne(d => d.IdTipoViaNavigation).WithMany(p => p.Direccion_)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Direccion _TipoVia");
+            entity.HasOne(d => d.IdTipoViaNavigation).WithMany(p => p.Direccion).HasConstraintName("FK_Direccion _TipoVia");
 
-            entity.HasOne(d => d.IdTipoZonaNavigation).WithMany(p => p.Direccion_)
+            entity.HasOne(d => d.IdTipoZonaNavigation).WithMany(p => p.Direccion)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Direccion _TipoZona");
         });
 
         modelBuilder.Entity<Distrito>(entity =>
         {
-            entity.HasKey(e => e.IdDistrito).HasName("PK__Distrito__DE8EED5980F16A16");
+            entity.HasKey(e => e.IdDistrito).HasName("PK__Distrito__DE8EED5912DE8F20");
 
             entity.Property(e => e.IdDistrito).HasComment("Distrito ID");
             entity.Property(e => e.CodigoDistrito).HasComment("Código");
-            entity.Property(e => e.Distrito1).HasComment("Distrito");
-            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.DistritoName).HasComment("Nombre");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Auditoría Fecha");
@@ -360,7 +354,7 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.RazonSocial).HasComment("Razón Social");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
-            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.Empresa).HasConstraintName("FK_Empresa_Direccion ");
+            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.Empresa).HasConstraintName("FK_Empresa_Direccion");
 
             entity.HasOne(d => d.IdImagenNavigation).WithMany(p => p.Empresa).HasConstraintName("FK_Empresa_Imagenes");
         });
@@ -379,7 +373,7 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.RazonSocial).HasComment("Razón Social");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
-            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.EmpresaLocal).HasConstraintName("FK_EmpresaLocal_Direccion ");
+            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.EmpresaLocal).HasConstraintName("FK_EmpresaLocal_Direccion");
 
             entity.HasOne(d => d.IdEmpresaNavigation).WithMany(p => p.EmpresaLocal)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -487,16 +481,15 @@ public partial class DbJodamiContext : DbContext
 
         modelBuilder.Entity<Provincia>(entity =>
         {
-            entity.HasKey(e => e.IdProvincia).HasName("PK__Provinci__EED74455BCFE5223");
+            entity.HasKey(e => e.IdProvincia).HasName("PK__Provinci__EED744551BA051E2");
 
             entity.Property(e => e.IdProvincia).HasComment("Provincia ID");
             entity.Property(e => e.CodigoProvincia).HasComment("Código");
-            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Auditoría Fecha");
             entity.Property(e => e.IdDepartamento).HasComment("Departamento ID");
-            entity.Property(e => e.Provincia1).HasComment("Provincia");
+            entity.Property(e => e.ProvinciaName).HasComment("Nombre");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
             entity.HasOne(d => d.IdDepartamentoNavigation).WithMany(p => p.Provincia)
@@ -644,28 +637,22 @@ public partial class DbJodamiContext : DbContext
                 .HasConstraintName("FK_SocioCuentaBanco_TipoCuentaBancaria");
         });
 
-        modelBuilder.Entity<SocioDireccion_>(entity =>
+        modelBuilder.Entity<SocioDireccion>(entity =>
         {
-            entity.HasKey(e => e.IdDireccion).HasName("PK__SocioDir__1F8E0C764F5B9946");
+            entity.HasKey(e => e.IdSocioDireccion).HasName("PK__SocioDir__0943C125E48AED59");
 
-            entity.Property(e => e.IdDireccion)
-                .ValueGeneratedOnAdd()
-                .HasComment("Dirección ID");
-            entity.Property(e => e.DireccionId).HasComment("Dirección Asociada");
+            entity.Property(e => e.IdSocioDireccion).HasComment("Dirección Socio ID");
             entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
             entity.Property(e => e.FechaRegistro)
                 .HasDefaultValueSql("(getdate())")
                 .HasComment("Auditoría Fecha");
-            entity.Property(e => e.SocioId).HasComment("Socio ID");
+            entity.Property(e => e.IdDireccion).HasComment("Dirección ID");
+            entity.Property(e => e.IdSocio).HasComment("Socio ID");
             entity.Property(e => e.UsuarioName).HasComment("Auditoría Usuario");
 
-            entity.HasOne(d => d.IdDireccionNavigation).WithOne(p => p.SocioDireccion_)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_SocioDireccion _Direccion ");
+            entity.HasOne(d => d.IdDireccionNavigation).WithMany(p => p.SocioDireccion).HasConstraintName("FK_SocioDireccion_Direccion");
 
-            entity.HasOne(d => d.Socio).WithMany(p => p.SocioDireccion_)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_SocioDireccion _Socio");
+            entity.HasOne(d => d.IdSocioNavigation).WithMany(p => p.SocioDireccion).HasConstraintName("FK_SocioDireccion_Socio");
         });
 
         modelBuilder.Entity<SocioFormaPago>(entity =>
@@ -1165,4 +1152,4 @@ public partial class DbJodamiContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-} 
+}

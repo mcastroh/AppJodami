@@ -1,0 +1,84 @@
+﻿@model Jodami.AppWeb.Models.Dto.DtoDirecciones
+
+<div class="modal fade" id="EliminarEntidad-@Model.NewSocioDireccion.IdSocioDireccion" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Eliminar Dirección</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Eliminar" method="post">
+                    <input type="hidden" asp-for="@Model.NewDireccion.IdDireccion" />
+                    <input type="hidden" asp-for="@Model.NewSocioDireccion.IdSocio" />
+                    <input type="hidden" asp-for="@Model.NewSocioDireccion.IdSocioDireccion" />
+                    <input type="hidden" asp-for="@Model.IdSocio" />
+                    <input type="hidden" asp-for="@Model.TipoNroDcmto" />
+                    <input type="hidden" asp-for="@Model.Nombres" />
+                    <input type="hidden" asp-for="@Model.Situacion" />
+                    <input type="hidden" asp-for="@Model.TipoSocio" />
+                    <input type="hidden" asp-for="@Model.ControladorOrigen" />
+                    <input type="hidden" asp-for="@Model.AccionOrigen" />
+
+                   @*  <div class="row">
+                        <div class="col-sm-11">
+                            <label class="control-label">Nombres del contacto</label>
+                            <input class="form-control" type="text" id="Nombre" disabled asp-for="@Model.NewSocioDireccion.Nombre">
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <label for="cboCargo" class="form-label">Cargo</label>
+                            <select id="cboCargo" asp-for="@Model.NewContacto.IdCargo" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.LstCargos, "IdCargo", "Descripcion"))">
+                             </select>                          
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <label for="Email" class="control-label">Email</label>
+                            <input type="email" id="email" asp-for="@Model.NewContacto.Email" class="form-control" disabled />
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3 form-group">
+                            <label for="Celular" class="control-label">Celular</label>
+                            <input id="Celular" asp-for="@Model.NewContacto.Celular" class="form-control" disabled />
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label for="Telefono" class="control-label">Teléfono</label>
+                            <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" disabled />
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label for="cboEstado">Celular para WhatsApp (en Check)</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label for="cboEstado">Estado Activo (en Check)</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.EsActivo" disabled>
+                            </div>
+                        </div> 
+                    </div> *@
+
+                    @*-------------- *@
+                    @* Pie de página *@
+                    @*-------------- *@
+                    <div class="modal-footer">
+                        <button id="btnSubmit" type="submit" class="btn btn-primary"> Eliminar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -8,24 +8,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jodami.Entity;
 
-[Table("SocioDireccion")]
 public partial class SocioDireccion
 {
     /// <summary>
-    /// Dirección ID
+    /// Dirección Socio ID
     /// </summary>
     [Key]
-    public int IdDireccion { get; set; }
+    public int IdSocioDireccion { get; set; }
 
     /// <summary>
     /// Socio ID
     /// </summary>
-    public int SocioId { get; set; }
+    public int? IdSocio { get; set; }
 
     /// <summary>
-    /// Dirección Asociada
+    /// Dirección ID
     /// </summary>
-    public int DireccionId { get; set; }
+    public int? IdDireccion { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -45,7 +44,11 @@ public partial class SocioDireccion
     [Column(TypeName = "datetime")]
     public DateTime FechaRegistro { get; set; }
 
-    [ForeignKey("SocioId")]
+    [ForeignKey("IdDireccion")]
     [InverseProperty("SocioDireccion")]
-    public virtual Socio Socio { get; set; }
+    public virtual Direccion IdDireccionNavigation { get; set; }
+
+    [ForeignKey("IdSocio")]
+    [InverseProperty("SocioDireccion")]
+    public virtual Socio IdSocioNavigation { get; set; }
 }

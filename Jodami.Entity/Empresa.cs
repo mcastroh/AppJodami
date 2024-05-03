@@ -77,7 +77,7 @@ public partial class Empresa
 
     [ForeignKey("IdDireccion")]
     [InverseProperty("Empresa")]
-    public virtual Direccion_ IdDireccionNavigation { get; set; }
+    public virtual Direccion IdDireccionNavigation { get; set; }
 
     [ForeignKey("IdImagen")]
     [InverseProperty("Empresa")]

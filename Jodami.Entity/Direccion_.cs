@@ -18,19 +18,14 @@ public partial class Direccion_
     public int IdDireccion { get; set; }
 
     /// <summary>
-    /// Socio ID
-    /// </summary>
-    public int IdSocio { get; set; }
-
-    /// <summary>
     /// Tipo Direccón ID
     /// </summary>
-    public int IdTipoDireccion { get; set; }
+    public int? IdTipoDireccion { get; set; }
 
     /// <summary>
     /// Tipo Via ID
     /// </summary>
-    public int IdTipoVia { get; set; }
+    public int? IdTipoVia { get; set; }
 
     /// <summary>
     /// Nombre Tipo Via
@@ -52,13 +47,25 @@ public partial class Direccion_
     /// <summary>
     /// Nombre Tipo Zona
     /// </summary>
-    [StringLength(100)]
+    [StringLength(60)]
     public string NombreZona { get; set; }
 
     /// <summary>
     /// Distrito ID
     /// </summary>
-    public int IdDistrito { get; set; }
+    public int? IdDistrito { get; set; }
+
+    /// <summary>
+    /// Dirección Consulta
+    /// </summary>
+    [StringLength(60)]
+    public string NameDireccion { get; set; }
+
+    /// <summary>
+    /// Ubigeo Consulta
+    /// </summary>
+    [StringLength(60)]
+    public string NameUbigeo { get; set; }
 
     /// <summary>
     /// ¿Es Activo?
@@ -104,5 +111,5 @@ public partial class Direccion_
     public virtual TipoZona IdTipoZonaNavigation { get; set; }
 
     [InverseProperty("IdDireccionNavigation")]
-    public virtual SocioDireccion_ SocioDireccion_ { get; set; }
+    public virtual ICollection<SocioDireccion> SocioDireccion { get; set; } = new List<SocioDireccion>();
 }

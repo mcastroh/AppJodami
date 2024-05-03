@@ -24,22 +24,16 @@ public partial class Provincia
     public string CodigoProvincia { get; set; }
 
     /// <summary>
-    /// Provincia
+    /// Nombre
     /// </summary>
     [Required]
-    [Column("Provincia")]
-    [StringLength(100)]
-    public string Provincia1 { get; set; }
+    [StringLength(60)]
+    public string ProvinciaName { get; set; }
 
     /// <summary>
     /// Departamento ID
     /// </summary>
     public int IdDepartamento { get; set; }
-
-    /// <summary>
-    /// ¿Es Activo?
-    /// </summary>
-    public bool EsActivo { get; set; }
 
     /// <summary>
     /// Auditoría Usuario

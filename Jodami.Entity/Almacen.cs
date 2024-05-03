@@ -85,7 +85,7 @@ public partial class Almacen
 
     [ForeignKey("IdDireccion")]
     [InverseProperty("Almacen")]
-    public virtual Direccion_ IdDireccionNavigation { get; set; }
+    public virtual Direccion IdDireccionNavigation { get; set; }
 
     [ForeignKey("IdResponsable")]
     [InverseProperty("Almacen")]

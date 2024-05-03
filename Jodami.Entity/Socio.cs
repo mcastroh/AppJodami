@@ -209,8 +209,8 @@ public partial class Socio
     [InverseProperty("IdSocioNavigation")]
     public virtual ICollection<SocioCuentaBanco> SocioCuentaBanco { get; set; } = new List<SocioCuentaBanco>();
 
-    [InverseProperty("Socio")]
-    public virtual ICollection<SocioDireccion_> SocioDireccion_ { get; set; } = new List<SocioDireccion_>();
+    [InverseProperty("IdSocioNavigation")]
+    public virtual ICollection<SocioDireccion> SocioDireccion { get; set; } = new List<SocioDireccion>();
 
     [InverseProperty("IdSocioNavigation")]
     public virtual ICollection<SocioFormaPago> SocioFormaPago { get; set; } = new List<SocioFormaPago>();

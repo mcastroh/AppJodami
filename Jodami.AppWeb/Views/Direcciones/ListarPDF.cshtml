@@ -1,0 +1,72 @@
+﻿@model Jodami.AppWeb.Models.Dto.DtoDirecciones
+
+@{
+    Layout = null;
+    string titRucNombres = @Model.TipoNroDcmto + " " + @Model.Nombres;
+}
+
+<!DOCTYPE html>
+
+<html> 
+
+<head>       
+    <partial name="_ReporteEncabezado" />
+    <style>
+        body {
+            font-family: Arial, Arial, Helvetica, sans-serif;
+        } 
+
+        #contenedorSubTitulo {
+            margin: 0 auto;
+            text-align: left;
+            padding: .2em;
+            width: 720px;            
+            border: 5px solid #B7C5DF; 
+        }
+
+    </style> 
+</head> 
+
+<body> 
+
+    <div class="contenedorSubTitulo">
+        <table class="xtbproductos table table-sm table-bordered table-striped" id="tabla" width="100%" cellspacing="0">      
+            <thead class="table-dark">
+                <tr>                    
+                    <th align="left"><h2>@titRucNombres</h2></th>
+                </tr>                
+            </thead>
+        </table>
+    </div> 
+
+    <div class="contenedor"> 
+        <table class="tbproductos table table-sm table-bordered table-striped" id="tabla" width="100%" cellspacing="0">      
+            <thead class="table-dark">
+                <tr style="text-align: center">
+                    <th class="tbth">Contacto</th>
+                    <th class="tbth">Cargo</th>
+                    <th class="tbth">Celular</th>
+                    <th class="tbth">Teléfono</th>
+                    <th class="tbth">WhatsApp </th>
+                    <th class="tbth">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    // @foreach (var item in Model.LstSocioDirecciones.OrderBy(x=> x.Nombre).ToList())
+                    // {
+                    //     <tr>
+                    //         <td align="left">@Html.DisplayFor(m => item.Nombre)</td>
+                    //         <td align="left">@Html.DisplayFor(m => item.IdCargoNavigation.Descripcion)</td>
+                    //         <td>@Html.DisplayFor(m => item.Celular)</td>
+                    //         <td>@Html.DisplayFor(m => item.Telefono)</td>
+                    //         <td>@Html.DisplayFor(m => item.IsCelularWhatsApp)</td>
+                    //         <td align="center">@Html.DisplayFor(m => item.EsActivo)</td>
+                    //     </tr> 
+                    // }
+                }
+            </tbody>
+        </table>
+    </div> 
+</body>
+</html> 

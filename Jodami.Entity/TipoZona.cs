@@ -49,5 +49,5 @@ public partial class TipoZona
     public DateTime FechaRegistro { get; set; }
 
     [InverseProperty("IdTipoZonaNavigation")]
-    public virtual ICollection<Direccion_> Direccion_ { get; set; } = new List<Direccion_>();
+    public virtual ICollection<Direccion> Direccion { get; set; } = new List<Direccion>();
 }

@@ -39,7 +39,7 @@ namespace Jodami.AppWeb.Controllers
             {               
                 item.UbiDptoKey = dpto.IdDepartamento;
                 item.UbiDptoCodigo = dpto.CodigoDepartamento;
-                item.UbiDptoName = dpto.Departamento1;
+                item.UbiDptoName = dpto.DepartamentoName;
             }
 
             ViewBag.Departamento = dpto;           
@@ -57,9 +57,8 @@ namespace Jodami.AppWeb.Controllers
             var modelo = new Provincia()
             {
                 CodigoProvincia = datos.UbiDptoCodigo + datos.CodigoProvincia,
-                Provincia1 = datos.Provincia1,
-                IdDepartamento = datos.UbiDptoKey,
-                EsActivo = true,
+                ProvinciaName = datos.ProvinciaName,
+                IdDepartamento = datos.UbiDptoKey,             
                 UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
             };
@@ -78,14 +77,11 @@ namespace Jodami.AppWeb.Controllers
         public async Task<IActionResult> Editar(string keyProv, VMUbigeoProvincia datos)
         {
             var modelo = await _srvProv.GetById(x => x.IdProvincia == datos.IdProvincia);
-
             modelo.CodigoProvincia = datos.UbiDptoCodigo + keyProv;
-            modelo.Provincia1 = datos.Provincia1;
-            modelo.IdDepartamento = datos.UbiDptoKey;
-            modelo.EsActivo = true;
+            modelo.ProvinciaName = datos.ProvinciaName;
+            modelo.IdDepartamento = datos.UbiDptoKey;         
             modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
-
             bool flgRetorno = await _srvProv.Update(modelo);
             return RedirectToAction(nameof(Index), new { id = datos.UbiDptoKey });
         }
@@ -115,7 +111,7 @@ namespace Jodami.AppWeb.Controllers
             {
                 item.UbiDptoKey = dpto.IdDepartamento;
                 item.UbiDptoCodigo = dpto.CodigoDepartamento;
-                item.UbiDptoName = dpto.Departamento1;
+                item.UbiDptoName = dpto.DepartamentoName;
             }
 
             string titulo = "Provincias por Departamento";

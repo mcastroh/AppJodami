@@ -9,8 +9,8 @@ namespace Jodami.AppWeb.Utilidades.Automapper
         public AutoMapperProfile()
         {
             CreateMap<Moneda, VMMoneda>().ReverseMap();
-           
-             
+          
+
             CreateMap<TipoVia, VMTipoVia>().ReverseMap();
             CreateMap<TipoZona, VMTipoZona>().ReverseMap();
 
@@ -25,12 +25,12 @@ namespace Jodami.AppWeb.Utilidades.Automapper
             CreateMap<TipoDireccion, VMTipoDireccion>().ReverseMap();
             CreateMap<TipoDocumentoIdentidad, VMTipoDocumentoIdentidad>().ReverseMap();
 
-            //CreateMap<Socio, VMSocios>().ReverseMap();
-
+            //CreateMap<Socio, VMSocios>().ReverseMap(); 
             CreateMap<Socio, VMSociosGrupos>().ReverseMap();
             CreateMap<Socio, VMSociosProveedores>().ReverseMap();
             CreateMap<Socio, VMSociosColaboradores>().ReverseMap();
-
+            CreateMap<SocioContacto, VMSociosContactos>().ReverseMap();
+            //CreateMap<SocioContacto, VMSociosContactos>().ReverseMap();
 
 
             // Artículos
@@ -52,6 +52,7 @@ namespace Jodami.AppWeb.Utilidades.Automapper
             CreateMap<Provincia, VMUbigeoProvincia>().ReverseMap();
             CreateMap<Distrito, VMUbigeoDistrito>().ReverseMap();
 
+            CreateMap<Cargo, VMCargos>().ReverseMap();
 
 
         }        

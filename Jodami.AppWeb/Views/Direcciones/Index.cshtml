@@ -1,0 +1,104 @@
+﻿@model Jodami.AppWeb.Models.Dto.DtoDirecciones
+ 
+@{
+    ViewData["Title"] = "Contactos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string tipoDcmtoAndNombres = $"{Model.TipoNroDcmto}  {Model.Nombres}";
+}
+
+@section Estilos{
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+}
+ 
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista de Direcciones</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                @await Html.PartialAsync("_AddPartialView", Model)
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "Direcciones", new {idSocio = @Model.IdSocio, tipoSocioOrigen = @Model.TipoSocio, controladorOrigen = @Model.ControladorOrigen, accionOrigen = @Model.AccionOrigen})"><i class="bi bi-printer"></i> Listado</a>
+                <a class="btn btn-success" href="@Url.Action(Model.AccionOrigen, Model.ControladorOrigen)"><i class="bi bi-printer"></i> Regresar</a>                 
+            </div>
+            <div class="col-sm-4">                      
+                <input asp-for="@tipoDcmtoAndNombres" class="form-control" disabled />
+            </div> 
+            <div class="col-sm-2">                       
+                <input asp-for="@Model.Situacion" class="form-control" disabled readonly />
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>                            
+                            <th>Tipo</th>
+                            <th>Dirección</th>
+                            <th>Ubigeo</th>                                   
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.LstSocioDirecciones)
+                        {
+                            var dtoItem = new Jodami.AppWeb.Models.Dto.DtoDirecciones()
+                            {
+                                IdSocio = Model.IdSocio,
+                                TipoNroDcmto = Model.TipoNroDcmto,
+                                Nombres = Model.Nombres,
+                                Situacion = Model.Situacion,
+                                TipoSocio = Model.TipoSocio,
+                                ControladorOrigen = Model.ControladorOrigen,
+                                AccionOrigen = Model.AccionOrigen,
+                                NewSocioDireccion = item,
+                                NewDireccion = Model.NewDireccion 
+                            }; 
+
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.IdDireccionNavigation.IdTipoDireccionNavigation.Descripcion)</td>
+                                <td>@Html.DisplayFor(m => item.IdDireccionNavigation.NameDireccion)</td>
+                                <td>@Html.DisplayFor(m => item.IdDireccionNavigation.NameUbigeo)</td>
+                                <td>@Html.DisplayFor(m => item.EsActivo)</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdSocioDireccion)" data-url="@Url.Action($"Edit/{item.IdSocioDireccion}")">
+                                        <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EditPartialView", dtoItem)
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdSocioDireccion)" data-url="@Url.Action($"Eliminar/{item.IdSocioDireccion}")">
+                                        <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
+                                    </button>
+                                    @await Html.PartialAsync("_EliminarPartialView", dtoItem)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <script src="~/js/vistas/datatables-demo.js"></script>
+
+}

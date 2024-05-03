@@ -24,17 +24,11 @@ public partial class Departamento
     public string CodigoDepartamento { get; set; }
 
     /// <summary>
-    /// Departamento
+    /// Nombre
     /// </summary>
     [Required]
-    [Column("Departamento")]
-    [StringLength(100)]
-    public string Departamento1 { get; set; }
-
-    /// <summary>
-    /// ¿Es Activo?
-    /// </summary>
-    public bool EsActivo { get; set; }
+    [StringLength(60)]
+    public string DepartamentoName { get; set; }
 
     /// <summary>
     /// Auditoría Usuario

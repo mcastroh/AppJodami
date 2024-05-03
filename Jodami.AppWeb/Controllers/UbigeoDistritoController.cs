@@ -42,10 +42,10 @@ namespace Jodami.AppWeb.Controllers
             {
                 item.UbiDptoKey = departamento.IdDepartamento;
                 item.UbiDptoCodigo = departamento.CodigoDepartamento;
-                item.UbiDptoName = departamento.Departamento1;
+                item.UbiDptoName = departamento.DepartamentoName;
                 item.UbiProvKey = provincia.IdProvincia;
                 item.UbiProvCodigo = provincia.CodigoProvincia;
-                item.UbiProvName = provincia.Provincia1;
+                item.UbiProvName = provincia.ProvinciaName;
             }
 
             ViewBag.Departamento = departamento;
@@ -64,9 +64,8 @@ namespace Jodami.AppWeb.Controllers
             var modelo = new Distrito()
             {
                 CodigoDistrito = datos.UbiProvCodigo + datos.CodigoDistrito,
-                Distrito1 = datos.Distrito1,
-                IdProvincia = datos.UbiProvKey,
-                EsActivo = true,
+                DistritoName = datos.DistritoName,
+                IdProvincia = datos.UbiProvKey,           
                 UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
             };
@@ -87,9 +86,8 @@ namespace Jodami.AppWeb.Controllers
             var modelo = await _srvDist.GetById(x => x.IdDistrito == datos.IdDistrito);
 
             modelo.CodigoDistrito = datos.UbiProvCodigo + keyDist;
-            modelo.Distrito1 = datos.Distrito1;
-            modelo.IdProvincia = datos.UbiProvKey;
-            modelo.EsActivo = true;
+            modelo.DistritoName = datos.DistritoName;
+            modelo.IdProvincia = datos.UbiProvKey;           
             modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
 
@@ -124,10 +122,10 @@ namespace Jodami.AppWeb.Controllers
             {
                 item.UbiDptoKey = departamento.IdDepartamento;
                 item.UbiDptoCodigo = departamento.CodigoDepartamento;
-                item.UbiDptoName = departamento.Departamento1;
+                item.UbiDptoName = departamento.DepartamentoName;
                 item.UbiProvKey = provincia.IdProvincia;
                 item.UbiProvCodigo = provincia.CodigoProvincia;
-                item.UbiProvName = provincia.Provincia1;
+                item.UbiProvName = provincia.ProvinciaName;
             }  
 
             string titulo = "Distritos por Provincias";

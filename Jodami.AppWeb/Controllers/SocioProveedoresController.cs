@@ -194,7 +194,7 @@ namespace Jodami.AppWeb.Controllers
 
             ViewBag.GrupoEconomico = entityGruposEconomicos.ToList();
             ViewBag.Colaboradores = entityColaboradores.ToList();
-            ViewBag.Calificacion = entityTipoCalificacion.ToList();
+            ViewBag.Calificacion = entityTipoCalificacion.ToList(); 
 
             return entityProveedores;
         }

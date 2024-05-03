@@ -4,7 +4,7 @@
     {
         public int IdProvincia { get; set; } 
         public string CodigoProvincia { get; set; } 
-        public string Provincia1 { get; set; }
+        public string ProvinciaName { get; set; }
         
         public int UbiDptoKey { get; set; }
         public string UbiDptoCodigo { get; set; }

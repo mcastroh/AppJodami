@@ -8,20 +8,20 @@
     var dpto = (VMUbigeoDepartamento)ViewBag.Departamento;
     var prov = (VMUbigeoProvincia)ViewBag.Provincia;
 
-    var dptoText = $"Dpto:: { dpto.CodigoDepartamento } - { dpto.Departamento1 }";
-    var provText = $"Prov: { prov.CodigoProvincia.Substring(2,2) } - { prov.Provincia1 }";
+    var dptoText = $"Dpto:: {dpto.CodigoDepartamento} - {dpto.DepartamentoName}";
+    var provText = $"Prov: {prov.CodigoProvincia.Substring(2, 2)} - {prov.ProvinciaName}";
 
     var newDist = new VMUbigeoDistrito()
             {
                 IdDistrito = 0,
                 CodigoDistrito = string.Empty,
-                Distrito1 = string.Empty,
+                DistritoName = string.Empty,
                 UbiDptoKey = dpto.IdDepartamento,
                 UbiDptoCodigo = dpto.CodigoDepartamento,
-                UbiDptoName = dpto.Departamento1,
+                UbiDptoName = dpto.DepartamentoName,
                 UbiProvKey = prov.IdProvincia,
                 UbiProvCodigo = prov.CodigoProvincia,
-                UbiProvName = prov.Provincia1
+                UbiProvName = prov.ProvinciaName
             };   
 }
 
@@ -72,7 +72,7 @@
                             <tr>
 
                                 <td style="text-align: center">@Html.DisplayFor(m => @codProv)</td>
-                                <td style="text-align: left">@Html.DisplayFor(m => item.Distrito1)</td>
+                                <td style="text-align: left">@Html.DisplayFor(m => item.DistritoName)</td>
 
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdDistrito)" data-url="@Url.Action($"Edit/{item.IdDistrito}")">

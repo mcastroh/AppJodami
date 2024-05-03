@@ -11,7 +11,7 @@
             </div> 
             <div class="modal-body">       
                 <form asp-action="Editar" method="post" class="needs-validation" novalidate>                    
-                    <input type="hidden" asp-for="IdDepartamento" />
+                    <input type="hidden" asp-for="@Model.IdDepartamento" />
                     <div class="form-group">                       
                         <label class="control-label">Código</label>
                         <input asp-for="CodigoDepartamento" class="form-control" autocomplete="off" required maxlength="2" />
@@ -19,7 +19,7 @@
                     </div> 
                     <div class="form-group">
                         <label class="control-label">Departamento</label>
-                        <input asp-for="Departamento1" class="form-control" autocomplete="off" required maxlength="100" />
+                        <input asp-for="@Model.DepartamentoName" class="form-control" autocomplete="off" required maxlength="100" />
                         <div class="invalid-feedback">Descripción obligatorio</div>
                     </div>
 
