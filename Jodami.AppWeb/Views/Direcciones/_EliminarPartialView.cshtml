@@ -13,7 +13,6 @@
                 <form asp-action="Eliminar" method="post">
                     <input type="hidden" asp-for="@Model.NewDireccion.IdDireccion" />
                     <input type="hidden" asp-for="@Model.NewSocioDireccion.IdSocio" />
-                    <input type="hidden" asp-for="@Model.NewSocioDireccion.IdSocioDireccion" />
                     <input type="hidden" asp-for="@Model.IdSocio" />
                     <input type="hidden" asp-for="@Model.TipoNroDcmto" />
                     <input type="hidden" asp-for="@Model.Nombres" />
@@ -21,54 +20,65 @@
                     <input type="hidden" asp-for="@Model.TipoSocio" />
                     <input type="hidden" asp-for="@Model.ControladorOrigen" />
                     <input type="hidden" asp-for="@Model.AccionOrigen" />
-
-                   @*  <div class="row">
-                        <div class="col-sm-11">
-                            <label class="control-label">Nombres del contacto</label>
-                            <input class="form-control" type="text" id="Nombre" disabled asp-for="@Model.NewSocioDireccion.Nombre">
+                     
+                    @* ---------------------------------- *@
+                    @* Tipo de dirección, Datos de la Via *@
+                    @* ---------------------------------- *@
+                    <div class="row form-group">
+                        <div class="col-md-2">
+                            <label class="control-label">Tipo de Dirección</label>
+                            <select class="form-control" asp-for="@Model.NewDireccion.IdTipoDireccion" disabled asp-items="@(new SelectList(@Model.LstTipoDirecciones, "IdTipoDireccion", "Descripcion"))">
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Tipo de Vía</label>
+                            <select class="form-control" asp-for="@Model.NewDireccion.IdTipoVia" disabled asp-items="@(new SelectList(@Model.LstTipoVias, "IdTipoVia", "Descripcion"))">
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="control-label">Nombre de la Vía</label>
+                            <input id="nombreVia" class="form-control" asp-for="@Model.NewDireccion.NombreVia" class="form-control" disabled />
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Número de Vía</label>
+                            <input id="numeroVia" class="form-control" asp-for="@Model.NewDireccion.NumeroVia" class="form-control" disabled />
                         </div>
                     </div>
 
+                    @* ---------------- *@
+                    @* Datos de la Zona *@
+                    @* ---------------- *@
                     <hr />
                     <div class="row">
-                        <div class="col-sm-11">
-                            <label for="cboCargo" class="form-label">Cargo</label>
-                            <select id="cboCargo" asp-for="@Model.NewContacto.IdCargo" class="form-control form-select-sm" disabled asp-items="@(new SelectList(@Model.LstCargos, "IdCargo", "Descripcion"))">
-                             </select>                          
+                        <div class="col-md-3">
+                            <label class="control-label">Tipo de Zona</label>
+                            <select id="cboTipoZona" class="form-control" asp-for="@Model.NewDireccion.IdTipoZona" disabled asp-items="@(new SelectList(@Model.LstTipoZonas, "IdTipoZona", "Descripcion"))">
+                            </select>
+                        </div>
+                        <div class="col-md-9">
+                            <label class="control-label">Nombre de Zona</label>
+                            <input id="nombreZona" class="form-control" asp-for="@Model.NewDireccion.NombreZona" class="form-control" disabled />
                         </div>
                     </div>
 
+                    @* ---------------- *@
+                    @* Datos del Ubigeo *@
+                    @* ---------------- *@
                     <hr />
                     <div class="row">
-                        <div class="col-sm-11">
-                            <label for="Email" class="control-label">Email</label>
-                            <input type="email" id="email" asp-for="@Model.NewContacto.Email" class="form-control" disabled />
+                        <div class="col-sm-3">
+                            <label class="form-label">Departamento</label> 
+                            <input id="numeroVia" class="form-control" asp-for="@Model.NewSocioDireccion.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.IdDepartamentoNavigation.DepartamentoName" class="form-control" disabled />
                         </div>
-                    </div>
-
-                    <hr />
-                    <div class="row">
-                        <div class="col-sm-3 form-group">
-                            <label for="Celular" class="control-label">Celular</label>
-                            <input id="Celular" asp-for="@Model.NewContacto.Celular" class="form-control" disabled />
+                        <div class="col-sm-3">
+                            <label class="form-label">Provincia</label>
+                            <input id="numeroVia" class="form-control" asp-for="@Model.NewSocioDireccion.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.ProvinciaName" class="form-control" disabled />
                         </div>
-                        <div class="col-sm-3 form-group">
-                            <label for="Telefono" class="control-label">Teléfono</label>
-                            <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" disabled />
+                        <div class="col-sm-3">
+                            <label class="form-label">Distrito</label>
+                            <input id="numeroVia" class="form-control" asp-for="@Model.NewSocioDireccion.IdDireccionNavigation.IdDistritoNavigation.DistritoName" class="form-control" disabled />
                         </div>
-                        <div class="col-sm-3 form-group">
-                            <label for="cboEstado">Celular para WhatsApp (en Check)</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp" disabled>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label for="cboEstado">Estado Activo (en Check)</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.EsActivo" disabled>
-                            </div>
-                        </div> 
-                    </div> *@
+                    </div> 
 
                     @*-------------- *@
                     @* Pie de página *@
@@ -77,6 +87,7 @@
                         <button id="btnSubmit" type="submit" class="btn btn-primary"> Eliminar</button>
                         <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
                     </div>
+
                 </form>
             </div>
         </div>

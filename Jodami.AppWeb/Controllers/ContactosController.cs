@@ -92,7 +92,7 @@ namespace Jodami.AppWeb.Controllers
 
             return new ViewAsPdf("ListarPDF", query)
             {
-                FileName = $"Proveedores {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
+                FileName = $"Contactos {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 PageMargins = { Left = 15, Bottom = 10, Right = 15, Top = 30 },

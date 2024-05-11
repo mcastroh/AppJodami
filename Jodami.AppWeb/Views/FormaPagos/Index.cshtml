@@ -1,0 +1,137 @@
+﻿@model Jodami.AppWeb.Models.Dto.DtoFormaPagos
+ 
+@{
+    ViewData["Title"] = "Contactos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string tipoDcmtoAndNombres = $"{Model.TipoNroDcmto}  {Model.Nombres}";
+}
+
+@section Estilos{
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+
+    <style>
+        .tdaction {
+            width: 15%;
+        }
+
+        .tdSr {
+            width: 7%;
+        }
+
+        strong {
+            font-size: 24px !important;
+        }
+
+        input.largerCheckbox {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+} 
+
+@using (@Html.BeginForm("Guardar", "FormaPagos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+<input type="hidden"  asp-for="@Model.IdSocio">    
+<input type="hidden" asp-for="@Model.AccionOrigen">    
+<input type="hidden" asp-for="@Model.ControladorOrigen"> 
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista Formas de Pago</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">                        
+                    <button type="submit" class="btn btn-success"><i class="fas fa-plus-circle"></i> Guardar</button>
+                    <a class="btn btn-success" href="@Url.Action("ListarPDF", "FormaPagos", new {idSocio = @Model.IdSocio, tipoSocioOrigen = @Model.TipoSocio, controladorOrigen = @Model.ControladorOrigen, accionOrigen = @Model.AccionOrigen})"><i class="bi bi-printer"></i> Listado</a>
+                    <a class="btn btn-success" href="@Url.Action(@Model.AccionOrigen, @Model.ControladorOrigen)"><i class="fa-solid fa-database"></i> Regresar</a>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="@tipoDcmtoAndNombres" class="form-control" disabled />
+            </div>
+            <div class="col-sm-2">
+                <input asp-for="@Model.Situacion" class="form-control" disabled readonly />
+            </div>
+        </div>
+    </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" class="largerCheckbox" id="chkAll" /></th>
+                                <th>Formas de Pago</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i <= Model.vmTipoFormaPago.Count() - 1; i++)
+                            {
+                                <input type="hidden" asp-for="@Model.vmTipoFormaPago[i].IdTipoFormaPago">
+                                <input type="hidden" asp-for="@Model.vmTipoFormaPago[i].SeleccionInicial">
+                                <tr>
+                                    <td><input type="checkbox" class="largerCheckbox tblChk chk" asp-for="@Model.vmTipoFormaPago[i].SEL" /></td>
+                                    <td>@Html.DisplayFor(m => @Model.vmTipoFormaPago[i].Codigo)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+</div>
+}
+
+@section Scripts{ 
+
+    <script src="~/vendor/jquery/jquery.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#tblData').on('change', '.tblChk', function () {
+                if ($('.tblChk:checked').length == $('.tblChk').length) {
+                    $('#chkAll').prop('checked', true);
+                } else {
+                    $('#chkAll').prop('checked', false);
+                }
+                getCheckRecords();
+            });
+
+            $("#chkAll").change(function () {  
+                if ($(this).prop('checked')) {
+                    $('.tblChk').not(this).prop('checked', true);
+                } else {
+                    $('.tblChk').not(this).prop('checked', false);
+                }
+                getCheckRecords();
+            })
+            
+        })
+
+        function getCheckRecords() { 
+            $(".selectedDiv").html("");
+            $('.tblChk:checked').each(function () { 
+                if ($(this).prop('checked')) {
+                    if ($(".selectedDiv").children().length == 0) {
+                        const rec = "<strong>" + $(this).attr("data-id") + " </strong>";
+                        $(".selectedDiv").append(rec);
+                    } else {
+                        const rec = ", <strong>" + $(this).attr("data-id") + " </strong>";
+                        $(".selectedDiv").append(rec);
+                    }
+                }                
+            });
+
+        }
+
+    </script>
+
+}

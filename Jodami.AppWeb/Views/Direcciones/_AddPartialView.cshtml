@@ -13,6 +13,7 @@
                 <div class="modal-body">
                    
                     <form asp-action="Adicionar" method="post" class="needs-validation" novalidate>
+
                         <input type="hidden" asp-for="@Model.NewDireccion.IdDireccion" />
                         <input type="hidden" asp-for="@Model.NewSocioDireccion.IdSocio" />
                         <input type="hidden" asp-for="@Model.IdSocio" />
@@ -33,22 +34,28 @@
                                 <select class="form-control" asp-for="@Model.NewDireccion.IdTipoDireccion" required asp-items="@(new SelectList(@Model.LstTipoDirecciones, "IdTipoDireccion", "Descripcion"))">
                                     <option value="">Seleccionar</option>
                                 </select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Seleccionar tipo de dirección</div>
                             </div>
                             <div class="col-md-3">
                                 <label class="control-label">Tipo de Vía</label>
                                 <select class="form-control" asp-for="@Model.NewDireccion.IdTipoVia" required asp-items="@(new SelectList(@Model.LstTipoVias, "IdTipoVia", "Descripcion"))">
                                     <option value="">Seleccionar</option>
                                 </select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Seleccionar tipo de vía</div>
                             </div>
                             <div class="col-md-5">
                                 <label class="control-label">Nombre de la Vía</label>
-                                <input id="nombreVia" class="form-control" asp-for="@Model.NewDireccion.NombreVia" required class="form-control" placeholder="Ingrese nombre de vía" />
-                                <span asp-validation-for="@Model.NewDireccion.NombreVia" class="text-danger"></span>
+                                <input id="nombreVia" class="form-control" asp-for="@Model.NewDireccion.NombreVia" required class="form-control" autocomplete="off" placeholder="Ingrese nombre de vía" />
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Ingresar nombre de la vía</div>
                             </div>
                             <div class="col-md-2">
                                 <label class="control-label">Número de Vía</label>
-                                <input id="numeroVia" class="form-control" asp-for="@Model.NewDireccion.NumeroVia" required class="form-control" placeholder="Ingrese nro de vía" />
-                                <span asp-validation-for="@Model.NewDireccion.NumeroVia" class="text-danger"></span>
+                                <input id="numeroVia" class="form-control" asp-for="@Model.NewDireccion.NumeroVia" required class="form-control" autocomplete="off" placeholder="Ingrese nro de vía" />
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Ingresar número de vía</div>
                             </div>
                         </div> 
 
@@ -57,17 +64,20 @@
                         @* ---------------- *@
                         <hr />
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <label class="control-label">Tipo de Zona</label>
-                                <select id="cboTipoZona" class="form-control" asp-for="@Model.NewDireccion.IdTipoZona" asp-items="@(new SelectList(@Model.LstTipoZonas, "IdTipoZona", "Descripcion"))">
+                                <select id="cboTipoZona" class="form-control" asp-for="@Model.NewDireccion.IdTipoZona" required asp-items="@(new SelectList(@Model.LstTipoZonas, "IdTipoZona", "Descripcion"))">
                                     <option value="">Seleccionar</option>
                                 </select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Seleccionar tipo de zona</div>
                             </div>
 
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <label class="control-label">Nombre de Zona</label>
-                                <input id="nombreZona" class="form-control" asp-for="@Model.NewDireccion.NombreZona" class="form-control" placeholder="Ingrese nombre de zona" />
-                                <span asp-validation-for="@Model.NewDireccion.NombreZona" class="text-danger"></span>
+                                <input id="nombreZona" class="form-control" asp-for="@Model.NewDireccion.NombreZona" class="form-control" autocomplete="off" placeholder="Ingrese nombre de zona" />
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Ingresar nombre de la zona</div>
                             </div>
                         </div>
 
@@ -75,43 +85,82 @@
                         @* Datos del Ubigeo *@
                         @* ---------------- *@
                         <hr />
-                        <div class="row">
+                        <div class="row">                  
                             <div class="col-sm-3">
                                 <label class="form-label">Departamento</label>
-                                <select id="cbodepartamento" asp-for="@Model.DepartamentoKey" class="form-control form-select-sm"></select>
+                                <select id="cbodepartamento" asp-for="@Model.DepartamentoKey" class="form-control form-select-sm" required></select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Seleccionar departamento</div>
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-label">Provincia</label>
-                                <select id="cboprovincia" asp-for="@Model.ProvinciaKey" class="form-control form-select-sm"></select>
+                                <select id="cboprovincia" asp-for="@Model.ProvinciaKey" class="form-control form-select-sm" required></select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Seleccionar provincia</div>
                             </div>
                             <div class="col-sm-3">
                                 <label class="form-label">Distrito</label>
-                                <select id="cbodistrito" asp-for="@Model.DistritoKey" class="form-control form-select-sm"></select>
+                                <select id="cbodistrito" asp-for="@Model.DistritoKey" class="form-control form-select-sm" required></select>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Seleccionar distrito</div>
                             </div>
-
-                        </div>
-                        <br /> 
-
+                        </div>                     
 
                         @*-------------- *@
-                        @* Pie de página *@
-                        @*-------------- *@
-                        <hr />
+                        @* Pie de página onclick="validarFormulario()" *@
+                        @*-------------- *@      
+                        <br />
+                        <br />
                         <div class="modal-footer">
-                            <button id="btnSubmit" type="submit" class="btn btn-primary" onclick="validarFormulario()"> Guardar</button>
+                            <button id="btnSubmit" type="submit" class="btn btn-primary" > Guardar</button>
                             <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
                         </div>
                          
                     </form>
-                   
-                    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
 
-                    <script>
+                    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+                    <script type="text/javascript">
+                         
+                        $(document).ready(function () {
+    
+                            $.getJSON("getUbigeoDepartamento", {}, function (dataDepartamentos) {
+                                $("#cboprovincia").empty();
+                                $("#cbodistrito").empty();
+                                $("#cbodepartamento").append($("<option>").attr({ "value": "" }).text("Seleccionar"));
+                                $.each(dataDepartamentos, function (i, obj) { 
+                                    $("#cbodepartamento").append("<option value='" + obj.idDepartamento + "'>" + obj.departamentoName + "</option>");                                    
+                                });                                
+                            });
+
+                            $("#cbodepartamento").change(function () {                                
+                                $("#cboprovincia").empty();
+                                $("#cbodistrito").empty();
+                                let keyDepartamento = $("#cbodepartamento").val();
+                                $.getJSON("getUbigeoProvinciasByDepartamento", { "b_departamento": keyDepartamento }, function (data) {                                   
+                                    $("#cboprovincia").append($("<option>").attr({ "value": "" }).text("Seleccionar"));
+                                    $.each(data, function (i, obj) {
+                                        $("#cboprovincia").append("<option value='" + obj.idProvincia + "'>" + obj.provinciaName + "</option>");
+                                    });
+                                });
+                            });
+
+                            $("#cboprovincia").change(function () {
+                                $("#cbodistrito").empty();
+                                let keyProvincia = $("#cboprovincia").val();
+                                $.getJSON("getUbigeoDistritosByDepartamentoAndProvincia", { "b_provincia": keyProvincia }, function (data) {                                   
+                                    $("#cbodistrito").append($("<option>").attr({ "value": "" }).text("Seleccionar"));
+                                    $.each(data, function (i, obj) {
+                                        $("#cbodistrito").append("<option value='" + obj.idDistrito + "'>" + obj.distritoName + "</option>");
+                                    });
+                                });
+                            });
+                        });
 
                         (function () {
-                            'use strict' 
+                            'use strict'
                             var forms = document.querySelectorAll('.needs-validation')
-                           
+
                             Array.prototype.slice.call(forms)
                                 .forEach(function (form) {
                                     form.addEventListener('submit', function (event) {
@@ -121,113 +170,10 @@
                                         }
                                         form.classList.add('was-validated')
                                     }, false)
-                                }) 
-                        })() 
-                                           
+                                })
+                        })()
 
-                        $(document).ready(function () {
-                            obtenerDepartamentos();
-                            obtenerProvincias();
-                            obtenerDistritos();
-                        })
-
-                        function obtenerDepartamentos() {
-                            console.log('obtenerDepartamentos')
-
-                            $.ajax({
-                                url: "@Url.Action("getUbigeoDepartamento", "UbigeoViewGenerico")",
-                                type: "GET",
-                                dataType: "json",
-                                success: function (response) {
-                                    $("#cbodepartamento").append(
-                                        $("<option>").attr({ "value": "" }).text("Seleccionar")
-                                    )
-
-                                    $.each(response, function (index, elemento) {
-
-                                        $("#cbodepartamento").append(
-                                            $("<option>").attr({ "value": elemento.departamento }).text(elemento.departamento)
-                                        )
-
-                                    })
-
-                                    $("#cbodepartamento").select2({ placeholder: "Seleccionar", width: "100%" });
-                                }
-                            })
-
-                        }
-
-                        function obtenerProvincias() {
-                            console.log('obtenerProvincias')
-                            var _departamento = $("#cbodepartamento option:selected").val()
-
-                            $.ajax({
-                                url: "@Url.Action("getUbigeoProvinciasByDepartamento", "UbigeoViewGenerico")",
-                                type: "GET",
-                                dataType: "json",
-                                data: {
-                                    b_departamento: _departamento
-                                },
-                                success: function (response) {
-                                    $("#cboprovincia").empty();
-
-                                    $("#cboprovincia").append(
-                                        $("<option>").attr({ "value": "" }).text("Seleccionar")
-                                    )
-
-                                    $.each(response, function (index, elemento) {
-
-                                        $("#cboprovincia").append(
-                                            $("<option>").attr({ "value": elemento.provincia }).text(elemento.provincia)
-                                        )
-
-                                    })
-
-                                    $("#cboprovincia").select2({ placeholder: "Seleccionar", width: "100%" });
-                                }
-                            })
-                        }
-
-                        $("#cbodepartamento").on("change", function () {
-                            obtenerProvincias();
-                            $('#cboprovincia').trigger('change')
-                        })
-
-                        function obtenerDistritos() {
-                            console.log('obtenerDistritos')
-                            var _departamento = $("#cbodepartamento option:selected").val()
-                            var _provincia = $("#cboprovincia option:selected").val()
-
-                            $.ajax({
-                                url: "@Url.Action("getUbigeoDistritosByDepartamentoAndProvincia", "UbigeoViewGenerico")",
-                                type: "GET",
-                                dataType: "json",
-                                data: {
-                                    b_departamento: _departamento,
-                                    b_provincia: _provincia
-                                },
-                                success: function (response) {
-                                    $("#cbodistrito").empty();
-                                    $("#cbodistrito").append(
-                                        $("<option>").attr({ "value": "" }).text("Seleccionar")
-                                    )
-
-                                    $.each(response, function (index, elemento) {
-                                        $("#cbodistrito").append(
-                                            $("<option>").attr({ "value": elemento.idUbigeo }).text(elemento.distrito)
-                                        )
-                                    })
-
-                                    $("#cbodistrito").select2({ placeholder: "Seleccionar", width: "100%" });
-                                }
-                            })
-                        }
-
-                        $("#cboprovincia").on("change", function () {
-                            obtenerDistritos();
-                        })
-
-                    </script>
+                    </script> 
 
                 </div>
             </div>
@@ -237,7 +183,3 @@
 
 
 
-@section Scripts {
-
-   
-} 

@@ -1,0 +1,210 @@
+﻿@model Jodami.AppWeb.Models.Dto.DtoFormaPagos
+ 
+@{
+    ViewData["Title"] = "Contactos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string tipoDcmtoAndNombres = $"{Model.TipoNroDcmto}  {Model.Nombres}";
+}
+
+@section Estilos{
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+
+    <style>
+        .tdaction {
+            width: 15%;
+        }
+
+        .tdSr {
+            width: 7%;
+        }
+
+        strong {
+            font-size: 24px !important;
+        }
+
+        input.largerCheckbox {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+
+}
+
+<input id="keySocio" value=@Model.IdSocio>
+@* <input type="hidden" id="hdnAccion" value=@ViewData["Accion"]> *@
+ 
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista Formas de Pago</h6>
+    </div>
+
+    <div class="card-body">
+         <div class="row"> 
+             @* 
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "FormaPagos", new {idSocio = @Model.IdSocio, tipoSocioOrigen = @Model.TipoSocio, controladorOrigen = @Model.ControladorOrigen, accionOrigen = @Model.AccionOrigen})"><i class="bi bi-printer"></i> Listado</a>
+                *@
+                <a class="btn btn-success" href="@Url.Action(Model.AccionOrigen, Model.ControladorOrigen)"><i class="bi bi-printer"></i> Regresar</a>
+            </div>
+            <div class="col-sm-4">
+                <input asp-for="@tipoDcmtoAndNombres" class="form-control" disabled />
+            </div>
+            <div class="col-sm-2">
+                <input asp-for="@Model.Situacion" class="form-control" disabled readonly />
+            </div>
+        </div>
+       
+    </div> 
+    
+    <div class="row pt-3">
+        <div class="col-md-12 col-sm-12 col-12 p-2 ">
+             <table id="tblData" class="table table-bordered table-hover table-striped">
+                  <thead>                      
+                      <tr>
+                           <th>
+                               <input type="checkbox" class="largerCheckbox" id="chkAll" />                            
+                           </th>                                            
+                           <th>Forma de Pago</th>                         
+                       </tr>     
+                   </thead>
+                   <tbody>
+                        <tr>
+                            <td colspan="6" id="trLoader">
+                                <div class="text-center">
+                                    Loading
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>  
+            </table>
+         </div>
+    </div>
+                            
+    
+
+      
+
+
+
+</div>
+
+@section Scripts { 
+    @* <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+ 
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script> *@
+
+      
+    <script src="~/vendor/jquery/jquery.js"></script>
+
+@*      <script>
+                        $("a").on("click", function (event) {
+                            console.log('event =>  click');
+                            event.preventDefault();
+                            $("<div>")
+                                .append("default " + event.type + " prevented")
+                                .appendTo("#log");
+                        });
+                    </script> *@
+
+<script>
+
+                        $(document).ready(function () {
+
+                            // e.preventDefault();
+
+                            console.log('1. function document.ready => envia a loadGridData');
+                            loadGridData();
+
+                            $('#tblData').on('change', '.tblChk', function () { 
+                                if ($('.tblChk:checked').length == $('.tblChk').length) {
+                                    $('#chkAll').prop('checked', true);
+                                } else {
+                                    $('#chkAll').prop('checked', false);
+                                }
+                                getCheckRecords();
+                            });
+
+                            $("#chkAll").change(function () {
+                                // debugger;
+
+                                console.log('change =>  chkAll');
+
+                                if ($(this).prop('checked')) {
+                                    $('.tblChk').not(this).prop('checked', true);
+                                } else {
+                                    $('.tblChk').not(this).prop('checked', false);
+                                }
+                                getCheckRecords();
+                            })
+                        });
+
+                        function getCheckRecords() {
+                            // debugger;
+                            console.log('function =>  getCheckRecords');
+
+                            $(".selectedDiv").html("");
+                            $('.tblChk:checked').each(function () {
+                                // debugger;
+                                if ($(this).prop('checked')) {
+                                    if ($(".selectedDiv").children().length == 0) {
+                                        const rec = "<strong>" + $(this).attr("data-id") + " </strong>";
+                                        $(".selectedDiv").append(rec);
+                                    } else {
+                                        const rec = ", <strong>" + $(this).attr("data-id") + " </strong>";
+                                        $(".selectedDiv").append(rec);
+                                    }
+                                }
+                                console.log(this.value);
+                            });
+                        }
+                         
+
+                        function loadGridData() {
+
+            const _idSocio = document.getElementById('keySocio');
+
+                            console.log('2. loadGridData => socio: ' + _idSocio);; 
+
+                            $.ajax({
+                                type: "GET",                               
+                                url: "@Url.Action("GetFormasDePagoByKey", "FormaPagos")",
+                                dataType: "json",
+                                contentType: false,
+                                processData: false,
+                                data: {
+                                    idSocio: _idSocio
+                                },                                    
+                                // beforeSend: function () {
+                                //     $("#trLoader").show();
+                                // },
+                                success: function (results) {
+                                    $("#trLoader").remove();
+                                    let index = 0;
+                                    results.forEach(element => {
+                                        let dynamicTR = "<tr>";
+                        dynamicTR = dynamicTR + "<td> <input type='checkbox' data-id=" + element.IdTipoFormaPago + " class='largerCheckbox tblChk chk" + " asp-for=" + element.Sel + "' /></td>";
+                                        dynamicTR = dynamicTR + "<td>" + element.codigo + "</td>";
+                                        // dynamicTR = dynamicTR + "<td>" + element.username + "</td>";
+                                        // dynamicTR = dynamicTR + "<td>" + element.email + "</td>";
+                                        // dynamicTR = dynamicTR + "<td>" + element.phone + "</td>";
+                                        // dynamicTR = dynamicTR + "<td>" + element.website + "</td>";
+                                        dynamicTR = dynamicTR + " </tr>";
+                                        $("#tblData tbody").append(dynamicTR); 
+                                        index++;
+                                    });
+                                }
+                            });
+                        }
+
+                    </script>
+
+   
+                       
+}

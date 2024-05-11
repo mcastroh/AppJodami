@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Rack\**" />
     <Compile Remove="wwwroot\images\**" />
+    <Content Remove="Rack\**" />
     <Content Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="Rack\**" />
     <EmbeddedResource Remove="wwwroot\images\**" />
+    <None Remove="Rack\**" />
     <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
@@ -70,6 +74,11 @@
 
   <ItemGroup>
     <Content Remove="Views\Articulo\_EliminarPartialView - Copia.cshtml" />
+    <Content Remove="Views\FormaPagos\Indeaaaax.cshtml" />
+    <Content Remove="Views\FormaPagos\xIndex.cshtml" />
+    <Content Remove="Views\FormaPagos\_AddPartialView.cshtml" />
+    <Content Remove="Views\FormaPagos\_EditPartialView.cshtml" />
+    <Content Remove="Views\FormaPagos\_EliminarPartialView.cshtml" />
     <Content Remove="Views\Moneda\ListarPDF - Copia.cshtml" />
     <Content Remove="Views\Shared\_Layout - Copia.cshtml" />
     <Content Remove="wwwroot\js\contact.js" />
@@ -1966,10 +1975,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Views\Articulo\ListarPDF.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Views\Articulo\_AddPartialView.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

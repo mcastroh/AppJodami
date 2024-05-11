@@ -13,20 +13,18 @@ namespace Jodami.AppWeb.Models.Dto
         public string ControladorOrigen { get; set; }
         public string AccionOrigen { get; set; }
 
-
-
         public SocioDireccion NewSocioDireccion { get; set; }
         public Direccion NewDireccion { get; set; }
 
         public List<SocioDireccion> LstSocioDirecciones { get; set; }
         public List<TipoDireccion> LstTipoDirecciones { get; set; }
         public List<TipoVia> LstTipoVias { get; set; }
-
         public List<TipoZona> LstTipoZonas { get; set; }
+        public List<Departamento> LstDepartamentos { get; set; }
 
-        public string DepartamentoKey { get; set; }
-        public string ProvinciaKey { get; set; }
-        public string DistritoKey { get; set; }
+        public int DepartamentoKey { get; set; }
+        public int ProvinciaKey { get; set; }
+        public int DistritoKey { get; set; }
 
     }
 }

@@ -21,30 +21,30 @@
                         <input type="hidden" asp-for="@Model.AccionOrigen" />
 
                         <div class="row">
-                            <div class="col-sm-10">
+                            <div class="col-sm-11">
                                 <label class="control-label">Nombres del contacto</label>
-                                <input class="form-control" type="text" id="Nombre" asp-for="@Model.NewContacto.Nombre" placeholder="ingrese nombres del contacto">
+                                <input class="form-control" type="text" id="Nombre" asp-for="@Model.NewContacto.Nombre" autocomplete="off" maxlength="100" placeholder="ingrese nombres del contacto">
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback">Debe ingresar nombres del contacto</div>
-                            </div> 
-                        </div> 
+                            </div>
+                        </div>
 
                         <hr />
-                        <div class="row">    
-                            <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-11">
                                 <label for="cboCargo" class="form-label">Cargo</label>
                                 <select id="cboCargo" asp-for="@Model.NewContacto.IdCargo" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.LstCargos, "IdCargo", "Descripcion"))">
                                     <option value="">Seleccionar</option>
                                 </select>
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback">Debe seleccionar el cargo del contacto</div>
-                            </div> 
+                            </div>
                         </div>
 
                         <hr />
                         <div class="row">
-                            <div class="col-sm-9 form-group">
-                                <label for="Email" class="control-label">Email</label>                            
+                            <div class="col-sm-11 form-group">
+                                <label for="Email" class="control-label">Email</label>
                                 <input type="email" id="email" asp-for="@Model.NewContacto.Email" class="form-control" autocomplete="off" maxlength="100" />
                             </div>
                         </div>
@@ -57,20 +57,21 @@
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label for="Telefono" class="control-label">Teléfono</label>
-                                <input id ="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
+                                <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
                             </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <span>Celular para WhatsApp</span>
+                            <div class="col-sm-3 form-group">
+                                <label for="cboEstado">Celular para WhatsApp (en Check)</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-text">
-                                        <input class="form-check-input mt-0" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp" aria-label="Checkbox for following text input">
-                                    </div>
-                                    <input type="text" value="Si Celular es para WhatsApp activar check" readonly="readonly" class="form-control" aria-label="Text input with checkbox">
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label for="cboEstado">Estado Activo (en Check)</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.EsActivo">
                                 </div>
-                            </div> 
-                        </div>                       
+                            </div>
+                        </div>
 
                         @*-------------- *@
                         @* Pie de página *@
@@ -79,7 +80,7 @@
                         <div class="modal-footer">
                             <button id="btnSubmit" type="submit" class="btn btn-primary" onclick="validarFormulario()"> Guardar</button>
                             <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
-                        </div>
+                        </div> 
                          
                     </form>
                    

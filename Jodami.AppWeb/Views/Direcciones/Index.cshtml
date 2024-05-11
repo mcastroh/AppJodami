@@ -21,9 +21,9 @@
         <div class="row">
             <div class="col-sm-6">
                 <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                @await Html.PartialAsync("_AddPartialView", Model)
+                @await Html.PartialAsync("_AddPartialView", Model)  
                 <a class="btn btn-success" href="@Url.Action("ListarPDF", "Direcciones", new {idSocio = @Model.IdSocio, tipoSocioOrigen = @Model.TipoSocio, controladorOrigen = @Model.ControladorOrigen, accionOrigen = @Model.AccionOrigen})"><i class="bi bi-printer"></i> Listado</a>
-                <a class="btn btn-success" href="@Url.Action(Model.AccionOrigen, Model.ControladorOrigen)"><i class="bi bi-printer"></i> Regresar</a>                 
+                <a class="btn btn-success" href="@Url.Action(Model.AccionOrigen, Model.ControladorOrigen)"><i class="bi bi-printer"></i> Regresar</a>  
             </div>
             <div class="col-sm-4">                      
                 <input asp-for="@tipoDcmtoAndNombres" class="form-control" disabled />
@@ -50,6 +50,7 @@
                     <tbody>
                         @foreach (var item in Model.LstSocioDirecciones)
                         {
+
                             var dtoItem = new Jodami.AppWeb.Models.Dto.DtoDirecciones()
                             {
                                 IdSocio = Model.IdSocio,
@@ -60,7 +61,15 @@
                                 ControladorOrigen = Model.ControladorOrigen,
                                 AccionOrigen = Model.AccionOrigen,
                                 NewSocioDireccion = item,
-                                NewDireccion = Model.NewDireccion 
+                                NewDireccion = item.IdDireccionNavigation,
+                                LstSocioDirecciones = Model.LstSocioDirecciones,
+                                LstTipoDirecciones = Model.LstTipoDirecciones,
+                                LstTipoVias = Model.LstTipoVias,
+                                LstTipoZonas = Model.LstTipoZonas,
+                                LstDepartamentos = Model.LstDepartamentos,
+                                DepartamentoKey = Model.DepartamentoKey,
+                                ProvinciaKey = Model.ProvinciaKey,
+                                DistritoKey = Model.DistritoKey 
                             }; 
 
                             <tr>
