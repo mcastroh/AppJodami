@@ -2,10 +2,16 @@
 {
     public class VMSociosProveedores : VMSociosGrupos
     {
+        public string OperacionCRUD { get; set; }
+        public int IdTipoDcmtoIdentidadAsignado { get; set; }
+
+        public string NombreRazonSocial { get; set; }
+
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
         public string PrimerNombre { get; set; }
         public string SegundoNombre { get; set; }
+
         public int? IdGrupoSocioNegocio { get; set; }
         public int? IdColaboradorAsignado { get; set; }
         public string Telefono { get; set; }
@@ -21,7 +27,6 @@
         public int? IdTipoMotivoBaja { get; set; }
         public DateTime? FechaBaja { get; set; }
 
-        public string NombreRazonSocial { get; set; }
 
         public List<VMSociosGrupos> nav_GrupoEconomico { get; set; }
         public List<VMSociosColaboradores> nav_Colaboradores { get; set; }

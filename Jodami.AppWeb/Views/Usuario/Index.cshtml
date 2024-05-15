@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+    
 }
 
 <!-- DataTales Example -->
@@ -16,8 +17,8 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-3">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalData"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
+            <div class="col-sm-3"> 
+                <button class="btn btn-success" id="btnNuevo"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
             </div>
         </div>
         <hr />
@@ -26,51 +27,17 @@
                 <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Foto</th>
+                            <th hidden="hidden">Id</th>
                             <th>Nombre</th>
                             <th>Correo</th>
-                            <th>Telefono</th>
+                            <th>Celular</th>
                             <th>Rol</th>
+                           @*  <th>Imagen</th> *@
                             <th>Estado</th>
-                            <th>Acciones</th>
+                            <th>Acciones</th> 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><img style="height:60px ;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" /></td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td><span class="badge badge-info">Activo</span></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><img style="height:60px ;" src="https://images.unsplash.com/photo-1519648023493-d82b5f8d7b8a?w=300" class="rounded mx-auto d-block" /></td>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td><span class="badge badge-danger">No Activo</span></td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -78,7 +45,7 @@
     </div>
 </div>
 
-<!--  Modal-->
+<!--  Modal-->  
 <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -110,8 +77,7 @@
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="cboRol">Rol</label>
-                                    <select class="form-control form-control-sm" id="cboRol">
-                                        <option value="1">Administrador</option>
+                                    <select class="form-control form-control-sm" id="cboRol"> 
                                     </select>
                                 </div>
                             </div>
@@ -135,6 +101,7 @@
 
                     </div>
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
@@ -143,8 +110,10 @@
         </div>
     </div>
 </div>
-
+ 
+ 
 @section Scripts {
+
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
@@ -154,7 +123,11 @@
     <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
     <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
     <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+    
+     
+    <script src="~/js/vistas/usuario_index.js"></script>
+     
+  
 
-    <!-- SOLO ES DE EJEMPLO - IGNORAR -->
-    <script src="~/js/vistas/datatables-demo.js"></script>
+
 }

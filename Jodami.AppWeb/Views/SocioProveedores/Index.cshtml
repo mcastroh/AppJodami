@@ -7,7 +7,7 @@
 @{
     ViewData["Title"] = "Proveedores";
     Layout = "~/Views/Shared/_Layout.cshtml";
-        
+
     string tipoSocioOrigen = "Proveedor";
     string controladorOrigen = "SocioProveedores";
     string accionOrigen = "Index";
@@ -21,15 +21,15 @@
     var calificacion = (List<VMTipoCalificacion>)ViewBag.Calificacion;
 
     var entity = new VMSociosProveedores()
-    {  
+            {
                 IdSocio = 0,
                 IdTipoSocio = tipoSocio.IdTipoSocio,
                 IdTipoDcmtoIdentidad = dcmtoDefault.IdTipoDcmtoIdentidad,
-                NumeroDcmtoIdentidad = string.Empty,
-                RazonSocial = string.Empty,
+                NumeroDcmtoIdentidad = string.Empty,               
                 CodigoTipoDcmto = dcmtoDefault.Simbolo,
                 NameTipoDcmto = dcmtoDefault.Descripcion,
-                TiposDcmtoIdentidad = tiposDcmtosIdentidad, 
+                TiposDcmtoIdentidad = tiposDcmtosIdentidad,
+                RazonSocial = string.Empty,
                 ApellidoPaterno = string.Empty,
                 ApellidoMaterno = string.Empty,
                 PrimerNombre = string.Empty,
@@ -37,10 +37,11 @@
                 Telefono = string.Empty,
                 Celular = string.Empty,
                 PaginaWeb = string.Empty,
-                Email = string.Empty,  
+                Email = string.Empty,
                 nav_GrupoEconomico = grupoEconomico,
                 nav_Colaboradores = colaboradores,
-                nav_Calificacion = calificacion 
+                nav_Calificacion = calificacion,
+                OperacionCRUD = "INSERT"
     };
 
 }
@@ -59,8 +60,11 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">
-                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                @await Html.PartialAsync("_AddPartialView", entity)
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="@("#CrudEntidad-" + entity.IdSocio)" data-url="@Url.Action($"Insert/{entity.IdSocio}")">
+                    <i class="fas fa-pencil-alt"></i> Nuevo 
+                </button>
+                @await Html.PartialAsync("_CrudPartialView", entity)
+
                 <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioProveedores")"><i class="bi bi-printer"></i> Listado</a>
                 <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>
             </div>
@@ -82,22 +86,24 @@
                     </thead>
                     <tbody>
                         @foreach (var item in Model.OrderBy(x => x.RazonSocial).ToList())
-                        {                           
+                        {
+                            item.OperacionCRUD = "UPDATE";
+
                             <tr>
                                 <td>@Html.DisplayFor(m => item.NombreRazonSocial)</td>
                                 <td align="center">@Html.DisplayFor(m => item.CodigoTipoDcmto)</td>
                                 <td align="center">@Html.DisplayFor(m => item.NumeroDcmtoIdentidad)</td>                              
                                 <td align="center">@Html.DisplayFor(m => item.EsActivo)</td> 
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">
-                                        <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                <td> 
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="@("#CrudEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">
+                                        <i class="fas fa-pencil-alt"></i> Editar 
                                     </button>
-                                    @await Html.PartialAsync("_EditPartialView", item)
+                                    @await Html.PartialAsync("_CrudPartialView", item) 
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdSocio)" data-url="@Url.Action($"Eliminar/{item.IdSocio}")">
+                                  @*   <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdSocio)" data-url="@Url.Action($"Eliminar/{item.IdSocio}")">
                                         <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
                                     </button>
-                                    @await Html.PartialAsync("_EliminarPartialView", item)
+                                    @await Html.PartialAsync("_EliminarPartialView", item) *@
 
                                     <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "Contactos", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Contactos</a>
                                     <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "Direcciones", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Direcciones</a>

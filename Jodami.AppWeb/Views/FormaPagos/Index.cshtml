@@ -48,8 +48,8 @@
         <div class="row">
             <div class="col-sm-6">                        
                     <button type="submit" class="btn btn-success"><i class="fas fa-plus-circle"></i> Guardar</button>
-                    <a class="btn btn-success" href="@Url.Action("ListarPDF", "FormaPagos", new {idSocio = @Model.IdSocio, tipoSocioOrigen = @Model.TipoSocio, controladorOrigen = @Model.ControladorOrigen, accionOrigen = @Model.AccionOrigen})"><i class="bi bi-printer"></i> Listado</a>
-                    <a class="btn btn-success" href="@Url.Action(@Model.AccionOrigen, @Model.ControladorOrigen)"><i class="fa-solid fa-database"></i> Regresar</a>
+                    <a class="btn btn-success" href="@Url.Action("ListarPDF", "FormaPagos", new {idSocio = @Model.IdSocio, tipoSocioOrigen = @Model.TipoSocio, controladorOrigen = @Model.ControladorOrigen, accionOrigen = @Model.AccionOrigen})"> Listado</a>
+                    <a class="btn btn-success" href="@Url.Action(@Model.AccionOrigen, @Model.ControladorOrigen)"> Regresar</a>
             </div>
             <div class="col-sm-4">
                 <input asp-for="@tipoDcmtoAndNombres" class="form-control" disabled />

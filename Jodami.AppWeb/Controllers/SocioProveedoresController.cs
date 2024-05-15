@@ -58,15 +58,30 @@ namespace Jodami.AppWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Adicionar(VMSociosProveedores modelo)
         {
+            var keyRUC = (await _srvTipoDcmtoIdentidad.GetById(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC)).IdTipoDcmtoIdentidad;
+
             var socio = new Socio()
             {
                 IdTipoSocio = modelo.IdTipoSocio,
-                IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidad,
+                IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidadAsignado,
                 NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad,
-                RazonSocial = modelo.RazonSocial,
+                RazonSocial = keyRUC == modelo.IdTipoDcmtoIdentidadAsignado ? modelo.RazonSocial : string.Empty,
+                ApellidoPaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoPaterno : string.Empty,
+                ApellidoMaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoMaterno : string.Empty,
+                PrimerNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.PrimerNombre : string.Empty,
+                SegundoNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.SegundoNombre : string.Empty,
                 Telefono = modelo.Telefono,
                 Celular = modelo.Celular,
                 PaginaWeb = modelo.PaginaWeb,
+                Email = modelo.Email,
+                IsAfectoRetencion = modelo.IsAfectoRetencion,
+                IsAfectoPercepcion = modelo.IsAfectoPercepcion,
+                IsBuenContribuyente = modelo.IsBuenContribuyente,
+                IdTipoCalificacion = modelo.IdTipoCalificacion,
+                ZonaPostal = modelo.ZonaPostal,
+                FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null,
+                IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null,
+                IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null,
                 EsActivo = true,
                 UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
@@ -84,12 +99,19 @@ namespace Jodami.AppWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(VMSociosProveedores modelo)
         {
+            var keyRUC = (await _srvTipoDcmtoIdentidad.GetById(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC)).IdTipoDcmtoIdentidad;
             var socio = await _srvSocio.GetById(x => x.IdSocio == modelo.IdSocio);
-
+          
             socio.IdTipoSocio = modelo.IdTipoSocio;
-            socio.IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidad;
+            socio.IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidadAsignado;
             socio.NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad;
-            socio.RazonSocial = modelo.RazonSocial;
+
+            socio.RazonSocial = keyRUC == modelo.IdTipoDcmtoIdentidadAsignado ? modelo.RazonSocial : string.Empty;
+            socio.ApellidoPaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoPaterno : string.Empty;
+            socio.ApellidoMaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoMaterno : string.Empty;
+            socio.PrimerNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.PrimerNombre : string.Empty;
+            socio.SegundoNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.SegundoNombre : string.Empty;
+
             socio.Telefono = modelo.Telefono;
             socio.Celular = modelo.Celular;
             socio.Email = modelo.Email;
@@ -178,7 +200,8 @@ namespace Jodami.AppWeb.Controllers
             }
 
             foreach ( var item in entityProveedores) 
-            { 
+            {
+                item.IdTipoDcmtoIdentidadAsignado = item.IdTipoDcmtoIdentidad;
                 item.CodigoTipoDcmto = tipoDocumentoIdentidad.FirstOrDefault(x=> x.IdTipoDcmtoIdentidad == item.IdTipoDcmtoIdentidad).Simbolo;
                 item.NameTipoDcmto = tipoDocumentoIdentidad.FirstOrDefault(x => x.IdTipoDcmtoIdentidad == item.IdTipoDcmtoIdentidad).Descripcion;
                 item.TiposDcmtoIdentidad = tipoDocumentoIdentidad;
@@ -186,6 +209,13 @@ namespace Jodami.AppWeb.Controllers
                 item.nav_GrupoEconomico = entityGruposEconomicos;
                 item.nav_Colaboradores = entityColaboradores;
                 item.nav_Calificacion = entityTipoCalificacion;
+
+                //item.ApellidoPaterno = item.ApellidoPaterno;
+                //item.ApellidoMaterno = item.ApellidoMaterno;
+                //item.PrimerNombre = item.PrimerNombre;
+                //item.SegundoNombre = item.SegundoNombre;
+                //item.IdSocio = item.IdSocio;
+
             }             
 
             ViewBag.TipoDocumentoIdentidad = tipoDocumentoIdentidad.ToList();

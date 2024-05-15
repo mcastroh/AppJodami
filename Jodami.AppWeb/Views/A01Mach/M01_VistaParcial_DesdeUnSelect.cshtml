@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista parcial</title> 
+</head>
+
+<body>
+    <div id="divFrmCreate" class="container-fluid">     
+        <div class="row my-4">            
+            <div class="col-6">
+                <form id="frmCreateDocto" class="frmCreateDocto" asp-action="Create">
+
+                    <div class="form-group">
+                        <h4>Entradas al Almacén con Ordenes de Compra</h4>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label for="cboOrdenDeCompra" class="form-label">Orden de Compra</label>
+                                <select name="cboOrdenDeCompra" id="ordenCompraId">
+                                    <option value="">Seleccione una orden de compra</option>
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="php">PHP</option>
+                                    <option value="java">Java</option>
+                                    <option value="golang">Golang</option>
+                                    <option value="python">Python</option>
+                                    <option value="c#">C#</option>
+                                    <option value="C++">C++</option>
+                                    <option value="erlang">Erlang</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <hr />
+                        <h5>Aquí debe ir la vista parcial de la Orden de Compra seleccionada</h5>
+                        <hr />
+                        <br />
+                        <br />
+                        <input type="submit" value="Crear Entrada" />
+                    </div>
+                                      
+                </form>
+
+                <script src="~/vendor/jquery/jquery.js"></script>
+
+                <script>
+
+
+                    $(document).ready(function () { 
+                        getOrdenCompraInfo();
+                    })
+
+                    function getOrdenCompraInfo() {
+                        let _ordenCompraId = $("#ordenCompraId option:selected").val();    
+                        console.log("Orden de Compra # " + _ordenCompraId);
+                        if (_ordenCompraId == "") {
+                            Swal.fire({ text: "Seleccione una Órden de Compra.", icon: 'info', allowOutsideClick: false, showConfirmButton: true, timer: 1500, timerProgressBar: true });
+                            return
+                        }
+
+                        // $.ajax({
+                        //     url: "/DoctosAlmMaster/GetOrdenCompraInfo",
+                        //     data: {
+                        //         OrdenCompraId: ordenCompraId,
+                        //         ConsignatarioId: consignatarioId,
+                        //         AlmacenId: almacenId
+                        //     },
+                        //     type: "POST",
+
+                        //     success: function (response) {
+                        //         /* Mostrar dentro de un contenedor
+                        //     <div>
+                        //     */
+                        //         $('#detailsDiv').load("/HiloOcMaster/Details/" + response.hiloOCId);
+
+                        //         /* Mostrar la informacion en una ventana modal */
+                        //         //$("#modal-content").load("/HiloOcMaster/Details/" + response.hiloOCId);
+                        //         //$("#WinModal").modal("show");
+                        //     },
+
+                        //     error: function (errormessage) {
+                        //         window.alert(errormessage.responseText);
+                        //     }
+                        // });
+                    }
+
+
+                </script>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    
+
+</body>
+
+</html>
+
+
+ 

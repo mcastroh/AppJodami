@@ -1,8 +1,4 @@
-﻿using Jodami.Entity;
-using System;
-using System.Text.RegularExpressions;
-
-namespace Jodami.AppWeb.Utilidades.Infraestructura
+﻿namespace Jodami.AppWeb.Utilidades.Infraestructura
 {
     public class KeysNames
     {
@@ -40,9 +36,17 @@ namespace Jodami.AppWeb.Utilidades.Infraestructura
         public const string TIPO_ARTICULO = "Artículo";
         public const string TIPO_SERVICIO = "Servicio";
         public const string TIPO_ACTIVO_FIJO = "Activo Fijo";
- 
 
 
+         
+
+        public enum FormularioAccion
+        {
+            Nuevo,
+            Actualizar,
+            Eliminar,
+            Consultar
+        } 
 
 
 

@@ -1,0 +1,287 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosProveedores
+  
+<div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="AddEntidadLabel">Adicionar Proveedor</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>          
+            <div class="modal-body">
+                <div class="modal-body">   
+                    <form id="formulario" asp-action="Adicionar" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" asp-for="@Model.IdTipoSocio" />
+                         
+                        <style>
+                            .form-control.ok input {
+                                border: 0.1px solid;
+                                border-color: #08ffc8;
+                            }
+
+                            .form-control.falla input {
+                                border: 0.1px solid;
+                                border-color: #fe5f55;
+                            }
+
+                            .form-control p {
+                                visibility: hidden;
+                                position: absolute;
+                                font-size: small;
+                                font-weight: 500;
+                                text-align: right;
+                            }
+
+                            .form-control.falla p {
+                                visibility: visible;
+                                color: #e74c3c;
+                            }
+
+                            .tdaction {
+                                width: 15%;
+                            }
+
+                            .tdSr {
+                                width: 7%;
+                            }
+
+                            strong {
+                                font-size: 24px !important;
+                            }
+
+                            input.largerCheckbox {
+                                width: 20px;
+                                height: 20px;
+                            }
+
+                        </style>
+
+                        @*-------------------------------------------------- *@
+                        @* Tipo documento, Nro dcmto identidad, Razón social *@
+                        @*-------------------------------------------------- *@
+                        <div class="row">
+
+                            <div class="col-sm-3 form-group">
+                                <label class="control-label">Tipo documento</label>
+                                <select id="cbxTipoDcmtoIdentidad" 
+                                    class="form-control" 
+                                    asp-for="IdTipoDcmtoIdentidad" 
+                                    asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion"))"   
+                                    onchange="showhide()">                                    
+                                    <option value="">Seleccionar</option>
+                                </select>
+                                <div class="invalid-feedback">Tipo documento de identidad obligatorio</div>
+                            </div>    
+                            
+                            <div class="col-sm-2 form-group">
+                                <label asp-for="NumeroDcmtoIdentidad" class="control-label">Nro dcmto identidad</label>
+                                 @* 
+                                <input asp-for="NumeroDcmtoIdentidad" class="form-control text-uppercase" autocomplete="off" required maxlength="20" onKeyUp="this.value=this.value.toUpperCase();" />
+                                *@
+                                
+                                <input id="numeroDcmtoIdentidad" asp-for="NumeroDcmtoIdentidad"
+                                       class="form-control text-uppercase" 
+                                        autocomplete="off" 
+                                        required maxlength="20"
+                                       onKeyUp="this.value=this.value.toUpperCase();" />
+                                       @*  onkeypress="return validateDNI(this)"   *@ 
+                                <div class="invalid-feedback">Número documento de identidad obligatorio</div>
+                            </div> 
+                            <div id="tipoDcmtoRUC" class="col-sm-7 form-group">
+                                <label asp-for="RazonSocial" class="control-label">Razón social</label>
+                                <input id="razonSocial" asp-for="RazonSocial" class="form-control" autocomplete="off" maxlength="100" />
+                            </div>
+                        </div>
+                       
+                        @*------------------- *@
+                        @* Apellido y Nombres *@
+                        @*------------------- *@
+                        <div id="tipoDcmtoNoRUC" class="row">
+                            <div class="col-sm-3 form-group">
+                                <label asp-for="ApellidoPaterno" class="control-label">Apellido paterno</label>
+                                <input id="apellidoPaterno" asp-for="ApellidoPaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            </div>
+                            <div  class="col-sm-3 form-group">
+                                <label asp-for="ApellidoMaterno" class="control-label">Apellido materno</label>
+                                <input id="apellidoMaterno" asp-for="ApellidoMaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            </div>
+                            <div  class="col-sm-3 form-group">
+                                <label asp-for="PrimerNombre" class="control-label">Primer nombre</label>
+                                <input id="primerNombre" asp-for="PrimerNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label asp-for="SegundoNombre" class="control-label">Segundo nombre</label>
+                                <input id="segundoNombre" asp-for="SegundoNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            </div>                           
+                        </div> 
+
+                        @*-------------------------------------------------- *@
+                        @* Teléfono, Celular, Pagina Web, Email, Zona Postal *@
+                        @*-------------------------------------------------- *@
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-2 form-group">
+                                <label asp-for="Celular" class="control-label">Celular</label>
+                                <input asp-for="Celular" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
+                            </div>
+                            <div class="col-sm-2 form-group">
+                                <label asp-for="Telefono" class="control-label">Teléfono</label>
+                                <input asp-for="Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
+                            </div>                           
+                            <div class="col-sm-3 form-group">
+                                <label asp-for="PaginaWeb" class="control-label">Pagina Web</label>
+                                <input asp-for="PaginaWeb" class="form-control" autocomplete="off" maxlength="100" />
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label asp-for="Email" class="control-label">Email</label>
+                               @*  <input id="email" asp-for="Email" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateEmail(event)" />
+ *@
+                                <input id="email" asp-for="Email" class="form-control" autocomplete="off" maxlength="100" />
+                                <p></p>
+
+                            </div>
+                            <div class="col-sm-2 form-group">
+                                <label asp-for="ZonaPostal" class="control-label">Zona Postal</label>
+                                <input asp-for="ZonaPostal" class="form-control text-uppercase" autocomplete="off" maxlength="10" onKeyUp="this.value=this.value.toUpperCase();" />
+                            </div>
+                        </div>
+                        <hr />          
+
+                        @*---------------------------------------------------- *@
+                        @* Colaborador, Grupo económico, Inicio de operaciones *@
+                        @*---------------------------------------------------- *@
+                        <div class="row">
+                            <div class="col-sm-5 form-group">
+                                <label asp-for="IdColaboradorAsignado" class="control-label">Colaborador</label>
+                                <select id="IdColaboradorAsignado" class="form-control" asp-for="IdColaboradorAsignado" asp-items="@(new SelectList(@Model.nav_Colaboradores, "IdSocio", "ApellidosAndNombres") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-5 form-group">
+                                <label asp-for="IdGrupoSocioNegocio" class="control-label">Grupo económico</label>
+                                <select id="IdGrupoSocioNegocio" class="form-control" asp-for="IdGrupoSocioNegocio" asp-items="@(new SelectList(@Model.nav_GrupoEconomico, "IdSocio", "RazonSocial") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 form-group">
+                                <label asp-for="FechaInicioOperaciones" class="control-label">Inicio Operaciones</label>
+                                <input asp-for="FechaInicioOperaciones" class="form-control " />
+                                <span asp-validation-for="FechaInicioOperaciones" class="text-danger"></span>
+                            </div>                           
+                        </div>
+                        <hr />
+
+                        @*--------------------------------------------------------------------------- *@
+                        @* Tipo calificación, Afecto retención, Afecto percepción, Buen contribuyente *@
+                        @*--------------------------------------------------------------------------- *@
+                        <div class="row">
+                            <div class="col-sm-3 form-group">
+                                <label asp-for="IdTipoCalificacion" class="control-label">Tipo calificación</label>
+                                <select id="IdTipoCalificacion" class="form-control" asp-for="IdTipoCalificacion" asp-items="@(new SelectList(@Model.nav_Calificacion, "IdTipoCalificacion", "CodigoAndDescripcion") ) ">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label for="cboEstado">Afecto retención</label>
+                                <div class="form-check">
+                                    <input class="largerCheckbox" type="checkbox" asp-for="IsAfectoRetencion">                                     
+                                </div>
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label for="cboEstado">Afecto percepción</label>
+                                <div class="form-check">
+                                    <input class="largerCheckbox" type="checkbox" asp-for="IsAfectoPercepcion">
+                                </div> 
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label for="cboEstado">Buen contribuyente</label>
+                                <div class="form-check">
+                                    <input class="largerCheckbox" type="checkbox" asp-for="IsBuenContribuyente">
+                                </div> 
+                            </div>
+                        </div> 
+                       
+                        @*-------------- *@
+                        @* Pie de página *@
+                        @*-------------- *@
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Guardar</button>
+                            <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                        </div>
+                    </form> 
+
+                                          
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/vendor/jquery/jquery.js"></script>
+
+<script>
+
+    (function () {
+        'use strict'
+
+        // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Bucle sobre ellos y evitar el envío
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+    $(document).ready(function () {
+        showhide();
+    })
+
+    function showhide() {
+        let tipoDcmto = document.getElementById('cbxTipoDcmtoIdentidad');
+        let value = tipoDcmto.value;
+        let text = tipoDcmto.options[tipoDcmto.selectedIndex].text.substring(0, 3);
+
+        if (text == 'RUC') {
+            hideApellidosAndNombre();
+            showRazonSocial();
+
+        } else {
+            hideRazonSocial();
+            showApellidosAndNombre();
+        }
+    }
+
+    function hideApellidosAndNombre() {
+        var elem = document.getElementById('tipoDcmtoNoRUC');
+        elem.style.display = 'none';
+    }
+
+    function showApellidosAndNombre() {
+        var elem = document.getElementById('tipoDcmtoNoRUC');
+        elem.style.display = 'inline-flex';
+    }
+
+    function hideRazonSocial() {
+        var elem = document.getElementById('tipoDcmtoRUC');
+        elem.style.display = 'none';
+    }
+
+    function showRazonSocial() {
+        var elem = document.getElementById('tipoDcmtoRUC');
+        elem.style.display = 'inline';
+    }
+
+</script>

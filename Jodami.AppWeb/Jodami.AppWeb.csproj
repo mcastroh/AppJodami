@@ -81,7 +81,14 @@
     <Content Remove="Views\FormaPagos\_EliminarPartialView.cshtml" />
     <Content Remove="Views\Moneda\ListarPDF - Copia.cshtml" />
     <Content Remove="Views\Shared\_Layout - Copia.cshtml" />
-    <Content Remove="wwwroot\js\contact.js" />
+    <Content Remove="Views\SocioProveedores\_AddPartialView - Copia.cshtml" />
+    <Content Remove="Views\SocioProveedores\_AddPartialView.cshtml" />
+    <Content Remove="Views\SocioProveedores\_EditPartialView.cshtml" />
+    <Content Remove="Views\Usuario\Index - Copia.cshtml" />
+    <Content Remove="wwwroot\jquery-ui-1.13.3.zip" />
+    <Content Remove="wwwroot\js\contact - Copia.min.js" />
+    <Content Remove="wwwroot\js\partial_RackClase.js" />
+    <Content Remove="wwwroot\js\partial_RackClase.min.js" />
     <Content Remove="wwwroot\js\sb-admin-2 - Copia.min.js" />
     <Content Remove="wwwroot\js\validaciones\campos-obligatorios.js" />
     <Content Remove="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js" />
@@ -91,6 +98,7 @@
     <Content Remove="wwwroot\js\validaciones\validar-formulario-proveedor.js" />
     <Content Remove="wwwroot\js\validaciones\validar-letras.js" />
     <Content Remove="wwwroot\js\validaciones\validar-numeros.js" />
+    <Content Remove="wwwroot\js\vistas\partial_RackClase.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -113,10 +121,6 @@
     <None Include="wwwroot\img\undraw_profile_2.svg" />
     <None Include="wwwroot\img\undraw_profile_3.svg" />
     <None Include="wwwroot\img\undraw_rocket.svg" />
-    <None Include="wwwroot\js\contact.js" />
-    <None Include="wwwroot\js\contact.min.js" />
-    <None Include="wwwroot\js\sb-admin-2.js" />
-    <None Include="wwwroot\js\sb-admin-2.min.js" />
     <None Include="wwwroot\js\validaciones\validar-formulario-proveedor.js" />
     <None Include="wwwroot\js\validaciones\validar-caracteres-especiales.js" />
     <None Include="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js" />

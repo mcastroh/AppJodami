@@ -14,17 +14,61 @@
                     <input type="hidden" asp-for="@Model.IdSocio" />
                     <input type="hidden" asp-for="@Model.IdTipoSocio" />
 
+                    <style>
+                        .form-control.ok input {
+                            border: 0.1px solid;
+                            border-color: #08ffc8;
+                        }
+
+                        .form-control.falla input {
+                            border: 0.1px solid;
+                            border-color: #fe5f55;
+                        }
+
+                        .form-control p {
+                            visibility: hidden;
+                            position: absolute;
+                            font-size: small;
+                            font-weight: 500;
+                            text-align: right;
+                        }
+
+                        .form-control.falla p {
+                            visibility: visible;
+                            color: #e74c3c;
+                        }
+
+                        .tdaction {
+                            width: 15%;
+                        }
+
+                        .tdSr {
+                            width: 7%;
+                        }
+
+                        strong {
+                            font-size: 24px !important;
+                        }
+
+                        input.largerCheckbox {
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                    </style>
+
+
                     @*-------------------------------------------------- *@
                     @* Tipo documento, Nro dcmto identidad, Razón social *@
                     @*-------------------------------------------------- *@
                     <div class="row">
                         <div class="col-sm-3 form-group">
                             <label class="control-label">Tipo documento</label>
-                            <select id="cbxTipoDcmtoIdentidad"
+                            <select id="ycbxTipoDcmtoIdentidad"
                                     class="form-control"
                                     asp-for="IdTipoDcmtoIdentidad"
                                     asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion"))"
-                                    onchange="tipoDcmtoIdentidadSelect(this)">
+                                    onchange="showhide()">
                             </select>
                             <div class="invalid-feedback">Tipo documento de identidad obligatorio</div>
                         </div>
@@ -33,33 +77,36 @@
                             <input asp-for="NumeroDcmtoIdentidad" class="form-control text-uppercase" autocomplete="off" required maxlength="20" onKeyUp="this.value=this.value.toUpperCase();" />
                             <div class="invalid-feedback">Número documento de identidad obligatorio</div>
                         </div>
-                        <div id="tipoDcmtoRUC" class="col-sm-7 form-group">
+                        
+                        <div id="ytipoDcmtoRUC" class="col-sm-7 form-group">
                             <label asp-for="RazonSocial" class="control-label">Razón social</label>
-                            <input asp-for="RazonSocial" class="form-control" autocomplete="off" maxlength="100" />
+                            <input id="razonSocial" asp-for="RazonSocial" class="form-control" autocomplete="off" maxlength="100" />
                         </div>
+
                     </div>
 
                     @*------------------- *@
                     @* Apellido y Nombres *@
-                    @*------------------- *@
-                    <div id="tipoDcmtoNoRUC" class="row">
+                    @*------------------- *@ 
+                    <div id="ytipoDcmtoNoRUC" class="row">
                         <div class="col-sm-3 form-group">
                             <label asp-for="ApellidoPaterno" class="control-label">Apellido paterno</label>
-                            <input asp-for="ApellidoPaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            <input id="apellidoPaterno" asp-for="ApellidoPaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                         </div>
                         <div class="col-sm-3 form-group">
                             <label asp-for="ApellidoMaterno" class="control-label">Apellido materno</label>
-                            <input asp-for="ApellidoMaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            <input id="apellidoMaterno" asp-for="ApellidoMaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                         </div>
                         <div class="col-sm-3 form-group">
                             <label asp-for="PrimerNombre" class="control-label">Primer nombre</label>
-                            <input asp-for="PrimerNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            <input id="primerNombre" asp-for="PrimerNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                         </div>
                         <div class="col-sm-3 form-group">
                             <label asp-for="SegundoNombre" class="control-label">Segundo nombre</label>
-                            <input asp-for="SegundoNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                            <input id="segundoNombre" asp-for="SegundoNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
                         </div>
                     </div>
+
 
                     @*-------------------------------------------------- *@
                     @* Celular, Teléfono, Pagina Web, Email, Zona Postal *@
@@ -155,13 +202,82 @@
 
                 </form>
 
-                <script src="~/js/validaciones/campos-obligatorios.js"></script>
-                <script src="~/js/validaciones/validar-letras.js"></script>
-                <script src="~/js/validaciones/validar-numeros.js"></script>
-                <script src="~/js/validaciones/validar-email.js"></script>
-                <script src="~/js/validaciones/mostrar-ruc-or-noruc.js"></script>
+                <script src="~/vendor/jquery/jquery.js"></script>
+
+                <script>
+
+                    (function () {
+                        'use strict'
+
+                        // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+                        var forms = document.querySelectorAll('.needs-validation')
+
+                        // Bucle sobre ellos y evitar el envío
+                        Array.prototype.slice.call(forms)
+                            .forEach(function (form) {
+                                form.addEventListener('submit', function (event) {
+                                    if (!form.checkValidity()) {
+                                        event.preventDefault()
+                                        event.stopPropagation()
+                                    }
+
+                                    form.classList.add('was-validated')
+                                }, false)
+                            })
+                    })()
+
+
+                    $(document).ready(function () {                        
+                        showhide();
+                    })
+
+                    function showhide() {
+                        let tipoDcmto = document.getElementById('ycbxTipoDcmtoIdentidad');
+                        let value = tipoDcmto.value;
+                        let text = tipoDcmto.options[tipoDcmto.selectedIndex].text.substring(0, 3);
+
+                        console.log("showhide " + text);
+                        
+                        if (text == 'RUC') {
+
+                            console.log("1... Ingresa al document ready => Valor " + text);
+
+
+                            hideApellidosAndNombre();
+                            showRazonSocial();
+
+                        } else {
+
+                             console.log("9... else Ingresa al document ready => Valor " + text);
+
+                            hideRazonSocial();
+                            showApellidosAndNombre();
+                        }
+                    }
+
+                    function hideApellidosAndNombre() {
+                        var elem = document.getElementById('ytipoDcmtoNoRUC');
+                        elem.style.display = 'none';
+                    }
+
+                    function showApellidosAndNombre() {
+                        var elem = document.getElementById('ytipoDcmtoNoRUC');
+                        elem.style.display = 'inline-flex';
+                    }
+
+                    function hideRazonSocial() {
+                        var elem = document.getElementById('ytipoDcmtoRUC');
+                        elem.style.display = 'none';
+                    }
+
+                    function showRazonSocial() {
+                        var elem = document.getElementById('ytipoDcmtoRUC');
+                        elem.style.display = 'inline';
+                    }
+
+                </script>
 
             </div>
         </div>
-    </div>   
+    </div>    
 </div>

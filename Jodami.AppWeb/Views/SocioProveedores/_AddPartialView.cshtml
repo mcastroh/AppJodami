@@ -1,6 +1,8 @@
 ﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosProveedores
   
-<div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
+
+<div class="modal fade" id="EditEntidad-@Model.IdSocio" aria-labelledby="EditEntidadLabel" aria-hidden="true">
+
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,7 +40,25 @@
                                 color: #e74c3c;
                             }
 
+                            .tdaction {
+                                width: 15%;
+                            }
+
+                            .tdSr {
+                                width: 7%;
+                            }
+
+                            strong {
+                                font-size: 24px !important;
+                            }
+
+                            input.largerCheckbox {
+                                width: 20px;
+                                height: 20px;
+                            }
+
                         </style>
+
                         @*-------------------------------------------------- *@
                         @* Tipo documento, Nro dcmto identidad, Razón social *@
                         @*-------------------------------------------------- *@
@@ -49,8 +69,8 @@
                                 <select id="cbxTipoDcmtoIdentidad" 
                                     class="form-control" 
                                     asp-for="IdTipoDcmtoIdentidad" 
-                                    asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion"))" 
-                                    onchange="tipoDcmtoIdentidadSelect(this)">
+                                    asp-items="@(new SelectList(@Model.TiposDcmtoIdentidad, "IdTipoDcmtoIdentidad", "SimboloAndDescripcion"))"   
+                                    onchange="showhide()">                                    
                                     <option value="">Seleccionar</option>
                                 </select>
                                 <div class="invalid-feedback">Tipo documento de identidad obligatorio</div>
@@ -167,19 +187,19 @@
                             <div class="col-sm-3 form-group">
                                 <label for="cboEstado">Afecto retención</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" asp-for="IsAfectoRetencion">
+                                    <input class="largerCheckbox" type="checkbox" asp-for="IsAfectoRetencion">                                     
                                 </div>
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label for="cboEstado">Afecto percepción</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" asp-for="IsAfectoPercepcion">
+                                    <input class="largerCheckbox" type="checkbox" asp-for="IsAfectoPercepcion">
                                 </div> 
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label for="cboEstado">Buen contribuyente</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" asp-for="IsBuenContribuyente">
+                                    <input class="largerCheckbox" type="checkbox" asp-for="IsBuenContribuyente">
                                 </div> 
                             </div>
                         </div> 
@@ -191,22 +211,10 @@
                             <button type="submit" class="btn btn-primary"> Guardar</button>
                             <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
                         </div>
-                    </form>
+                    </form> 
 
-                  @*   <script src="~/js/validaciones/campos-obligatorios.js"></script>    
-                    <script src="~/js/validaciones/validar-numeros.js"></script>
-                    <script src="~/js/validaciones/validar-email.js"></script>                          
-                    <script src="~/js/validaciones/mostrar-ruc-or-noruc.js"></script>
-                    <script src="~/js/validaciones/validar-letras.js"></script>
-                    <script src="~/js/validaciones/validar-formulario-proveedor.js"></script> *@
-
-                    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
+                                          
                    
-
-
- 
-
                 </div>
             </div>
         </div>
@@ -214,79 +222,68 @@
 </div>
 
 
-@section Scripts {
 
+<script src="~/vendor/jquery/jquery.js"></script>
 
-    <script>
+<script>
 
-        (function () {
-            'use strict'
+    (function () {
+        'use strict'
 
-            // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
-            var forms = document.querySelectorAll('.needs-validation')
+        // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+        var forms = document.querySelectorAll('.needs-validation')
 
-            // Bucle sobre ellos y evitar el envío
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
+        // Bucle sobre ellos y evitar el envío
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
 
+    $(document).ready(function () {
+        showhide();
+    })
 
-        function tipoDcmtoIdentidadSelect() {
+    function showhide() {
+        let tipoDcmto = document.getElementById('cbxTipoDcmtoIdentidad');
+        let value = tipoDcmto.value;
+        let text = tipoDcmto.options[tipoDcmto.selectedIndex].text.substring(0, 3);
 
-            console.log('function => tipoDcmtoIdentidadSelect');
+        if (text == 'RUC') {
+            hideApellidosAndNombre();
+            showRazonSocial();
 
-
-            let tipoDcmto = document.getElementById('cbxTipoDcmtoIdentidad');
-            var value = tipoDcmto.value;
-            var text = tipoDcmto.options[tipoDcmto.selectedIndex].text.substring(0, 3);
-
-            //  let _grupos = document.getElementById('cboGrupoArticulo');
-            // let _grupoValor = _grupos.options[_grupos.selectedIndex].value;
-
-
-            console.log('value => ' + value);
-            console.log('text => ' + text);
-
-            if (text == 'RUC') {
-                hideApellidosAndNombre();
-                showRazonSocial();
-            } else {
-                hideRazonSocial();
-                showApellidosAndNombre();
-            }
+        } else {
+            hideRazonSocial();
+            showApellidosAndNombre();
         }
+    }
 
-        function hideApellidosAndNombre() {
-            var elem = document.getElementById('tipoDcmtoNoRUC');
-            elem.style.display = 'none';
-        }
+    function hideApellidosAndNombre() {
+        var elem = document.getElementById('tipoDcmtoNoRUC');
+        elem.style.display = 'none';
+    }
 
-        function showApellidosAndNombre() {
-            var elem = document.getElementById('tipoDcmtoNoRUC');
-            elem.style.display = 'inline-flex';
-        }
+    function showApellidosAndNombre() {
+        var elem = document.getElementById('tipoDcmtoNoRUC');
+        elem.style.display = 'inline-flex';
+    }
 
-        function hideRazonSocial() {
-            var elem = document.getElementById('tipoDcmtoRUC');
-            elem.style.display = 'none';
-        }
+    function hideRazonSocial() {
+        var elem = document.getElementById('tipoDcmtoRUC');
+        elem.style.display = 'none';
+    }
 
-        function showRazonSocial() {
-            var elem = document.getElementById('tipoDcmtoRUC');
-            elem.style.display = 'inline';
-        }
+    function showRazonSocial() {
+        var elem = document.getElementById('tipoDcmtoRUC');
+        elem.style.display = 'inline';
+    }
 
-    </script> 
-
-}
-
-
+</script>

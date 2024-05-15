@@ -1,0 +1,15 @@
+E:\AppJodami\Jodami.Entity\bin\Debug\net8.0\Jodami.Entity.deps.json
+E:\AppJodami\Jodami.Entity\bin\Debug\net8.0\Jodami.Entity.runtimeconfig.json
+E:\AppJodami\Jodami.Entity\bin\Debug\net8.0\Jodami.Entity.dll
+E:\AppJodami\Jodami.Entity\bin\Debug\net8.0\Jodami.Entity.pdb
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.csproj.AssemblyReference.cache
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.GeneratedMSBuildEditorConfig.editorconfig
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.AssemblyInfoInputs.cache
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.AssemblyInfo.cs
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.csproj.CoreCompileInputs.cache
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.sourcelink.json
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.dll
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\refint\Jodami.Entity.dll
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.pdb
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\Jodami.Entity.genruntimeconfig.cache
+E:\AppJodami\Jodami.Entity\obj\Debug\net8.0\ref\Jodami.Entity.dll
