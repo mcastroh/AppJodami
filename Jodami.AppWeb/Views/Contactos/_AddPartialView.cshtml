@@ -1,5 +1,7 @@
 ﻿@model Jodami.AppWeb.Models.Dto.DtoContactos
 
+
+
 <div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -23,7 +25,7 @@
                         <div class="row">
                             <div class="col-sm-11">
                                 <label class="control-label">Nombres del contacto</label>
-                                <input class="form-control" type="text" id="Nombre" asp-for="@Model.NewContacto.Nombre" autocomplete="off" maxlength="100" placeholder="ingrese nombres del contacto">
+                                <input class="form-control" type="text" id="Nombre" asp-for="@Model.NewContacto.Nombre" required autocomplete="off" maxlength="100" placeholder="ingrese nombres del contacto">
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback">Debe ingresar nombres del contacto</div>
                             </div>
@@ -45,7 +47,7 @@
                         <div class="row">
                             <div class="col-sm-11 form-group">
                                 <label for="Email" class="control-label">Email</label>
-                                <input type="email" id="email" asp-for="@Model.NewContacto.Email" class="form-control" autocomplete="off" maxlength="100" />
+                                <input type="email" id="email" asp-for="@Model.NewContacto.Email" class="form-control" autocomplete="off" maxlength="100" placeholder="ingrese Email del contacto" />
                             </div>
                         </div>
 
@@ -53,30 +55,24 @@
                         <div class="row">
                             <div class="col-sm-3 form-group">
                                 <label for="Celular" class="control-label">Celular</label>
-                                <input id="Celular" asp-for="@Model.NewContacto.Celular" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
+                                <input id="Celular" asp-for="@Model.NewContacto.Celular" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" placeholder="ingrese Celular del contacto" />
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label for="Telefono" class="control-label">Teléfono</label>
-                                <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
+                                <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" placeholder="ingrese Teléfono del contacto" />
                             </div>
                             <div class="col-sm-3 form-group">
-                                <label for="cboEstado">Celular para WhatsApp (en Check)</label>
+                                <label for="cboEstado">Celular para WhatsApp</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp">
+                                    <input class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp">
                                 </div>
-                            </div>
-                            <div class="col-sm-3 form-group">
-                                <label for="cboEstado">Estado Activo (en Check)</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.EsActivo">
-                                </div>
-                            </div>
+                            </div>                        
                         </div>
 
                         @*-------------- *@
                         @* Pie de página *@
                         @*-------------- *@
-                        <hr />
+                        <br />
                         <div class="modal-footer">
                             <button id="btnSubmit" type="submit" class="btn btn-primary" onclick="validarFormulario()"> Guardar</button>
                             <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>

@@ -1,5 +1,7 @@
 ﻿@model Jodami.AppWeb.Models.Dto.DtoContactos
 
+
+
 <div class="modal fade" id="EditEntidad-@Model.NewContacto.IdContacto" aria-labelledby="EditEntidadLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -64,15 +66,15 @@
                             <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" autocomplete="off" maxlength="20" onkeypress="return validateSoloNumerosIncluidoEspaciosEnBlanco(event)" />
                         </div>   
                         <div class="col-sm-3 form-group">
-                            <label for="cboEstado">Celular para WhatsApp (en Check)</label>
+                            <label for="cboEstado">Celular para WhatsApp</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp">
+                                <input class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp">
                             </div>
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for="cboEstado">Estado Activo (en Check)</label>
+                            <label for="cboEstado">Estado</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.EsActivo">
+                                <input class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.EsActivo">
                             </div>
                         </div> 
                     </div>
@@ -81,6 +83,7 @@
                     @*-------------- *@
                     @* Pie de página *@
                     @*-------------- *@
+                    <br />
                     <div class="modal-footer">
                         <button id="btnSubmit" type="submit" class="btn btn-primary" onclick="validarFormulario()"> Guardar</button>
                         <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>

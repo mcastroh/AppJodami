@@ -84,6 +84,7 @@
     <Content Remove="Views\SocioProveedores\_AddPartialView - Copia.cshtml" />
     <Content Remove="Views\SocioProveedores\_AddPartialView.cshtml" />
     <Content Remove="Views\SocioProveedores\_EditPartialView.cshtml" />
+    <Content Remove="Views\SocioProveedores\_EliminarPartialView.cshtml" />
     <Content Remove="Views\Usuario\Index - Copia.cshtml" />
     <Content Remove="wwwroot\jquery-ui-1.13.3.zip" />
     <Content Remove="wwwroot\js\contact - Copia.min.js" />
@@ -1970,6 +1971,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Rotativa.AspNetCore" Version="1.3.2" />
   </ItemGroup>
 

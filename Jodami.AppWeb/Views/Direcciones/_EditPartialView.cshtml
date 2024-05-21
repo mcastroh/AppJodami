@@ -25,7 +25,6 @@
                     <input type="hidden" asp-for="@Model.ControladorOrigen" />
                     <input type="hidden" asp-for="@Model.AccionOrigen" />
 
-
                     @* ---------------------------------- *@
                     @* Tipo de dirección, Datos de la Via *@
                     @* ---------------------------------- *@
@@ -75,44 +74,25 @@
                     @* ---------------- *@
                     <hr />
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label class="form-label">Departamento</label>
-                            <select id="xcbodepartamento" asp-for="@Model.DepartamentoKey" class="form-control form-select-sm" required></select>
+                            <select id="cbodepartamento" asp-for="@Model.DepartamentoKey" class="form-control form-select-sm" required></select>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Seleccionar departamento</div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label class="form-label">Provincia</label>
-                            <select id="xcboprovincia" asp-for="@Model.ProvinciaKey" class="form-control form-select-sm" required></select>
+                            <select id="cboprovincia" asp-for="@Model.ProvinciaKey" class="form-control form-select-sm" required></select>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Seleccionar provincia</div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label class="form-label">Distrito</label>
-                            <select id="xcbodistrito" asp-for="@Model.DistritoKey" class="form-control form-select-sm" required></select>
+                            <select id="cbodistrito" asp-for="@Model.DistritoKey" class="form-control form-select-sm" required></select>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Seleccionar distrito</div>
                         </div>
                     </div>
-
-
-
-                    <hr />
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label class="form-label">Departamento</label>
-                            <input id="numeroVia" class="form-control" asp-for="@Model.NewSocioDireccion.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.IdDepartamentoNavigation.DepartamentoName" class="form-control" disabled />
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="form-label">Provincia</label>
-                            <input id="numeroVia" class="form-control" asp-for="@Model.NewSocioDireccion.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.ProvinciaName" class="form-control" disabled />
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="form-label">Distrito</label>
-                            <input id="numeroVia" class="form-control" asp-for="@Model.NewSocioDireccion.IdDireccionNavigation.IdDistritoNavigation.DistritoName" class="form-control" disabled />
-                        </div>
-                    </div>
-
 
                     @*-------------- *@
                     @* Pie de página *@
@@ -122,73 +102,12 @@
                     <div class="modal-footer">
                         <button id="btnSubmit" type="submit" class="btn btn-primary" onclick="validarFormulario()"> Guardar</button>
                         <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
-                    </div>
-                     
-
+                    </div> 
                 </form>
-
-                <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-                <script type="text/javascript">
-
-                    $(document).ready(function () {
-
-                        $.getJSON("getUbigeoDepartamento", {}, function (dataDepartamentos) {
-                            $("#xcboprovincia").empty();
-                            $("#xcbodistrito").empty();
-                            $("#xcbodepartamento").append($("<option>").attr({ "value": "" }).text("Seleccionar"));
-                            $.each(dataDepartamentos, function (i, obj) {
-                                $("#xcbodepartamento").append("<option value='" + obj.idDepartamento + "'>" + obj.departamentoName + "</option>");
-                            });
-                        });
-
-                        $("#xcbodepartamento").change(function () {
-                            $("#xcboprovincia").empty();
-                            $("#xcbodistrito").empty();
-                            let keyDepartamento = $("#xcbodepartamento").val();
-                            $.getJSON("getUbigeoProvinciasByDepartamento", { "b_departamento": keyDepartamento }, function (data) {
-                                $("#xcboprovincia").append($("<option>").attr({ "value": "" }).text("Seleccionar"));
-                                $.each(data, function (i, obj) {
-                                    $("#xcboprovincia").append("<option value='" + obj.idProvincia + "'>" + obj.provinciaName + "</option>");
-                                });
-                            });
-                        });
-
-                        $("#xcboprovincia").change(function () {
-                            $("#xcbodistrito").empty();
-                            let keyProvincia = $("#xcboprovincia").val();
-                            $.getJSON("getUbigeoDistritosByDepartamentoAndProvincia", { "b_provincia": keyProvincia }, function (data) {
-                                $("#xcbodistrito").append($("<option>").attr({ "value": "" }).text("Seleccionar"));
-                                $.each(data, function (i, obj) {
-                                    $("#xcbodistrito").append("<option value='" + obj.idDistrito + "'>" + obj.distritoName + "</option>");
-                                });
-                            });
-                        });
-                    });
-
-                    (function () {
-                        'use strict'
-                        var forms = document.querySelectorAll('.needs-validation')
-
-                        Array.prototype.slice.call(forms)
-                            .forEach(function (form) {
-                                form.addEventListener('submit', function (event) {
-                                    if (!form.checkValidity()) {
-                                        event.preventDefault()
-                                        event.stopPropagation()
-                                    }
-                                    form.classList.add('was-validated')
-                                }, false)
-                            })
-                    })()
-
-                </script>
-
-
-
-
+               
             </div>
         </div>
     </div>
 </div>
-
+ 
+ 

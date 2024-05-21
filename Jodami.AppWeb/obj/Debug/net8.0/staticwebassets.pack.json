@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\Rotativa\\Windows\\wkhtmltopdf.exe"
     },
     {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\Scripts\\pruebas01Ajax.js",
+      "PackagePath": "staticwebassets\\Scripts\\pruebas01Ajax.js"
+    },
+    {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\contact.css",
       "PackagePath": "staticwebassets\\css\\contact.css"
     },
@@ -87,6 +91,14 @@
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\datatables-demo.js",
       "PackagePath": "staticwebassets\\js\\vistas\\datatables-demo.js"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\direccion_Index.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\direccion_Index.js"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\proveedores.js",
+      "PackagePath": "staticwebassets\\js\\vistas\\proveedores.js"
     },
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\usuario_Index.js",

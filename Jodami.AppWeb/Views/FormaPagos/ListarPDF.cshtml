@@ -55,7 +55,16 @@
                         <tr>
                             <td align="left">@Html.DisplayFor(m => item.Codigo) </td>
                             <td align="left">@Html.DisplayFor(m => item.Descripcion) </td>
-                            <td align="left">@Html.DisplayFor(m => item.DiasDePago) </td>
+                            @{
+                                if (item.DiasDePago == 0)
+                                {
+                                    <td> </td>
+                                }
+                                else
+                                {
+                                    <td align="left">@Html.DisplayFor(m => item.DiasDePago) </td>
+                                }                                 
+                            }                            
                         </tr> 
                     }
                 }

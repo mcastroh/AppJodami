@@ -229,7 +229,60 @@ namespace Jodami.AppWeb.Controllers
             return entityProveedores;
         }
 
-        #endregion 
+        #endregion
+
+
+        #region Eliminar => HttpPost   
+        //<a class="btn btn-secondary btn-sm" href="@Url.Action("Eliminar", "Contactos", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Contactos</a>
+
+
+         
+        public async Task<IActionResult> EliminarProveedor(VMSociosProveedores modelo)
+        {
+            var keyRUC = (await _srvTipoDcmtoIdentidad.GetById(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC)).IdTipoDcmtoIdentidad;
+            var socio = await _srvSocio.GetById(x => x.IdSocio == modelo.IdSocio);
+
+            socio.IdTipoSocio = modelo.IdTipoSocio;
+            socio.IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidadAsignado;
+            socio.NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad;
+
+            socio.RazonSocial = keyRUC == modelo.IdTipoDcmtoIdentidadAsignado ? modelo.RazonSocial : string.Empty;
+            socio.ApellidoPaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoPaterno : string.Empty;
+            socio.ApellidoMaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoMaterno : string.Empty;
+            socio.PrimerNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.PrimerNombre : string.Empty;
+            socio.SegundoNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.SegundoNombre : string.Empty;
+
+            socio.Telefono = modelo.Telefono;
+            socio.Celular = modelo.Celular;
+            socio.Email = modelo.Email;
+            socio.PaginaWeb = modelo.PaginaWeb;
+
+            socio.IsAfectoRetencion = modelo.IsAfectoRetencion;
+            socio.IsAfectoPercepcion = modelo.IsAfectoPercepcion;
+            socio.IsBuenContribuyente = modelo.IsBuenContribuyente;
+            socio.IdTipoCalificacion = modelo.IdTipoCalificacion;
+            socio.ZonaPostal = modelo.ZonaPostal;
+            socio.FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null;
+
+            socio.IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null;
+            socio.IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null;
+
+            socio.EsActivo = modelo.EsActivo;
+            socio.UsuarioName = _sessionUsuario.Nombre;
+            socio.FechaRegistro = DateTime.Now;
+
+            bool flgRetorno = await _srvSocio.Update(socio);
+            return View(socio);
+        }
+
+            
+        //[HttpPost]      
+        //public async Task<IActionResult> xEliminarProveedor(VMSociosProveedores modelo)
+        //{ 
+        //    return RedirectToAction("EliminarProveedor", "SocioProveedores", modelo);
+        //}
+
+        #endregion
 
 
     }

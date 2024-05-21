@@ -63,6 +63,9 @@
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="@("#CrudEntidad-" + entity.IdSocio)" data-url="@Url.Action($"Insert/{entity.IdSocio}")">
                     <i class="fas fa-pencil-alt"></i> Nuevo 
                 </button>
+                @{
+                    entity.OperacionCRUD = "INSERT";
+                }
                 @await Html.PartialAsync("_CrudPartialView", entity)
 
                 <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioProveedores")"><i class="bi bi-printer"></i> Listado</a>
@@ -86,25 +89,30 @@
                     </thead>
                     <tbody>
                         @foreach (var item in Model.OrderBy(x => x.RazonSocial).ToList())
-                        {
-                            item.OperacionCRUD = "UPDATE";
-
+                        { 
                             <tr>
                                 <td>@Html.DisplayFor(m => item.NombreRazonSocial)</td>
                                 <td align="center">@Html.DisplayFor(m => item.CodigoTipoDcmto)</td>
                                 <td align="center">@Html.DisplayFor(m => item.NumeroDcmtoIdentidad)</td>                              
                                 <td align="center">@Html.DisplayFor(m => item.EsActivo)</td> 
-                                <td> 
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="@("#CrudEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="@("#CrudEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">
                                         <i class="fas fa-pencil-alt"></i> Editar 
                                     </button>
-                                    @await Html.PartialAsync("_CrudPartialView", item) 
+                                    @{
+                                        item.OperacionCRUD = "UPDATE";
+                                    }
+                                    @await Html.PartialAsync("_CrudPartialView", item)
 
-                                  @*   <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdSocio)" data-url="@Url.Action($"Eliminar/{item.IdSocio}")">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#CrudEntidad-" + item.IdSocio)" data-url="@Url.Action($"Eliminar/{item.IdSocio}")">
                                         <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
                                     </button>
-                                    @await Html.PartialAsync("_EliminarPartialView", item) *@
+                                    @{
+                                        item.OperacionCRUD = "DELETE";
+                                    }
+                                    @await Html.PartialAsync("_CrudPartialView", item)
 
+                                    
                                     <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "Contactos", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Contactos</a>
                                     <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "Direcciones", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Direcciones</a>
                                     <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "CuentasBancarias", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Cuentas</a>
@@ -133,4 +141,16 @@
     <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
 
     <script src="~/js/vistas/datatables-demo.js"></script>
+
+  @*   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+    <script src="~/js/vistas/proveedores.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $()
+        });
+    </script> *@
+
+
+
 }

@@ -8,7 +8,7 @@ let modeloBase = {
     urlFoto: "",
     nombreFoto: "",
     clave: "",
-    esActivo: true,
+    esActivo: 1,
     nameRolAsignado: "",
 };
  
@@ -36,7 +36,7 @@ $(document).ready(function () {
              //},   
              {
                  "data": "esActivo", render: function (data) {
-                     if (data == true)
+                     if (data == 1)
                          return `<span class="badge badge-info">Activo</span>`
                      else
                          return `<span class="badge badge-danger">De Baja</span>`
@@ -100,9 +100,120 @@ $("#btnNuevo").click(function () {
 
 });
 
-$("#btnGuardar").click(function () {
-    
-    console.log('function => Guardar Datos...')
 
+$("#btnGuardar").click(function () {    
+    let inputConValor = $("input.input-validar").serializeArray(); 
+    let inputSinValor = inputConValor.filter((item) => item.value.trim() == "");
+     
+    if (inputSinValor.length > 0) { 
+        let mensaje = `Debe ingresar datos: "${inputSinValor[0].name}"`; 
+        toastr.warning("", mensaje);
+        $(`inputSinValor[name="${inputSinValor[0].name}"]`).focus();
+        return;
+    }
+
+    let modelo = structuredClone(modeloBase);
+
+    modelo["idUsuario"] = parseInt($("#txtId").val());
+    modelo["nombres"] = $("#txtNombre").val();
+    modelo["correo"] = $("#txtCorreo").val();
+    modelo["telefono"] = $("#txtTelefono").val();
+    modelo["idRol"] = $("#cboRol").val();
+    modelo["esActivo"] = $("#cboEstado").val();
+
+    let inputFoto = document.getElementById("txtFoto");
+
+    let formData = new FormData();
+    formData.append("foto", inputFoto.files[0]);
+    formData.append("modelo", JSON.stringify(modelo));
+
+    $("#modalData").find("div.modal-content").LoadingOverlay("show");
+
+    if (modelo.idUsuario == 0) {
+
+        fetch("/Usuario/Crear", {
+            method: "POST",
+            body: formData           
+        })
+            .then(response => {
+                $("#modalData").find("div.modal-content").LoadingOverlay("hide");
+                return response.ok ? response.json() : Promise.reject(response);
+            })
+            .then(responseJson => { 
+                if (responseJson.estado) {
+                    tablaData.row.add(responseJson.objeto).draw(false);
+                    $("#modalData").modal("hide");
+                    swal("Listo", "El usuario fue creado", "success");
+                } else {                   
+                    swal("", responseJson.mensaje, "error");
+                }
+            }) 
+    } 
 });
 
+let filaSeleccionada;
+
+$('#tbdata tbody').on("click", ".btn-editar", function () {    
+    if ($(this).closest("tr").hasClass("child")) {
+        filaSeleccionada = $(this).closest("tr").prev();
+    } else {
+        filaSeleccionada = $(this).closest("tr");
+    }
+   
+    let modelo = tablaData.row(filaSeleccionada).data();
+   
+    console.log('modelo => ', modelo);
+      
+    cargarRoles();  
+
+    //$("#cboRol").empty();
+    //$.getJSON("listaRoles", {}, function (data) {
+    //    $("#cboRol").append($("<option>").attr({ "value": "" }).text("Seleccionar"));
+    //    $.each(data, function (i, obj) {
+    //        $("#cboRol").append("<option value='" + obj.codigoKey + "'>" + obj.nameKey + "</option>");
+    //    });
+    //});  
+
+    
+
+    //Deseleccionar todas las opciones: 
+/*    document.getElementById("cboRol").selectedIndex = "-1";*/
+
+      //Devuelve la propiedad de índice seleccionado:
+  /*  selectObject.selectedIndex*/
+
+    //Seleccione el elemento < opción > con índice "2": 
+    //document.getElementById("cboRol").selectedIndex = "2";
+    //var dnd = document.querySelector('#cboRol'); 
+    ////dnd.selectedIndex;
+    //console.log('dnd', dnd.selectedIndex)
+
+    var dnd = document.querySelector('#cboRol'); 
+    console.log('dnd', dnd);
+
+    Array.from(dnd.options).forEach(function (option, index) {
+
+        console.log(option.id);
+
+        // If the ID is "rogue", set this items index as the selectedIndex
+        if (option.id === 'Empleado') {
+            dnd.selectedIndex = index;
+        }
+
+    });
+
+
+    //var x = document.getElementById("cboRol").selectedIndex;
+    //var y = document.getElementById("cboRol").options;
+    ////alert("Index: " + y[x].index + " is " + y[x].text);
+
+    ////Establezca la propiedad de índice seleccionado: 
+    //selectObject.selectedIndex = 3;
+
+     
+     
+
+    mostarModal(modelo);
+    $("#modalData").modal("show");
+})
+ 

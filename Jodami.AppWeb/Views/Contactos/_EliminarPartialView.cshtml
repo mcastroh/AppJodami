@@ -56,15 +56,15 @@
                             <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" disabled />
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for="cboEstado">Celular para WhatsApp (en Check)</label>
+                            <label for="cboEstado">Celular para WhatsApp</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp" disabled>
+                                <input class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp" disabled>
                             </div>
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for="cboEstado">Estado Activo (en Check)</label>
+                            <label for="cboEstado">Estado</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="@Model.NewContacto.EsActivo" disabled>
+                                <input class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.EsActivo" disabled>
                             </div>
                         </div> 
                     </div>
@@ -72,6 +72,7 @@
                     @*-------------- *@
                     @* Pie de página *@
                     @*-------------- *@
+                    <br />
                     <div class="modal-footer">
                         <button id="btnSubmit" type="submit" class="btn btn-primary"> Eliminar</button>
                         <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>

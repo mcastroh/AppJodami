@@ -5,8 +5,6 @@ using Jodami.BLL.Interfaces;
 using Jodami.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Rotativa.AspNetCore;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace Jodami.AppWeb.Controllers
 {

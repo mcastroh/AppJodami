@@ -1,0 +1,66 @@
+﻿@model Jodami.AppWeb.Models.PruebasMach01
+ 
+<head>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   
+    <script src="~/scripts/pruebas01ajax.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#btnRegistrar").click(function (e) {
+                e.preventDefault();
+                PruebasMach01();
+            })
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <br>
+    <h2>Pruebas con AJAX</h2>
+
+    <div class="container">
+        <div class="row">
+           
+            <form>
+
+                <div class="form-group">
+                    <label for="rut" class="control-label">RUT</label>
+                    <input id="rut" name="rut" class="form-control" asp-for="@Model.Rut" />
+                </div>
+
+                <div class="form-group">
+                    <label for="nombres" class="control-label">Nombres</label>
+                    <input id="nombres" name="nombres" class="form-control" asp-for="@Model.Nombres" />
+                </div>
+
+                <div class="form-group">
+                    <label for="apellidos" class="control-label">RUT</label>
+                    <input id="apellidos" name="apellidos" class="form-control" asp-for="@Model.Apellidos" />
+                </div>
+
+                <div class="form-group">
+                    <label for="clave" class="control-label">Clave</label>
+                    <input id="clave" name="clave" class="form-control" asp-for="@Model.Clave" />
+                </div>
+
+                <br />
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6"> 
+                            <button id="btnRegistrar" class="btn btn-success">Registrar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            
+        </div>
+    </div>
+
+</body>
+ 

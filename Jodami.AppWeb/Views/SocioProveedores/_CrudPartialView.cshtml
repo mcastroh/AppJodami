@@ -1,16 +1,20 @@
 ﻿@model Jodami.AppWeb.Models.ViewModels.VMSociosProveedores
   
 @{
-    var opcionTitulo = Model.OperacionCRUD == "INSERT" ? "Adicionar Proveedor" : "Editar Proveedor";
+    var opcionTitulo = "";
 
-    var qq = @Model.TiposDcmtoIdentidad.ToList();
-
-    foreach(var q in qq)
+    switch (Model.OperacionCRUD)
     {
-        var qqw = q;
-    }
-
-
+        case "INSERT":
+            opcionTitulo = "Adicionar Proveedor";
+            break;
+        case "UPDATE":
+            opcionTitulo = "Editar Proveedor";
+            break;
+        case "DELETE":
+            opcionTitulo = "Eliminar Proveedor";
+            break;
+    }  
 }
 
 <div class="modal fade" id="CrudEntidad-@Model.IdSocio" aria-labelledby="CrudEntidadLabel" aria-hidden="true">

@@ -1,30 +1,32 @@
 ﻿using Jodami.DAL.DBContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
-using System.Text.Json.Serialization;
-using System.Text.Json;
+using System.Security.Claims;  
 using Jodami.Entity;
 using Jodami.BLL.Interfaces;
 using AutoMapper;
-using Jodami.AppWeb.Models.ViewModels;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Jodami.AppWeb.Models.ViewModels; 
+using Jodami.AppWeb.Models;
+using Newtonsoft.Json;
+using Jodami.AppWeb.Utilidades.Servicios;
+using System.Numerics;
+
 
 namespace Jodami.AppWeb.Controllers
 {
     public class UsuarioController : Controller
-    {
-        private readonly IMapper _mapper;
+    { 
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly DbJodamiContext _contexto;
-        private readonly IGenericService<Usuario> _service;
+        private readonly IGenericService<Usuario> _srvUsuario;
 
         #region Constructor 
 
-        public UsuarioController(IMapper mapper, DbJodamiContext contexto, IGenericService<Usuario> service)
+        public UsuarioController(IMapper mapper, IHttpContextAccessor httpContextAccessor, DbJodamiContext contexto, IGenericService<Usuario> srvUsuario)
         {
-            _mapper = mapper;
             _contexto = contexto;
-            _service = service;
+            _srvUsuario = srvUsuario;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         #endregion 
@@ -33,15 +35,13 @@ namespace Jodami.AppWeb.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Index()
-        {
-            //return View((await _service.GetAll()).ToList());
-
+        { 
             return View();
         }
 
         #endregion
 
-
+        #region HttpGet => Login
 
         [HttpGet]
         public IActionResult Login()
@@ -58,6 +58,10 @@ namespace Jodami.AppWeb.Controllers
             return View(new Usuario());
         }
 
+        #endregion
+
+        #region HttpPost => Login
+
         [HttpPost]
         public async Task<IActionResult> Login(Usuario usuario)
         {
@@ -65,8 +69,7 @@ namespace Jodami.AppWeb.Controllers
             {
                 ViewData["Mensaje"] = "Debe ingresar Usuario y Contraseña.";
                 return View(usuario);
-            }
-
+            } 
 
             if (string.IsNullOrEmpty(usuario.Correo) == true)
             {
@@ -80,7 +83,7 @@ namespace Jodami.AppWeb.Controllers
                 return View(usuario);
             }
 
-            var modelo = await _service.GetById(x => x.Correo == usuario.Correo);
+            var modelo = await _srvUsuario.GetById(x => x.Correo == usuario.Correo);
 
             if (modelo == null)
             {
@@ -94,22 +97,91 @@ namespace Jodami.AppWeb.Controllers
                 return View(usuario);
             }
 
-            var options = new JsonSerializerOptions
-            {
-                ReferenceHandler = ReferenceHandler.IgnoreCycles,
-                WriteIndented = true,
-            };
-
-            HttpContext.Session.SetString("sessionUsuario", JsonSerializer.Serialize(modelo, options));
+            var respuesta = ServicioSesionUsuario.Srv_SesionUserLogin_Set(_httpContextAccessor, HttpContext, modelo);
             return RedirectToAction("Index", "Home");
         }
 
+        #endregion
+
+        #region HttpPost => CRUD Insert
 
         [HttpPost]
-        public async Task<IActionResult> Crear(VMUsuarios viewModel)
+        public async Task<IActionResult> Crear([FromForm] IFormFile foto, [FromForm] string modelo)
         {
-            return RedirectToAction("Index", "Home");
+            var gResponse = new GenericResponse<VMUsuarios>();
+
+            try
+            {
+                var vmUsuario = JsonConvert.DeserializeObject<VMUsuarios>(modelo);
+                string fotoName = "";
+                Stream fotoStream = null;
+
+                if (foto != null)
+                {
+                    string nombreCodificado = Guid.NewGuid().ToString();
+                    string extension = Path.GetExtension(foto.FileName);
+                    fotoName = string.Concat(nombreCodificado, extension);
+                    fotoStream = foto.OpenReadStream();
+                }
+
+                var entidad = new Usuario()
+                {
+                    Nombre = vmUsuario.Nombres,
+                    Correo = vmUsuario.Correo,
+                    Telefono = vmUsuario.Telefono,
+                    IdRol = vmUsuario.IdRol,
+                    UrlFoto = fotoStream != null ? fotoStream.ToString() : string.Empty,
+                    NombreFoto = fotoName,
+                    Clave = "1234",
+                    EsActivo = true,
+                    UsuarioName = ServicioSesionUsuario.Srv_SesionUserLogin_Get(_httpContextAccessor).Nombre,
+                    FechaRegistro = DateTime.Now
+                };
+
+                var entity = await _srvUsuario.Insert(entidad);
+
+                var objUsuario = new VMUsuarios();
+
+                if (entity != null)
+                {
+                    var objRolUsuario = await _contexto.Rol.FirstAsync(x => x.IdRol == entity.IdRol);
+
+                    objUsuario = new VMUsuarios()
+                    {
+                        IdUsuario = entity.IdUsuario,
+                        Nombres = entity.Nombre,
+                        Correo = entity.Correo,
+                        Telefono = entity.Telefono,
+                        IdRol = entity.IdRol.Value,
+                        UrlFoto = entity.UrlFoto,
+                        NombreFoto = entity.NombreFoto,
+                        Clave = entity.Clave,
+                        EsActivo = entity.EsActivo.Value ? 1 : 0,
+                        NameRolAsignado = entity.IdRolNavigation.Descripcion
+                    };
+
+                    gResponse.Estado = true;
+                    gResponse.Objeto = objUsuario;
+                }
+                else
+                {
+                    gResponse.Estado = false;
+                    gResponse.Mensaje = "Usuario no pudo ser adicionado.";
+                    gResponse.Objeto = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                gResponse.Estado = false;
+                gResponse.Mensaje = ex.Message;
+            }
+
+            return StatusCode(StatusCodes.Status200OK, gResponse);
         }
+
+        #endregion 
+
+         
 
         #region HttpGet => Lista de usuarios - Invocado por AJAX desde el  usuario_index.js
 
@@ -135,7 +207,7 @@ namespace Jodami.AppWeb.Controllers
                     UrlFoto = item.UrlFoto != null ? item.UrlFoto : string.Empty,
                     NombreFoto = item.NombreFoto != null ? item.NombreFoto : string.Empty,
                     Clave = item.Clave,
-                    EsActivo = item.EsActivo.HasValue ? item.EsActivo.Value : false,
+                    EsActivo = item.EsActivo.HasValue ? 1 : 0,
                     NameRolAsignado = item.IdRolNavigation.Descripcion
                 };
 
@@ -147,31 +219,9 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion
 
-        //#region HttpGet => Lista de roles    
-
-        //[HttpGet]
-        //public async Task<IActionResult> ListaRoles()
-        //{
-        //    var modelo = await _contexto.Rol.AsNoTracking().ToListAsync();
-        //    var datos = new List<VMCargaDataCombos>();
-
-        //    foreach (var item in modelo.OrderBy(x => x.Descripcion).ToList())
-        //    {
-        //        datos.Add(new VMCargaDataCombos()
-        //        {
-        //            codigoKey = item.IdRol.ToString(),
-        //            nameKey = item.Descripcion
-        //        });
-        //    }
-
-        //    return StatusCode(StatusCodes.Status200OK, new { responseJson = datos });
-        //}
-
-        //#endregion
-
         #region HttpGet => Lista de roles    
 
-        //[HttpGet]
+        [HttpGet]
         public JsonResult ListaRoles()
         {
             var modelo = _contexto.Rol.AsNoTracking().ToList();
@@ -186,11 +236,9 @@ namespace Jodami.AppWeb.Controllers
                 });
             }
             return Json(data);
-            //return StatusCode(StatusCodes.Status200OK, new { data = datos });
         }
 
         #endregion
-
 
     }
 }
