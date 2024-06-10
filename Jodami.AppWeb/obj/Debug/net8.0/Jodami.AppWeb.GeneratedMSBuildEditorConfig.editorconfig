@@ -22,7 +22,7 @@ build_property.EnableComHosting =
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = E:\AppJodami\Jodami.AppWeb
 build_property._RazorSourceGeneratorDebug = 
 
@@ -258,8 +258,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9HcnVwb3NcX0VsaW1pbmFyUGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/SocioProveedores/EliminarProveedor.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Qcm92ZWVkb3Jlc1xFbGltaW5hclByb3ZlZWRvci5jc2h0bWw=
+[E:/AppJodami/Jodami.AppWeb/Views/SocioProveedores/Adicionar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Qcm92ZWVkb3Jlc1xBZGljaW9uYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/AppJodami/Jodami.AppWeb/Views/SocioProveedores/Index.cshtml]
@@ -270,8 +270,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Qcm92ZWVkb3Jlc1xMaXN0YXJQREYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/SocioProveedores/_CrudPartialView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Qcm92ZWVkb3Jlc1xfQ3J1ZFBhcnRpYWxWaWV3LmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/SocioProveedores/_AddPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Qcm92ZWVkb3Jlc1xfQWRkUGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/SocioProveedores/_EditPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Qcm92ZWVkb3Jlc1xfRWRpdFBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/AppJodami/Jodami.AppWeb/Views/SocioProveedores/_EliminarPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29jaW9Qcm92ZWVkb3Jlc1xfRWxpbWluYXJQYXJ0aWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/AppJodami/Jodami.AppWeb/Views/TipoAlmacen/Index.cshtml]

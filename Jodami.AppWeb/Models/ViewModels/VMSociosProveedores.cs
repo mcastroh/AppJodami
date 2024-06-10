@@ -27,6 +27,7 @@
         public int? IdTipoMotivoBaja { get; set; }
         public DateTime? FechaBaja { get; set; }
 
+        public int KeyIdTipoDcmtoIdentidadRUC { get; set; }
 
         public List<VMSociosGrupos> nav_GrupoEconomico { get; set; }
         public List<VMSociosColaboradores> nav_Colaboradores { get; set; }

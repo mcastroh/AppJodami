@@ -33,6 +33,18 @@
       "PackagePath": "staticwebassets\\css\\sb-admin-2.min.css"
     },
     {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\socios-de-negocio.css",
+      "PackagePath": "staticwebassets\\css\\socios-de-negocio.css"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\style-error.css",
+      "PackagePath": "staticwebassets\\css\\style-error.css"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -79,6 +91,10 @@
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\sb-admin-2.min.js",
       "PackagePath": "staticwebassets\\js\\sb-admin-2.min.js"
+    },
+    {
+      "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\validaciones\\valida-proveedor.js",
+      "PackagePath": "staticwebassets\\js\\validaciones\\valida-proveedor.js"
     },
     {
       "Id": "E:\\AppJodami\\Jodami.AppWeb\\wwwroot\\js\\vistas\\chart-bar-demo.js",

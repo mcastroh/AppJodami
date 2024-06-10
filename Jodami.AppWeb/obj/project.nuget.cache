@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2xBJK3Hrf+FM5PpPB+lVlF9ZE3dFvuc7KCiDFGgKyTaulSc/hz6BrHRBcbWo9n4Cd7+MD1hx0x/abRWpNNJMuQ==",
+  "dgSpecHash": "GPzm08tjUFxWEU/YrBmVk03fUc4kwoq1FvEI+REIxRYL43ilu/5lkufQ1hjhODSHAgYqqxB3DXIhZNaGKdd/Eg==",
   "success": true,
   "projectFilePath": "E:\\AppJodami\\Jodami.AppWeb\\Jodami.AppWeb.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,8 @@
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\8.0.6\\microsoft.aspnetcore.mvc.razor.runtimecompilation.8.0.6.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\MARCO CASTRO\\.nuget\\packages\\microsoft.build\\17.8.3\\microsoft.build.17.8.3.nupkg.sha512",

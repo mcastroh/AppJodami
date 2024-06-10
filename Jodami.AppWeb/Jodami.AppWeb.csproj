@@ -8,16 +8,21 @@
 
   <ItemGroup>
     <Compile Remove="Rack\**" />
+    <Compile Remove="Views\SocioProveedores - Copia\**" />
     <Compile Remove="wwwroot\images\**" />
     <Content Remove="Rack\**" />
+    <Content Remove="Views\SocioProveedores - Copia\**" />
     <Content Remove="wwwroot\images\**" />
     <EmbeddedResource Remove="Rack\**" />
+    <EmbeddedResource Remove="Views\SocioProveedores - Copia\**" />
     <EmbeddedResource Remove="wwwroot\images\**" />
     <None Remove="Rack\**" />
+    <None Remove="Views\SocioProveedores - Copia\**" />
     <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\SocioProveedoresController - Copia.cs" />
     <Compile Remove="Controllers\xMonedaController.cs" />
     <Compile Remove="Controllers\xTipoViaController.cs" />
     <Compile Remove="Data\Almacen.cs" />
@@ -81,10 +86,7 @@
     <Content Remove="Views\FormaPagos\_EliminarPartialView.cshtml" />
     <Content Remove="Views\Moneda\ListarPDF - Copia.cshtml" />
     <Content Remove="Views\Shared\_Layout - Copia.cshtml" />
-    <Content Remove="Views\SocioProveedores\_AddPartialView - Copia.cshtml" />
-    <Content Remove="Views\SocioProveedores\_AddPartialView.cshtml" />
-    <Content Remove="Views\SocioProveedores\_EditPartialView.cshtml" />
-    <Content Remove="Views\SocioProveedores\_EliminarPartialView.cshtml" />
+    <Content Remove="Views\SocioProveedores\Adicionar - Copia.cshtml" />
     <Content Remove="Views\Usuario\Index - Copia.cshtml" />
     <Content Remove="wwwroot\jquery-ui-1.13.3.zip" />
     <Content Remove="wwwroot\js\contact - Copia.min.js" />
@@ -124,7 +126,9 @@
     <None Include="wwwroot\img\undraw_rocket.svg" />
     <None Include="wwwroot\js\validaciones\validar-formulario-proveedor.js" />
     <None Include="wwwroot\js\validaciones\validar-caracteres-especiales.js" />
-    <None Include="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js" />
+    <None Include="wwwroot\js\validaciones\mostrar-ruc-or-noruc.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="wwwroot\js\validaciones\validar-letras.js" />
     <None Include="wwwroot\js\validaciones\validar-numeros.js" />
     <None Include="wwwroot\js\validaciones\tipo-documento-identidad.js" />
@@ -1965,6 +1969,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -1991,6 +1996,9 @@
     <Content Update="Views\Articulo\_EliminarPartialView.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\validaciones\valida-proveedor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
