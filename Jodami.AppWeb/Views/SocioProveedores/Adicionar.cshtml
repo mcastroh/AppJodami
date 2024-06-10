@@ -17,7 +17,7 @@
     </div>
 
     <div class="container">
-        <form id="formProveedor" asp-action="Adicionar" asp-controller="SocioProveedores" method="post" class="needs-validation" novalidate>
+        <form id="form" asp-action="Adicionar" asp-controller="SocioProveedores" method="post" class="needs-validation" novalidate>
             <input type="hidden" asp-for="@Model.IdSocio" />
             <input type="hidden" asp-for="@Model.IdTipoSocio" />
 
@@ -58,22 +58,22 @@
             <div id="tipoDcmtoNoRUC" class="row">
                 <div class="col-sm-3 form-group">
                     <label for="ApellidoPaterno" class="control-label">Apellido paterno</label>
-                    <input id="ApellidoPaterno" asp-for="ApellidoPaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                    <input id="ApellidoPaterno" asp-for="ApellidoPaterno" class="form-control" autocomplete="off" maxlength="100" />
                     <div class="invalid-feedback">Apellido paterno obligatorio</div>
                 </div>
                 <div class="col-sm-3 form-group">
                     <label for="ApellidoMaterno" class="control-label">Apellido materno</label>
-                    <input id="ApellidoMaterno" asp-for="ApellidoMaterno" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                    <input id="ApellidoMaterno" asp-for="ApellidoMaterno" class="form-control" autocomplete="off" maxlength="100" />
                     <div class="invalid-feedback">Apellido materno obligatorio</div>
                 </div>
                 <div class="col-sm-3 form-group">
                     <label for="PrimerNombre" class="control-label">Primer nombre</label>
-                    <input id="PrimerNombre" asp-for="PrimerNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                    <input id="PrimerNombre" asp-for="PrimerNombre" class="form-control" autocomplete="off" maxlength="100" />
                     <div class="invalid-feedback">Primer nombre obligatorio</div>
                 </div>
                 <div class="col-sm-3 form-group">
                     <label for="SegundoNombre" class="control-label">Segundo nombre</label>
-                    <input id="SegundoNombre" asp-for="SegundoNombre" class="form-control" autocomplete="off" maxlength="100" onkeypress="return validateSoloLetras(event)" />
+                    <input id="SegundoNombre" asp-for="SegundoNombre" class="form-control" autocomplete="off" maxlength="100" />
                 </div>
             </div>
 
@@ -171,8 +171,8 @@
     </div>
 
     <script src="~/vendor/jquery/jquery.js"></script>
-    <script src="~/js/validaciones/mostrar-ruc-or-noruc.js"></script>
-    <script src="~/js/validaciones/valida-proveedor.js"></script>
+    <script src="~/js/proveedores/ruc-or-noruc.js"></script>
+    <script src="~/js/proveedores/validar-proveedor.js"></script>
 
 </body>
  

@@ -7,6 +7,7 @@ using Jodami.DAL.DBContext;
 using Jodami.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Rotativa.AspNetCore;
 
 namespace Jodami.AppWeb.Controllers
 {
@@ -17,7 +18,7 @@ namespace Jodami.AppWeb.Controllers
         private readonly DbJodamiContext _contexto;
         private readonly IGenericService<Socio> _srvSocio;
         private readonly Usuario _sessionUsuario;
-        private readonly IGenericService<TipoDocumentoIdentidad> _srvTipoDcmtoIdentidad;       
+        private readonly IGenericService<TipoDocumentoIdentidad> _srvTipoDcmtoIdentidad;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
@@ -30,14 +31,14 @@ namespace Jodami.AppWeb.Controllers
             IGenericService<Socio> srvSocio,
             IGenericService<TipoDocumentoIdentidad> srvTipoDcmtoIdentidad,
             IHttpContextAccessor httpContextAccessor,
-            IMapper mapper           
+            IMapper mapper
            )
         {
             _contexto = contexto;
             _srvSocio = srvSocio;
             _srvTipoDcmtoIdentidad = srvTipoDcmtoIdentidad;
-            _mapper = mapper; 
-            _httpContextAccessor = httpContextAccessor;           
+            _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
             _sessionUsuario = System.Text.Json.JsonSerializer.Deserialize<Usuario>(_httpContextAccessor.HttpContext.Session.GetString("sessionUsuario"));
         }
 
@@ -54,157 +55,46 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion
 
+        #region HttpGet => Adicionar  
+
         [HttpGet]
         public async Task<IActionResult> Adicionar()
         {
-            var svtTD = new ServicioTiposDeDocumentos(_srvTipoDcmtoIdentidad);
-            var tipoDocumentoIdentidad = await svtTD.SrvTiposDeDocumentos();
-
-            var tipoSocioGruposEconomicos = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.GRUPOS_ECONOMICOS);
-            var tipoSocioColaboradores = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.COLABORADORES);
-            var tipoSocioProveedores = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.PROVEEDORES);
-
-            var entityGruposEconomicos = _mapper.Map<List<VMSociosGrupos>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioGruposEconomicos.IdTipoSocio).ToListAsync());
-            var entityColaboradores = _mapper.Map<List<VMSociosColaboradores>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioColaboradores.IdTipoSocio).ToListAsync());
-            var entityProveedores = _mapper.Map<List<VMSociosProveedores>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioProveedores.IdTipoSocio).ToListAsync());
-
-            var entityTipoCalificacion = _mapper.Map<List<VMTipoCalificacion>>(await _contexto.TipoCalificacion.ToListAsync());
-
-            //foreach (var item in entityTipoCalificacion)
-            //{
-            //    item.CodigoAndDescripcion = item.Codigo + " - " + item.Descripcion;
-            //}
-
-            //foreach (var item in entityColaboradores)
-            //{
-            //    item.ApellidosAndNombres = item.ApellidoPaterno + " " + item.ApellidoMaterno + " " + item.PrimerNombre + " " + item.SegundoNombre;
-            //}
-
-            //foreach (var item in entityProveedores)
-            //{
-            //    item.IdTipoDcmtoIdentidadAsignado = item.IdTipoDcmtoIdentidad;
-            //    item.CodigoTipoDcmto = tipoDocumentoIdentidad.FirstOrDefault(x => x.IdTipoDcmtoIdentidad == item.IdTipoDcmtoIdentidad).Simbolo;
-            //    item.NameTipoDcmto = tipoDocumentoIdentidad.FirstOrDefault(x => x.IdTipoDcmtoIdentidad == item.IdTipoDcmtoIdentidad).Descripcion;
-            //    item.TiposDcmtoIdentidad = tipoDocumentoIdentidad;
-            //    item.NombreRazonSocial = item.CodigoTipoDcmto == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC ? item.RazonSocial : item.ApellidoPaterno + " " + item.ApellidoMaterno + "" + item.PrimerNombre + "" + item.SegundoNombre;
-            //    item.nav_GrupoEconomico = entityGruposEconomicos;
-            //    item.nav_Colaboradores = entityColaboradores;
-            //    item.nav_Calificacion = entityTipoCalificacion;
-            //}
-
-            ViewBag.TipoDocumentoIdentidad = tipoDocumentoIdentidad.ToList();
-            ViewBag.TipoSocio = tipoSocioProveedores;
-            ViewBag.DcmtoDefault = tipoDocumentoIdentidad.FirstOrDefault(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC);
-
-            ViewBag.GrupoEconomico = entityGruposEconomicos.ToList();
-            ViewBag.Colaboradores = entityColaboradores.ToList();
-            ViewBag.Calificacion = entityTipoCalificacion.ToList();
-
-             
-
-            var tipoSocio = (TipoSocio)ViewBag.TipoSocio;
-            var tiposDcmtosIdentidad = (List<VMTipoDocumentoIdentidad>)ViewBag.TipoDocumentoIdentidad;
-            var dcmtoDefault = (VMTipoDocumentoIdentidad)ViewBag.DcmtoDefault;
-
-            var grupoEconomico = (List<VMSociosGrupos>)ViewBag.GrupoEconomico;
-            var colaboradores = (List<VMSociosColaboradores>)ViewBag.Colaboradores;
-            var calificacion = (List<VMTipoCalificacion>)ViewBag.Calificacion;
-
-            var entity = new VMSociosProveedores()
-            {
-                IdSocio = 0,
-                IdTipoSocio = tipoSocio.IdTipoSocio,
-                IdTipoDcmtoIdentidad = dcmtoDefault.IdTipoDcmtoIdentidad,
-                IdTipoDcmtoIdentidadAsignado = dcmtoDefault.IdTipoDcmtoIdentidad,
-                NumeroDcmtoIdentidad = string.Empty,
-                CodigoTipoDcmto = dcmtoDefault.Simbolo,
-                NameTipoDcmto = dcmtoDefault.Descripcion,
-                TiposDcmtoIdentidad = tiposDcmtosIdentidad,
-                RazonSocial = string.Empty,
-                ApellidoPaterno = string.Empty,
-                ApellidoMaterno = string.Empty,
-                PrimerNombre = string.Empty,
-                SegundoNombre = string.Empty,
-                Telefono = string.Empty,
-                Celular = string.Empty,
-                PaginaWeb = string.Empty,
-                Email = string.Empty,
-                KeyIdTipoDcmtoIdentidadRUC = dcmtoDefault.IdTipoDcmtoIdentidad,
-                nav_GrupoEconomico = grupoEconomico,
-                nav_Colaboradores = colaboradores,
-                nav_Calificacion = calificacion,
-                OperacionCRUD = "INSERT"
-            };
-
-
+            var entity = await Etl_SociosProveedores(0);
             return View(entity);
         }
 
-        #region Adicionar => HttpPost
+        #endregion
 
-        // 
-        // Curso de Javascript - 4.08. Validación avanzada de formularios con HTML5 y Javascript
-        // https://www.youtube.com/watch?v=a5QH6PSm-ew
-        //
-
+        #region Adicionar => HttpPost 
 
         [HttpPost]
-        public async Task<IActionResult> Adicionar(VMSociosProveedores modelo)
+        public async Task<IActionResult> Adicionar(VMSociosProveedores vmSocio)
         {
-            if (ModelState.IsValid)
-            {
-                //var user = _userServies.getUserByEmailandPass(login.Email, login.Password);
-                //if (user == null)
-                if (modelo.RazonSocial is null)
-                {
-                    ModelState.AddModelError("RazonSocial", "email or password is wrong");
-                }
-            }
-            else
-                ModelState.AddModelError("RazonSocial", "email or password invalid");
-
-            return PartialView("Add", modelo);
-
-
-            var svtTD = new ServicioTiposDeDocumentos(_srvTipoDcmtoIdentidad);
-            var tipoDcmtoIdent = (await svtTD.SrvTiposDeDocumentos()).FirstOrDefault(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC);
-
-            if (modelo.IdTipoDcmtoIdentidadAsignado == tipoDcmtoIdent.IdTipoDcmtoIdentidad)
-            {
-                if (modelo.RazonSocial is null)
-                {
-                    ViewBag.Mensaje = "Debe ingresar Razón social";
-                }
-                
-
-
-            }
-
-
             var keyRUC = (await _srvTipoDcmtoIdentidad.GetById(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC)).IdTipoDcmtoIdentidad;
 
             var socio = new Socio()
             {
-                IdTipoSocio = modelo.IdTipoSocio,
-                IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidadAsignado,
-                NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad,
-                RazonSocial = keyRUC == modelo.IdTipoDcmtoIdentidadAsignado ? modelo.RazonSocial : string.Empty,
-                ApellidoPaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoPaterno : string.Empty,
-                ApellidoMaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoMaterno : string.Empty,
-                PrimerNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.PrimerNombre : string.Empty,
-                SegundoNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.SegundoNombre : string.Empty,
-                Telefono = modelo.Telefono,
-                Celular = modelo.Celular,
-                PaginaWeb = modelo.PaginaWeb,
-                Email = modelo.Email,
-                IsAfectoRetencion = modelo.IsAfectoRetencion,
-                IsAfectoPercepcion = modelo.IsAfectoPercepcion,
-                IsBuenContribuyente = modelo.IsBuenContribuyente,
-                IdTipoCalificacion = modelo.IdTipoCalificacion,
-                ZonaPostal = modelo.ZonaPostal,
-                FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null,
-                IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null,
-                IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null,
+                IdTipoSocio = vmSocio.IdTipoSocio,
+                IdTipoDcmtoIdentidad = vmSocio.IdTipoDcmtoIdentidadAsignado,
+                NumeroDcmtoIdentidad = vmSocio.NumeroDcmtoIdentidad,
+                RazonSocial = keyRUC == vmSocio.IdTipoDcmtoIdentidadAsignado ? vmSocio.RazonSocial : string.Empty,
+                ApellidoPaterno = keyRUC != vmSocio.IdTipoDcmtoIdentidadAsignado ? vmSocio.ApellidoPaterno : string.Empty,
+                ApellidoMaterno = keyRUC != vmSocio.IdTipoDcmtoIdentidadAsignado ? vmSocio.ApellidoMaterno : string.Empty,
+                PrimerNombre = keyRUC != vmSocio.IdTipoDcmtoIdentidadAsignado ? vmSocio.PrimerNombre : string.Empty,
+                SegundoNombre = keyRUC != vmSocio.IdTipoDcmtoIdentidadAsignado ? vmSocio.SegundoNombre : string.Empty,
+                Telefono = vmSocio.Telefono,
+                Celular = vmSocio.Celular,
+                PaginaWeb = vmSocio.PaginaWeb,
+                Email = vmSocio.Email,
+                IsAfectoRetencion = vmSocio.IsAfectoRetencion,
+                IsAfectoPercepcion = vmSocio.IsAfectoPercepcion,
+                IsBuenContribuyente = vmSocio.IsBuenContribuyente,
+                IdTipoCalificacion = vmSocio.IdTipoCalificacion,
+                ZonaPostal = vmSocio.ZonaPostal,
+                FechaInicioOperaciones = vmSocio.FechaInicioOperaciones.HasValue ? vmSocio.FechaInicioOperaciones.Value : null,
+                IdGrupoSocioNegocio = vmSocio.IdGrupoSocioNegocio.HasValue ? vmSocio.IdGrupoSocioNegocio : null,
+                IdColaboradorAsignado = vmSocio.IdColaboradorAsignado.HasValue ? vmSocio.IdColaboradorAsignado : null,
                 EsActivo = true,
                 UsuarioName = _sessionUsuario.Nombre,
                 FechaRegistro = DateTime.Now
@@ -216,120 +106,225 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion
 
+        #region Edit => HttpGet 
 
-        //[HttpGet]
-        //public async Task<IActionResult> Editar(int idSocio, string tipoSocioOrigen, string controladorOrigen, string accionOrigen)
-        //{
-        //    var datos = (await ETL_SociosComerciales()).FirstOrDefault(x => x.IdSocio == idSocio); 
-        //    return View("Editar", datos);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Editar(int idSocio, string mensaje = null)
+        {
+            if (mensaje is not null)
+                ViewBag.Mensaje = mensaje;
 
-        //#region Edit => HttpPost 
+            var entity = await Etl_SociosProveedores(idSocio);
+            return View("Editar", entity);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Editar(VMSociosProveedores modelo)
-        //{
-        //    var keyRUC = (await _srvTipoDcmtoIdentidad.GetById(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC)).IdTipoDcmtoIdentidad;
-        //    var socio = await _srvSocio.GetById(x => x.IdSocio == modelo.IdSocio);
+        #endregion
 
-        //    socio.IdTipoSocio = modelo.IdTipoSocio;
-        //    socio.IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidadAsignado;
-        //    socio.NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad;
+        #region Edit => HttpPost 
 
-        //    socio.RazonSocial = keyRUC == modelo.IdTipoDcmtoIdentidadAsignado ? modelo.RazonSocial : string.Empty;
-        //    socio.ApellidoPaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoPaterno : string.Empty;
-        //    socio.ApellidoMaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoMaterno : string.Empty;
-        //    socio.PrimerNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.PrimerNombre : string.Empty;
-        //    socio.SegundoNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.SegundoNombre : string.Empty;
+        [HttpPost]
+        public async Task<IActionResult> Editar(VMSociosProveedores modelo)
+        {
+            try
+            {
+                var keyRUC = (await _srvTipoDcmtoIdentidad.GetById(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC)).IdTipoDcmtoIdentidad;
+                var socio = await _srvSocio.GetById(x => x.IdSocio == modelo.IdSocio);
 
-        //    socio.Telefono = modelo.Telefono;
-        //    socio.Celular = modelo.Celular;
-        //    socio.Email = modelo.Email;
-        //    socio.PaginaWeb = modelo.PaginaWeb;
+                socio.IdTipoSocio = modelo.IdTipoSocio;
+                socio.IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidadAsignado;
+                socio.NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad;
+                socio.RazonSocial = keyRUC == modelo.IdTipoDcmtoIdentidadAsignado ? modelo.RazonSocial : string.Empty;
+                socio.ApellidoPaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoPaterno : string.Empty;
+                socio.ApellidoMaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoMaterno : string.Empty;
+                socio.PrimerNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.PrimerNombre : string.Empty;
+                socio.SegundoNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.SegundoNombre : string.Empty;
+                socio.Telefono = modelo.Telefono;
+                socio.Celular = modelo.Celular;
+                socio.Email = modelo.Email;
+                socio.PaginaWeb = modelo.PaginaWeb;
+                socio.IsAfectoRetencion = modelo.IsAfectoRetencion;
+                socio.IsAfectoPercepcion = modelo.IsAfectoPercepcion;
+                socio.IsBuenContribuyente = modelo.IsBuenContribuyente;
+                socio.IdTipoCalificacion = modelo.IdTipoCalificacion;
+                socio.ZonaPostal = modelo.ZonaPostal;
+                socio.FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null;
+                socio.IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null;
+                socio.IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null;
+                socio.EsActivo = modelo.EsActivo;
+                socio.UsuarioName = _sessionUsuario.Nombre;
+                socio.FechaRegistro = DateTime.Now;
 
-        //    socio.IsAfectoRetencion = modelo.IsAfectoRetencion;
-        //    socio.IsAfectoPercepcion = modelo.IsAfectoPercepcion;
-        //    socio.IsBuenContribuyente = modelo.IsBuenContribuyente;
-        //    socio.IdTipoCalificacion = modelo.IdTipoCalificacion;
-        //    socio.ZonaPostal = modelo.ZonaPostal;
-        //    socio.FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null;
+                bool flgRetorno = await _srvSocio.Update(socio);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                string msge = ex.Message;
+                var qq = ex.InnerException.Message;
+                return RedirectToAction("Editar", new { idSocio = modelo.IdSocio, mensaje = ex.InnerException.Message });
+            }
+        }
 
-        //    socio.IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null;
-        //    socio.IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null;
+        #endregion
 
-        //    socio.EsActivo = modelo.EsActivo;
-        //    socio.UsuarioName = _sessionUsuario.Nombre;
-        //    socio.FechaRegistro = DateTime.Now;
+        #region Eliminar => HttpGet
 
-        //    bool flgRetorno = await _srvSocio.Update(socio);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Eliminar(int idSocio, string mensaje = null)
+        {
+            if (mensaje is not null)
+                ViewBag.Mensaje = mensaje;
 
-        //#endregion
+            var entity = await Etl_SociosProveedores(idSocio);
+            return View("Eliminar", entity);
+        }
 
-        //#region Eliminar => HttpGet
+        #endregion
 
-        //[HttpGet] 
-        //public async Task<IActionResult> Eliminar(int idSocio, string tipoSocioOrigen, string controladorOrigen, string accionOrigen)
-        //{
-        //    return View("Eliminar");
-        //}
+        #region Eliminar => HttpPost
 
-        //#endregion
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(VMSociosProveedores modelo)
+        {
+            try
+            {
+                bool flgRetorno = await _srvSocio.Delete(x => x.IdSocio == modelo.IdSocio);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                string msge = ex.Message;
+                var qq = ex.InnerException.Message;
+                return RedirectToAction("Eliminar", new { idSocio = modelo.IdSocio, mensaje = ex.InnerException.Message });
+            }
+        }
 
-        //#region Eliminar => HttpPost
+        #endregion
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Eliminar(VMSociosProveedores modelo)
-        //{
-        //    bool flgRetorno = await _srvSocio.Delete(x => x.IdSocio == modelo.IdSocio);
-        //    return RedirectToAction("Index");
-        //}
+        #region Método  => Listar PDF   
 
-        //#endregion
+        public async Task<IActionResult> ListarPDF()
+        {
+            var query = await ETL_SociosComerciales();
 
-        //#region Método  => Listar PDF   
+            string titulo = "Proveedores";
+            string protocolo = Request.IsHttps ? "Https" : "Http";
+            string headerAction = Url.Action("Header", "Home", new { titulo }, protocolo);
+            string footerAction = Url.Action("Footer", "Home", new { }, protocolo);
 
-        //public async Task<IActionResult> ListarPDF()
-        //{
-        //    var query = await ETL_SociosComerciales();
+            return new ViewAsPdf("ListarPDF", query)
+            {
+                FileName = $"Proveedores {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageMargins = { Left = 15, Bottom = 10, Right = 15, Top = 30 },
+                CustomSwitches = $"--header-html {headerAction} --header-spacing 2 --footer-html {footerAction} --footer-spacing 2"
+            };
+        }
 
-        //    string titulo = "Proveedores";
-        //    string protocolo = Request.IsHttps ? "Https" : "Http";
-        //    string headerAction = Url.Action("Header", "Home", new { titulo }, protocolo);
-        //    string footerAction = Url.Action("Footer", "Home", new { }, protocolo);
+        #endregion
 
-        //    return new ViewAsPdf("ListarPDF", query)
-        //    {
-        //        FileName = $"Proveedores {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
-        //        PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-        //        PageSize = Rotativa.AspNetCore.Options.Size.A4,
-        //        PageMargins = { Left = 15, Bottom = 10, Right = 15, Top = 30 },
-        //        CustomSwitches = $"--header-html {headerAction} --header-spacing 2 --footer-html {footerAction} --footer-spacing 2"
-        //    };
-        //}
+        #region ETL => Nuevo/Editar/Eliminar Proveedor
 
-        //#endregion
+        private async Task<VMSociosProveedores> Etl_SociosProveedores(int idSocio)
+        {
+            var entity = new VMSociosProveedores();
 
-        #region ETL =>  Proveedores
+            var svtTD = new ServicioTiposDeDocumentos(_srvTipoDcmtoIdentidad);
+
+            var tipoDocumentoIdentidad = await svtTD.SrvTiposDeDocumentos();
+            var tipoSocioGruposEconomicos = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.GRUPOS_ECONOMICOS);
+            var tipoSocioColaboradores = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.COLABORADORES);
+            var tipoSocioProveedores = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.PROVEEDORES);
+
+            var entityGruposEconomicos = _mapper.Map<List<VMSociosGrupos>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioGruposEconomicos.IdTipoSocio).ToListAsync());
+            var entityColaboradores = _mapper.Map<List<VMSociosColaboradores>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioColaboradores.IdTipoSocio).ToListAsync());
+            var entityTipoCalificacion = _mapper.Map<List<VMTipoCalificacion>>(await _contexto.TipoCalificacion.ToListAsync());
+
+            foreach (var item in entityTipoCalificacion)
+            {
+                item.CodigoAndDescripcion = item.Codigo + " - " + item.Descripcion;
+            }
+
+            foreach (var item in entityColaboradores)
+            {
+                item.ApellidosAndNombres = item.ApellidoPaterno + " " + item.ApellidoMaterno + " " + item.PrimerNombre + " " + item.SegundoNombre;
+            }
+
+            if (idSocio == 0)
+            {
+                entity = new VMSociosProveedores()
+                {
+                    IdTipoSocio = tipoSocioProveedores.IdTipoSocio,
+                    IdTipoDcmtoIdentidadAsignado = tipoDocumentoIdentidad.FirstOrDefault(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC).IdTipoDcmtoIdentidad,
+                    CodigoTipoDcmto = tipoDocumentoIdentidad.FirstOrDefault(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC).Simbolo,
+                    NameTipoDcmto = tipoDocumentoIdentidad.FirstOrDefault(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC).Descripcion,
+                    TiposDcmtoIdentidad = tipoDocumentoIdentidad,
+                    KeyIdTipoDcmtoIdentidadRUC = tipoDocumentoIdentidad.FirstOrDefault(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC).IdTipoDcmtoIdentidad,
+                    nav_GrupoEconomico = entityGruposEconomicos,
+                    nav_Colaboradores = entityColaboradores,
+                    nav_Calificacion = entityTipoCalificacion
+                };
+            }
+            else
+            {
+                var modelo = await _contexto.Socio.AsNoTracking().FirstOrDefaultAsync(x => x.IdSocio == idSocio);
+
+                entity = new VMSociosProveedores()
+                {
+                    IdTipoSocio = modelo.IdTipoSocio,
+                    IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidad,
+                    IdTipoDcmtoIdentidadAsignado = modelo.IdTipoDcmtoIdentidad,
+                    NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad,
+                    RazonSocial = modelo.RazonSocial,
+                    ApellidoPaterno = modelo.ApellidoPaterno,
+                    ApellidoMaterno = modelo.ApellidoMaterno,
+                    PrimerNombre = modelo.PrimerNombre,
+                    SegundoNombre = modelo.SegundoNombre,
+                    Telefono = modelo.Telefono,
+                    Celular = modelo.Celular,
+                    PaginaWeb = modelo.PaginaWeb,
+                    Email = modelo.Email,
+                    IsAfectoRetencion = modelo.IsAfectoRetencion,
+                    IsAfectoPercepcion = modelo.IsAfectoPercepcion,
+                    IsBuenContribuyente = modelo.IsBuenContribuyente,
+                    IdTipoCalificacion = modelo.IdTipoCalificacion,
+                    ZonaPostal = modelo.ZonaPostal,
+                    FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null,
+                    FechaBaja = modelo.FechaBaja.HasValue ? modelo.FechaBaja.Value : null,
+                    IdTipoMotivoBaja = modelo.IdTipoMotivoBaja.HasValue ? modelo.IdTipoMotivoBaja.Value : null,
+                    IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null,
+                    IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null,
+                    TiposDcmtoIdentidad = tipoDocumentoIdentidad,
+                    EsActivo = modelo.EsActivo,
+                    nav_GrupoEconomico = entityGruposEconomicos,
+                    nav_Colaboradores = entityColaboradores,
+                    nav_Calificacion = entityTipoCalificacion
+                };
+            }
+
+            return entity;
+        }
+
+        #endregion
+
+        #region ETL => Index Proveedores
 
         public async Task<List<VMSociosProveedores>> ETL_SociosComerciales()
-        { 
+        {
             var svtTD = new ServicioTiposDeDocumentos(_srvTipoDcmtoIdentidad);
             var tipoDocumentoIdentidad = await svtTD.SrvTiposDeDocumentos();
 
             var tipoSocioGruposEconomicos = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.GRUPOS_ECONOMICOS);
             var tipoSocioColaboradores = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.COLABORADORES);
             var tipoSocioProveedores = await _contexto.TipoSocio.AsNoTracking().FirstOrDefaultAsync(x => x.Codigo == KeysNames.PROVEEDORES);
-                         
+
             var entityGruposEconomicos = _mapper.Map<List<VMSociosGrupos>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioGruposEconomicos.IdTipoSocio).ToListAsync());
             var entityColaboradores = _mapper.Map<List<VMSociosColaboradores>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioColaboradores.IdTipoSocio).ToListAsync());
             var entityProveedores = _mapper.Map<List<VMSociosProveedores>>(await _contexto.Socio.AsNoTracking().Where(x => x.IdTipoSocio == tipoSocioProveedores.IdTipoSocio).ToListAsync());
 
             var entityTipoCalificacion = _mapper.Map<List<VMTipoCalificacion>>(await _contexto.TipoCalificacion.ToListAsync());
-             
+
             foreach (var item in entityTipoCalificacion)
             {
                 item.CodigoAndDescripcion = item.Codigo + " - " + item.Descripcion;
@@ -349,7 +344,7 @@ namespace Jodami.AppWeb.Controllers
                 item.NombreRazonSocial = item.CodigoTipoDcmto == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC ? item.RazonSocial : item.ApellidoPaterno + " " + item.ApellidoMaterno + "" + item.PrimerNombre + "" + item.SegundoNombre;
                 item.nav_GrupoEconomico = entityGruposEconomicos;
                 item.nav_Colaboradores = entityColaboradores;
-                item.nav_Calificacion = entityTipoCalificacion; 
+                item.nav_Calificacion = entityTipoCalificacion;
             }
 
             ViewBag.TipoDocumentoIdentidad = tipoDocumentoIdentidad.ToList();
@@ -360,64 +355,10 @@ namespace Jodami.AppWeb.Controllers
             ViewBag.Colaboradores = entityColaboradores.ToList();
             ViewBag.Calificacion = entityTipoCalificacion.ToList();
 
-            return entityProveedores; 
+            return entityProveedores;
         }
 
         #endregion
-
-
-        //#region Eliminar => HttpPost   
-        ////<a class="btn btn-secondary btn-sm" href="@Url.Action("Eliminar", "Contactos", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Contactos</a>
-
-
-         
-        //public async Task<IActionResult> EliminarProveedor(VMSociosProveedores modelo)
-        //{
-        //    var keyRUC = (await _srvTipoDcmtoIdentidad.GetById(x => x.Simbolo == KeysNames.TIPO_DCMTO_IDENTIDAD_RUC)).IdTipoDcmtoIdentidad;
-        //    var socio = await _srvSocio.GetById(x => x.IdSocio == modelo.IdSocio);
-
-        //    socio.IdTipoSocio = modelo.IdTipoSocio;
-        //    socio.IdTipoDcmtoIdentidad = modelo.IdTipoDcmtoIdentidadAsignado;
-        //    socio.NumeroDcmtoIdentidad = modelo.NumeroDcmtoIdentidad;
-
-        //    socio.RazonSocial = keyRUC == modelo.IdTipoDcmtoIdentidadAsignado ? modelo.RazonSocial : string.Empty;
-        //    socio.ApellidoPaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoPaterno : string.Empty;
-        //    socio.ApellidoMaterno = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.ApellidoMaterno : string.Empty;
-        //    socio.PrimerNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.PrimerNombre : string.Empty;
-        //    socio.SegundoNombre = keyRUC != modelo.IdTipoDcmtoIdentidadAsignado ? modelo.SegundoNombre : string.Empty;
-
-        //    socio.Telefono = modelo.Telefono;
-        //    socio.Celular = modelo.Celular;
-        //    socio.Email = modelo.Email;
-        //    socio.PaginaWeb = modelo.PaginaWeb;
-
-        //    socio.IsAfectoRetencion = modelo.IsAfectoRetencion;
-        //    socio.IsAfectoPercepcion = modelo.IsAfectoPercepcion;
-        //    socio.IsBuenContribuyente = modelo.IsBuenContribuyente;
-        //    socio.IdTipoCalificacion = modelo.IdTipoCalificacion;
-        //    socio.ZonaPostal = modelo.ZonaPostal;
-        //    socio.FechaInicioOperaciones = modelo.FechaInicioOperaciones.HasValue ? modelo.FechaInicioOperaciones.Value : null;
-
-        //    socio.IdGrupoSocioNegocio = modelo.IdGrupoSocioNegocio.HasValue ? modelo.IdGrupoSocioNegocio : null;
-        //    socio.IdColaboradorAsignado = modelo.IdColaboradorAsignado.HasValue ? modelo.IdColaboradorAsignado : null;
-
-        //    socio.EsActivo = modelo.EsActivo;
-        //    socio.UsuarioName = _sessionUsuario.Nombre;
-        //    socio.FechaRegistro = DateTime.Now;
-
-        //    bool flgRetorno = await _srvSocio.Update(socio);
-        //    return View(socio);
-        //}
-
-            
-        ////[HttpPost]      
-        ////public async Task<IActionResult> xEliminarProveedor(VMSociosProveedores modelo)
-        ////{ 
-        ////    return RedirectToAction("EliminarProveedor", "SocioProveedores", modelo);
-        ////}
-
-        //#endregion
-
 
     }
 }

@@ -20,30 +20,30 @@
     var colaboradores = (List<VMSociosColaboradores>)ViewBag.Colaboradores;
     var calificacion = (List<VMTipoCalificacion>)ViewBag.Calificacion;
 
-    var entity = new VMSociosProveedores()
-            {
-                IdSocio = 0,
-                IdTipoSocio = tipoSocio.IdTipoSocio,
-                IdTipoDcmtoIdentidad = dcmtoDefault.IdTipoDcmtoIdentidad,
-                IdTipoDcmtoIdentidadAsignado = dcmtoDefault.IdTipoDcmtoIdentidad,
-                NumeroDcmtoIdentidad = string.Empty,               
-                CodigoTipoDcmto = dcmtoDefault.Simbolo,
-                NameTipoDcmto = dcmtoDefault.Descripcion,
-                TiposDcmtoIdentidad = tiposDcmtosIdentidad,
-                RazonSocial = string.Empty,
-                ApellidoPaterno = string.Empty,
-                ApellidoMaterno = string.Empty,
-                PrimerNombre = string.Empty,
-                SegundoNombre = string.Empty,
-                Telefono = string.Empty,
-                Celular = string.Empty,
-                PaginaWeb = string.Empty,
-                Email = string.Empty,
-                nav_GrupoEconomico = grupoEconomico,
-                nav_Colaboradores = colaboradores,
-                nav_Calificacion = calificacion,
-                OperacionCRUD = "INSERT"
-    };
+    // var entity = new VMSociosProveedores()
+    //         {
+    //             IdSocio = 0,
+    //             IdTipoSocio = tipoSocio.IdTipoSocio,
+    //             IdTipoDcmtoIdentidad = dcmtoDefault.IdTipoDcmtoIdentidad,
+    //             IdTipoDcmtoIdentidadAsignado = dcmtoDefault.IdTipoDcmtoIdentidad,
+    //             NumeroDcmtoIdentidad = string.Empty,               
+    //             CodigoTipoDcmto = dcmtoDefault.Simbolo,
+    //             NameTipoDcmto = dcmtoDefault.Descripcion,
+    //             TiposDcmtoIdentidad = tiposDcmtosIdentidad,
+    //             RazonSocial = string.Empty,
+    //             ApellidoPaterno = string.Empty,
+    //             ApellidoMaterno = string.Empty,
+    //             PrimerNombre = string.Empty,
+    //             SegundoNombre = string.Empty,
+    //             Telefono = string.Empty,
+    //             Celular = string.Empty,
+    //             PaginaWeb = string.Empty,
+    //             Email = string.Empty,
+    //             nav_GrupoEconomico = grupoEconomico,
+    //             nav_Colaboradores = colaboradores,
+    //             nav_Calificacion = calificacion,
+    //             OperacionCRUD = "INSERT"
+    // };
 
 }
 
@@ -61,17 +61,9 @@
     <div class="card-body">                     
         <div class="row">
             <div class="col-sm-6">
-                <a class="btn btn-success" href="@Url.Action("Adicionar", "SocioProveedores")"><i class="fas fa-plus-circle"></i> Nuevo</a>
-@* 
-                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
-                @await Html.PartialAsync("_AddPartialView", entity)
- *@
+                <a class="btn btn-success" href="@Url.Action("Adicionar", "SocioProveedores")"><i class="fas fa-plus-circle"></i> Nuevo</a> 
                 <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioProveedores")"><i class="bi bi-printer"></i> Listado</a>
-                <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>
-
- 
-
-
+                <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>                 
             </div>           
         </div>
     </div>
@@ -98,10 +90,9 @@
                                 <td align="center">@Html.DisplayFor(m => item.NumeroDcmtoIdentidad)</td>                              
                                 <td align="center">@Html.DisplayFor(m => item.EsActivo)</td> 
                                 <td>
-
-                                    @{
-                                        entity.OperacionCRUD = "UPDATE";
-                                    }
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Editar", "SocioProveedores", new {idSocio = item.IdSocio, mensaje = ""})"><i class="fas fa-pencil-alt"></i> Editar</a>
+                                    <a class="btn btn-danger btn-sm" href="@Url.Action("Eliminar", "SocioProveedores", new {idSocio = item.IdSocio, mensaje = ""})"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                    
                                                                           
                                   @*   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdSocio)" data-url="@Url.Action($"Edit/{item.IdSocio}")">
                                         <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
@@ -140,6 +131,6 @@
     <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
     <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
 
-    <script src="~/js/vistas/proveedores.js"></script>
+@*     <script src="~/js/vistas/proveedores.js"></script> *@
      
 }
