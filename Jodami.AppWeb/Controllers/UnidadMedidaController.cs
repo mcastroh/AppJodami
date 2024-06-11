@@ -3,7 +3,6 @@ using Jodami.AppWeb.Models.ViewModels;
 using Jodami.BLL.Interfaces;
 using Jodami.Entity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Elfie.Model;
 using Rotativa.AspNetCore;
 
 namespace Jodami.AppWeb.Controllers
@@ -21,7 +20,10 @@ namespace Jodami.AppWeb.Controllers
         {
             _mapper = mapper;
             _service = service;
+            _httpContextAccessor = httpContextAccessor;
+            _sessionUsuario = System.Text.Json.JsonSerializer.Deserialize<Usuario>(_httpContextAccessor.HttpContext.Session.GetString("sessionUsuario"));
         }
+
         #endregion 
 
         #region HttpGet => Index  
@@ -63,7 +65,7 @@ namespace Jodami.AppWeb.Controllers
         public async Task<IActionResult> Editar(VMUnidadMedida vmModelo)
         {   
             var modelo = await _service.GetById(x => x.IdUnidad == vmModelo.IdUnidad);
-
+            
             modelo.Descripcion = vmModelo.Descripcion;
             modelo.Simbolo = vmModelo.Simbolo;
             modelo.IdSunat = vmModelo.IdSunat;
@@ -82,8 +84,7 @@ namespace Jodami.AppWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Eliminar(VMUnidadMedida vmModelo)
-        {
-            //var modelo = await _service.GetById(x => x.IdUnidad == vmModelo.IdUnidad); 
+        {         
             bool flgRetorno = await _service.Delete(x => x.IdUnidad == vmModelo.IdUnidad);
             return RedirectToAction("Index");
         }

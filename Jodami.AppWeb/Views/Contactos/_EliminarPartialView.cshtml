@@ -23,7 +23,7 @@
 
                     <div class="row">
                         <div class="col-sm-11">
-                            <label class="control-label">Nombres del contacto</label>
+                            <label for="Nombre" class="control-label">Nombres del contacto</label>
                             <input class="form-control" type="text" id="Nombre" disabled asp-for="@Model.NewContacto.Nombre">
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                     <hr />
                     <div class="row">
                         <div class="col-sm-11">
-                            <label for="Email" class="control-label">Email</label>
+                            <label for="email" class="control-label">Email</label>
                             <input type="email" id="email" asp-for="@Model.NewContacto.Email" class="form-control" disabled />
                         </div>
                     </div>
@@ -56,15 +56,15 @@
                             <input id="Telefono" asp-for="@Model.NewContacto.Telefono" class="form-control" disabled />
                         </div>
                         <div class="col-sm-3 form-group">
-                            <label for="cboEstado">Celular para WhatsApp</label>
-                            <div class="form-check">
-                                <input class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp" disabled>
+                            <label for="cboCelular" class="d-flex justify-content-center">Celular para WhatsApp</label>
+                            <div class="form-check d-flex justify-content-center">
+                                <input id="cboCelular" class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.IsCelularWhatsApp">
                             </div>
                         </div>
                         <div class="col-sm-3 form-group">
                             <label for="cboEstado">Estado</label>
                             <div class="form-check">
-                                <input class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.EsActivo" disabled>
+                                <input id="cboEstado" class="largerCheckbox" type="checkbox" asp-for="@Model.NewContacto.EsActivo" disabled>
                             </div>
                         </div> 
                     </div>

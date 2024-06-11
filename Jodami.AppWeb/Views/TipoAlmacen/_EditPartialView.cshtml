@@ -1,5 +1,13 @@
 ﻿@model Jodami.AppWeb.Models.ViewModels.VMTipoAlmacen
 
+<style>
+    input.largerCheckbox {
+        width: 20px;
+        height: 20px;
+    }
+
+</style>
+
 <div class="modal fade" id="EditEntidad-@Model.IdTipoAlmacen" aria-labelledby="EditEntidadLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">   
@@ -13,8 +21,8 @@
                 <form asp-action="Editar" method="post" class="needs-validation" novalidate>                    
                     <input type="hidden" asp-for="IdTipoAlmacen" />
                     <div class="form-group">
-                        <label asp-for="Codigo" class="control-label"></label>
-                        <input asp-for="Codigo" class="form-control" autocomplete="off" required maxlength="20" />
+                        <label for="codigo" asp-for="Codigo" class="control-label"></label>
+                        <input id="codigo" asp-for="Codigo" class="form-control" autocomplete="off" required maxlength="20" />
                         <div class="invalid-feedback">Símbolo obligatorio</div>
                     </div>
                     <div class="form-group">                       
@@ -23,9 +31,9 @@
                         <div class="invalid-feedback">Descripción obligatorio</div>
                     </div> 
                     <div class="form-group">
-                        <label for="cboEstado">Estado Activo (en Check)</label>   
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" asp-for="@Model.EsActivo">
+                        <label for="cboEstado" class="d-flex justify-content-left">Activo (en Check)</label>
+                        <div class="form-check d-flex justify-content-left">
+                            <input id="cboEstado" class="largerCheckbox" type="checkbox" asp-for="@Model.EsActivo">
                         </div>
                     </div>
                     <br /> 

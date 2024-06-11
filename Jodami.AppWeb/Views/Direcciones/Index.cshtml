@@ -67,10 +67,16 @@
                                 LstTipoVias = Model.LstTipoVias,
                                 LstTipoZonas = Model.LstTipoZonas,
                                 LstDepartamentos = Model.LstDepartamentos,
-                                DepartamentoKey = Model.DepartamentoKey,
-                                ProvinciaKey = Model.ProvinciaKey,
-                                DistritoKey = Model.DistritoKey 
-                            }; 
+                                LstProvincias = Model.LstProvincias,
+                                LstDistritos = Model.LstDistritos,
+                                DepartamentoKey = item.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.IdDepartamento,
+                                ProvinciaKey = item.IdDireccionNavigation.IdDistritoNavigation.IdProvincia,
+                                DistritoKey = item.IdDireccionNavigation.IdDistritoNavigation.IdDistrito    ,
+                            };
+                            //var qDist = iteDirec.IdDireccionNavigation.IdDistrito;
+                            //var qProv = iteDirec.IdDireccionNavigation.IdDistritoNavigation.IdProvincia;
+                            //var qDpto = iteDirec.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.IdDepartamento;
+                            var qqq = "";
 
                             <tr>
                                 <td>@Html.DisplayFor(m => item.IdDireccionNavigation.IdTipoDireccionNavigation.Descripcion)</td>
@@ -96,50 +102,7 @@
         </div>
     </div>
 </div>
-
-
-
-<!--  Modal-->
-<div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6>Detalle Categoria</h6>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <input type="hidden" value="0" id="txtId">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="txtDescripcion">Descripcion</label>
-                                    <input type="text" class="form-control form-control-sm" id="txtDescripcion">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="cboEstado">Estado</label>
-                                    <select class="form-control form-control-sm" id="cboEstado">
-                                        <option value="1">Activo</option>
-                                        <option value="0">No Activo</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="btnGuardar">Guardar</button>
-                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
  
-
 @section Scripts {
     <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>

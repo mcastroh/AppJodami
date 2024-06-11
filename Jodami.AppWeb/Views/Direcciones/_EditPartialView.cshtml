@@ -13,7 +13,7 @@
 
             <div class="modal-body">
 
-                <form asp-action="Adicionar" method="post" class="needs-validation" novalidate>
+                <form asp-action="Editar" method="post" class="needs-validation" novalidate>
 
                     <input type="hidden" asp-for="@Model.NewDireccion.IdDireccion" />
                     <input type="hidden" asp-for="@Model.NewSocioDireccion.IdSocio" />
@@ -30,24 +30,32 @@
                     @* ---------------------------------- *@
                     <div class="row form-group">
                         <div class="col-md-2">
-                            <label class="control-label">Tipo de Dirección</label>
-                            <select class="form-control" asp-for="@Model.NewDireccion.IdTipoDireccion" required asp-items="@(new SelectList(@Model.LstTipoDirecciones, "IdTipoDireccion", "Descripcion"))">                             
+                            <label for="cboTipoDireccion" class="control-label">Tipo de Dirección</label>
+                            <select id="cboTipoDireccion" class="form-control" asp-for="@Model.NewDireccion.IdTipoDireccion" required asp-items="@(new SelectList(@Model.LstTipoDirecciones, "IdTipoDireccion", "Descripcion"))">
+                                <option value="">Seleccionar</option>
                             </select>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Seleccionar tipo de dirección</div>
                         </div>
                         <div class="col-md-3">
-                            <label class="control-label">Tipo de Vía</label>
-                            <select class="form-control" asp-for="@Model.NewDireccion.IdTipoVia" required asp-items="@(new SelectList(@Model.LstTipoVias, "IdTipoVia", "Descripcion"))">                               
+                            <label for="cboTipoVia" class="control-label">Tipo de Vía</label>
+                            <select id="cboTipoVia" class="form-control" asp-for="@Model.NewDireccion.IdTipoVia" required asp-items="@(new SelectList(@Model.LstTipoVias, "IdTipoVia", "Descripcion"))">
+                                <option value="">Seleccionar</option>
                             </select>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Seleccionar tipo de vía</div>
                         </div>
                         <div class="col-md-5">
-                            <label class="control-label">Nombre de la Vía</label>
-                            <input id="nombreVia" class="form-control" asp-for="@Model.NewDireccion.NombreVia" required class="form-control" autocomplete="off" />
-                            <span asp-validation-for="@Model.NewDireccion.NombreVia" class="text-danger"></span>
+                            <label for="nombreVia" class="control-label">Nombre de la Vía</label>
+                            <input id="nombreVia" class="form-control" asp-for="@Model.NewDireccion.NombreVia" required class="form-control" autocomplete="off" placeholder="Ingrese nombre de vía" />
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Ingresar nombre de la vía</div>
                         </div>
                         <div class="col-md-2">
-                            <label class="control-label">Número de Vía</label>
-                            <input id="numeroVia" class="form-control" asp-for="@Model.NewDireccion.NumeroVia" required class="form-control" autocomplete="off"  />
-                            <span asp-validation-for="@Model.NewDireccion.NumeroVia" class="text-danger"></span>
+                            <label for="numeroVia" class="control-label">Número de Vía</label>
+                            <input id="numeroVia" class="form-control" asp-for="@Model.NewDireccion.NumeroVia" required class="form-control" autocomplete="off" placeholder="Ingrese nro de vía" />
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Ingresar número de vía</div>
                         </div>
                     </div>
 
@@ -56,16 +64,20 @@
                     @* ---------------- *@
                     <hr />
                     <div class="row">
-                        <div class="col-md-2">
-                            <label class="control-label">Tipo de Zona</label>
-                            <select id="cboTipoZona" class="form-control" asp-for="@Model.NewDireccion.IdTipoZona" asp-items="@(new SelectList(@Model.LstTipoZonas, "IdTipoZona", "Descripcion"))">                              
+                        <div class="col-md-3">
+                            <label for="cboTipoZona" class="control-label">Tipo de Zona</label>
+                            <select id="cboTipoZona" class="form-control" asp-for="@Model.NewDireccion.IdTipoZona" required asp-items="@(new SelectList(@Model.LstTipoZonas, "IdTipoZona", "Descripcion"))">
+                                <option value="">Seleccionar</option>
                             </select>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Seleccionar tipo de zona</div>
                         </div>
 
-                        <div class="col-md-10">
-                            <label class="control-label">Nombre de Zona</label>
-                            <input id="nombreZona" class="form-control" asp-for="@Model.NewDireccion.NombreZona" class="form-control" autocomplete="off" />
-                            <span asp-validation-for="@Model.NewDireccion.NombreZona" class="text-danger"></span>
+                        <div class="col-md-9">
+                            <label for="nombreZona" class="control-label">Nombre de Zona</label>
+                            <input id="nombreZona" class="form-control" asp-for="@Model.NewDireccion.NombreZona" class="form-control" autocomplete="off" placeholder="Ingrese nombre de zona" />
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Ingresar nombre de la zona</div>
                         </div>
                     </div>
 
@@ -75,24 +87,25 @@
                     <hr />
                     <div class="row">
                         <div class="col-sm-4">
-                            <label class="form-label">Departamento</label>
-                            <select id="cbodepartamento" asp-for="@Model.DepartamentoKey" class="form-control form-select-sm" required></select>
+                            <label for="cbodepartamento" class="form-label">Departamento</label>
+                            <select id="cbodepartamento" class="form-control" asp-for="@Model.DepartamentoKey" required asp-items="@(new SelectList(@Model.LstDepartamentos, "IdDepartamento", "DepartamentoName"))"></select>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Seleccionar departamento</div>
                         </div>
                         <div class="col-sm-4">
-                            <label class="form-label">Provincia</label>
-                            <select id="cboprovincia" asp-for="@Model.ProvinciaKey" class="form-control form-select-sm" required></select>
+                            <label for="cboprovincia" class="form-label">Provincia</label>
+                            <select id="cboprovincia" class="form-control" asp-for="@Model.ProvinciaKey" required asp-items="@(new SelectList(@Model.LstProvincias, "IdProvincia", "ProvinciaName"))"></select> 
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Seleccionar provincia</div>
                         </div>
                         <div class="col-sm-4">
-                            <label class="form-label">Distrito</label>
-                            <select id="cbodistrito" asp-for="@Model.DistritoKey" class="form-control form-select-sm" required></select>
-                            <div class="valid-feedback"></div>
+                            <label for="cbodistrito" class="form-label">Distrito</label>
+                            <select id="cbodistrito" class="form-control" asp-for="@Model.DistritoKey" required asp-items="@(new SelectList(@Model.LstDistritos, "IdDistrito", "DistritoName"))"></select>
+                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Seleccionar distrito</div>
                         </div>
                     </div>
+
 
                     @*-------------- *@
                     @* Pie de página *@
@@ -104,7 +117,10 @@
                         <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
                     </div> 
                 </form>
-               
+
+                <script src="~/js/proveedores/campos-obligatorios.js"></script>
+                <script src="~/js/vistas/direccion_index.js"></script>
+
             </div>
         </div>
     </div>

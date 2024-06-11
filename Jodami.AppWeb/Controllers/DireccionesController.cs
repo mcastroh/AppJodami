@@ -33,7 +33,7 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion 
 
-        #region HttpGet => Index  
+        #region HttpGet => Index    
 
         [HttpGet]
         public async Task<IActionResult> Index(int idSocio, string tipoSocioOrigen, string controladorOrigen, string accionOrigen)
@@ -82,13 +82,29 @@ namespace Jodami.AppWeb.Controllers
 
         #region Edit => HttpPost 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public async Task<IActionResult> Editar(DtoDirecciones modelo)
         {
-            //modelo.NewContacto.UsuarioName = _sessionUsuario.Nombre;
-            //modelo.NewContacto.FechaRegistro = DateTime.Now;
-            //bool flgRetorno = await _svrSocioContacto.Update(modelo.NewContacto);
+            var direccion = await _svrDireccion.GetById(x=> x.IdDireccion == modelo.NewDireccion.IdDireccion);
+
+            var lstDistrito = (await _contexto.Distrito.AsNoTracking().FirstOrDefaultAsync(x => x.IdDistrito == modelo.DistritoKey)).DistritoName;
+
+            direccion.IdTipoDireccion = modelo.NewDireccion.IdTipoDireccion;
+            direccion.IdTipoVia = modelo.NewDireccion.IdTipoVia;
+            direccion.NombreVia = modelo.NewDireccion.NombreVia;
+            direccion.NumeroVia = modelo.NewDireccion.NumeroVia;
+            direccion.IdTipoZona = modelo.NewDireccion.IdTipoZona;
+            direccion.NombreZona = modelo.NewDireccion.NombreZona;
+            direccion.NombreVia = modelo.NewDireccion.NombreVia;
+            direccion.NumeroVia = modelo.NewDireccion.NumeroVia;
+            direccion.IdDistrito = modelo.DistritoKey;
+            direccion.NameUbigeo = lstDistrito;
+            direccion.EsActivo = true;
+            direccion.UsuarioName = _sessionUsuario.Nombre;
+            direccion.FechaRegistro = DateTime.Now;
+
+            var objDireccion = await _svrDireccion.Update(direccion); 
+
             return RedirectToAction("Index", new { idSocio = modelo.IdSocio, tipoSocioOrigen = modelo.TipoSocio, controladorOrigen = modelo.ControladorOrigen, accionOrigen = modelo.AccionOrigen });
         }
 
@@ -134,7 +150,7 @@ namespace Jodami.AppWeb.Controllers
 
         public async Task<DtoDirecciones> ETL_Direcciones(int idSocio, string tipoSocioOrigen, string controladorOrigen, string accionOrigen)
         {
-            var proveedor = await _contexto.Socio.AsNoTracking().Where(x => x.IdSocio == idSocio).Include(e => e.IdTipoDcmtoIdentidadNavigation).FirstOrDefaultAsync();
+            var data = await _contexto.Socio.AsNoTracking().Where(x => x.IdSocio == idSocio).Include(e => e.IdTipoDcmtoIdentidadNavigation).FirstOrDefaultAsync();
             var lstDirecciones = await _contexto.SocioDireccion
                                                 .Where(x => x.IdSocio == idSocio)
                                                 .AsNoTracking()
@@ -145,28 +161,37 @@ namespace Jodami.AppWeb.Controllers
                                                 .Include(x => x.IdDireccionNavigation.IdDistritoNavigation)
                                                 .Include(x => x.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation)
                                                 .Include(x => x.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.IdDepartamentoNavigation)
-                                                .ToListAsync();            
-            
+                                                .ToListAsync();
+
+            foreach (var iteDirec in lstDirecciones)
+            {
+                var direc = iteDirec.IdDireccionNavigation;
+                direc.NameDireccion = $"{direc.NameDireccion} {direc.NombreVia} {direc.NumeroVia} {direc.NombreZona}"; 
+            } 
+
             var lstTipoDirecciones = await _contexto.TipoDireccion.AsNoTracking().ToListAsync();
             var lstTipoVias = await _contexto.TipoVia.AsNoTracking().ToListAsync();
             var lstTipoZonas = await _contexto.TipoZona.AsNoTracking().ToListAsync();
-            var lstDepartamentos = await _contexto.Departamento.AsNoTracking().ToListAsync();
 
-            string tipoDcmto = tipoSocioOrigen + ": " + proveedor.IdTipoDcmtoIdentidadNavigation.Simbolo + " " + proveedor.NumeroDcmtoIdentidad;
-            string nombres = tipoDcmto == "RUC" ? proveedor.RazonSocial : $"{proveedor.ApellidoPaterno} {proveedor.ApellidoMaterno} {proveedor.PrimerNombre} {proveedor.SegundoNombre}";
+            var lstDepartamentos = await _contexto.Departamento.AsNoTracking().ToListAsync();
+            var lstProvincias = await _contexto.Provincia.AsNoTracking().ToListAsync();
+            var lstDistritos = await _contexto.Distrito.AsNoTracking().ToListAsync();
+
+            string tipoDcmto = tipoSocioOrigen + ": " + data.IdTipoDcmtoIdentidadNavigation.Simbolo + " " + data.NumeroDcmtoIdentidad;
+            string nombres = data.IdTipoDcmtoIdentidadNavigation.Simbolo == "RUC" ? data.RazonSocial : $"{data.ApellidoPaterno} {data.ApellidoMaterno} {data.PrimerNombre} {data.SegundoNombre}";
             string situacion = string.Empty;
 
-            if (proveedor.EsActivo)
+            if (data.EsActivo)
             {
                 situacion = "Activo";
-                if (proveedor.FechaInicioOperaciones.HasValue)
-                    situacion = $"Activo desde el {proveedor.FechaInicioOperaciones.Value.ToString("dd/MM/yyyy")}";
+                if (data.FechaInicioOperaciones.HasValue)
+                    situacion = $"Activo desde el {data.FechaInicioOperaciones.Value.ToString("dd/MM/yyyy")}";
             }
             else
             {
                 situacion = "Inactivo";
-                if (proveedor.FechaBaja.HasValue)
-                    situacion = $"Inactivo desde el {proveedor.FechaBaja.Value.ToString("dd/MM/yyyy")}";
+                if (data.FechaBaja.HasValue)
+                    situacion = $"Inactivo desde el {data.FechaBaja.Value.ToString("dd/MM/yyyy")}";
             }
 
             var dto = new DtoDirecciones()
@@ -184,9 +209,15 @@ namespace Jodami.AppWeb.Controllers
                 LstTipoDirecciones = lstTipoDirecciones,
                 LstTipoVias = lstTipoVias,
                 LstTipoZonas = lstTipoZonas,
-                LstDepartamentos = lstDepartamentos
-
+                LstDepartamentos = lstDepartamentos,
+                LstProvincias = lstProvincias,
+                LstDistritos = lstDistritos
             };
+
+            //var qDist = iteDirec.IdDireccionNavigation.IdDistrito;
+            //var qProv = iteDirec.IdDireccionNavigation.IdDistritoNavigation.IdProvincia;
+            //var qDpto = iteDirec.IdDireccionNavigation.IdDistritoNavigation.IdProvinciaNavigation.IdDepartamento;
+
 
             return dto;
         }

@@ -8,21 +8,20 @@
 
   <ItemGroup>
     <Compile Remove="Rack\**" />
-    <Compile Remove="Views\SocioProveedores - Copia\**" />
+    <Compile Remove="Views\SocioClientes\**" />
     <Compile Remove="wwwroot\images\**" />
     <Content Remove="Rack\**" />
-    <Content Remove="Views\SocioProveedores - Copia\**" />
+    <Content Remove="Views\SocioClientes\**" />
     <Content Remove="wwwroot\images\**" />
     <EmbeddedResource Remove="Rack\**" />
-    <EmbeddedResource Remove="Views\SocioProveedores - Copia\**" />
+    <EmbeddedResource Remove="Views\SocioClientes\**" />
     <EmbeddedResource Remove="wwwroot\images\**" />
     <None Remove="Rack\**" />
-    <None Remove="Views\SocioProveedores - Copia\**" />
+    <None Remove="Views\SocioClientes\**" />
     <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\SocioProveedoresController - Copia.cs" />
     <Compile Remove="Controllers\xMonedaController.cs" />
     <Compile Remove="Controllers\xTipoViaController.cs" />
     <Compile Remove="Data\Almacen.cs" />
@@ -108,6 +107,29 @@
 
   <ItemGroup>
     <None Remove="Views\Shared\_Layout - Copia.cshtml.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\SocioClientes\Adicionar.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\SocioClientes\Editar.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\SocioClientes\Eliminar.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\SocioClientes\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\SocioClientes\ListarPDF.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

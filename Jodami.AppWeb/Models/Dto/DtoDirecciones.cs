@@ -20,7 +20,10 @@ namespace Jodami.AppWeb.Models.Dto
         public List<TipoDireccion> LstTipoDirecciones { get; set; }
         public List<TipoVia> LstTipoVias { get; set; }
         public List<TipoZona> LstTipoZonas { get; set; }
+
         public List<Departamento> LstDepartamentos { get; set; }
+        public List<Provincia> LstProvincias { get; set; }
+        public List<Distrito> LstDistritos { get; set; }
 
         public int DepartamentoKey { get; set; }
         public int ProvinciaKey { get; set; }

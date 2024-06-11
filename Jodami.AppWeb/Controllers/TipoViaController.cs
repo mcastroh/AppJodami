@@ -20,7 +20,10 @@ namespace Jodami.AppWeb.Controllers
         {
             _mapper = mapper;
             _service = service;
+            _httpContextAccessor = httpContextAccessor;
+            _sessionUsuario = System.Text.Json.JsonSerializer.Deserialize<Usuario>(_httpContextAccessor.HttpContext.Session.GetString("sessionUsuario"));
         }
+
         #endregion 
 
         #region HttpGet => Index  

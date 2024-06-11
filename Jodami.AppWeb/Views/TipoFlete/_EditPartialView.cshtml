@@ -14,21 +14,22 @@
                     <input type="hidden" asp-for="IdFlete" />
                     <div class="form-group row row-cols-1">
                         <div class="col-sm-6">
-                            <label asp-for="Codigo" class="control-label" style="text-align:left"></label>
-                            <input asp-for="Codigo" class="form-control" autocomplete="off" required maxlength="20" />
+                            <label for="Codigo" asp-for="Codigo" class="control-label" style="text-align:left"></label>
+                            <input id="Codigo" asp-for="Codigo" class="form-control" autocomplete="off" required maxlength="20" />
                             <div class="invalid-feedback">Símbolo obligatorio</div>
-                        </div>
+                        </div>                       
                         <div class="col-sm-6">
-                            <label for="cboEstado">Estado Activo (en Check)</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="@Model.EsActivo">
+                            <label for="cboEstado" class="d-flex justify-content-left">Activo (en Check)</label>
+                            <div class="form-check d-flex justify-content-left">
+                                <input id="cboEstado" class="largerCheckbox" type="checkbox" asp-for="@Model.EsActivo">
                             </div>
                         </div>
+
                     </div>
                     <div class="form-group row row-cols-1">
                         <div class="col-sm-12">
-                            <label asp-for="Descripcion" class="control-label" style="text-align:left"></label>
-                            <input asp-for="Descripcion" class="form-control" autocomplete="off" required maxlength="256" />
+                            <label for="Descripcion" asp-for="Descripcion" class="control-label" style="text-align:left"></label>
+                            <input id="Descripcion" asp-for="Descripcion" class="form-control" autocomplete="off" required maxlength="256" />
                             <div class="invalid-feedback">Descripción obligatorio</div>
                         </div>
                     </div>  

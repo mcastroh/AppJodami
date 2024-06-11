@@ -1,0 +1,91 @@
+﻿@using AutoMapper
+@using Jodami.AppWeb.Models.ViewModels
+@using Jodami.AppWeb.Utilidades.Infraestructura
+@using Jodami.Entity
+@model IEnumerable<VMSociosProveedores>
+
+@{
+    ViewData["Title"] = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string tipoSocioOrigen = "Cliente";
+    string controladorOrigen = "SocioClientes";
+    string accionOrigen = "Index";
+
+    var tipoSocio = (TipoSocio)ViewBag.TipoSocio;
+    var tiposDcmtosIdentidad = (List<VMTipoDocumentoIdentidad>)ViewBag.TipoDocumentoIdentidad;
+    var dcmtoDefault = (VMTipoDocumentoIdentidad)ViewBag.DcmtoDefault;
+
+    var grupoEconomico = (List<VMSociosGrupos>)ViewBag.GrupoEconomico;
+    var colaboradores = (List<VMSociosColaboradores>)ViewBag.Colaboradores;
+    var calificacion = (List<VMTipoCalificacion>)ViewBag.Calificacion; 
+}
+
+@section Estilos {
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista Clientes</h6>
+    </div>
+
+    <div class="card-body">                     
+        <div class="row">
+            <div class="col-sm-6">
+                <a class="btn btn-success" href="@Url.Action("Adicionar", "SocioClientes")"><i class="fas fa-plus-circle"></i> Nuevo</a> 
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "SocioClientes")"><i class="bi bi-printer"></i> Listado</a>
+                <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>                 
+            </div>           
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>       
+                            <th>Clientes</th>
+                            <th align="center">T.D</th>
+                            <th align="center">Nro.dcmto</th>                          
+                            <th align="center">Activo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderBy(x => x.RazonSocial).ToList())
+                        { 
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.NombreRazonSocial)</td>
+                                <td align="center">@Html.DisplayFor(m => item.CodigoTipoDcmto)</td>
+                                <td align="center">@Html.DisplayFor(m => item.NumeroDcmtoIdentidad)</td>                              
+                                <td align="center">@Html.DisplayFor(m => item.EsActivo)</td> 
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Editar", "SocioClientes", new {idSocio = item.IdSocio, mensaje = ""})"><i class="fas fa-pencil-alt"></i> Editar</a>
+                                    <a class="btn btn-danger btn-sm" href="@Url.Action("Eliminar", "SocioClientes", new {idSocio = item.IdSocio, mensaje = ""})"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                    <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "Contactos", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Contactos</a>
+                                    <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "Direcciones", new { idSocio = item.IdSocio, tipoSocioOrigen=@tipoSocioOrigen, controladorOrigen=@controladorOrigen, accionOrigen=@accionOrigen})"><i class="bi bi-justify"></i>Direcciones</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+</div>  
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>      
+}
