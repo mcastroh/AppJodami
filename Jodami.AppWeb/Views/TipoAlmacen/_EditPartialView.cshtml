@@ -5,7 +5,6 @@
         width: 20px;
         height: 20px;
     }
-
 </style>
 
 <div class="modal fade" id="EditEntidad-@Model.IdTipoAlmacen" aria-labelledby="EditEntidadLabel" aria-hidden="true">
@@ -23,7 +22,7 @@
                     <div class="form-group">
                         <label for="codigo" asp-for="Codigo" class="control-label"></label>
                         <input id="codigo" asp-for="Codigo" class="form-control" autocomplete="off" required maxlength="20" />
-                        <div class="invalid-feedback">Símbolo obligatorio</div>
+                        <div class="invalid-feedback">Código obligatorio</div>
                     </div>
                     <div class="form-group">                       
                         <label asp-for="Descripcion" class="control-label"></label>
