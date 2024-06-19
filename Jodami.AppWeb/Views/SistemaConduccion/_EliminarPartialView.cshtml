@@ -1,10 +1,10 @@
-﻿@model Jodami.Entity.NivelCentroCosto
+﻿@model Jodami.Entity.SistemaConduccion
 
-<div class="modal fade" id="EliminarEntidad-@Model.IdNivelCentroCosto" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+<div class="modal fade" id="EliminarEntidad-@Model.IdSistemaConduccion" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">   
             <div class="modal-header">
-                <h2 class="modal-title">Eliminar Nivel Centro Costo</h2>
+                <h3 class="modal-title">Eliminar Sistema de Conducción</h3>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">x</span>
                 </button>
@@ -12,7 +12,7 @@
             <div class="modal-body">                  
                 <form asp-action="Eliminar" method="post">                    
                     <div class="form-group">
-                        <input type="hidden" asp-for="IdNivelCentroCosto" />
+                        <input type="hidden" asp-for="IdSistemaConduccion" />
                         <label class="control-label">Descripción</label>
                         <input asp-for="Descripcion" class="form-control" readonly="readonly" />
                     </div> 

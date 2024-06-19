@@ -19,7 +19,15 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Cultivo]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[NivelCentroCosto]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[SistemaConduccion]",
          "ObjectType": 0
       },
       {

@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Jodami.Entity.NivelCentroCosto>
+﻿@model IEnumerable<Jodami.Entity.Cultivo>
 
 @{
-    ViewData["Title"] = "Niveles Centros de Costos";
+    ViewData["Title"] = "Cultivos";
     Layout = "~/Views/Shared/_Layout.cshtml";  
 }
 
@@ -13,7 +13,7 @@
  
 <div class="card shadow mb-4">
     <div class="card-header py-3 bg-second-primary">
-        <h6 class="m-0 font-weight-bold text-white">Lista Niveles Centros de Costos</h6>
+        <h6 class="m-0 font-weight-bold text-white">Lista Tipos de Cultivos</h6>
     </div>
 
     <div class="card-body">
@@ -21,7 +21,7 @@
             <div class="col-sm-6">
                 <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
                 @await Html.PartialAsync("_AddPartialView")   
-                <a class="btn btn-success" href="@Url.Action("ListarPDF", "NivelCentroCosto")"><i class="bi bi-printer"></i> Listado</a>
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", "Cultivos")"><i class="bi bi-printer"></i> Listado</a>
                 <a class="btn btn-success" href="@Url.Action("Index", "Home")"><i class="bi bi-printer"></i> Regresar</a>
             </div>
         </div>
@@ -45,12 +45,12 @@
                                 <td>@Html.DisplayFor(m => item.Descripcion)</td>                             
                                 <td>@Html.DisplayFor(m => item.EsActivo)</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdNivelCentroCosto)" data-url="@Url.Action($"Edit/{item.IdNivelCentroCosto}")">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdCultivo)" data-url="@Url.Action($"Edit/{item.IdCultivo}")">
                                         <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
                                     </button>
                                     @await Html.PartialAsync("_EditPartialView", item)
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdNivelCentroCosto)" data-url="@Url.Action($"Eliminar/{item.IdNivelCentroCosto}")">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdCultivo)" data-url="@Url.Action($"Eliminar/{item.IdCultivo}")">
                                         <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
                                     </button>
                                     @await Html.PartialAsync("_EliminarPartialView", item)

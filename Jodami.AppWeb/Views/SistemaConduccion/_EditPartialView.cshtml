@@ -1,4 +1,4 @@
-﻿@model Jodami.Entity.NivelCentroCosto
+﻿@model Jodami.Entity.SistemaConduccion
  
 <style>
     input.largerCheckbox {
@@ -8,18 +8,18 @@
 
 </style> 
  
-<div class="modal fade" id="EditEntidad-@Model.IdNivelCentroCosto" aria-labelledby="EditEntidadLabel" aria-hidden="true">
+<div class="modal fade" id="EditEntidad-@Model.IdSistemaConduccion" aria-labelledby="EditEntidadLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">   
             <div class="modal-header">
-                <h2 class="modal-title">Editar Nivel Centro Costo</h2>
+                <h3 class="modal-title">Editar Sistema de Conducción</h3>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">x</span>
                 </button>
             </div> 
             <div class="modal-body">       
                 <form asp-action="Editar" method="post" class="needs-validation" novalidate>                    
-                    <input type="hidden" asp-for="IdNivelCentroCosto" />
+                    <input type="hidden" asp-for="IdSistemaConduccion" />
                     <div class="form-group">                       
                         <label for="descripcion" class="control-label">Descripción</label>
                         <input id="descripcion" asp-for="Descripcion" class="form-control" autocomplete="off" required maxlength="60" />

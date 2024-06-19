@@ -13,17 +13,17 @@ namespace Jodami.AppWeb.Controllers
 
         private readonly Usuario _sessionUsuario;
         private readonly DbJodamiContext _contexto;
-        private readonly IGenericService<NivelCentroCosto> _svrNivelCentroCosto;      
+        private readonly IGenericService<Cultivo> _svrDB;      
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         #endregion
 
         #region Constructor 
 
-        public CultivosController(DbJodamiContext contexto, IGenericService<NivelCentroCosto> svrNivelCentroCosto, IHttpContextAccessor httpContextAccessor)
+        public CultivosController(DbJodamiContext contexto, IGenericService<Cultivo> svrDB, IHttpContextAccessor httpContextAccessor)
         {
             _contexto = contexto;
-            _svrNivelCentroCosto = svrNivelCentroCosto;
+            _svrDB = svrDB;
             _httpContextAccessor = httpContextAccessor;
             _sessionUsuario = System.Text.Json.JsonSerializer.Deserialize<Usuario>(_httpContextAccessor.HttpContext.Session.GetString("sessionUsuario"));
         }
@@ -35,7 +35,7 @@ namespace Jodami.AppWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var modelo = await _contexto.NivelCentroCosto.AsNoTracking().ToListAsync();
+            var modelo = await _contexto.Cultivo.AsNoTracking().ToListAsync();
             return View(modelo);
         }
 
@@ -46,7 +46,7 @@ namespace Jodami.AppWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Adicionar(string descripcion)
         {
-            var modelo = new NivelCentroCosto()
+            var modelo = new Cultivo()
             {               
                 Descripcion = descripcion,               
                 EsActivo = true,
@@ -54,7 +54,7 @@ namespace Jodami.AppWeb.Controllers
                 FechaRegistro = DateTime.Now
             };
 
-            var entity = await _svrNivelCentroCosto.Insert(modelo);
+            var entity = await _svrDB.Insert(modelo);
             return RedirectToAction("Index");
         }
 
@@ -64,14 +64,14 @@ namespace Jodami.AppWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(NivelCentroCosto entidad)
+        public async Task<IActionResult> Editar(Cultivo entidad)
         {
-            var modelo = await _svrNivelCentroCosto.GetById(x => x.IdNivelCentroCosto == entidad.IdNivelCentroCosto);             
+            var modelo = await _svrDB.GetById(x => x.IdCultivo == entidad.IdCultivo);             
             modelo.Descripcion = entidad.Descripcion;           
             modelo.EsActivo = entidad.EsActivo;
             modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
-            bool flgRetorno = await _svrNivelCentroCosto.Update(modelo);
+            bool flgRetorno = await _svrDB.Update(modelo);
             return RedirectToAction("Index");
         }
 
@@ -81,9 +81,9 @@ namespace Jodami.AppWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Eliminar(NivelCentroCosto entidad)
+        public async Task<IActionResult> Eliminar(Cultivo entidad)
         {
-            bool flgRetorno = await _svrNivelCentroCosto.Delete(x => x.IdNivelCentroCosto == entidad.IdNivelCentroCosto);
+            bool flgRetorno = await _svrDB.Delete(x => x.IdCultivo == entidad.IdCultivo);
             return RedirectToAction("Index");
         }
 
@@ -93,16 +93,16 @@ namespace Jodami.AppWeb.Controllers
 
         public async Task<IActionResult> ListarPDF()
         {
-            var modelo = await _contexto.NivelCentroCosto.AsNoTracking().ToListAsync();
+            var modelo = (await _contexto.Cultivo.AsNoTracking().ToListAsync()).OrderBy(x=> x.Descripcion).ToList();
 
-            string titulo = "Niveles Centros de Costos";
+            string titulo = "Tipo de Cultivos";
             string protocolo = Request.IsHttps ? "Https" : "Http";
             string headerAction = Url.Action("Header", "Home", new { titulo }, protocolo);
             string footerAction = Url.Action("Footer", "Home", new { }, protocolo);
 
             return new ViewAsPdf("ListarPDF", modelo)
             {
-                FileName = $"Niveles Centros de Costos {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
+                FileName = $"Tipo de Cultivos {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}.pdf",
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 PageMargins = { Left = 15, Bottom = 10, Right = 15, Top = 30 },
