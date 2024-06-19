@@ -109,6 +109,22 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Centro de Costos Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCentroCostos">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Centro de Costos</span>
+                </a>
+                <div id="collapseCentroCostos" class="collapse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Index", "NivelCentroCosto")">Niveles Centros de Costos</a>                                          
+                        <a class="collapse-item" href="@Url.Action("Index", "Cultivo")">Cultivos</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "SistemaConduccion")">Sistema de Conducción</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "UnidadGasto")">Unidades de Gastos</a>
+                        <a class="collapse-item" href="@Url.Action("FundoIndex", "CentroCostos_N0_Fundo")">Centro Costos Fundo</a>
+                      </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Inventario Collapse Menu -->
             <li class="nav-item">

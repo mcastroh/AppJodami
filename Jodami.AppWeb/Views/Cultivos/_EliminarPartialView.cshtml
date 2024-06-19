@@ -1,0 +1,43 @@
+﻿@model Jodami.Entity.NivelCentroCosto
+
+<div class="modal fade" id="EliminarEntidad-@Model.IdNivelCentroCosto" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h2 class="modal-title">Eliminar Nivel Centro Costo</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div> 
+            <div class="modal-body">                  
+                <form asp-action="Eliminar" method="post">                    
+                    <div class="form-group">
+                        <input type="hidden" asp-for="IdNivelCentroCosto" />
+                        <label class="control-label">Descripción</label>
+                        <input asp-for="Descripcion" class="form-control" readonly="readonly" />
+                    </div> 
+                    <div class="form-group">
+                        <label for="EsActivo" class="control-label">Es Activo</label>
+                        @{
+                            if (@Model.EsActivo)
+                            {
+                                <input class="form-control" value="Activo" readonly="readonly" />                                
+                            }
+                            else
+                            {
+                                <input class="form-control" value="Inactivo" readonly="readonly" />
+                            }
+                        }                     
+                    </div>
+                    <br /> 
+                    <div class="modal-footer">                      
+                        <button type="submit" class="btn btn-primary"> Eliminar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>                       
+            </div>
+        </div>
+    </div>   
+</div>
+
+           

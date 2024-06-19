@@ -1,0 +1,16 @@
+E:\AppJodami\Jodami.DAL\bin\Release\net8.0\Jodami.DAL.deps.json
+E:\AppJodami\Jodami.DAL\bin\Release\net8.0\Jodami.DAL.dll
+E:\AppJodami\Jodami.DAL\bin\Release\net8.0\Jodami.DAL.pdb
+E:\AppJodami\Jodami.DAL\bin\Release\net8.0\Jodami.Entity.dll
+E:\AppJodami\Jodami.DAL\bin\Release\net8.0\Jodami.Entity.pdb
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.csproj.AssemblyReference.cache
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.AssemblyInfoInputs.cache
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.AssemblyInfo.cs
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.csproj.CoreCompileInputs.cache
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.sourcelink.json
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.csproj.Up2Date
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.dll
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\refint\Jodami.DAL.dll
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\Jodami.DAL.pdb
+E:\AppJodami\Jodami.DAL\obj\Release\net8.0\ref\Jodami.DAL.dll

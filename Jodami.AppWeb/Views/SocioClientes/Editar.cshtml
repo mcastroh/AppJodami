@@ -13,11 +13,11 @@
 <body>
 
     <div class="container">
-        <h2>Editar Proveedor</h2>        
+        <h2>Editar Cliente</h2>
     </div>
 
     <div class="container">
-        <form id="form" asp-action="Editar" asp-controller="SocioProveedores" method="post" class="needs-validation" novalidate>
+        <form id="form" asp-action="Editar" asp-controller="SocioClientes" method="post" class="needs-validation" novalidate>
             <input type="hidden" asp-for="@Model.IdSocio" />
             <input type="hidden" asp-for="@Model.IdTipoSocio" />
 
@@ -170,7 +170,7 @@
             @*-------------- *@
             <div class="modal-footer">           
                 <input id="btnGuardar" type="submit" class="btn btn-primary" value="Editar">
-                <a class="btn btn-danger" href="@Url.Action("Index", "SocioProveedores")"><i class="bi bi-printer"></i> Cancelar</a> 
+                <a class="btn btn-danger" href="@Url.Action("Index", "SocioClientes")"><i class="bi bi-printer"></i> Cancelar</a> 
             </div>
 
         </form>

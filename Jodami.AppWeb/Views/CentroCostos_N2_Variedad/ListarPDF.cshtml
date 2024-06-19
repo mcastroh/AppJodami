@@ -1,0 +1,48 @@
+﻿@using Jodami.AppWeb.Models.ViewModels
+@model IEnumerable<VMCentroCostos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html> 
+
+<head>       
+    <partial name="_ReporteEncabezado" />
+    <style>
+        body {
+            font-family: Arial, Arial, Helvetica, sans-serif;
+        } 
+    </style>
+</head> 
+
+<body>   
+    <div class="contenedor"> 
+        <table class="tbproductos table table-sm table-bordered table-striped" id="tabla" width="100%" cellspacing="0">      
+            <thead class="table-dark">
+                <tr style="text-align: left">
+                    <th class="tbth" style="width:150px">Código</th>
+                    <th class="tbth" style="width:150px">Descripción</th>
+                     <th class="tbth" style="width:150px">¿Es Fundo?</th>
+                    <th align="center" style="width:30px" scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => item.CodigoCentroCosto)</td>
+                            <td>@Html.DisplayFor(m => item.Descripcion)</td>
+                             <td>@Html.DisplayFor(m => item.EsNivelEspecifico)</td>
+                            <td align="center">@Html.DisplayFor(m => item.EsActivo)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div> 
+</body>
+</html> 

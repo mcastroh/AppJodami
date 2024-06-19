@@ -54,6 +54,9 @@ namespace Jodami.AppWeb.Utilidades.Automapper
 
             CreateMap<Cargo, VMCargos>().ReverseMap();
 
+            CreateMap<CentroCosto, VMCentroCostos>().ReverseMap();
+
+            
 
         }        
     }

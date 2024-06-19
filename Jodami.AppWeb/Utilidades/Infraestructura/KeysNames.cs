@@ -1,7 +1,18 @@
-﻿namespace Jodami.AppWeb.Utilidades.Infraestructura
+﻿using System;
+
+namespace Jodami.AppWeb.Utilidades.Infraestructura
 {
     public class KeysNames
     {
+
+        // 
+        // Niveles Centro de Costos 
+        public const string NIVEL_CENTRO_COSTO_FUNDO = "FUNDO";
+        public const string NIVEL_CENTRO_COSTO_CULTIVO = "CULTIVO";
+        public const string NIVEL_CENTRO_COSTO_VARIEDAD = "VARIEDAD";
+        public const string NIVEL_CENTRO_COSTO_CAMPO = "CAMPO";
+        
+
         // 
         // Tipos de Socios Comerciales
         public const string GRUPOS_ECONOMICOS = "GRUPOS ECONOMICOS";

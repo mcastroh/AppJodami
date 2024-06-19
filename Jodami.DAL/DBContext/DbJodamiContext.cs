@@ -21,6 +21,16 @@ public partial class DbJodamiContext : DbContext
 
     public virtual DbSet<Cargo> Cargo { get; set; }
 
+    public virtual DbSet<CentroCosto> CentroCosto { get; set; }
+
+    public virtual DbSet<Cultivo> Cultivo { get; set; }
+
+    public virtual DbSet<NivelCentroCosto> NivelCentroCosto { get; set; }
+
+    public virtual DbSet<SistemaConduccion> SistemaConduccion { get; set; }
+
+    public virtual DbSet<UnidadGasto> UnidadGasto { get; set; }
+
     public virtual DbSet<Choferes> Choferes { get; set; }
 
     public virtual DbSet<Departamento> Departamento { get; set; }
@@ -1147,6 +1157,127 @@ public partial class DbJodamiContext : DbContext
 
             entity.HasOne(d => d.IdFleteNavigation).WithMany(p => p.Vehiculos).HasConstraintName("FK_Vehiculos_TipoFlete");
         });
+
+        modelBuilder.Entity<CentroCosto>(entity =>
+        {
+            entity.HasKey(e => e.IdCentroCosto).HasName("PK__CentroCo__EE3651E85AC559E6");
+
+            entity.Property(e => e.IdCentroCosto).HasComment("Centro Costo ID");
+            entity.Property(e => e.CodigoCentroCosto)
+                .HasDefaultValue("")
+                .HasComment("Código");
+            entity.Property(e => e.Descripcion)
+                .HasDefaultValue("")
+                .HasComment("Descripción");
+            entity.Property(e => e.DistanciaEntreHilerasMetros).HasComment("Distancia entre hileras metros");
+            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.EsAgricola)
+                .HasDefaultValue(true)
+                .HasComment("¿Es Agricola?");
+            entity.Property(e => e.EsNivelEspecifico).HasComment("¿Es nivel específico?");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasComment("Auditoría Fecha");
+            entity.Property(e => e.Hectareas).HasComment("Hectáreas");
+            entity.Property(e => e.IdCentroCostoPadre).HasComment("Centro Costo Padre");
+            entity.Property(e => e.IdCultivo).HasComment("Cultivo ID");
+            entity.Property(e => e.IdNivelCentroCosto).HasComment("Nivel Centro Costo ID");
+            entity.Property(e => e.IdSistemaConduccion).HasComment("Sistema Conducción ID");
+            entity.Property(e => e.IdUnidadGasto).HasComment("Unidad de Gasto ID");
+            entity.Property(e => e.NumeroLote)
+                .HasDefaultValue("")
+                .HasComment("Número de Lote");
+            entity.Property(e => e.UsuarioName)
+                .HasDefaultValue("")
+                .HasComment("Auditoría Usuario");
+
+            entity.HasOne(d => d.IdCentroCostoPadreNavigation).WithMany(p => p.InverseIdCentroCostoPadreNavigation).HasConstraintName("FK_CentroCosto_CentroCosto");
+
+            entity.HasOne(d => d.IdCultivoNavigation).WithMany(p => p.CentroCosto).HasConstraintName("FK_CentroCosto_Cultivo");
+
+            entity.HasOne(d => d.IdNivelCentroCostoNavigation).WithMany(p => p.CentroCosto)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_CentroCosto_NivelCentroCosto");
+
+            entity.HasOne(d => d.IdSistemaConduccionNavigation).WithMany(p => p.CentroCosto).HasConstraintName("FK_CentroCosto_SistemaConduccion");
+
+            entity.HasOne(d => d.IdUnidadGastoNavigation).WithMany(p => p.CentroCosto).HasConstraintName("FK_CentroCosto_UnidadGasto");
+        });
+
+        modelBuilder.Entity<Cultivo>(entity =>
+        {
+            entity.HasKey(e => e.IdCultivo).HasName("PK__Cultivo__594DD7D2C1FA28B5");
+
+            entity.Property(e => e.IdCultivo).HasComment("Cultivo ID");
+            entity.Property(e => e.Descripcion)
+                .HasDefaultValue("")
+                .HasComment("Descripción");
+            entity.Property(e => e.EsActivo)
+                .HasDefaultValue(true)
+                .HasComment("¿Es Activo?");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasComment("Auditoría Fecha");
+            entity.Property(e => e.UsuarioName)
+                .HasDefaultValue("Admin")
+                .HasComment("Auditoría Usuario");
+        });
+
+        modelBuilder.Entity<NivelCentroCosto>(entity =>
+        {
+            entity.HasKey(e => e.IdNivelCentroCosto).HasName("PK__NivelCen__77071D7EAAB69CB8");
+
+            entity.Property(e => e.IdNivelCentroCosto).HasComment("Nivel Centro Costo ID");
+            entity.Property(e => e.Descripcion)
+                .HasDefaultValue("")
+                .HasComment("Descripción");
+            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasComment("Auditoría Fecha");
+            entity.Property(e => e.UsuarioName)
+                .HasDefaultValue("")
+                .HasComment("Auditoría Usuario");
+        });
+
+        modelBuilder.Entity<SistemaConduccion>(entity =>
+        {
+            entity.HasKey(e => e.IdSistemaConduccion).HasName("PK__SistemaC__61A233C16A6C294A");
+
+            entity.Property(e => e.IdSistemaConduccion).HasComment("Sistema Conducción ID");
+            entity.Property(e => e.Descripcion)
+                .HasDefaultValue("")
+                .HasComment("Descripción");
+            entity.Property(e => e.EsActivo)
+                .HasDefaultValue(true)
+                .HasComment("¿Es Activo?");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasComment("Auditoría Fecha");
+            entity.Property(e => e.UsuarioName)
+                .HasDefaultValue("Admin")
+                .HasComment("Auditoría Usuario");
+        });
+
+        modelBuilder.Entity<UnidadGasto>(entity =>
+        {
+            entity.HasKey(e => e.IdUnidadGasto).HasName("PK__UnidadGa__F45F81518A3DC081");
+
+            entity.Property(e => e.IdUnidadGasto).HasComment("Unidad de Gasto ID");
+            entity.Property(e => e.Descripcion)
+                .HasDefaultValue("")
+                .HasComment("Descripción");
+            entity.Property(e => e.EsActivo).HasComment("¿Es Activo?");
+            entity.Property(e => e.FechaRegistro)
+                .HasDefaultValueSql("(getdate())")
+                .HasComment("Auditoría Fecha");
+            entity.Property(e => e.UsuarioName)
+                .HasDefaultValue("")
+                .HasComment("Auditoría Usuario");
+        });
+
+
+
 
         OnModelCreatingPartial(modelBuilder);
     }
