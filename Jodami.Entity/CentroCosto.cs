@@ -64,6 +64,11 @@ public partial class CentroCosto
     public decimal DistanciaEntreHilerasMetros { get; set; }
 
     /// <summary>
+    /// Orden Aplicación Fertilizantes
+    /// </summary>
+    public int OrdenAplicaFertilizantes { get; set; }
+
+    /// <summary>
     /// Número de Lote
     /// </summary>
     [Required]

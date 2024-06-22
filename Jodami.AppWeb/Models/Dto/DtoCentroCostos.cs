@@ -10,10 +10,9 @@ namespace Jodami.AppWeb.Models.Dto
         public VMCentroCostos CentroCostoFundo { get; set; }
         public VMCentroCostos CentroCostoCultivo { get; set; }
         public VMCentroCostos CentroCostoVariedad { get; set; }
-        public VMCentroCostos CentroCostoCampo { get; set; }
-
-        public List<VMCentroCostos> CentroCostoNavigation { get; set; }
-        //public List<UnidadGasto> UnidadGastoNavigation { get; set; }        
-
+        public VMCentroCostos CentroCostoCampo { get; set; }              
+        
+        public List<VMCentroCostos> LstCentroCostos { get; set; }            
+     
     }
 }

@@ -1,0 +1,54 @@
+﻿@using Jodami.AppWeb.Models.ViewModels
+@model VMCentroCostos
+
+<div class="modal fade" id="EliminarEntidad-@Model.IdCentroCosto" aria-labelledby="EliminarEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h2 class="modal-title">Eliminar Centro Costo Nivel Fundo</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div> 
+            <div class="modal-body">                  
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="IdCentroCosto" />         
+                    <div class="form-group">
+                        <label for="codigo" class="control-label">Código</label>
+                        <input id="codigo" asp-for="CodigoCentroCosto" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="codigo" class="control-label">Descripción</label>
+                        <input id="codigo" asp-for="Descripcion" class="form-control" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="esFundo" class="control-label">¿Es Fundo?</label>
+                        <div class="form-check d-flex justify-content-left">
+                            <input id="esFundo" class="form-control largerCheckbox" type="checkbox" asp-for="@Model.EsNivelEspecifico" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="EsActivo" class="control-label">Es Activo</label>
+                        @{
+                            if (@Model.EsActivo)
+                            {
+                                <input class="form-control" value="Activo" disabled  />
+                            }
+                            else
+                            {
+                                <input class="form-control" value="Inactivo" disabled />
+                            }
+                        }                     
+                    </div>
+                    <br /> 
+                    <div class="modal-footer">                      
+                        <button type="submit" class="btn btn-primary"> Eliminar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>                       
+            </div>
+        </div>
+    </div>   
+</div>
+
+           

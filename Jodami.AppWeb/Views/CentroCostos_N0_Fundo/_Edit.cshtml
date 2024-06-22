@@ -1,0 +1,56 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMCentroCostos
+ 
+<style>
+    input.largerCheckbox {
+        width: 20px;
+        height: 20px;
+    }
+
+</style> 
+ 
+<div class="modal fade" id="EditEntidad-@Model.IdCentroCosto" aria-labelledby="EditEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">   
+            <div class="modal-header">
+                <h2 class="modal-title">Editar Centro Costo Nivel Fundo</h2>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div> 
+            <div class="modal-body">       
+                <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+                    <input type="hidden" asp-for="IdCentroCosto" />
+                    <input type="hidden" asp-for="IdNivelCentroCosto" />
+                    <div class="form-group">
+                        <label for="codigo" class="control-label">Código</label>
+                        <input id="codigo" asp-for="CodigoCentroCosto" class="form-control" autocomplete="off" required maxlength="4" />
+                        <div class="invalid-feedback">Código Centro de Costo obligatorio</div>
+                    </div>
+                    <div class="form-group">                       
+                        <label for="descripcion" class="control-label">Descripción</label>
+                        <input id="descripcion" asp-for="Descripcion" class="form-control" autocomplete="off" required maxlength="60" />
+                        <div class="invalid-feedback">Descripción obligatorio</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="esFundo" class="control-label">Si es Fundo activar check</label>
+                        <div class="form-check d-flex justify-content-left">
+                            <input id="esFundo" class="form-control largerCheckbox" type="checkbox" asp-for="@Model.EsNivelEspecifico">
+                        </div>                       
+                    </div>
+                    <div class="form-group">
+                        <label for="cboEstado" class="d-flex justify-content-left">Activo (en Check)</label>
+                        <div class="form-check d-flex justify-content-left">
+                            <input id="cboEstado" class="largerCheckbox" type="checkbox" asp-for="@Model.EsActivo">
+                        </div>
+                    </div>
+                    <br /> 
+                    <div class="modal-footer">                      
+                        <button type="submit" class="btn btn-primary"> Guardar</button>
+                        <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                    </div>
+                </form>
+                <script src="~/js/proveedores/campos-obligatorios.js"></script>
+            </div>
+        </div>
+    </div>   
+</div>

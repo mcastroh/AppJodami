@@ -17,7 +17,7 @@ namespace Jodami.AppWeb.Controllers
 
         private readonly Usuario _sessionUsuario;
         private readonly DbJodamiContext _contexto;
-        private readonly IGenericService<CentroCosto> _srvCentroCosto;
+        private readonly IGenericService<CentroCosto> _srvDB;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMapper _mapper;
 
@@ -25,33 +25,23 @@ namespace Jodami.AppWeb.Controllers
 
         #region Constructor 
 
-        public CentroCostos_N0_FundoController(DbJodamiContext contexto, IGenericService<CentroCosto> srvCentroCosto, IHttpContextAccessor httpContextAccessor, IMapper mapper)
+        public CentroCostos_N0_FundoController(DbJodamiContext contexto, IGenericService<CentroCosto> srvDB, IHttpContextAccessor httpContextAccessor, IMapper mapper)
         {
             _contexto = contexto;
-            _srvCentroCosto = srvCentroCosto;
+            _srvDB = srvDB;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
             _sessionUsuario = System.Text.Json.JsonSerializer.Deserialize<Usuario>(_httpContextAccessor.HttpContext.Session.GetString("sessionUsuario"));
         }
 
         #endregion
-
-        #region Centro Costos => Fundos
-
+                 
         #region Index  
 
         [HttpGet]
-        public async Task<IActionResult> FundoIndex()
-        {
-            int keyFundo = await Get_NivelCentroCosto(KeysNames.NIVEL_CENTRO_COSTO_FUNDO);
-            var modelo = _mapper.Map<List<VMCentroCostos>>(await _contexto.CentroCosto.AsNoTracking().Where(x => x.IdNivelCentroCosto == keyFundo).OrderBy(x=> x.CodigoCentroCosto).ToListAsync());
-
-            var dto = new DtoCentroCostos()
-            {
-                CentroCostoNavigation = modelo,
-                CentroCostoFundo = new VMCentroCostos()
-            };
-
+        public async Task<IActionResult> Index()
+        {            
+            var dto = await ETL_CentroCostos();
             return View(dto);
         }
 
@@ -60,7 +50,7 @@ namespace Jodami.AppWeb.Controllers
         #region Add 
 
         [HttpPost]
-        public async Task<IActionResult> FundoAdd(VMCentroCostos vmModelo)
+        public async Task<IActionResult> Add(VMCentroCostos vmModelo)
         { 
             int keyFundo = await Get_NivelCentroCosto(KeysNames.NIVEL_CENTRO_COSTO_FUNDO);
 
@@ -75,8 +65,8 @@ namespace Jodami.AppWeb.Controllers
                 FechaRegistro = DateTime.Now
             };
 
-            var entity = await _srvCentroCosto.Insert(modelo);
-            return RedirectToAction("FundoIndex");
+            var entity = await _srvDB.Insert(modelo);
+            return RedirectToAction("Index");
         }
 
         #endregion
@@ -85,9 +75,9 @@ namespace Jodami.AppWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> FundoEdit(VMCentroCostos vmModelo)
+        public async Task<IActionResult> Edit(VMCentroCostos vmModelo)
         {
-            var modelo = await _srvCentroCosto.GetById(x => x.IdCentroCosto == vmModelo.IdCentroCosto);
+            var modelo = await _srvDB.GetById(x => x.IdCentroCosto == vmModelo.IdCentroCosto);
 
             modelo.Descripcion = vmModelo.Descripcion;
             modelo.CodigoCentroCosto = vmModelo.CodigoCentroCosto;
@@ -96,8 +86,8 @@ namespace Jodami.AppWeb.Controllers
             modelo.UsuarioName = _sessionUsuario.Nombre;
             modelo.FechaRegistro = DateTime.Now;
 
-            bool flgRetorno = await _srvCentroCosto.Update(modelo);
-            return RedirectToAction("FundoIndex");
+            bool flgRetorno = await _srvDB.Update(modelo);
+            return RedirectToAction("Index");
         }
 
         #endregion
@@ -106,103 +96,14 @@ namespace Jodami.AppWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> FundoDelete(VMCentroCostos vmModelo)
+        public async Task<IActionResult> Delete(VMCentroCostos vmModelo)
         {
-            bool flgRetorno = await _srvCentroCosto.Delete(x => x.IdCentroCosto == vmModelo.IdCentroCosto);
-            return RedirectToAction("FundoIndex");
+            bool flgRetorno = await _srvDB.Delete(x => x.IdCentroCosto == vmModelo.IdCentroCosto);
+            return RedirectToAction("Index");
         }
 
         #endregion
-
-        #endregion
-
-
-        #region Centro Costos => Cultivos
-
-        #region Index
-
-        [HttpGet]
-        public async Task<IActionResult> CultivoIndex(int idCentroCostoPadre)
-        {
-            var fundo = _mapper.Map<VMCentroCostos>(await _contexto.CentroCosto.AsNoTracking().FirstOrDefaultAsync(x => x.IdCentroCosto == idCentroCostoPadre));
-
-            int keyFundo = await Get_NivelCentroCosto(KeysNames.NIVEL_CENTRO_COSTO_CULTIVO);
-            var modelo = _mapper.Map<List<VMCentroCostos>>(await _contexto.CentroCosto.AsNoTracking().Where(x => x.IdNivelCentroCosto == keyFundo && x.IdCentroCostoPadre.Value == idCentroCostoPadre).OrderBy(x => x.CodigoCentroCosto).ToListAsync());
-            
-            var dto = new DtoCentroCostos()
-            {
-                CentroCostoFundo = fundo,
-                CentroCostoNavigation = modelo,
-                CentroCostoCultivo = new VMCentroCostos()
-            };
-
-            return View(dto);
-        }
-
-        #region Add 
-
-        [HttpPost]
-        public async Task<IActionResult> CultivoAdd(VMCentroCostos vmModelo)
-        {
-            int keyCultivo = await Get_NivelCentroCosto(KeysNames.NIVEL_CENTRO_COSTO_CULTIVO);
-
-            var modelo = new CentroCosto()
-            {
-                IdNivelCentroCosto = keyCultivo,
-                CodigoCentroCosto = vmModelo.CodigoCentroCosto,
-                Descripcion = vmModelo.Descripcion,
-                IdCentroCostoPadre = vmModelo.IdCentroCostoPadre,
-                EsNivelEspecifico = vmModelo.EsNivelEspecifico,
-                EsActivo = true,
-                UsuarioName = _sessionUsuario.Nombre,
-                FechaRegistro = DateTime.Now
-            };
-
-            var entity = await _srvCentroCosto.Insert(modelo);
-            return RedirectToAction("CultivoIndex", new { idCentroCostoPadre  = vmModelo.IdCentroCostoPadre });
-        }
-
-        #endregion
-
-        #region Edit 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CultivoEdit(VMCentroCostos vmModelo)
-        {
-            var modelo = await _srvCentroCosto.GetById(x => x.IdCentroCosto == vmModelo.IdCentroCosto);
-
-            modelo.Descripcion = vmModelo.Descripcion;
-            modelo.CodigoCentroCosto = vmModelo.CodigoCentroCosto;
-            modelo.EsNivelEspecifico = vmModelo.EsNivelEspecifico;
-            modelo.EsActivo = vmModelo.EsActivo;
-            modelo.UsuarioName = _sessionUsuario.Nombre;
-            modelo.FechaRegistro = DateTime.Now;
-
-            bool flgRetorno = await _srvCentroCosto.Update(modelo);
-            return RedirectToAction("CultivoIndex");
-        }
-
-        #endregion
-
-        #region Eliminar 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CultivoDelete(VMCentroCostos vmModelo)
-        {
-            bool flgRetorno = await _srvCentroCosto.Delete(x => x.IdCentroCosto == vmModelo.IdCentroCosto);
-            return RedirectToAction("CultivoIndex");
-        }
-
-        #endregion
-
-        #endregion
-
-
-        #endregion
-
-
+                 
         #region GET => Nivel Centro de Costo
 
         public async Task<int> Get_NivelCentroCosto(string nameNivel)
@@ -237,6 +138,39 @@ namespace Jodami.AppWeb.Controllers
 
         #endregion
 
+        #region ETL =>   Centro de Costos Nivel 0
+
+        public async Task<DtoCentroCostos> ETL_CentroCostos()
+        {
+            var lstUnidadGasto = await _contexto.UnidadGasto.ToListAsync();
+            var lstSistemaConduccion = await _contexto.SistemaConduccion.ToListAsync();
+            var lstCultivo = await _contexto.Cultivo.ToListAsync();
+
+            int keyFundo = await Get_NivelCentroCosto(KeysNames.NIVEL_CENTRO_COSTO_FUNDO);
+            var modelo = _mapper.Map<List<VMCentroCostos>>(await _contexto.CentroCosto
+                                .AsNoTracking()
+                                .Include(x => x.IdCultivoNavigation)
+                                .Include(x => x.IdNivelCentroCostoNavigation)
+                                .Include(x => x.IdSistemaConduccionNavigation)
+                                .Where(x => x.IdNivelCentroCosto == keyFundo)
+                                .OrderBy(x => x.CodigoCentroCosto)
+                                .ToListAsync());
+
+            var dto = new DtoCentroCostos()
+            {
+                LstCentroCostos = modelo,
+                CentroCostoFundo = new VMCentroCostos()
+                {
+                    LstUnidadGasto = lstUnidadGasto,
+                    LstSistemaConduccion = lstSistemaConduccion,
+                    LstCultivo = lstCultivo
+                }
+            };
+
+            return dto;
+        }
+
+        #endregion           
 
     }
 }

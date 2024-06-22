@@ -1,0 +1,69 @@
+﻿@model Jodami.AppWeb.Models.ViewModels.VMCentroCostos
+
+<div class="modal fade" id="AddEntidad" aria-labelledby="AddEntidadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="AddEntidadLabel">Adicionar Centro Costo Nivel Cultivo</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form asp-action="Add" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" asp-for="@Model.IdCentroCostoPadre" />
+                        <div class="form-group">
+                            <label for="codigo" class="control-label">Código</label>
+                            <input id="codigo" asp-for="CodigoCentroCosto" class="form-control" autocomplete="off" required maxlength="4" />
+                            <div class="invalid-feedback">Descripción obligatorio</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion" class="control-label">Descripción</label>
+                            <input id="descripcion" asp-for="Descripcion" class="form-control" autocomplete="off" required maxlength="60" />
+                            <div class="invalid-feedback">Descripción obligatorio</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="unidadGasto" class="control-label">Unidad de Gasto</label>
+                            <select id="unidadGasto" asp-for="@Model.IdUnidadGasto" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.LstUnidadGasto, "IdUnidadGasto", "Descripcion"))">
+                                <option value="">Seleccionar</option>
+                            </select>
+                          </div>
+
+                        <div class="form-group">
+                            <label for="sistemaConduccion" class="control-label">Sistema de Conducción</label>
+                            <select id="unidadGasto" asp-for="@Model.IdSistemaConduccion" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.LstSistemaConduccion, "IdSistemaConduccion", "Descripcion"))">
+                                <option value="">Seleccionar</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cultivo" class="control-label">Cultivo</label>
+                            <select id="unidadGasto" asp-for="@Model.IdCultivo" class="form-control form-select-sm" required asp-items="@(new SelectList(@Model.LstCultivo, "IdCultivo", "Descripcion"))">
+                                <option value="">Seleccionar</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ordenAplicacion" class="control-label">Numeración inicial Orden de Aplicación de Fertilizantes</label>
+                            <input id="ordenAplicacion" type="number" asp-for="OrdenAplicaFertilizantes" class="form-control" autocomplete="off" required maxlength="60" />
+                        </div>                        
+
+                        <div class="form-group">
+                            <label for="isFundo" class="control-label">Si es Cultivo activar check</label>
+                            <input id="codigo" asp-for="CodigoCentroCosto" class="form-control" autocomplete="off" required maxlength="4" />
+                        </div> 
+
+                        <br />
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Guardar</button>
+                            <button class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                        </div>
+                    </form>
+                    <script src="~/js/proveedores/campos-obligatorios.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

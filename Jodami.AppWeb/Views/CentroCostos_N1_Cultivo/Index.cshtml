@@ -1,0 +1,104 @@
+﻿@model Jodami.AppWeb.Models.Dto.DtoCentroCostos
+
+@{
+    ViewData["Title"] = "Centros Costos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var fundoName = @Model.CentroCostoFundo.CodigoCentroCosto + " " + @Model.CentroCostoFundo.Descripcion;
+}
+
+@section Estilos {
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/vendor/datatables/extensiones/css/buttons.dataTables.min.css">
+} 
+
+<div class="card shadow mb-2">
+    <div class="card-header py-1 bg-second">
+        <div class="row">
+            <div class="col-sm-6">
+            <label class="control-label font-weight-bold">
+                Nivel Fundo
+            </label>
+            <input asp-for="@fundoName" class="form-control text-md-left text-danger fs-2 font-weight-bold" disabled />
+        </div>
+        </div>
+        <br />
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 bg-second-primary">
+        <h6 class="m-0 font-weight-bold text-white">Lista Centros de Costos CULTIVOS</h6>
+    </div> 
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <button class="btn btn-success" data-toggle="modal" data-target="#AddEntidad"><i class="fas fa-plus-circle"></i> Nuevo</button>
+                @await Html.PartialAsync("_Add", Model.CentroCostoCultivo)
+                <a class="btn btn-success" href="@Url.Action("ListarPDF", new {nivel = "FUNDO"})"><i class="bi bi-printer"></i> Listado</a>
+                <a class="btn btn-success" href="@Url.Action("Index", "CentroCostos_N0_Fundo")"><i class="bi bi-printer"></i> Regresar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered" id="tbdata" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>¿Es Cultivo?</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.LstCentroCostos.Count != 0)
+                        {
+                            @foreach (var item in Model.LstCentroCostos)
+                            { 
+                                <tr>
+                                    <td>@Html.DisplayFor(m => item.CodigoCentroCosto)</td>
+                                    <td>@Html.DisplayFor(m => item.Descripcion)</td>
+                                    <td>@Html.DisplayFor(m => item.EsNivelEspecifico)</td>
+                                    <td>@Html.DisplayFor(m => item.EsActivo)</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="@("#EditEntidad-" + item.IdCentroCosto)" data-url="@Url.Action($"Edit/{item.IdCentroCosto}")">
+                                            <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Editar&nbsp;&nbsp;
+                                        </button>
+                                        @await Html.PartialAsync("_Edit", item)
+
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@("#EliminarEntidad-" + item.IdCentroCosto)" data-url="@Url.Action($"Eliminar/{item.IdCentroCosto}")">
+                                            <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Eliminar&nbsp;&nbsp;
+                                        </button>
+                                        @await Html.PartialAsync("_Delete", item)
+
+                                        <a class="btn btn-secondary btn-sm" href="@Url.Action("Index", "CentroCostos_N2_Variedad", new { idCentroCostoPadre = item.IdCentroCosto})"><i class="bi bi-justify"></i>Nivel Variedad</a>
+
+                                    </td>
+                                </tr>
+                            }
+                        }                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/vendor/datatables/extensiones/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/jszip.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.html5.min.js"></script>
+    <script src="~/vendor/datatables/extensiones/js/buttons.print.min.js"></script>
+
+    <script src="~/js/vistas/datatables-demo.js"></script>
+
+}

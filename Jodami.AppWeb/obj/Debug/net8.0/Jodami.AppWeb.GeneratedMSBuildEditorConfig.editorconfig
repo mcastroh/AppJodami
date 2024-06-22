@@ -50,148 +50,84 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWN1bG9cX0VsaW1pbmFyUGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/CultivoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXEN1bHRpdm9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/FundoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXEZ1bmRvSW5kZXguY3NodG1s
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/ListarPDF.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXExpc3RhclBERi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_CultivoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9DdWx0aXZvQWRkLmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9BZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_CultivoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9DdWx0aXZvRGVsZXRlLmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_CultivoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9DdWx0aXZvRWRpdC5jc2h0bWw=
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_FundoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9GdW5kb0FkZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_FundoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9GdW5kb0RlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N0_Fundo/_FundoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04wX0Z1bmRvXF9GdW5kb0VkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/CultivoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cQ3VsdGl2b0luZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/FundoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cRnVuZG9JbmRleC5jc2h0bWw=
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/ListarPDF.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cTGlzdGFyUERGLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_CultivoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0N1bHRpdm9BZGQuY3NodG1s
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0FkZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_CultivoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0N1bHRpdm9EZWxldGUuY3NodG1s
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0RlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_CultivoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0N1bHRpdm9FZGl0LmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_FundoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0Z1bmRvQWRkLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_FundoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0Z1bmRvRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N1_Cultivo/_FundoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04xX0N1bHRpdm9cX0Z1bmRvRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/CultivoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXEN1bHRpdm9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/FundoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXEZ1bmRvSW5kZXguY3NodG1s
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/ListarPDF.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXExpc3RhclBERi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_CultivoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9DdWx0aXZvQWRkLmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9BZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_CultivoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9DdWx0aXZvRGVsZXRlLmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_CultivoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9DdWx0aXZvRWRpdC5jc2h0bWw=
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_FundoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9GdW5kb0FkZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_FundoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9GdW5kb0RlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N2_Variedad/_FundoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04yX1ZhcmllZGFkXF9GdW5kb0VkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/CultivoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXEN1bHRpdm9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/FundoIndex.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXEZ1bmRvSW5kZXguY3NodG1s
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/ListarPDF.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXExpc3RhclBERi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_CultivoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9DdWx0aXZvQWRkLmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9BZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_CultivoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9DdWx0aXZvRGVsZXRlLmNzaHRtbA==
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_CultivoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9DdWx0aXZvRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_FundoAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9GdW5kb0FkZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_FundoDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9GdW5kb0RlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_FundoEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9GdW5kb0VkaXQuY3NodG1s
+[E:/AppJodami/Jodami.AppWeb/Views/CentroCostos_N3_Campo/_Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VudHJvQ29zdG9zX04zX0NhbXBvXF9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/AppJodami/Jodami.AppWeb/Views/Contactos/Index.cshtml]

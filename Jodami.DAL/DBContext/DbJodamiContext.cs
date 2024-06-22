@@ -11,16 +11,6 @@ public partial class DbJodamiContext : DbContext
     {
     }
 
-    public virtual DbSet<Almacen> Almacen { get; set; }
-
-    public virtual DbSet<Articulo> Articulo { get; set; }
-
-    public virtual DbSet<ArticuloImagen> ArticuloImagen { get; set; }
-
-    public virtual DbSet<Calificacion> Calificacion { get; set; }
-
-    public virtual DbSet<Cargo> Cargo { get; set; }
-
     public virtual DbSet<CentroCosto> CentroCosto { get; set; }
 
     public virtual DbSet<Cultivo> Cultivo { get; set; }
@@ -31,6 +21,17 @@ public partial class DbJodamiContext : DbContext
 
     public virtual DbSet<UnidadGasto> UnidadGasto { get; set; }
 
+
+    public virtual DbSet<Almacen> Almacen { get; set; }
+
+    public virtual DbSet<Articulo> Articulo { get; set; }
+
+    public virtual DbSet<ArticuloImagen> ArticuloImagen { get; set; }
+
+    public virtual DbSet<Calificacion> Calificacion { get; set; }
+
+    public virtual DbSet<Cargo> Cargo { get; set; }
+     
     public virtual DbSet<Choferes> Choferes { get; set; }
 
     public virtual DbSet<Departamento> Departamento { get; set; }
@@ -1160,7 +1161,7 @@ public partial class DbJodamiContext : DbContext
 
         modelBuilder.Entity<CentroCosto>(entity =>
         {
-            entity.HasKey(e => e.IdCentroCosto).HasName("PK__CentroCo__EE3651E85AC559E6");
+            entity.HasKey(e => e.IdCentroCosto).HasName("PK__CentroCo__EE3651E85FAB0C09");
 
             entity.Property(e => e.IdCentroCosto).HasComment("Centro Costo ID");
             entity.Property(e => e.CodigoCentroCosto)
@@ -1187,6 +1188,7 @@ public partial class DbJodamiContext : DbContext
             entity.Property(e => e.NumeroLote)
                 .HasDefaultValue("")
                 .HasComment("Número de Lote");
+            entity.Property(e => e.OrdenAplicaFertilizantes).HasComment("Orden Aplicación Fertilizantes");
             entity.Property(e => e.UsuarioName)
                 .HasDefaultValue("")
                 .HasComment("Auditoría Usuario");
